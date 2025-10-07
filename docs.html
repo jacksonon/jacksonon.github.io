@@ -3,20 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Right AI Sidebar - AI Hub for Your Browser</title>
+    <title>Right AI Sidebar - Usage Guide</title>
     <meta
       name="description"
-      content="Right AI Sidebar turns your Chrome sidebar into a powerful AI hub. Summaries, prompts, and multi-model workflows are one click away."
+      content="Learn how to configure Right AI Sidebar: Quick Input shortcuts, Zhipu-powered tools, and the live stock module."
     />
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -26,17 +19,17 @@
   <body data-theme="light" data-language="en">
     <header class="hero" id="top">
       <nav class="nav">
-        <a class="logo" href="#top" aria-label="Right AI Sidebar home">
+        <a class="logo" href="index.html#top" aria-label="Right AI Sidebar home">
           <span class="logo-mark">AI</span>
           <span class="logo-text">Right AI Sidebar</span>
         </a>
         <div class="nav-links">
-          <a href="#top" data-i18n="nav.overview">Overview</a>
-          <a href="docs.html" data-i18n="nav.docs">Docs</a>
-          <a href="#shortcut" data-i18n="nav.quickInput">Quick Input</a>
-          <a href="#features" data-i18n="nav.features">Key Features</a>
-          <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
-          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="index.html#top" data-i18n="nav.overview">Overview</a>
+          <a href="docs.html#top" data-i18n="nav.docs">Docs</a>
+          <a href="#quick-input" data-i18n="nav.quickInput">Quick Input</a>
+          <a href="index.html#features" data-i18n="nav.features">Key Features</a>
+          <a href="index.html#workflow" data-i18n="nav.workflow">Workflow</a>
+          <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
           <a
             class="button button-ghost"
             href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
@@ -56,51 +49,32 @@
 
       <div class="hero-content">
         <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">Chrome extension</p>
-          <h1 data-i18n="hero.heading">Right AI Sidebar keeps AI copilots ready in any workflow.</h1>
-          <p class="lead" data-i18n="hero.lead">
-            Launch the AI Quick Input palette, talk to multiple models side by side, and let your browser become a
-            control center for research, creation, and decision-making.
+          <p class="eyebrow" data-i18n="docs.hero.eyebrow">Usage guide</p>
+          <h1 data-i18n="docs.hero.heading">Master Right AI Sidebar in minutes.</h1>
+          <p class="lead" data-i18n="docs.hero.lead">
+            Follow the modules below to set up Quick Input, Zhipu tools, and live stock tracking.
           </p>
           <div class="hero-highlights">
             <article>
-              <h2 data-i18n="hero.highlight.quickInput.title">AI Quick Input</h2>
-              <p data-i18n="hero.highlight.quickInput.body">
-                Shortcut dialog sends text straight to your chosen model with optional auto-send. Press Ctrl + R (recommended) to open it instantly anywhere in Chrome.
+              <h2 data-i18n="docs.hero.card.quick.title">Quick Input anywhere</h2>
+              <p data-i18n="docs.hero.card.quick.body">
+                Press Ctrl + R to summon the input palette on any site and deliver prompts straight to your favourite AI.
               </p>
             </article>
             <article>
-              <h2 data-i18n="hero.highlight.multiModel.title">Multi-Model Split Screen</h2>
-              <p data-i18n="hero.highlight.multiModel.body">
-                Chat with ChatGPT, Gemini, Claude, or custom endpoints side by side without switching tabs.
+              <h2 data-i18n="docs.hero.card.zhipu.title">Zhipu power-ups</h2>
+              <p data-i18n="docs.hero.card.zhipu.body">
+                Connect a BigModel API key to unlock translations, OCR, and creative generation.
               </p>
             </article>
             <article>
-              <h2 data-i18n="hero.highlight.webpage.title">Webpage Conversation</h2>
-              <p data-i18n="hero.highlight.webpage.body">
-                Zhipu-powered assistant draws context from the active page to answer questions, summarize, and generate media.
-              </p>
-            </article>
-            <article>
-              <h2 data-i18n="hero.highlight.translation.title">Text Selection Translation</h2>
-              <p data-i18n="hero.highlight.translation.body">
-                Highlight text and receive instant translations across multiple languages right in place.
-              </p>
-            </article>
-            <article>
-              <h2 data-i18n="hero.highlight.ocr.title">Image Text Extraction</h2>
-              <p data-i18n="hero.highlight.ocr.body">
-                Run OCR on webpage images, capture the text, and translate it into your target language.
-              </p>
-            </article>
-            <article>
-              <h2 data-i18n="hero.highlight.stock.title">Stock Assistant</h2>
-              <p data-i18n="hero.highlight.stock.body">
-                Monitor real-time tickers for watched symbols while collaborating with AI in the sidebar.
+              <h2 data-i18n="docs.hero.card.stock.title">Live stocks at a glance</h2>
+              <p data-i18n="docs.hero.card.stock.body">
+                Pin multiple tickers and watch them glide across the sidebar while you chat.
               </p>
             </article>
           </div>
-          <div class="hero-actions" id="download">
+          <div class="doc-actions">
             <a
               class="button button-primary"
               href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
@@ -108,7 +82,7 @@
             >
               Add to Chrome
             </a>
-            <a class="button button-ghost" href="#shortcut" data-i18n="cta.seeDemo">See it in action</a>
+            <a class="button button-ghost" href="index.html#top" data-i18n="docs.back.overview">Back to overview</a>
           </div>
           <p class="hero-note" data-i18n="hero.note">
             Works with the latest Chrome and Chromium-based browsers. No account required to get started.
@@ -118,184 +92,140 @@
     </header>
 
     <main>
-      <section class="section alt shortcut" id="shortcut">
-        <div class="shortcut-grid">
-          <div class="shortcut-copy">
-            <p class="eyebrow" data-i18n="shortcut.eyebrow">Instant command line</p>
-            <h2 data-i18n="shortcut.heading">Summon Right AI anywhere with a single keystroke.</h2>
-            <p data-i18n="shortcut.body">
-              Hold your hotkey, start typing, and press Enter. Right AI Sidebar captures the current page,
-              sends your message to the selected model, and returns context-rich answers without breaking your flow.
-            </p>
-            <ul class="shortcut-list">
-              <li>
-                <strong data-i18n="shortcut.list.global.title">Global shortcut:</strong>
-                <span data-i18n="shortcut.list.global.body">Use Ctrl + R (recommended) to wake the input from any tab.</span>
-              </li>
-              <li>
-                <strong data-i18n="shortcut.list.models.title">Model switcher:</strong>
-                <span data-i18n="shortcut.list.models.body">choose GPT, Claude, Gemini, or custom copilots before sending.</span>
-              </li>
-              <li>
-                <strong data-i18n="shortcut.list.suggestions.title">Smart suggestions:</strong>
-                <span data-i18n="shortcut.list.suggestions.body">inline tips keep the next action right at your fingertips.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="shortcut-visual">
-            <div class="shortcut-glow"></div>
-            <div class="shortcut-frame">
-              <div class="shortcut-keys">
-                <span class="key">Ctrl</span>
-                <span class="key">R</span>
-              </div>
-              <img
-                src="assets/shortcut-quick-send.png"
-                alt="Right AI Sidebar quick send prompt hovering above a webpage"
-              />
-              <div class="shortcut-pulse"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="features">
+      <section class="section doc-section" id="quick-input">
         <div class="section-header">
-          <p class="eyebrow" data-i18n="features.eyebrow">Key Features</p>
-          <h2 data-i18n="features.heading">The fastest way to collaborate with AI copilots inside Chrome.</h2>
-          <p data-i18n="features.body">
-            Swap between leading models, automate common tasks, and supercharge any page with instant summaries,
-            translations, image understanding, and real-time data.
+          <p class="eyebrow" data-i18n="docs.quick.eyebrow">Quick Input module</p>
+          <h2 data-i18n="docs.quick.heading">Launch AI from any webpage.</h2>
+          <p data-i18n="docs.quick.description">
+            Quick Input is always on: press Ctrl + R (recommended), type, and send. No tab juggling, no copy and paste.
           </p>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card has-media">
-            <div class="feature-media">
-              <img src="assets/shortcut-quick-send.png" alt="AI Quick Input dialog overlaying a webpage" />
-            </div>
-            <h3 data-i18n="features.cards.quickInput.title">AI Quick Input</h3>
-            <p data-i18n="features.cards.quickInput.body">
-              Trigger a shortcut dialog from anywhere, pre-select your model, and optionally auto-send the text. No extra tabs,
-              no copy-paste, just type, press Enter, and get the response.
-            </p>
-          </article>
-          <article class="feature-card has-media">
-            <div class="feature-media">
-              <img src="assets/Multi-Model-Support.png" alt="Multi-model support with split screen" />
-            </div>
-            <h3 data-i18n="features.cards.multiModel.title">Multi-Model Split Screen</h3>
-            <p data-i18n="features.cards.multiModel.body">
-              Switch between ChatGPT, Gemini, and any custom landing page, or chat with two copilots at once in split view to
-              compare answers instantly.
-            </p>
-          </article>
-          <article class="feature-card">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M5.5 4A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 18.5 4h-13Zm0 2h13a.5.5 0 0 1 .5.5V8H5V6.5a.5.5 0 0 1 .5-.5Zm-.5 5h14v6.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V11Z"
-                />
-              </svg>
-            </div>
-            <h3 data-i18n="features.cards.webpage.title">Webpage Conversation</h3>
-            <p data-i18n="features.cards.webpage.body">
-              Built on Zhipu's free API, the assistant understands the page you are browsing to answer questions, summarize,
-              extract key facts, and even generate media on the fly.
-            </p>
-          </article>
-          <article class="feature-card has-media">
-            <div class="feature-media">
-              <img src="assets/Text-Selection-Translation.png" alt="Text selection translation overlay" />
-            </div>
-            <h3 data-i18n="features.cards.translation.title">Instant Translation</h3>
-            <p data-i18n="features.cards.translation.body">
-              Highlight any snippet and translate it in context. Right AI Sidebar detects the language automatically and
-              supports multi-language outputs.
-            </p>
-          </article>
-          <article class="feature-card has-media">
-            <div class="feature-media">
-              <img src="assets/Image-OCR-Traanslation.png" alt="Image OCR and translation workflow" />
-            </div>
-            <h3 data-i18n="features.cards.ocr.title">Image OCR + Translation</h3>
-            <p data-i18n="features.cards.ocr.body">
-              Recognize text inside images across the web, extract the content in one click, and translate it straight into your
-              target language.
-            </p>
-          </article>
-          <article class="feature-card has-media">
-            <div class="feature-media">
-              <img src="assets/Stock.png" alt="Stock assistant showing live tickers" />
-            </div>
-            <h3 data-i18n="features.cards.stock.title">Stock Assistant</h3>
-            <p data-i18n="features.cards.stock.body">
-              Track live prices for your watchlist while chatting with AI. Perfect for market research, investment calls, and
-              keeping critical metrics visible.
-            </p>
-          </article>
+        <ul class="doc-list">
+          <li>
+            <strong data-i18n="docs.quick.list.hotkey.title">Hotkey</strong>
+            <span data-i18n="docs.quick.list.hotkey.body">
+              Press Ctrl + R (recommended, customisable) to open the input anywhere in Chrome.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.quick.list.model.title">Send to any AI</strong>
+            <span data-i18n="docs.quick.list.model.body">
+              Pick ChatGPT, Gemini, Claude, or a custom endpoint before sending.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.quick.list.free.title">No extra cost</strong>
+            <span data-i18n="docs.quick.list.free.body">
+              Right AI routes to the provider you already use. Your existing AI plan handles the responses.
+            </span>
+          </li>
+        </ul>
+        <div class="doc-gallery">
+          <figure>
+            <img
+              src="assets/shortcut-quick-send.png"
+              alt="Quick Input palette overlaying a webpage"
+            />
+            <figcaption data-i18n="docs.quick.figure.caption">
+              Ctrl + R opens the Quick Input palette wherever you are in Chrome.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section class="section alt" id="workflow">
-        <div class="section-header narrow">
-          <p class="eyebrow" data-i18n="workflow.eyebrow">Three steps to unstoppable flow</p>
-          <h2 data-i18n="workflow.heading">Install, pin, and let AI stay beside whatever you are working on.</h2>
-        </div>
-        <div class="steps">
-          <article class="step-card">
-            <span class="step-number">01</span>
-            <h3 data-i18n="workflow.steps.install.title">Install from the Chrome Web Store</h3>
-            <p data-i18n="workflow.steps.install.body">
-              Click "Add to Chrome" and grant sidebar access so the AI hub can live alongside any page.
-            </p>
-          </article>
-          <article class="step-card">
-            <span class="step-number">02</span>
-            <h3 data-i18n="workflow.steps.pin.title">Pin your favorite copilots</h3>
-            <p data-i18n="workflow.steps.pin.body">
-              Authenticate once and keep GPTs, Claude, and custom agents ready to answer with one tap.
-            </p>
-          </article>
-          <article class="step-card">
-            <span class="step-number">03</span>
-            <h3 data-i18n="workflow.steps.launch.title">Launch prompts with page context</h3>
-            <p data-i18n="workflow.steps.launch.body">
-              Highlight content, trigger templates, and watch the sidebar return summaries, drafts, or code snippets in seconds.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
+      <section class="section doc-section" id="zhipu">
         <div class="section-header">
-          <p class="eyebrow" data-i18n="faq.eyebrow">FAQ</p>
-          <h2 data-i18n="faq.heading">Answers before you install.</h2>
+          <p class="eyebrow" data-i18n="docs.zhipu.eyebrow">Zhipu extension module</p>
+          <h2 data-i18n="docs.zhipu.heading">Unlock translations, image tools, and page-aware conversations.</h2>
+          <p data-i18n="docs.zhipu.description">
+            Right AI bundles Zhipu's free capabilities. Connect your key once and keep the tools on standby.
+          </p>
         </div>
-        <div class="faq-grid">
-          <article>
-            <h3 data-i18n="faq.q1.title">Does Right AI Sidebar support multiple AI providers?</h3>
-            <p data-i18n="faq.q1.body">
-              Yes. Connect GPTs, Claude, Gemini, and self-hosted endpoints. Switch providers on the fly or run comparisons.
+        <div class="doc-grid">
+          <article class="doc-card">
+            <h3 data-i18n="docs.zhipu.steps.api.title">1. Grab your API key</h3>
+            <p data-i18n="docs.zhipu.steps.api.body">
+              Visit Bigmodel.cn, sign in, and create an API key from the console.
             </p>
           </article>
-          <article>
-            <h3 data-i18n="faq.q2.title">Is any data stored on your servers?</h3>
-            <p data-i18n="faq.q2.body">
-              Your prompts and responses stay on the providers you authenticate with. You can optionally enable encrypted cloud sync for history.
+          <article class="doc-card">
+            <h3 data-i18n="docs.zhipu.steps.connect.title">2. Paste it into Right AI</h3>
+            <p data-i18n="docs.zhipu.steps.connect.body">
+              Open the sidebar settings, find Zhipu integration, and save the key securely.
             </p>
           </article>
-          <article>
-            <h3 data-i18n="faq.q3.title">Can teams manage shared workflows?</h3>
-            <p data-i18n="faq.q3.body">
-              Create shared libraries with permissions so everyone can access approved templates and automations.
+          <article class="doc-card">
+            <h3 data-i18n="docs.zhipu.steps.features.title">Features you unlock</h3>
+            <ul class="doc-sublist">
+              <li data-i18n="docs.zhipu.steps.features.translation">
+                Text selection translation with instant inline output.
+              </li>
+              <li data-i18n="docs.zhipu.steps.features.ocr">Image text extraction (OCR) with one-click translation.</li>
+              <li data-i18n="docs.zhipu.steps.features.image">Image generation powered by Zhipu's creative models.</li>
+              <li data-i18n="docs.zhipu.steps.features.video">Video generation requests routed through the same interface.</li>
+              <li data-i18n="docs.zhipu.steps.features.chat">
+                Right conversation mode that understands the page you are viewing.
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="doc-gallery">
+          <figure>
+            <img
+              src="assets/Text-Selection-Translation.png"
+              alt="Text selection translation using Zhipu integration"
+            />
+            <figcaption data-i18n="docs.zhipu.figure.translation">
+              Zhipu handles on-page text selection translation in real time.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/Image-OCR-Traanslation.png"
+              alt="Image OCR and translation workflow in Right AI"
+            />
+            <figcaption data-i18n="docs.zhipu.figure.ocr">
+              Extract text from images and translate it without leaving the sidebar.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section doc-section" id="stocks">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.stock.eyebrow">Stock module</p>
+          <h2 data-i18n="docs.stock.heading">Keep track of the tickers that matter.</h2>
+          <p data-i18n="docs.stock.description">
+            Create a rotating watchlist so market data stays visible alongside your AI chat.
+          </p>
+        </div>
+        <div class="doc-grid">
+          <article class="doc-card">
+            <h3 data-i18n="docs.stock.list.watchlist.title">Flexible watchlist</h3>
+            <p data-i18n="docs.stock.list.watchlist.body">
+              Add multiple symbols, reorder them, or remove them as priorities change.
             </p>
           </article>
-          <article>
-            <h3 data-i18n="faq.q4.title">Does it work outside of Chrome?</h3>
-            <p data-i18n="faq.q4.body">
-              The extension installs on any Chromium browser, including Arc, Brave, and Edge. A Firefox version is in beta.
+          <article class="doc-card">
+            <h3 data-i18n="docs.stock.list.marquee.title">Marquee view</h3>
+            <p data-i18n="docs.stock.list.marquee.body">
+              Prices loop in a smooth marquee so you never lose sight of intraday movement.
             </p>
           </article>
+          <article class="doc-card">
+            <h3 data-i18n="docs.stock.list.sync.title">Real-time sync</h3>
+            <p data-i18n="docs.stock.list.sync.body">
+              Quotes refresh automatically while you continue the conversation.
+            </p>
+          </article>
+        </div>
+        <div class="doc-gallery">
+          <figure>
+            <img src="assets/Stock.png" alt="Stock assistant displaying multiple tickers" />
+            <figcaption data-i18n="docs.stock.figure.caption">
+              Configure multiple watchlist symbols and view them in a scrolling marquee.
+            </figcaption>
+          </figure>
         </div>
       </section>
     </main>
@@ -317,10 +247,10 @@
       <div class="footer-meta">
         <span data-i18n-html="footer.copyright">&copy; <span id="year"></span> Right AI Sidebar</span>
         <div class="footer-links">
-          <a href="docs.html" data-i18n="nav.docs">Docs</a>
-          <a href="#features" data-i18n="nav.features">Features</a>
-          <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
-          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="docs.html#top" data-i18n="nav.docs">Docs</a>
+          <a href="index.html#features" data-i18n="nav.features">Features</a>
+          <a href="index.html#workflow" data-i18n="nav.workflow">Workflow</a>
+          <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="footer-contact">
           <span class="contact-label" data-i18n="footer.contact.label">Contact</span>
@@ -469,11 +399,13 @@
             "Right AI routes to the provider you already use. Your existing AI plan handles the responses.",
           "docs.zhipu.eyebrow": "Zhipu extension module",
           "docs.zhipu.heading": "Unlock translations, image tools, and page-aware conversations.",
-          "docs.zhipu.description": "Right AI bundles Zhipu's free capabilities. Connect your key once and keep the tools on standby.",
+          "docs.zhipu.description":
+            "Right AI bundles Zhipu's free capabilities. Connect your key once and keep the tools on standby.",
           "docs.zhipu.steps.api.title": "1. Grab your API key",
           "docs.zhipu.steps.api.body": "Visit Bigmodel.cn, sign in, and create an API key from the console.",
           "docs.zhipu.steps.connect.title": "2. Paste it into Right AI",
-          "docs.zhipu.steps.connect.body": "Open the sidebar settings, find Zhipu integration, and save the key securely.",
+          "docs.zhipu.steps.connect.body":
+            "Open the sidebar settings, find Zhipu integration, and save the key securely.",
           "docs.zhipu.steps.features.title": "Features you unlock",
           "docs.zhipu.steps.features.translation": "Text selection translation with instant inline output.",
           "docs.zhipu.steps.features.ocr": "Image text extraction (OCR) with one-click translation.",
@@ -482,13 +414,17 @@
           "docs.zhipu.steps.features.chat": "Right conversation mode that understands the page you are viewing.",
           "docs.stock.eyebrow": "Stock module",
           "docs.stock.heading": "Keep track of the tickers that matter.",
-          "docs.stock.description": "Create a rotating watchlist so market data stays visible alongside your AI chat.",
+          "docs.stock.description":
+            "Create a rotating watchlist so market data stays visible alongside your AI chat.",
           "docs.stock.list.watchlist.title": "Flexible watchlist",
-          "docs.stock.list.watchlist.body": "Add multiple symbols, reorder them, or remove them as priorities change.",
+          "docs.stock.list.watchlist.body":
+            "Add multiple symbols, reorder them, or remove them as priorities change.",
           "docs.stock.list.marquee.title": "Marquee view",
-          "docs.stock.list.marquee.body": "Prices loop in a smooth marquee so you never lose sight of intraday movement.",
+          "docs.stock.list.marquee.body":
+            "Prices loop in a smooth marquee so you never lose sight of intraday movement.",
           "docs.stock.list.sync.title": "Real-time sync",
-          "docs.stock.list.sync.body": "Quotes refresh automatically while you continue the conversation.",
+          "docs.stock.list.sync.body":
+            "Quotes refresh automatically while you continue the conversation.",
           "docs.quick.figure.caption": "Ctrl + R opens the Quick Input palette wherever you are in Chrome.",
           "docs.zhipu.figure.translation": "Zhipu handles on-page text selection translation in real time.",
           "docs.zhipu.figure.ocr": "Extract text from images and translate it without leaving the sidebar.",
@@ -517,14 +453,11 @@
           "hero.highlight.webpage.body":
             "基于智谱免费 API, 理解当前页面语境, 支持提问、总结与内容生成。",
           "hero.highlight.translation.title": "文本划词翻译",
-          "hero.highlight.translation.body":
-            "划词即可即时翻译, 多语言结果原地显示。",
+          "hero.highlight.translation.body": "划词即可即时翻译, 多语言结果原地显示。",
           "hero.highlight.ocr.title": "图片文字提取",
-          "hero.highlight.ocr.body":
-            "对网页图片执行 OCR, 提取文字并翻译成目标语言。",
+          "hero.highlight.ocr.body": "对网页图片执行 OCR, 提取文字并翻译成目标语言。",
           "hero.highlight.stock.title": "股票助手",
-          "hero.highlight.stock.body":
-            "边与 AI 协作边监控自选股实时行情。",
+          "hero.highlight.stock.body": "边与 AI 协作边监控自选股实时行情。",
           "cta.addToChrome": "添加到 Chrome",
           "cta.seeDemo": "查看演示",
           "hero.note": "兼容最新版 Chrome 及 Chromium 浏览器, 开箱即用无需注册。",
@@ -566,8 +499,7 @@
           "workflow.steps.install.body":
             '点击 "添加到 Chrome", 授予侧边栏权限, 让 AI 中枢伴随任意页面。',
           "workflow.steps.pin.title": "固定常用助手",
-          "workflow.steps.pin.body":
-            "一次登录即可固定 GPT、Claude 及自定义代理, 随时一键调用。",
+          "workflow.steps.pin.body": "一次登录即可固定 GPT、Claude 及自定义代理, 随时一键调用。",
           "workflow.steps.launch.title": "带着页面上下文执行提示词",
           "workflow.steps.launch.body":
             "选中内容、触发模板, 数秒内返回总结、草稿或代码片段。",
@@ -580,8 +512,7 @@
           "faq.q2.body":
             "提示词与回答保留在你连接的服务端, 可选启用加密云同步以保存历史记录。",
           "faq.q3.title": "团队能共享工作流吗?",
-          "faq.q3.body":
-            "可创建带权限的共享库, 让成员复用审核过的模板与自动化流程。",
+          "faq.q3.body": "可创建带权限的共享库, 让成员复用审核过的模板与自动化流程。",
           "faq.q4.title": "除了 Chrome, 还能在哪些浏览器使用?",
           "faq.q4.body":
             "支持所有基于 Chromium 的浏览器, 包括 Arc、Brave 与 Edge; Firefox 版本正在测试中。",
