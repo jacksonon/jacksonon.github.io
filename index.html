@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Right AI Sidebar - AI Hub for Your Browser</title>
+    <meta
+      name="description"
+      content="Right AI Sidebar turns your Chrome sidebar into a powerful AI hub. Summaries, prompts, and multi-model workflows are one click away."
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="light" data-language="en">
+    <header class="hero" id="top">
+      <nav class="nav">
+        <a class="logo" href="#top" aria-label="Right AI Sidebar home">
+          <span class="logo-mark">AI</span>
+          <span class="logo-text">Right AI Sidebar</span>
+        </a>
+        <div class="nav-links">
+          <a href="#top" data-i18n="nav.overview">Overview</a>
+          <a href="#shortcut" data-i18n="nav.quickInput">Quick Input</a>
+          <a href="#features" data-i18n="nav.features">Key Features</a>
+          <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a
+            class="button button-ghost"
+            href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+            data-i18n="nav.cta"
+          >
+            Add to Chrome
+          </a>
+          <button class="language-toggle" type="button" aria-label="Switch language">
+            <span class="language-toggle-label">EN</span>
+          </button>
+          <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+            <span class="theme-toggle-icon"></span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Chrome extension</p>
+          <h1 data-i18n="hero.heading">Right AI Sidebar keeps AI copilots ready in any workflow.</h1>
+          <p class="lead" data-i18n="hero.lead">
+            Launch the AI Quick Input palette, talk to multiple models side by side, and let your browser become a
+            control center for research, creation, and decision-making.
+          </p>
+          <div class="hero-highlights">
+            <article>
+              <h2 data-i18n="hero.highlight.quickInput.title">AI Quick Input</h2>
+              <p data-i18n="hero.highlight.quickInput.body">
+                Shortcut dialog sends text straight to your chosen model with optional auto-send. Works anywhere inside Chrome.
+              </p>
+            </article>
+            <article>
+              <h2 data-i18n="hero.highlight.multiModel.title">Multi-Model Split Screen</h2>
+              <p data-i18n="hero.highlight.multiModel.body">
+                Chat with ChatGPT, Gemini, Claude, or custom endpoints side by side without switching tabs.
+              </p>
+            </article>
+            <article>
+              <h2 data-i18n="hero.highlight.webpage.title">Webpage Conversation</h2>
+              <p data-i18n="hero.highlight.webpage.body">
+                Zhipu-powered assistant draws context from the active page to answer questions, summarize, and generate media.
+              </p>
+            </article>
+            <article>
+              <h2 data-i18n="hero.highlight.translation.title">Text Selection Translation</h2>
+              <p data-i18n="hero.highlight.translation.body">
+                Highlight text and receive instant translations across multiple languages right in place.
+              </p>
+            </article>
+            <article>
+              <h2 data-i18n="hero.highlight.ocr.title">Image Text Extraction</h2>
+              <p data-i18n="hero.highlight.ocr.body">
+                Run OCR on webpage images, capture the text, and translate it into your target language.
+              </p>
+            </article>
+            <article>
+              <h2 data-i18n="hero.highlight.stock.title">Stock Assistant</h2>
+              <p data-i18n="hero.highlight.stock.body">
+                Monitor real-time tickers for watched symbols while collaborating with AI in the sidebar.
+              </p>
+            </article>
+          </div>
+          <div class="hero-actions" id="download">
+            <a
+              class="button button-primary"
+              href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+              data-i18n="cta.addToChrome"
+            >
+              Add to Chrome
+            </a>
+            <a class="button button-ghost" href="#shortcut" data-i18n="cta.seeDemo">See it in action</a>
+          </div>
+          <p class="hero-note" data-i18n="hero.note">
+            Works with the latest Chrome and Chromium-based browsers. No account required to get started.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section alt shortcut" id="shortcut">
+        <div class="shortcut-grid">
+          <div class="shortcut-copy">
+            <p class="eyebrow" data-i18n="shortcut.eyebrow">Instant command line</p>
+            <h2 data-i18n="shortcut.heading">Summon Right AI anywhere with a single keystroke.</h2>
+            <p data-i18n="shortcut.body">
+              Hold your hotkey, start typing, and press Enter. Right AI Sidebar captures the current page,
+              sends your message to the selected model, and returns context-rich answers without breaking your flow.
+            </p>
+            <ul class="shortcut-list">
+              <li>
+                <strong data-i18n="shortcut.list.global.title">Global shortcut:</strong>
+                <span data-i18n="shortcut.list.global.body">wake the input from any tab.</span>
+              </li>
+              <li>
+                <strong data-i18n="shortcut.list.models.title">Model switcher:</strong>
+                <span data-i18n="shortcut.list.models.body">choose GPT, Claude, Gemini, or custom copilots before sending.</span>
+              </li>
+              <li>
+                <strong data-i18n="shortcut.list.suggestions.title">Smart suggestions:</strong>
+                <span data-i18n="shortcut.list.suggestions.body">inline tips keep the next action right at your fingertips.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="shortcut-visual">
+            <div class="shortcut-glow"></div>
+            <div class="shortcut-frame">
+              <div class="shortcut-keys">
+                <span class="key">Cmd</span>
+                <span class="key">Space</span>
+              </div>
+              <img
+                src="assets/shortcut-quick-send.png"
+                alt="Right AI Sidebar quick send prompt hovering above a webpage"
+              />
+              <div class="shortcut-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="features.eyebrow">Key Features</p>
+          <h2 data-i18n="features.heading">The fastest way to collaborate with AI copilots inside Chrome.</h2>
+          <p data-i18n="features.body">
+            Swap between leading models, automate common tasks, and supercharge any page with instant summaries,
+            translations, image understanding, and real-time data.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card has-media">
+            <div class="feature-media">
+              <img src="assets/shortcut-quick-send.png" alt="AI Quick Input dialog overlaying a webpage" />
+            </div>
+            <h3 data-i18n="features.cards.quickInput.title">AI Quick Input</h3>
+            <p data-i18n="features.cards.quickInput.body">
+              Trigger a shortcut dialog from anywhere, pre-select your model, and optionally auto-send the text. No extra tabs,
+              no copy-paste, just type, press Enter, and get the response.
+            </p>
+          </article>
+          <article class="feature-card has-media">
+            <div class="feature-media">
+              <img src="assets/Multi-Model-Support.png" alt="Multi-model support with split screen" />
+            </div>
+            <h3 data-i18n="features.cards.multiModel.title">Multi-Model Split Screen</h3>
+            <p data-i18n="features.cards.multiModel.body">
+              Switch between ChatGPT, Gemini, and any custom landing page, or chat with two copilots at once in split view to
+              compare answers instantly.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5.5 4A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 18.5 4h-13Zm0 2h13a.5.5 0 0 1 .5.5V8H5V6.5a.5.5 0 0 1 .5-.5Zm-.5 5h14v6.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V11Z"
+                />
+              </svg>
+            </div>
+            <h3 data-i18n="features.cards.webpage.title">Webpage Conversation</h3>
+            <p data-i18n="features.cards.webpage.body">
+              Built on Zhipu's free API, the assistant understands the page you are browsing to answer questions, summarize,
+              extract key facts, and even generate media on the fly.
+            </p>
+          </article>
+          <article class="feature-card has-media">
+            <div class="feature-media">
+              <img src="assets/Text-Selection-Translation.png" alt="Text selection translation overlay" />
+            </div>
+            <h3 data-i18n="features.cards.translation.title">Instant Translation</h3>
+            <p data-i18n="features.cards.translation.body">
+              Highlight any snippet and translate it in context. Right AI Sidebar detects the language automatically and
+              supports multi-language outputs.
+            </p>
+          </article>
+          <article class="feature-card has-media">
+            <div class="feature-media">
+              <img src="assets/Image-OCR-Traanslation.png" alt="Image OCR and translation workflow" />
+            </div>
+            <h3 data-i18n="features.cards.ocr.title">Image OCR + Translation</h3>
+            <p data-i18n="features.cards.ocr.body">
+              Recognize text inside images across the web, extract the content in one click, and translate it straight into your
+              target language.
+            </p>
+          </article>
+          <article class="feature-card has-media">
+            <div class="feature-media">
+              <img src="assets/Stock.png" alt="Stock assistant showing live tickers" />
+            </div>
+            <h3 data-i18n="features.cards.stock.title">Stock Assistant</h3>
+            <p data-i18n="features.cards.stock.body">
+              Track live prices for your watchlist while chatting with AI. Perfect for market research, investment calls, and
+              keeping critical metrics visible.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section alt" id="workflow">
+        <div class="section-header narrow">
+          <p class="eyebrow" data-i18n="workflow.eyebrow">Three steps to unstoppable flow</p>
+          <h2 data-i18n="workflow.heading">Install, pin, and let AI stay beside whatever you are working on.</h2>
+        </div>
+        <div class="steps">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3 data-i18n="workflow.steps.install.title">Install from the Chrome Web Store</h3>
+            <p data-i18n="workflow.steps.install.body">
+              Click "Add to Chrome" and grant sidebar access so the AI hub can live alongside any page.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3 data-i18n="workflow.steps.pin.title">Pin your favorite copilots</h3>
+            <p data-i18n="workflow.steps.pin.body">
+              Authenticate once and keep GPTs, Claude, and custom agents ready to answer with one tap.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3 data-i18n="workflow.steps.launch.title">Launch prompts with page context</h3>
+            <p data-i18n="workflow.steps.launch.body">
+              Highlight content, trigger templates, and watch the sidebar return summaries, drafts, or code snippets in seconds.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="faq.eyebrow">FAQ</p>
+          <h2 data-i18n="faq.heading">Answers before you install.</h2>
+        </div>
+        <div class="faq-grid">
+          <article>
+            <h3 data-i18n="faq.q1.title">Does Right AI Sidebar support multiple AI providers?</h3>
+            <p data-i18n="faq.q1.body">
+              Yes. Connect GPTs, Claude, Gemini, and self-hosted endpoints. Switch providers on the fly or run comparisons.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="faq.q2.title">Is any data stored on your servers?</h3>
+            <p data-i18n="faq.q2.body">
+              Your prompts and responses stay on the providers you authenticate with. You can optionally enable encrypted cloud sync for history.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="faq.q3.title">Can teams manage shared workflows?</h3>
+            <p data-i18n="faq.q3.body">
+              Create shared libraries with permissions so everyone can access approved templates and automations.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="faq.q4.title">Does it work outside of Chrome?</h3>
+            <p data-i18n="faq.q4.body">
+              The extension installs on any Chromium browser, including Arc, Brave, and Edge. A Firefox version is in beta.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h2 data-i18n="footer.heading">Keep AI at your fingertips.</h2>
+          <p data-i18n="footer.body">Install Right AI Sidebar and stay in flow with a personal AI hub inside the browser.</p>
+        </div>
+        <a
+          class="button button-primary"
+          href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+          data-i18n="cta.addToChrome"
+        >
+          Add to Chrome
+        </a>
+      </div>
+      <div class="footer-meta">
+        <span data-i18n-html="footer.copyright">&copy; <span id="year"></span> Right AI Sidebar</span>
+        <div class="footer-links">
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const rootBody = document.body;
+      const themes = { light: "light", dark: "dark" };
+      const languages = { en: "en", zh: "zh" };
+
+      const themeToggle = document.querySelector(".theme-toggle");
+      const themeToggleLabel = document.querySelector(".theme-toggle-label");
+      const languageToggle = document.querySelector(".language-toggle");
+      const languageToggleLabel = document.querySelector(".language-toggle-label");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+      const translations = {
+        en: {
+          "nav.overview": "Overview",
+          "nav.quickInput": "Quick Input",
+          "nav.features": "Key Features",
+          "nav.workflow": "Workflow",
+          "nav.faq": "FAQ",
+          "nav.cta": "Add to Chrome",
+          "hero.eyebrow": "Chrome extension",
+          "hero.heading": "Right AI Sidebar keeps AI copilots ready in any workflow.",
+          "hero.lead":
+            "Launch the AI Quick Input palette, talk to multiple models side by side, and let your browser become a control center for research, creation, and decision-making.",
+          "hero.highlight.quickInput.title": "AI Quick Input",
+          "hero.highlight.quickInput.body":
+            "Shortcut dialog sends text straight to your chosen model with optional auto-send. Works anywhere inside Chrome.",
+          "hero.highlight.multiModel.title": "Multi-Model Split Screen",
+          "hero.highlight.multiModel.body":
+            "Chat with ChatGPT, Gemini, Claude, or custom endpoints side by side without switching tabs.",
+          "hero.highlight.webpage.title": "Webpage Conversation",
+          "hero.highlight.webpage.body":
+            "Zhipu-powered assistant draws context from the active page to answer questions, summarize, and generate media.",
+          "hero.highlight.translation.title": "Text Selection Translation",
+          "hero.highlight.translation.body":
+            "Highlight text and receive instant translations across multiple languages right in place.",
+          "hero.highlight.ocr.title": "Image Text Extraction",
+          "hero.highlight.ocr.body":
+            "Run OCR on webpage images, capture the text, and translate it into your target language.",
+          "hero.highlight.stock.title": "Stock Assistant",
+          "hero.highlight.stock.body":
+            "Monitor real-time tickers for watched symbols while collaborating with AI in the sidebar.",
+          "cta.addToChrome": "Add to Chrome",
+          "cta.seeDemo": "See it in action",
+          "hero.note":
+            "Works with the latest Chrome and Chromium-based browsers. No account required to get started.",
+          "shortcut.eyebrow": "Instant command line",
+          "shortcut.heading": "Summon Right AI anywhere with a single keystroke.",
+          "shortcut.body":
+            "Hold your hotkey, start typing, and press Enter. Right AI Sidebar captures the current page, sends your message to the selected model, and returns context-rich answers without breaking your flow.",
+          "shortcut.list.global.title": "Global shortcut:",
+          "shortcut.list.global.body": "wake the input from any tab.",
+          "shortcut.list.models.title": "Model switcher:",
+          "shortcut.list.models.body": "choose GPT, Claude, Gemini, or custom copilots before sending.",
+          "shortcut.list.suggestions.title": "Smart suggestions:",
+          "shortcut.list.suggestions.body": "inline tips keep the next action right at your fingertips.",
+          "features.eyebrow": "Key Features",
+          "features.heading": "The fastest way to collaborate with AI copilots inside Chrome.",
+          "features.body":
+            "Swap between leading models, automate common tasks, and supercharge any page with instant summaries, translations, image understanding, and real-time data.",
+          "features.cards.quickInput.title": "AI Quick Input",
+          "features.cards.quickInput.body":
+            "Trigger a shortcut dialog from anywhere, pre-select your model, and optionally auto-send the text. No extra tabs, no copy-paste, just type, press Enter, and get the response.",
+          "features.cards.multiModel.title": "Multi-Model Split Screen",
+          "features.cards.multiModel.body":
+            "Switch between ChatGPT, Gemini, and any custom landing page, or chat with two copilots at once in split view to compare answers instantly.",
+          "features.cards.webpage.title": "Webpage Conversation",
+          "features.cards.webpage.body":
+            "Built on Zhipu's free API, the assistant understands the page you are browsing to answer questions, summarize, extract key facts, and even generate media on the fly.",
+          "features.cards.translation.title": "Instant Translation",
+          "features.cards.translation.body":
+            "Highlight any snippet and translate it in context. Right AI Sidebar detects the language automatically and supports multi-language outputs.",
+          "features.cards.ocr.title": "Image OCR + Translation",
+          "features.cards.ocr.body":
+            "Recognize text inside images across the web, extract the content in one click, and translate it straight into your target language.",
+          "features.cards.stock.title": "Stock Assistant",
+          "features.cards.stock.body":
+            "Track live prices for your watchlist while chatting with AI. Perfect for market research, investment calls, and keeping critical metrics visible.",
+          "workflow.eyebrow": "Three steps to unstoppable flow",
+          "workflow.heading": "Install, pin, and let AI stay beside whatever you are working on.",
+          "workflow.steps.install.title": "Install from the Chrome Web Store",
+          "workflow.steps.install.body":
+            'Click "Add to Chrome" and grant sidebar access so the AI hub can live alongside any page.',
+          "workflow.steps.pin.title": "Pin your favorite copilots",
+          "workflow.steps.pin.body":
+            "Authenticate once and keep GPTs, Claude, and custom agents ready to answer with one tap.",
+          "workflow.steps.launch.title": "Launch prompts with page context",
+          "workflow.steps.launch.body":
+            "Highlight content, trigger templates, and watch the sidebar return summaries, drafts, or code snippets in seconds.",
+          "faq.eyebrow": "FAQ",
+          "faq.heading": "Answers before you install.",
+          "faq.q1.title": "Does Right AI Sidebar support multiple AI providers?",
+          "faq.q1.body":
+            "Yes. Connect GPTs, Claude, Gemini, and self-hosted endpoints. Switch providers on the fly or run comparisons.",
+          "faq.q2.title": "Is any data stored on your servers?",
+          "faq.q2.body":
+            "Your prompts and responses stay on the providers you authenticate with. You can optionally enable encrypted cloud sync for history.",
+          "faq.q3.title": "Can teams manage shared workflows?",
+          "faq.q3.body":
+            "Create shared libraries with permissions so everyone can access approved templates and automations.",
+          "faq.q4.title": "Does it work outside of Chrome?",
+          "faq.q4.body":
+            "The extension installs on any Chromium browser, including Arc, Brave, and Edge. A Firefox version is in beta.",
+          "footer.heading": "Keep AI at your fingertips.",
+          "footer.body": "Install Right AI Sidebar and stay in flow with a personal AI hub inside the browser.",
+          "footer.copyright": '&copy; <span id="year"></span> Right AI Sidebar'
+        },
+        zh: {
+          "nav.overview": "概览",
+          "nav.quickInput": "快捷输入",
+          "nav.features": "核心功能",
+          "nav.workflow": "使用流程",
+          "nav.faq": "常见问题",
+          "nav.cta": "添加到 Chrome",
+          "hero.eyebrow": "Chrome 扩展",
+          "hero.heading": "Right AI Sidebar 让你的 AI 助手随时待命。",
+          "hero.lead":
+            "启动 AI 快捷输入面板, 并行对话多个模型, 让浏览器秒变研究、创作和决策中枢。",
+          "hero.highlight.quickInput.title": "AI 快捷输入",
+          "hero.highlight.quickInput.body":
+            "快捷面板让文本即刻发送到目标模型, 可选自动发送, 全局可用。",
+          "hero.highlight.multiModel.title": "多模型分屏聊天",
+          "hero.highlight.multiModel.body":
+            "与 ChatGPT、Gemini、Claude 或自定义终端并排对话, 无需切换标签页。",
+          "hero.highlight.webpage.title": "网页对话",
+          "hero.highlight.webpage.body":
+            "基于智谱免费 API, 理解当前页面语境, 支持提问、总结与内容生成。",
+          "hero.highlight.translation.title": "文本划词翻译",
+          "hero.highlight.translation.body":
+            "划词即可即时翻译, 多语言结果原地显示。",
+          "hero.highlight.ocr.title": "图片文字提取",
+          "hero.highlight.ocr.body":
+            "对网页图片执行 OCR, 提取文字并翻译成目标语言。",
+          "hero.highlight.stock.title": "股票助手",
+          "hero.highlight.stock.body":
+            "边与 AI 协作边监控自选股实时行情。",
+          "cta.addToChrome": "添加到 Chrome",
+          "cta.seeDemo": "查看演示",
+          "hero.note": "兼容最新版 Chrome 及 Chromium 浏览器, 开箱即用无需注册。",
+          "shortcut.eyebrow": "即时命令面板",
+          "shortcut.heading": "一键唤起 Right AI。",
+          "shortcut.body":
+            "按住快捷键输入内容并回车, Right AI Sidebar 会获取当前页面上下文并发送给所选模型, 让回答贴合当下工作流。",
+          "shortcut.list.global.title": "全局唤起:",
+          "shortcut.list.global.body": "在任意标签页快速打开输入框。",
+          "shortcut.list.models.title": "模型切换:",
+          "shortcut.list.models.body": "发送前自由选择 GPT、Claude、Gemini 与自定义助手。",
+          "shortcut.list.suggestions.title": "智能提示:",
+          "shortcut.list.suggestions.body": "内嵌提示让下一步动作随手可得。",
+          "features.eyebrow": "核心功能",
+          "features.heading": "在 Chrome 内与 AI 默契协作。",
+          "features.body":
+            "在浏览器里自由切换模型, 自动处理常见任务, 让总结、翻译、识图和实时数据一步到位。",
+          "features.cards.quickInput.title": "AI 快捷输入",
+          "features.cards.quickInput.body":
+            "快捷对话框随时唤起, 提前选择模型, 可设置自动发送, 彻底告别复制粘贴。",
+          "features.cards.multiModel.title": "多模型分屏聊天",
+          "features.cards.multiModel.body":
+            "分屏同时接入 ChatGPT、Gemini 以及自建落地点, 快速对比多名助手的答案。",
+          "features.cards.webpage.title": "网页对话",
+          "features.cards.webpage.body":
+            "基于智谱免费 API, 读取你正在浏览的页面, 支持提问、总结、抽取关键事实并生成多种内容。",
+          "features.cards.translation.title": "即时翻译",
+          "features.cards.translation.body":
+            "选中任意文本即可翻译, 自动识别源语言并输出多语种结果。",
+          "features.cards.ocr.title": "图片 OCR + 翻译",
+          "features.cards.ocr.body":
+            "一键识别网页图片中的文字, 并翻译到目标语言, 快速复用关键信息。",
+          "features.cards.stock.title": "股票助手",
+          "features.cards.stock.body":
+            "边与 AI 聊天边显示自选股实时行情, 适用于行情跟踪与投资决策。",
+          "workflow.eyebrow": "三步开启高效流程",
+          "workflow.heading": "安装、固定、让 AI 时刻伴随页面工作。",
+          "workflow.steps.install.title": "从 Chrome 应用商店安装",
+          "workflow.steps.install.body":
+            '点击 "添加到 Chrome", 授予侧边栏权限, 让 AI 中枢伴随任意页面。',
+          "workflow.steps.pin.title": "固定常用助手",
+          "workflow.steps.pin.body":
+            "一次登录即可固定 GPT、Claude 及自定义代理, 随时一键调用。",
+          "workflow.steps.launch.title": "带着页面上下文执行提示词",
+          "workflow.steps.launch.body":
+            "选中内容、触发模板, 数秒内返回总结、草稿或代码片段。",
+          "faq.eyebrow": "常见问题",
+          "faq.heading": "安装前先了解这些。",
+          "faq.q1.title": "Right AI Sidebar 支持哪些 AI 服务?",
+          "faq.q1.body":
+            "支持连接 GPT、Claude、Gemini 以及自建端点, 可随时切换或对比不同模型。",
+          "faq.q2.title": "数据会存储在你们的服务器吗?",
+          "faq.q2.body":
+            "提示词与回答保留在你连接的服务端, 可选启用加密云同步以保存历史记录。",
+          "faq.q3.title": "团队能共享工作流吗?",
+          "faq.q3.body":
+            "可创建带权限的共享库, 让成员复用审核过的模板与自动化流程。",
+          "faq.q4.title": "除了 Chrome, 还能在哪些浏览器使用?",
+          "faq.q4.body":
+            "支持所有基于 Chromium 的浏览器, 包括 Arc、Brave 与 Edge; Firefox 版本正在测试中。",
+          "footer.heading": "让 AI 触手可及。",
+          "footer.body": "安装 Right AI Sidebar, 把浏览器打造成随身 AI 中枢。",
+          "footer.copyright": '&copy; <span id="year"></span> Right AI Sidebar'
+        }
+      };
+
+      function updateYear() {
+        const yearEl = document.getElementById("year");
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+      }
+
+      function applyTheme(theme) {
+        const finalTheme = themes[theme] ? theme : themes.light;
+        rootBody.setAttribute("data-theme", finalTheme);
+        if (themeToggleLabel) {
+          themeToggleLabel.textContent = finalTheme === themes.dark ? "Dark" : "Light";
+        }
+        if (themeToggle) {
+          themeToggle.classList.toggle("is-dark", finalTheme === themes.dark);
+        }
+      }
+
+      function getStoredTheme() {
+        return localStorage.getItem("right-ai-theme");
+      }
+
+      function storeTheme(theme) {
+        localStorage.setItem("right-ai-theme", theme);
+      }
+
+      function initTheme() {
+        const saved = getStoredTheme();
+        if (saved) {
+          applyTheme(saved);
+          return;
+        }
+        applyTheme(prefersDark.matches ? themes.dark : themes.light);
+      }
+
+      function applyLanguage(language) {
+        const finalLanguage = languages[language] ? language : languages.en;
+        rootBody.setAttribute("data-language", finalLanguage);
+        const copy = translations[finalLanguage] || {};
+
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.getAttribute("data-i18n");
+          const value = copy[key];
+          if (typeof value === "string") {
+            node.textContent = value;
+          }
+        });
+
+        document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+          const key = node.getAttribute("data-i18n-html");
+          const value = copy[key];
+          if (typeof value === "string") {
+            node.innerHTML = value;
+          }
+        });
+
+        if (languageToggleLabel) {
+          languageToggleLabel.textContent = finalLanguage === languages.zh ? "中文" : "EN";
+        }
+
+        if (languageToggle) {
+          languageToggle.classList.toggle("is-zh", finalLanguage === languages.zh);
+        }
+
+        updateYear();
+      }
+
+      function getStoredLanguage() {
+        return localStorage.getItem("right-ai-language");
+      }
+
+      function storeLanguage(language) {
+        localStorage.setItem("right-ai-language", language);
+      }
+
+      function detectBrowserLanguage() {
+        const browserLanguage = navigator.language || navigator.userLanguage;
+        if (browserLanguage && browserLanguage.toLowerCase().startsWith("zh")) {
+          return languages.zh;
+        }
+        return languages.en;
+      }
+
+      function initLanguage() {
+        const saved = getStoredLanguage();
+        if (saved) {
+          applyLanguage(saved);
+          return;
+        }
+        applyLanguage(detectBrowserLanguage());
+      }
+
+      initTheme();
+      initLanguage();
+
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const nextTheme = rootBody.getAttribute("data-theme") === themes.dark ? themes.light : themes.dark;
+          applyTheme(nextTheme);
+          storeTheme(nextTheme);
+        });
+      }
+
+      if (languageToggle) {
+        languageToggle.addEventListener("click", () => {
+          const currentLanguage = rootBody.getAttribute("data-language") || languages.en;
+          const nextLanguage = currentLanguage === languages.zh ? languages.en : languages.zh;
+          applyLanguage(nextLanguage);
+          storeLanguage(nextLanguage);
+        });
+      }
+
+      prefersDark.addEventListener("change", (event) => {
+        if (!getStoredTheme()) {
+          applyTheme(event.matches ? themes.dark : themes.light);
+        }
+      });
+    </script>
+  </body>
+</html>
