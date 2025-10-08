@@ -56,9 +56,13 @@
           <button class="button button-ghost donate-trigger" type="button" data-i18n="nav.donate">
             打赏
           </button>
-          <button class="language-toggle" type="button" aria-label="Switch language">
-            <span class="language-toggle-label">EN</span>
-          </button>
+          <select class="language-toggle" aria-label="Switch language">
+            <option value="en">English</option>
+            <option value="zh">简体中文</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+          </select>
           <button class="theme-toggle" type="button" aria-label="Toggle color theme">
             <span class="theme-toggle-icon"></span>
             <span class="theme-toggle-label">Light</span>
@@ -386,12 +390,12 @@
     <script>
       const rootBody = document.body;
       const themes = { light: "light", dark: "dark" };
-      const languages = { en: "en", zh: "zh" };
+      const languages = ["en", "zh", "zh-Hant", "ja", "ko"];
+      const defaultLanguage = "en";
 
       const themeToggle = document.querySelector(".theme-toggle");
       const themeToggleLabel = document.querySelector(".theme-toggle-label");
       const languageToggle = document.querySelector(".language-toggle");
-      const languageToggleLabel = document.querySelector(".language-toggle-label");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
       const translations = {
@@ -722,6 +726,499 @@
           "docs.zhipu.figure.ocr": "对图片执行文字提取并立即翻译。",
           "docs.stock.figure.caption": "配置多只股票, 行情以走马灯形式滚动显示。",
           "docs.back.overview": "返回概览"
+        },
+        "zh-Hant": {
+          "nav.overview": "概覽",
+          "nav.docs": "使用指南",
+          "nav.manualInstall": "手動安裝",
+          "nav.quickInput": "快捷輸入",
+          "nav.features": "核心功能",
+          "nav.workflow": "使用流程",
+          "nav.faq": "常見問題",
+          "nav.cta": "加入 Chrome",
+          "nav.donate": "打賞",
+          "hero.eyebrow": "Chrome 擴充功能",
+          "hero.heading": "Right AI 讓你的 AI 助手隨時待命。",
+          "hero.lead":
+            "啟動 AI 快捷輸入面板，並行對話多個模型，讓瀏覽器秒變研究、創作與決策中樞。",
+          "hero.highlight.quickInput.title": "AI 快捷輸入",
+          "hero.highlight.quickInput.body":
+            "快捷面板讓文字即刻傳送到目標模型，支援自動送出，建議使用 Ctrl + R 立即喚起。",
+          "hero.highlight.multiModel.title": "多模型分屏聊天",
+          "hero.highlight.multiModel.body":
+            "與 ChatGPT、Gemini、Claude 或自訂端點並排對話，無需切換分頁。",
+          "hero.highlight.webpage.title": "Right對話",
+          "hero.highlight.webpage.body":
+            "Right對話透過智譜 API 讀懂當前頁面，並同步提供網頁對話、圖片生成、影片生成與圖片理解能力。",
+          "hero.highlight.translation.title": "文字劃詞翻譯",
+          "hero.highlight.translation.body":
+            "劃詞即可即時翻譯，多語言結果原地顯示。",
+          "hero.highlight.ocr.title": "圖片文字擷取",
+          "hero.highlight.ocr.body":
+            "對網頁圖片執行 OCR，擷取文字並翻譯成目標語言。",
+          "hero.highlight.stock.title": "股票助手",
+          "hero.highlight.stock.body":
+            "與 AI 協作同時監控自選股即時行情。",
+          "cta.addToChrome": "加入 Chrome",
+          "cta.directDownload": "直接下載",
+          "cta.seeDemo": "觀看示範",
+          "donate.title": "感謝支持 Right AI！",
+          "donate.message": "掃描任一二維碼完成打賞，感謝你的支持！",
+          "donate.alipay": "支付寶",
+          "donate.wechat": "微信",
+          "hero.note": "相容最新版 Chrome 與 Chromium 瀏覽器，開箱即用無需註冊。",
+          "shortcut.eyebrow": "即時命令面板",
+          "shortcut.heading": "一鍵喚起 Right AI。",
+          "shortcut.body":
+            "按住快捷鍵輸入內容並按 Enter，Right AI 會取得當前頁面的上下文並送至所選模型，讓回覆緊貼當下工作流程。",
+          "shortcut.list.global.title": "全域喚起:",
+          "shortcut.list.global.body": "使用 Ctrl + R（建議）在任意分頁快速開啟輸入框。",
+          "shortcut.list.models.title": "模型切換:",
+          "shortcut.list.models.body": "送出前自由選擇 GPT、Claude、Gemini 與自訂助手。",
+          "shortcut.list.suggestions.title": "智慧提示:",
+          "shortcut.list.suggestions.body": "內嵌提示讓下一步操作隨手可得。",
+          "shortcut.list.intent.title": "意圖推測:",
+          "shortcut.list.intent.body":
+            "AI 快捷輸入會依據當前頁面內容推測你想輸入或提問的內容，可在「設定 → 智譜擴充 → 意圖推測」中開啟或關閉。",
+          "features.eyebrow": "核心功能",
+          "features.heading": "在 Chrome 內與 AI 默契協作。",
+          "features.body":
+            "在瀏覽器裡自由切換模型，自動處理常見任務，讓摘要、翻譯、識圖與即時資料一步到位。",
+          "features.cards.quickInput.title": "AI 快捷輸入",
+          "features.cards.quickInput.body":
+            "快捷對話框可隨時喚起，提前選擇模型，可設定自動送出，徹底告別複製貼上。",
+          "features.cards.multiModel.title": "多模型分屏聊天",
+          "features.cards.multiModel.body":
+            "以分屏同時接入 ChatGPT、Gemini 以及自建落地頁，快速對比多位助手的答案。",
+          "features.cards.webpage.title": "RigthChat",
+          "features.cards.webpage.body":
+            "RigthChat 基於智譜 API，將網頁對話、圖片生成、影片生成與圖片理解整合進側邊欄體驗。",
+          "features.cards.translation.title": "即時翻譯",
+          "features.cards.translation.body":
+            "選取任意文字即可翻譯，自動辨識來源語言並輸出多語結果。",
+          "features.cards.ocr.title": "圖片 OCR + 翻譯",
+          "features.cards.ocr.body":
+            "一鍵辨識網頁圖片中的文字，並翻譯成目標語言，快速複用關鍵資訊。",
+          "features.cards.stock.title": "股票助手",
+          "features.cards.stock.body":
+            "與 AI 聊天同時顯示自選股即時行情，適用於行情追蹤與投資決策。",
+          "workflow.eyebrow": "三步開啟高效流程",
+          "workflow.heading": "安裝、釘選，讓 AI 隨時伴隨你的頁面工作。",
+          "workflow.steps.install.title": "安裝擴充功能",
+          "workflow.steps.install.body":
+            "可點擊 \\\"加入 Chrome\\\"，或直接下載 dist.zip 後在 chrome://extensions 開發者模式下載入解壓後的目錄。",
+          "workflow.steps.pin.title": "釘選常用助手",
+          "workflow.steps.pin.body":
+            "一次登入即可釘選 GPT、Claude 及自訂代理，隨時一鍵呼叫。",
+          "workflow.steps.launch.title": "帶著頁面上下文執行提示詞",
+          "workflow.steps.launch.body":
+            "選取內容、啟用模板，數秒內返回摘要、草稿或程式碼片段。",
+          "faq.eyebrow": "常見問題",
+          "faq.heading": "安裝前先了解這些。",
+          "faq.q1.title": "Right AI 支援哪些 AI 服務？",
+          "faq.q1.body":
+            "支援連接 GPT、Claude、Gemini 以及自建端點，可隨時切換或對比不同模型。",
+          "faq.q2.title": "資料會儲存在你們的伺服器嗎？",
+          "faq.q2.body":
+            "提示詞與回覆保留在你連線的服務端，可選啟用加密雲端同步以保存歷史紀錄。",
+          "faq.q4.title": "除了 Chrome，還能在哪些瀏覽器使用？",
+          "faq.q4.body":
+            "支援所有基於 Chromium 的瀏覽器，包括 Arc、Brave 與 Edge；Firefox 版本正在測試中。",
+          "footer.heading": "讓 AI 觸手可及。",
+          "footer.body": "安裝 Right AI，把瀏覽器打造為隨身 AI 中樞。",
+          "footer.copyright": '&copy; <span id="year"></span> Right AI',
+          "footer.contact.label": "聯絡我",
+          "footer.contact.github": "GitHub",
+          "footer.contact.email": "Gmail",
+          "docs.hero.eyebrow": "使用指南",
+          "docs.hero.heading": "幾分鐘掌握 Right AI。",
+          "docs.hero.lead": "依照以下模組快速完成快捷輸入、智譜擴充以及股票看板的設定。",
+          "docs.hero.card.quick.title": "隨處快捷輸入",
+          "docs.hero.card.quick.body": "按下 Ctrl + R 即可在任意網頁喚起輸入面板，將指令快速傳送給任意 AI。",
+          "docs.hero.card.zhipu.title": "智譜能力加速",
+          "docs.hero.card.zhipu.body": "綁定 BigModel API Key，即可啟用翻譯、OCR 以及影像影片生成。",
+          "docs.hero.card.stock.title": "股票滾動顯示",
+          "docs.hero.card.stock.body": "新增多支股票後，行情會在側邊欄走馬燈滾動顯示。",
+          "docs.quick.eyebrow": "快捷輸入模組",
+          "docs.quick.heading": "在任意網頁直接召喚 AI。",
+          "docs.quick.description": "快捷輸入隨時在線：推薦使用 Ctrl + R，輸入內容並送出，無需來回切換分頁。",
+          "docs.quick.list.hotkey.title": "快捷鍵",
+          "docs.quick.list.hotkey.body": "預設建議使用 Ctrl + R（可自訂）開啟輸入框。",
+          "docs.quick.list.model.title": "送到任意 AI",
+          "docs.quick.list.model.body": "送出前選擇 ChatGPT、Gemini、Claude 或自建端點。",
+          "docs.quick.list.free.title": "完全免費",
+          "docs.quick.list.free.body": "Right AI 僅代你呼叫原有的 AI 服務，不額外收費。",
+          "docs.manual.zip.eyebrow": "手動安裝模組",
+          "docs.manual.zip.heading": "在 Chrome 中載入打包好的 ZIP。",
+          "docs.manual.zip.description": "下載打包版本，解壓後在 Chrome 擴充功能管理頁載入。",
+          "docs.manual.zip.step1.title": "下載 dist.zip",
+          "docs.manual.zip.step1.body": "點擊頁面上的「直接下載」取得最新打包擴充。",
+          "docs.manual.zip.step2.title": "解壓壓縮檔",
+          "docs.manual.zip.step2.body": "將 dist.zip 解壓到資料夾，Chrome 需要未壓縮的目錄。",
+          "docs.manual.zip.step3.title": "在開發者模式下載入",
+          "docs.manual.zip.step3.body":
+            "打開 chrome://extensions，啟用開發者模式，點擊「載入未封裝項目」，並選擇解壓後的資料夾。",
+          "docs.manual.zip.download": "下載 dist.zip",
+          "docs.zhipu.eyebrow": "智譜擴充模組",
+          "docs.zhipu.heading": "解鎖翻譯、識圖與上下文對話。",
+          "docs.zhipu.description": "Right AI 整合智譜免費能力，一次設定即可隨時使用。",
+          "docs.zhipu.steps.api.title": "1. 取得 API Key",
+          "docs.zhipu.steps.api.body": "造訪 Bigmodel.cn，登入後在主控台產生 API Key。",
+          "docs.zhipu.steps.connect.title": "2. 貼到 Right AI 中",
+          "docs.zhipu.steps.connect.body": "開啟側邊欄設定，找到智譜整合並安全儲存此密鑰。",
+          "docs.zhipu.steps.features.title": "可用能力",
+          "docs.zhipu.steps.features.translation": "劃詞即翻譯，結果即時呈現。",
+          "docs.zhipu.steps.features.ocr": "圖片文字擷取（OCR），一鍵翻譯成目標語言。",
+          "docs.zhipu.steps.features.image": "使用智譜模型生成圖像。",
+          "docs.zhipu.steps.features.video": "直接在側邊欄發起影片生成請求。",
+          "docs.zhipu.steps.features.chat": "Right 對話模式讀取頁面內容，回傳具上下文的答案。",
+          "docs.stock.eyebrow": "股票模組",
+          "docs.stock.heading": "隨時掌握關注的行情。",
+          "docs.stock.description": "打造可滾動的股票清單，聊天同時掌握即時資料。",
+          "docs.stock.list.watchlist.title": "自訂自選股",
+          "docs.stock.list.watchlist.body": "新增多支股票，支援隨時調整順序或刪除。",
+          "docs.stock.list.marquee.title": "走馬燈展示",
+          "docs.stock.list.marquee.body": "行情以走馬燈形式滾動，不會錯過價格波動。",
+          "docs.stock.list.sync.title": "即時更新",
+          "docs.stock.list.sync.body": "資料自動更新，與 AI 對話同步進行。",
+          "docs.quick.figure.caption": "按下 Ctrl + R 即刻喚起快捷輸入面板。",
+          "docs.zhipu.figure.translation": "智譜提供的劃詞翻譯，結果即時貼合頁面。",
+          "docs.zhipu.figure.ocr": "對圖片執行文字擷取並立即翻譯。",
+          "docs.stock.figure.caption": "配置多支股票，行情以走馬燈形式滾動顯示。",
+          "docs.back.overview": "返回概覽"
+        },
+        ja: {
+          "nav.overview": "概要",
+          "nav.docs": "ドキュメント",
+          "nav.manualInstall": "手動インストール",
+          "nav.quickInput": "クイック入力",
+          "nav.features": "主な機能",
+          "nav.workflow": "ワークフロー",
+          "nav.faq": "FAQ",
+          "nav.cta": "Chrome に追加",
+          "nav.donate": "寄付",
+          "hero.eyebrow": "Chrome 拡張機能",
+          "hero.heading": "Right AI が AI コパイロットをいつでも使える状態に保ちます。",
+          "hero.lead":
+            "AI クイック入力パレットを立ち上げ、複数モデルと並行して会話。ブラウザを調査・制作・意思決定の司令塔に変えましょう。",
+          "hero.highlight.quickInput.title": "AI クイック入力",
+          "hero.highlight.quickInput.body":
+            "ショートカットで呼び出せる入力ダイアログから、選択したモデルへ即座に送信。Ctrl + R（推奨）でどこからでも一瞬で開けます。",
+          "hero.highlight.multiModel.title": "マルチモデル分割ビュー",
+          "hero.highlight.multiModel.body":
+            "ChatGPT、Gemini、Claude、カスタムエンドポイントをタブ切り替えなしで並行利用。",
+          "hero.highlight.webpage.title": "RigthChat",
+          "hero.highlight.webpage.body":
+            "RigthChat は Zhipu API を重ね合わせ、ページ文脈に沿ったチャットや画像・動画・認識ツールを提供します。",
+          "hero.highlight.translation.title": "テキスト選択翻訳",
+          "hero.highlight.translation.body":
+            "テキストを選択するだけで、その場で多言語翻訳を即時表示。",
+          "hero.highlight.ocr.title": "画像テキスト抽出",
+          "hero.highlight.ocr.body":
+            "Web 画像に OCR を実行し、テキストを抽出して目的言語へ翻訳します。",
+          "hero.highlight.stock.title": "株式アシスタント",
+          "hero.highlight.stock.body":
+            "サイドバーで AI と協調しながら、ウォッチリストのリアルタイム株価を監視。",
+          "cta.addToChrome": "Chrome に追加",
+          "cta.directDownload": "直接ダウンロード",
+          "cta.seeDemo": "デモを見る",
+          "donate.title": "Right AI へのご支援ありがとうございます！",
+          "donate.message": "QR コードをスキャンしてチップをお寄せください。応援に感謝します！",
+          "donate.alipay": "Alipay",
+          "donate.wechat": "WeChat",
+          "hero.note": "最新の Chrome および Chromium 系ブラウザで動作。アカウント登録は不要です。",
+          "shortcut.eyebrow": "インスタントコマンド",
+          "shortcut.heading": "ワンキーで Right AI を呼び出しましょう。",
+          "shortcut.body":
+            "ホットキーを押しながら入力し Enter。Right AI が現在ページの文脈を取得し、選択したモデルへ送り、ワークフローを途切れさせません。",
+          "shortcut.list.global.title": "グローバルショートカット:",
+          "shortcut.list.global.body": "Ctrl + R（推奨）で任意のタブから入力欄を開きます。",
+          "shortcut.list.models.title": "モデル切り替え:",
+          "shortcut.list.models.body": "送信前に GPT、Claude、Gemini、カスタムコパイロットから選択。",
+          "shortcut.list.suggestions.title": "スマート提案:",
+          "shortcut.list.suggestions.body": "次のアクションを提示するインラインヒントを表示。",
+          "shortcut.list.intent.title": "意図推測:",
+          "shortcut.list.intent.body":
+            "AI クイック入力がページ内容をもとに入力候補を提案。設定 → Zhipu 拡張 → 意図推測 で切り替えできます。",
+          "features.eyebrow": "主な機能",
+          "features.heading": "Chrome 内で AI と最速のコラボレーションを。",
+          "features.body":
+            "主要モデルの切り替え、定型作業の自動化、要約・翻訳・画像理解・リアルタイムデータを即座に活用。",
+          "features.cards.quickInput.title": "AI クイック入力",
+          "features.cards.quickInput.body":
+            "どこからでも呼び出せるショートカットダイアログでモデルを事前選択し、必要なら自動送信。タブ移動もコピペも不要。",
+          "features.cards.multiModel.title": "マルチモデル分割ビュー",
+          "features.cards.multiModel.body":
+            "ChatGPT、Gemini、カスタムランディングページを切り替えたり、2 つのコパイロットを並べて即座に回答比較。",
+          "features.cards.webpage.title": "RigthChat",
+          "features.cards.webpage.body":
+            "RigthChat が Zhipu API を利用し、ページ認識チャット、画像生成、動画生成、画像理解をサイドバーに統合。",
+          "features.cards.translation.title": "即時翻訳",
+          "features.cards.translation.body":
+            "テキストをハイライトするだけで翻訳。言語自動判定で多言語出力を提供。",
+          "features.cards.ocr.title": "画像 OCR + 翻訳",
+          "features.cards.ocr.body":
+            "Web 画像の文字をワンクリックで抽出し、ターゲット言語に翻訳。重要情報をすぐ再利用。",
+          "features.cards.stock.title": "株式アシスタント",
+          "features.cards.stock.body":
+            "AI チャットと同時にウォッチ銘柄のリアルタイム相場を表示。モニタリングと投資判断に最適。",
+          "workflow.eyebrow": "3 ステップで効率化",
+          "workflow.heading": "インストール、ピン留め、そして AI を常に手元に。",
+          "workflow.steps.install.title": "拡張機能をインストール",
+          "workflow.steps.install.body":
+            "「Chrome に追加」をクリックするか、dist.zip をダウンロードして chrome://extensions のデベロッパーモードで読み込みます。",
+          "workflow.steps.pin.title": "よく使うアシスタントをピン留め",
+          "workflow.steps.pin.body":
+            "一度ログインすれば GPT・Claude・カスタムエージェントを固定し、いつでもワンクリック実行。",
+          "workflow.steps.launch.title": "ページ文脈を保持したままプロンプト実行",
+          "workflow.steps.launch.body":
+            "テキストを選択しテンプレートを起動。数秒で要約・ドラフト・コードスニペットを取得。",
+          "faq.eyebrow": "よくある質問",
+          "faq.heading": "導入前にチェックしましょう。",
+          "faq.q1.title": "Right AI はどの AI サービスに対応していますか？",
+          "faq.q1.body":
+            "GPT、Claude、Gemini、独自エンドポイントに接続でき、モデルの切り替えや比較が自在です。",
+          "faq.q2.title": "データはサーバーに保存されますか？",
+          "faq.q2.body":
+            "プロンプトと回答は接続先サービスにのみ残ります。履歴保存が必要なら暗号化クラウド同期を任意で有効化できます。",
+          "faq.q4.title": "Chrome 以外でも使えますか？",
+          "faq.q4.body":
+            "Arc、Brave、Edge など Chromium ベースのブラウザをサポート。Firefox 版は現在テスト中です。",
+          "footer.heading": "AI を手元に。",
+          "footer.body": "Right AI をインストールして、ブラウザをあなた専用の AI ハブに。",
+          "footer.contact.label": "お問い合わせ",
+          "footer.contact.github": "GitHub",
+          "footer.contact.email": "Gmail",
+          "docs.hero.eyebrow": "ドキュメント",
+          "docs.hero.heading": "数分で Right AI を使いこなす。",
+          "docs.hero.lead": "以下のモジュールに沿って、クイック入力・Zhipu 拡張・株式ボードを設定しましょう。",
+          "docs.hero.card.quick.title": "どこでもクイック入力",
+          "docs.hero.card.quick.body": "Ctrl + R で任意のページから入力パネルを開き、好みの AI へ即送信。",
+          "docs.hero.card.zhipu.title": "Zhipu で機能強化",
+          "docs.hero.card.zhipu.body": "BigModel の API Key を連携し、翻訳・OCR・画像／動画生成を有効化。",
+          "docs.hero.card.stock.title": "株価ティッカー",
+          "docs.hero.card.stock.body": "ウォッチ銘柄を追加すると、サイドバーでマーキー表示し続けます。",
+          "docs.quick.eyebrow": "クイック入力モジュール",
+          "docs.quick.heading": "どんなページでも AI を即呼び出し。",
+          "docs.quick.description": "クイック入力は常時待機。Ctrl + R を推奨、入力して送信するだけでタブ移動は不要です。",
+          "docs.quick.list.hotkey.title": "ショートカットキー",
+          "docs.quick.list.hotkey.body": "推奨は Ctrl + R（カスタマイズ可能）でパネルを開きます。",
+          "docs.quick.list.model.title": "好きな AI に送信",
+          "docs.quick.list.model.body": "送信前に ChatGPT・Gemini・Claude・独自エンドポイントを選択。",
+          "docs.quick.list.free.title": "完全無料",
+          "docs.quick.list.free.body": "Right AI は既存の AI サービスを代理実行するだけで追加料金はかかりません。",
+          "docs.manual.zip.eyebrow": "手動インストール",
+          "docs.manual.zip.heading": "Chrome で ZIP パッケージを読み込み。",
+          "docs.manual.zip.description": "アーカイブをダウンロードし、一度解凍してから Chrome の拡張機能管理画面で読み込みます。",
+          "docs.manual.zip.step1.title": "dist.zip をダウンロード",
+          "docs.manual.zip.step1.body": "ページの「直接ダウンロード」をクリックして最新版を取得。",
+          "docs.manual.zip.step2.title": "アーカイブを解凍",
+          "docs.manual.zip.step2.body": "dist.zip をフォルダに展開します。Chrome では解凍済みのディレクトリが必要です。",
+          "docs.manual.zip.step3.title": "デベロッパーモードで読み込み",
+          "docs.manual.zip.step3.body":
+            "chrome://extensions を開き、デベロッパーモードを有効化して「パッケージ化されていない拡張機能を読み込む」を押し、解凍したフォルダを選択。",
+          "docs.manual.zip.download": "dist.zip をダウンロード",
+          "docs.zhipu.eyebrow": "Zhipu 拡張",
+          "docs.zhipu.heading": "翻訳・画像認識・文脈チャットを解放。",
+          "docs.zhipu.description": "Right AI は Zhipu の無料機能を統合し、一度設定すればいつでも利用できます。",
+          "docs.zhipu.steps.api.title": "1. API Key を取得",
+          "docs.zhipu.steps.api.body": "Bigmodel.cn にアクセスし、ログイン後にコンソールで API Key を発行します。",
+          "docs.zhipu.steps.connect.title": "2. Right AI に貼り付け",
+          "docs.zhipu.steps.connect.body": "サイドバー設定で Zhipu 連携を開き、キーを安全に保存します。",
+          "docs.zhipu.steps.features.title": "利用できる機能",
+          "docs.zhipu.steps.features.translation": "テキスト選択で即時翻訳、結果はその場で表示。",
+          "docs.zhipu.steps.features.ocr": "画像テキスト抽出（OCR）を行い、ターゲット言語に翻訳。",
+          "docs.zhipu.steps.features.image": "Zhipu モデルで画像を生成。",
+          "docs.zhipu.steps.features.video": "サイドバーから動画生成リクエストを起動。",
+          "docs.zhipu.steps.features.chat": "Right のチャットモードがページ内容を読み込み、文脈に沿った回答を返します。",
+          "docs.stock.eyebrow": "株式モジュール",
+          "docs.stock.heading": "気になる銘柄をいつでも追跡。",
+          "docs.stock.description": "スクロール可能な株価リストを作り、AI と会話しながらリアルタイムデータを確認。",
+          "docs.stock.list.watchlist.title": "ウォッチリストをカスタム",
+          "docs.stock.list.watchlist.body": "複数銘柄を登録し、順序変更や削除も簡単。",
+          "docs.stock.list.marquee.title": "マーキー表示",
+          "docs.stock.list.marquee.body": "マーキー形式で株価が流れるので、値動きを見逃しません。",
+          "docs.stock.list.sync.title": "リアルタイム更新",
+          "docs.stock.list.sync.body": "データは自動で更新され、AI チャットと並行して動作します。",
+          "docs.quick.figure.caption": "Ctrl + R でクイック入力パネルを瞬時に立ち上げ。",
+          "docs.zhipu.figure.translation": "Zhipu のテキスト選択翻訳はページに沿った結果を即時表示。",
+          "docs.zhipu.figure.ocr": "画像の文字を抽出してすぐ翻訳。",
+          "docs.stock.figure.caption": "複数銘柄を設定すると、マーキーで相場が流れ続けます。",
+          "docs.back.overview": "概要に戻る"
+        },
+        ko: {
+          "nav.overview": "개요",
+          "nav.docs": "문서",
+          "nav.manualInstall": "수동 설치",
+          "nav.quickInput": "빠른 입력",
+          "nav.features": "주요 기능",
+          "nav.workflow": "워크플로우",
+          "nav.faq": "FAQ",
+          "nav.cta": "Chrome에 추가",
+          "nav.donate": "후원하기",
+          "hero.eyebrow": "Chrome 확장 프로그램",
+          "hero.heading": "Right AI가 AI 코파일럿을 언제나 대기 상태로 유지합니다.",
+          "hero.lead":
+            "AI 빠른 입력 패널을 열고 여러 모델과 나란히 대화하세요. 브라우저가 조사, 제작, 의사결정의 콘트롤 센터가 됩니다.",
+          "hero.highlight.quickInput.title": "AI 빠른 입력",
+          "hero.highlight.quickInput.body":
+            "단축 입력 창에서 선택한 모델로 바로 전송합니다. Ctrl + R(권장)을 누르면 크롬 어디서든 즉시 열립니다.",
+          "hero.highlight.multiModel.title": "멀티 모델 분할 화면",
+          "hero.highlight.multiModel.body":
+            "ChatGPT, Gemini, Claude, 커스텀 엔드포인트와 탭 전환 없이 동시에 대화해 보세요.",
+          "hero.highlight.webpage.title": "RigthChat",
+          "hero.highlight.webpage.body":
+            "RigthChat은 Zhipu API를 통해 페이지 문맥을 이해하고, 이미지·영상·인식 도구를 함께 제공합니다.",
+          "hero.highlight.translation.title": "텍스트 선택 번역",
+          "hero.highlight.translation.body":
+            "텍스트를 선택하면 여러 언어로 즉시 번역 결과가 표시됩니다.",
+          "hero.highlight.ocr.title": "이미지 텍스트 추출",
+          "hero.highlight.ocr.body":
+            "웹 이미지에 OCR을 실행하고 텍스트를 추출해 원하는 언어로 번역합니다.",
+          "hero.highlight.stock.title": "주식 도우미",
+          "hero.highlight.stock.body":
+            "사이드바에서 AI와 협업하며 관심 종목의 실시간 시세를 모니터링하세요.",
+          "cta.addToChrome": "Chrome에 추가",
+          "cta.directDownload": "직접 다운로드",
+          "cta.seeDemo": "데모 보기",
+          "donate.title": "Right AI를 후원해 주셔서 감사합니다!",
+          "donate.message": "QR 코드를 스캔해 후원해 주세요. 응원에 진심으로 감사드립니다!",
+          "donate.alipay": "알리페이",
+          "donate.wechat": "위챗",
+          "hero.note": "최신 Chrome 및 Chromium 기반 브라우저를 지원하며, 계정 없이 바로 사용할 수 있습니다.",
+          "shortcut.eyebrow": "즉시 명령 패널",
+          "shortcut.heading": "한 번의 키로 Right AI를 호출하세요.",
+          "shortcut.body":
+            "단축키를 누른 채로 입력하고 Enter를 누르세요. Right AI가 현재 페이지 맥락을 가져와 선택한 모델로 전송해 흐름을 끊지 않습니다.",
+          "shortcut.list.global.title": "전역 단축키:",
+          "shortcut.list.global.body": "Ctrl + R(권장)을 사용해 어떤 탭에서도 입력 창을 열 수 있습니다.",
+          "shortcut.list.models.title": "모델 전환:",
+          "shortcut.list.models.body": "보내기 전에 GPT, Claude, Gemini, 사용자 정의 코파일럿을 선택하세요.",
+          "shortcut.list.suggestions.title": "스마트 제안:",
+          "shortcut.list.suggestions.body": "다음 행동을 알려 주는 인라인 힌트를 제공합니다.",
+          "shortcut.list.intent.title": "의도 예측:",
+          "shortcut.list.intent.body":
+            "AI 빠른 입력이 페이지 내용을 기반으로 질문을 제안합니다. 설정 → Zhipu 확장 → 의도 예측에서 켜거나 끕니다.",
+          "features.eyebrow": "주요 기능",
+          "features.heading": "Chrome 안에서 AI와 가장 빠르게 협업하세요.",
+          "features.body":
+            "대표 모델을 전환하고 반복 작업을 자동화해 요약, 번역, 이미지 이해, 실시간 데이터를 즉시 활용합니다.",
+          "features.cards.quickInput.title": "AI 빠른 입력",
+          "features.cards.quickInput.body":
+            "어디서든 호출 가능한 단축 대화창에서 모델을 미리 선택하고 필요하면 자동 전송을 설정하세요. 탭 이동과 복사·붙여넣기는 필요 없습니다.",
+          "features.cards.multiModel.title": "멀티 모델 분할 화면",
+          "features.cards.multiModel.body":
+            "ChatGPT, Gemini, 사용자 지정 랜딩 페이지를 오가거나 두 명의 코파일럿을 나란히 배치해 답변을 즉시 비교하세요.",
+          "features.cards.webpage.title": "RigthChat",
+          "features.cards.webpage.body":
+            "RigthChat이 Zhipu API를 활용해 페이지 인지형 채팅, 이미지 생성, 동영상 생성, 이미지 이해를 사이드바에 통합합니다.",
+          "features.cards.translation.title": "즉시 번역",
+          "features.cards.translation.body":
+            "텍스트를 강조 표시하면 자동으로 언어를 감지해 여러 언어로 번역합니다.",
+          "features.cards.ocr.title": "이미지 OCR + 번역",
+          "features.cards.ocr.body":
+            "웹 이미지의 텍스트를 한 번에 추출하고 목표 언어로 번역해 핵심 정보를 바로 활용하세요.",
+          "features.cards.stock.title": "주식 도우미",
+          "features.cards.stock.body":
+            "AI와 대화하면서 관심 종목 시세를 동시에 표시해 모니터링과 투자 판단에 도움을 줍니다.",
+          "workflow.eyebrow": "3단계로 시작",
+          "workflow.heading": "설치하고, 고정하고, AI를 항상 곁에 두세요.",
+          "workflow.steps.install.title": "확장 프로그램 설치",
+          "workflow.steps.install.body":
+            "\\\"Chrome에 추가\\\"를 클릭하거나 dist.zip을 다운로드해 chrome://extensions 개발자 모드에서 압축 해제 폴더를 불러옵니다.",
+          "workflow.steps.pin.title": "즐겨 쓰는 도우미 고정",
+          "workflow.steps.pin.body":
+            "한 번 로그인하면 GPT, Claude, 사용자 정의 에이전트를 고정해 언제든 클릭 한 번으로 실행할 수 있습니다.",
+          "workflow.steps.launch.title": "페이지 문맥으로 프롬프트 실행",
+          "workflow.steps.launch.body":
+            "내용을 선택하고 템플릿을 호출하면 몇 초 안에 요약, 초안, 코드 조각을 받을 수 있습니다.",
+          "faq.eyebrow": "자주 묻는 질문",
+          "faq.heading": "설치 전에 확인하세요.",
+          "faq.q1.title": "Right AI는 어떤 AI 서비스를 지원하나요?",
+          "faq.q1.body":
+            "GPT, Claude, Gemini, 자체 엔드포인트를 연결할 수 있어 모델 전환과 비교가 자유롭습니다.",
+          "faq.q2.title": "데이터가 서버에 저장되나요?",
+          "faq.q2.body":
+            "프롬프트와 응답은 연결된 서비스에만 남습니다. 기록이 필요하면 암호화된 클라우드 동기화를 선택해 사용할 수 있습니다.",
+          "faq.q4.title": "Chrome 외 브라우저에서도 사용할 수 있나요?",
+          "faq.q4.body":
+            "Arc, Brave, Edge 등 Chromium 기반 브라우저를 지원하며, Firefox 버전은 테스트 중입니다.",
+          "footer.heading": "AI를 손끝에.",
+          "footer.body": "Right AI를 설치하고 브라우저를 개인 맞춤형 AI 허브로 바꾸세요.",
+          "footer.contact.label": "문의",
+          "footer.contact.github": "GitHub",
+          "footer.contact.email": "Gmail",
+          "docs.hero.eyebrow": "사용 가이드",
+          "docs.hero.heading": "몇 분 만에 Right AI를 익히세요.",
+          "docs.hero.lead": "아래 모듈을 따라 빠른 입력, Zhipu 확장, 주식 보드를 설정하세요.",
+          "docs.hero.card.quick.title": "어디서나 빠른 입력",
+          "docs.hero.card.quick.body": "Ctrl + R을 눌러 어떤 페이지에서도 입력 패널을 열고 원하는 AI로 즉시 보냅니다.",
+          "docs.hero.card.zhipu.title": "Zhipu로 기능 강화",
+          "docs.hero.card.zhipu.body": "BigModel API Key를 연결하면 번역, OCR, 이미지·영상 생성을 사용할 수 있습니다.",
+          "docs.hero.card.stock.title": "주가 마퀴",
+          "docs.hero.card.stock.body":
+            "여러 종목을 추가하면 사이드바에서 마퀴 형태로 계속 흐릅니다.",
+          "docs.quick.eyebrow": "빠른 입력 모듈",
+          "docs.quick.heading": "어떤 페이지에서도 AI를 즉시 호출.",
+          "docs.quick.description":
+            "빠른 입력은 항상 대기 중입니다. Ctrl + R을 권장하며, 입력하고 전송하면 탭을 오갈 필요가 없습니다.",
+          "docs.quick.list.hotkey.title": "단축키",
+          "docs.quick.list.hotkey.body": "기본 권장 단축키는 Ctrl + R이며 자유롭게 변경할 수 있습니다.",
+          "docs.quick.list.model.title": "원하는 AI로 전송",
+          "docs.quick.list.model.body":
+            "보내기 전에 ChatGPT, Gemini, Claude, 자체 엔드포인트 중에서 선택하세요.",
+          "docs.quick.list.free.title": "완전 무료",
+          "docs.quick.list.free.body":
+            "Right AI는 기존 AI 서비스를 대신 호출할 뿐이며 추가 비용이 들지 않습니다.",
+          "docs.manual.zip.eyebrow": "수동 설치",
+          "docs.manual.zip.heading": "Chrome에서 ZIP 번들을 불러오기.",
+          "docs.manual.zip.description":
+            "패키지를 내려받아 한 번 압축을 풀고, Chrome 확장 프로그램 관리 페이지에서 로드합니다.",
+          "docs.manual.zip.step1.title": "dist.zip 다운로드",
+          "docs.manual.zip.step1.body":
+            "페이지의 \\\"직접 다운로드\\\"를 눌러 최신 패키지를 받으세요.",
+          "docs.manual.zip.step2.title": "압축 해제",
+          "docs.manual.zip.step2.body":
+            "dist.zip을 폴더로 압축 해제합니다. Chrome은 압축 해제된 디렉터리가 필요합니다.",
+          "docs.manual.zip.step3.title": "개발자 모드에서 로드",
+          "docs.manual.zip.step3.body":
+            "chrome://extensions를 열고 개발자 모드를 켠 뒤 \\\"압축해제된 확장 프로그램 로드\\\"를 클릭해 폴더를 선택하세요.",
+          "docs.manual.zip.download": "dist.zip 다운로드",
+          "docs.zhipu.eyebrow": "Zhipu 확장 모듈",
+          "docs.zhipu.heading": "번역·인식·문맥 대화를 모두 활용하세요.",
+          "docs.zhipu.description":
+            "Right AI는 Zhipu 무료 기능을 통합해 한 번 설정하면 언제든 호출할 수 있습니다.",
+          "docs.zhipu.steps.api.title": "1. API Key 발급",
+          "docs.zhipu.steps.api.body":
+            "Bigmodel.cn에 접속해 로그인 후 콘솔에서 API Key를 생성하세요.",
+          "docs.zhipu.steps.connect.title": "2. Right AI에 붙여넣기",
+          "docs.zhipu.steps.connect.body":
+            "사이드바 설정에서 Zhipu 통합을 찾아 키를 안전하게 저장합니다.",
+          "docs.zhipu.steps.features.title": "사용 가능한 기능",
+          "docs.zhipu.steps.features.translation": "텍스트를 선택하면 즉시 번역 결과가 표시됩니다.",
+          "docs.zhipu.steps.features.ocr": "이미지 텍스트 추출(OCR) 후 원하는 언어로 번역.",
+          "docs.zhipu.steps.features.image": "Zhipu 모델로 이미지를 생성.",
+          "docs.zhipu.steps.features.video": "사이드바에서 바로 동영상 생성 요청을 시작.",
+          "docs.zhipu.steps.features.chat": "Right 대화 모드가 페이지 내용을 읽어 문맥에 맞는 답변을 제공합니다.",
+          "docs.stock.eyebrow": "주식 모듈",
+          "docs.stock.heading": "관심 종목을 언제든 확인.",
+          "docs.stock.description":
+            "스크롤 가능한 주식 목록을 만들고, AI 대화와 동시에 실시간 데이터를 살펴보세요.",
+          "docs.stock.list.watchlist.title": "관심 종목 커스터마이즈",
+          "docs.stock.list.watchlist.body":
+            "여러 종목을 추가하고 순서를 바꾸거나 삭제할 수 있습니다.",
+          "docs.stock.list.marquee.title": "마퀴 표시",
+          "docs.stock.list.marquee.body":
+            "마퀴 형태로 시세가 흘러 변동을 놓치지 않습니다.",
+          "docs.stock.list.sync.title": "실시간 갱신",
+          "docs.stock.list.sync.body":
+            "데이터가 자동으로 새로고침되어 AI 대화와 나란히 작동합니다.",
+          "docs.quick.figure.caption": "Ctrl + R로 빠른 입력 패널을 즉시 실행하세요.",
+          "docs.zhipu.figure.translation":
+            "Zhipu의 텍스트 선택 번역은 페이지에 맞춘 결과를 즉시 보여줍니다.",
+          "docs.zhipu.figure.ocr": "이미지에서 텍스트를 추출하고 곧바로 번역합니다.",
+          "docs.stock.figure.caption": "여러 종목을 설정하면 마퀴로 시세가 계속 흐릅니다.",
+          "docs.back.overview": "개요로 돌아가기"
         }
       };
 
@@ -760,8 +1257,12 @@
         applyTheme(prefersDark.matches ? themes.dark : themes.light);
       }
 
+      function isSupportedLanguage(language) {
+        return languages.includes(language);
+      }
+
       function applyLanguage(language) {
-        const finalLanguage = languages[language] ? language : languages.en;
+        const finalLanguage = isSupportedLanguage(language) ? language : defaultLanguage;
         rootBody.setAttribute("data-language", finalLanguage);
         const copy = translations[finalLanguage] || {};
 
@@ -781,12 +1282,8 @@
           }
         });
 
-        if (languageToggleLabel) {
-          languageToggleLabel.textContent = finalLanguage === languages.zh ? "中文" : "EN";
-        }
-
         if (languageToggle) {
-          languageToggle.classList.toggle("is-zh", finalLanguage === languages.zh);
+          languageToggle.value = finalLanguage;
         }
 
         updateYear();
@@ -801,11 +1298,20 @@
       }
 
       function detectBrowserLanguage() {
-        const browserLanguage = navigator.language || navigator.userLanguage;
-        if (browserLanguage && browserLanguage.toLowerCase().startsWith("zh")) {
-          return languages.zh;
+        const browserLanguage = (navigator.language || navigator.userLanguage || defaultLanguage).toLowerCase();
+        if (browserLanguage.startsWith("zh-hant") || browserLanguage.startsWith("zh-tw") || browserLanguage.startsWith("zh-hk")) {
+          return "zh-Hant";
         }
-        return languages.en;
+        if (browserLanguage.startsWith("zh")) {
+          return "zh";
+        }
+        if (browserLanguage.startsWith("ja")) {
+          return "ja";
+        }
+        if (browserLanguage.startsWith("ko")) {
+          return "ko";
+        }
+        return defaultLanguage;
       }
 
       function initLanguage() {
@@ -829,9 +1335,8 @@
       }
 
       if (languageToggle) {
-        languageToggle.addEventListener("click", () => {
-          const currentLanguage = rootBody.getAttribute("data-language") || languages.en;
-          const nextLanguage = currentLanguage === languages.zh ? languages.en : languages.zh;
+        languageToggle.addEventListener("change", (event) => {
+          const nextLanguage = event.target.value;
           applyLanguage(nextLanguage);
           storeLanguage(nextLanguage);
         });
