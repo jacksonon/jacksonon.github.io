@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Right AI Sidebar - AI Hub for Your Browser</title>
+    <title>Right AI - AI Hub for Your Browser</title>
     <meta
       name="description"
-      content="Right AI Sidebar turns your Chrome sidebar into a powerful AI hub. Summaries, prompts, and multi-model workflows are one click away."
+      content="Right AI turns your Chrome sidebar into a powerful AI hub. Summaries, prompts, and multi-model workflows are one click away."
     />
     <link
       rel="preconnect"
@@ -26,9 +26,9 @@
   <body data-theme="light" data-language="en">
     <header class="hero" id="top">
       <nav class="nav">
-        <a class="logo" href="#top" aria-label="Right AI Sidebar home">
+        <a class="logo" href="#top" aria-label="Right AI home">
           <span class="logo-mark">AI</span>
-          <span class="logo-text">Right AI Sidebar</span>
+          <span class="logo-text">Right AI</span>
         </a>
         <div class="nav-links">
           <a href="#top" data-i18n="nav.overview">Overview</a>
@@ -53,6 +53,9 @@
           >
             Direct download
           </a>
+          <button class="button button-ghost donate-trigger" type="button" data-i18n="nav.donate">
+            打赏
+          </button>
           <button class="language-toggle" type="button" aria-label="Switch language">
             <span class="language-toggle-label">EN</span>
           </button>
@@ -66,7 +69,7 @@
       <div class="hero-content">
         <div class="hero-copy">
           <p class="eyebrow" data-i18n="hero.eyebrow">Chrome extension</p>
-          <h1 data-i18n="hero.heading">Right AI Sidebar keeps AI copilots ready in any workflow.</h1>
+          <h1 data-i18n="hero.heading">Right AI keeps AI copilots ready in any workflow.</h1>
           <p class="lead" data-i18n="hero.lead">
             Launch the AI Quick Input palette, talk to multiple models side by side, and let your browser become a
             control center for research, creation, and decision-making.
@@ -141,7 +144,7 @@
             <p class="eyebrow" data-i18n="shortcut.eyebrow">Instant command line</p>
             <h2 data-i18n="shortcut.heading">Summon Right AI anywhere with a single keystroke.</h2>
             <p data-i18n="shortcut.body">
-              Hold your hotkey, start typing, and press Enter. Right AI Sidebar captures the current page,
+              Hold your hotkey, start typing, and press Enter. Right AI captures the current page,
               sends your message to the selected model, and returns context-rich answers without breaking your flow.
             </p>
             <ul class="shortcut-list">
@@ -174,7 +177,7 @@
               </div>
               <img
                 src="assets/shortcut-quick-send.png"
-                alt="Right AI Sidebar quick send prompt hovering above a webpage"
+                alt="Right AI quick send prompt hovering above a webpage"
               />
               <div class="shortcut-pulse"></div>
             </div>
@@ -227,7 +230,7 @@
             </div>
             <h3 data-i18n="features.cards.translation.title">Instant Translation</h3>
             <p data-i18n="features.cards.translation.body">
-              Highlight any snippet and translate it in context. Right AI Sidebar detects the language automatically and
+              Highlight any snippet and translate it in context. Right AI detects the language automatically and
               supports multi-language outputs.
             </p>
           </article>
@@ -291,7 +294,7 @@
         </div>
         <div class="faq-grid">
           <article>
-            <h3 data-i18n="faq.q1.title">Does Right AI Sidebar support multiple AI providers?</h3>
+            <h3 data-i18n="faq.q1.title">Does Right AI support multiple AI providers?</h3>
             <p data-i18n="faq.q1.body">
               Yes. Connect GPTs, Claude, Gemini, and self-hosted endpoints. Switch providers on the fly or run comparisons.
             </p>
@@ -312,11 +315,41 @@
       </section>
     </main>
 
+    <div class="donate-modal" hidden>
+      <div class="donate-modal-backdrop" data-close></div>
+      <div
+        class="donate-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="donate-title"
+        aria-describedby="donate-description"
+        tabindex="-1"
+      >
+        <button class="donate-modal-close" type="button" data-close aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 id="donate-title" data-i18n="donate.title">感谢支持 Right AI！</h2>
+        <p id="donate-description" data-i18n="donate.message">
+          扫描任意二维码完成打赏，感谢你的支持！
+        </p>
+        <div class="donate-qr-grid">
+          <figure>
+            <img src="assets/Ali-Pay.JPG" alt="支付宝打赏二维码" />
+            <figcaption data-i18n="donate.alipay">支付宝</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Wechat-Pay.jpg" alt="微信打赏二维码" />
+            <figcaption data-i18n="donate.wechat">微信</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
       <div class="footer-content">
         <div>
           <h2 data-i18n="footer.heading">Keep AI at your fingertips.</h2>
-          <p data-i18n="footer.body">Install Right AI Sidebar and stay in flow with a personal AI hub inside the browser.</p>
+          <p data-i18n="footer.body">Install Right AI and stay in flow with a personal AI hub inside the browser.</p>
         </div>
         <a
           class="button button-primary"
@@ -346,7 +379,7 @@
             <span>wang542413041@gmaail.com</span>
           </a>
         </div>
-        <span data-i18n-html="footer.copyright">&copy; <span id="year"></span> Right AI Sidebar</span>
+        <span data-i18n-html="footer.copyright">&copy; <span id="year"></span> Right AI</span>
       </div>
     </footer>
 
@@ -371,8 +404,9 @@
           "nav.workflow": "Workflow",
           "nav.faq": "FAQ",
           "nav.cta": "Add to Chrome",
+          "nav.donate": "Donate",
           "hero.eyebrow": "Chrome extension",
-          "hero.heading": "Right AI Sidebar keeps AI copilots ready in any workflow.",
+          "hero.heading": "Right AI keeps AI copilots ready in any workflow.",
           "hero.lead":
             "Launch the AI Quick Input palette, talk to multiple models side by side, and let your browser become a control center for research, creation, and decision-making.",
           "hero.highlight.quickInput.title": "AI Quick Input",
@@ -396,12 +430,16 @@
           "cta.addToChrome": "Add to Chrome",
           "cta.directDownload": "Direct download",
           "cta.seeDemo": "See it in action",
+          "donate.title": "Thanks for supporting Right AI!",
+          "donate.message": "Scan a QR code to leave a tip — we appreciate your support!",
+          "donate.alipay": "Alipay",
+          "donate.wechat": "WeChat",
           "hero.note":
             "Works with the latest Chrome and Chromium-based browsers. No account required to get started.",
           "shortcut.eyebrow": "Instant command line",
           "shortcut.heading": "Summon Right AI anywhere with a single keystroke.",
           "shortcut.body":
-            "Hold your hotkey, start typing, and press Enter. Right AI Sidebar captures the current page, sends your message to the selected model, and returns context-rich answers without breaking your flow.",
+            "Hold your hotkey, start typing, and press Enter. Right AI captures the current page, sends your message to the selected model, and returns context-rich answers without breaking your flow.",
           "shortcut.list.global.title": "Global shortcut:",
           "shortcut.list.global.body": "Use Ctrl + R (recommended) to wake the input from any tab.",
           "shortcut.list.models.title": "Model switcher:",
@@ -426,7 +464,7 @@
             "RigthChat taps Zhipu APIs for page-aware chat, image generation, video creation, and on-page image understanding—all inside the sidebar.",
           "features.cards.translation.title": "Instant Translation",
           "features.cards.translation.body":
-            "Highlight any snippet and translate it in context. Right AI Sidebar detects the language automatically and supports multi-language outputs.",
+            "Highlight any snippet and translate it in context. Right AI detects the language automatically and supports multi-language outputs.",
           "features.cards.ocr.title": "Image OCR + Translation",
           "features.cards.ocr.body":
             "Recognize text inside images across the web, extract the content in one click, and translate it straight into your target language.",
@@ -446,7 +484,7 @@
             "Highlight content, trigger templates, and watch the sidebar return summaries, drafts, or code snippets in seconds.",
           "faq.eyebrow": "FAQ",
           "faq.heading": "Answers before you install.",
-          "faq.q1.title": "Does Right AI Sidebar support multiple AI providers?",
+          "faq.q1.title": "Does Right AI support multiple AI providers?",
           "faq.q1.body":
             "Yes. Connect GPTs, Claude, Gemini, and self-hosted endpoints. Switch providers on the fly or run comparisons.",
           "faq.q2.title": "Is any data stored on your servers?",
@@ -456,13 +494,13 @@
           "faq.q4.body":
             "The extension installs on any Chromium browser, including Arc, Brave, and Edge. A Firefox version is in beta.",
           "footer.heading": "Keep AI at your fingertips.",
-          "footer.body": "Install Right AI Sidebar and stay in flow with a personal AI hub inside the browser.",
-          "footer.copyright": '&copy; <span id="year"></span> Right AI Sidebar',
+          "footer.body": "Install Right AI and stay in flow with a personal AI hub inside the browser.",
+          "footer.copyright": '&copy; <span id="year"></span> Right AI',
           "footer.contact.label": "Contact",
           "footer.contact.github": "GitHub",
           "footer.contact.email": "Gmail",
           "docs.hero.eyebrow": "Usage guide",
-          "docs.hero.heading": "Master Right AI Sidebar in minutes.",
+          "docs.hero.heading": "Master Right AI in minutes.",
           "docs.hero.lead": "Follow the modules below to set up Quick Input, Zhipu tools, and live stock tracking.",
           "docs.hero.card.quick.title": "Quick Input anywhere",
           "docs.hero.card.quick.body":
@@ -534,8 +572,9 @@
           "nav.workflow": "使用流程",
           "nav.faq": "常见问题",
           "nav.cta": "添加到 Chrome",
+          "nav.donate": "打赏",
           "hero.eyebrow": "Chrome 扩展",
-          "hero.heading": "Right AI Sidebar 让你的 AI 助手随时待命。",
+          "hero.heading": "Right AI 让你的 AI 助手随时待命。",
           "hero.lead":
             "启动 AI 快捷输入面板, 并行对话多个模型, 让浏览器秒变研究、创作和决策中枢。",
           "hero.highlight.quickInput.title": "AI 快捷输入",
@@ -559,11 +598,15 @@
           "cta.addToChrome": "添加到 Chrome",
           "cta.directDownload": "直接下载",
           "cta.seeDemo": "查看演示",
+          "donate.title": "感谢支持 Right AI！",
+          "donate.message": "扫描任意二维码完成打赏, 感谢你的支持！",
+          "donate.alipay": "支付宝",
+          "donate.wechat": "微信",
           "hero.note": "兼容最新版 Chrome 及 Chromium 浏览器, 开箱即用无需注册。",
           "shortcut.eyebrow": "即时命令面板",
           "shortcut.heading": "一键唤起 Right AI。",
           "shortcut.body":
-            "按住快捷键输入内容并回车, Right AI Sidebar 会获取当前页面上下文并发送给所选模型, 让回答贴合当下工作流。",
+            "按住快捷键输入内容并回车, Right AI 会获取当前页面上下文并发送给所选模型, 让回答贴合当下工作流。",
           "shortcut.list.global.title": "全局唤起:",
           "shortcut.list.global.body": "使用 Ctrl + R (推荐) 在任意标签页快速打开输入框。",
           "shortcut.list.models.title": "模型切换:",
@@ -608,7 +651,7 @@
             "选中内容、触发模板, 数秒内返回总结、草稿或代码片段。",
           "faq.eyebrow": "常见问题",
           "faq.heading": "安装前先了解这些。",
-          "faq.q1.title": "Right AI Sidebar 支持哪些 AI 服务?",
+          "faq.q1.title": "Right AI 支持哪些 AI 服务?",
           "faq.q1.body":
             "支持连接 GPT、Claude、Gemini 以及自建端点, 可随时切换或对比不同模型。",
           "faq.q2.title": "数据会存储在你们的服务器吗?",
@@ -618,13 +661,13 @@
           "faq.q4.body":
             "支持所有基于 Chromium 的浏览器, 包括 Arc、Brave 与 Edge; Firefox 版本正在测试中。",
           "footer.heading": "让 AI 触手可及。",
-          "footer.body": "安装 Right AI Sidebar, 把浏览器打造成随身 AI 中枢。",
-          "footer.copyright": '&copy; <span id="year"></span> Right AI Sidebar',
+          "footer.body": "安装 Right AI, 把浏览器打造成随身 AI 中枢。",
+          "footer.copyright": '&copy; <span id="year"></span> Right AI',
           "footer.contact.label": "联系我",
           "footer.contact.github": "GitHub",
           "footer.contact.email": "Gmail",
           "docs.hero.eyebrow": "使用文档",
-          "docs.hero.heading": "几分钟掌握 Right AI Sidebar。",
+          "docs.hero.heading": "几分钟掌握 Right AI。",
           "docs.hero.lead": "按照下面的模块快速完成快捷输入、智谱扩展以及股票看板的配置。",
           "docs.hero.card.quick.title": "随处快捷输入",
           "docs.hero.card.quick.body": "按下 Ctrl + R 即可在任意网页唤起输入面板, 将指令快速发送给任意 AI。",
@@ -791,6 +834,51 @@
           const nextLanguage = currentLanguage === languages.zh ? languages.en : languages.zh;
           applyLanguage(nextLanguage);
           storeLanguage(nextLanguage);
+        });
+      }
+
+      const donateModal = document.querySelector(".donate-modal");
+      const donateTrigger = document.querySelector(".donate-trigger");
+      const donateDialog = donateModal ? donateModal.querySelector(".donate-modal-dialog") : null;
+      let donatePreviousFocus = null;
+
+      function closeDonateModal() {
+        if (!donateModal) return;
+        donateModal.hidden = true;
+        rootBody.classList.remove("modal-open");
+        document.removeEventListener("keydown", handleDonateKeydown);
+        if (donatePreviousFocus && typeof donatePreviousFocus.focus === "function") {
+          donatePreviousFocus.focus();
+        }
+        donatePreviousFocus = null;
+      }
+
+      function openDonateModal() {
+        if (!donateModal || !donateDialog) return;
+        donatePreviousFocus = document.activeElement;
+        donateModal.hidden = false;
+        rootBody.classList.add("modal-open");
+        donateDialog.focus();
+        document.addEventListener("keydown", handleDonateKeydown);
+      }
+
+      function handleDonateKeydown(event) {
+        if (event.key === "Escape") {
+          closeDonateModal();
+        }
+      }
+
+      if (donateTrigger && donateModal && donateDialog) {
+        donateTrigger.addEventListener("click", openDonateModal);
+        donateModal.addEventListener("click", (event) => {
+          if (event.target.closest("[data-close]")) {
+            event.preventDefault();
+            closeDonateModal();
+            return;
+          }
+          if (!event.target.closest(".donate-modal-dialog")) {
+            closeDonateModal();
+          }
         });
       }
 
