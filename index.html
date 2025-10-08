@@ -58,6 +58,7 @@
           </button>
           <select class="language-toggle" aria-label="Switch language">
             <option value="en">English</option>
+            <option value="ru">Русский</option>
             <option value="zh">简体中文</option>
             <option value="zh-Hant">繁體中文</option>
             <option value="ja">日本語</option>
@@ -390,7 +391,7 @@
     <script>
       const rootBody = document.body;
       const themes = { light: "light", dark: "dark" };
-      const languages = ["en", "zh", "zh-Hant", "ja", "ko"];
+      const languages = ["en", "ru", "zh", "zh-Hant", "ja", "ko"];
       const defaultLanguage = "en";
 
       const themeToggle = document.querySelector(".theme-toggle");
@@ -566,6 +567,174 @@
           "docs.zhipu.figure.ocr": "Extract text from images and translate it without leaving the sidebar.",
           "docs.stock.figure.caption": "Configure multiple watchlist symbols and view them in a scrolling marquee.",
           "docs.back.overview": "Back to overview"
+        },
+        ru: {
+          "nav.overview": "Обзор",
+          "nav.docs": "Документация",
+          "nav.manualInstall": "Ручная установка",
+          "nav.quickInput": "Быстрый ввод",
+          "nav.features": "Ключевые возможности",
+          "nav.workflow": "Рабочий процесс",
+          "nav.faq": "Вопросы и ответы",
+          "nav.cta": "Добавить в Chrome",
+          "nav.donate": "Поддержать",
+          "hero.eyebrow": "Расширение для Chrome",
+          "hero.heading": "Right AI держит ваших AI-помощников наготове в любом рабочем процессе.",
+          "hero.lead":
+            "Запускайте палитру AI Quick Input, общайтесь сразу с несколькими моделями и превратите браузер в центр управления исследованиями, творчеством и решениями.",
+          "hero.highlight.quickInput.title": "AI Quick Input",
+          "hero.highlight.quickInput.body":
+            "Окно быстрого ввода отправляет текст выбранной модели и при желании делает это автоматически. Нажмите Ctrl + R (рекомендуется), чтобы открывать его мгновенно в любом месте Chrome.",
+          "hero.highlight.multiModel.title": "Многомодельный разделённый экран",
+          "hero.highlight.multiModel.body":
+            "Общайтесь с ChatGPT, Gemini, Claude или пользовательскими эндпоинтами бок о бок без переключения вкладок.",
+          "hero.highlight.webpage.title": "RigthChat",
+          "hero.highlight.webpage.body":
+            "RigthChat накладывает API Zhipu на любую страницу, обеспечивая контекстный чат и встроенные инструменты для изображений, видео и восприятия.",
+          "hero.highlight.translation.title": "Перевод выделенного текста",
+          "hero.highlight.translation.body":
+            "Выделяйте текст и мгновенно получайте переводы на нескольких языках прямо на странице.",
+          "hero.highlight.ocr.title": "Извлечение текста с изображений",
+          "hero.highlight.ocr.body":
+            "Выполняйте OCR на изображениях страниц, извлекайте текст и переводите его на целевой язык.",
+          "hero.highlight.stock.title": "Помощник по акциям",
+          "hero.highlight.stock.body":
+            "Отслеживайте котировки избранных тикеров в реальном времени, продолжая работать с AI в боковой панели.",
+          "cta.addToChrome": "Добавить в Chrome",
+          "cta.directDownload": "Прямое скачивание",
+          "cta.seeDemo": "Посмотреть в деле",
+          "donate.title": "Спасибо за поддержку Right AI!",
+          "donate.message": "Отсканируйте QR-код, чтобы оставить чаевые — мы ценим вашу поддержку!",
+          "donate.alipay": "Alipay",
+          "donate.wechat": "WeChat",
+          "hero.note":
+            "Совместимо с актуальными версиями Chrome и другими браузерами на Chromium. Чтобы начать, учетная запись не нужна.",
+          "shortcut.eyebrow": "Мгновенная командная строка",
+          "shortcut.heading": "Вызывайте Right AI где угодно одним нажатием клавиш.",
+          "shortcut.body":
+            "Зажмите горячую клавишу, начните печатать и нажмите Enter. Right AI захватывает текущую страницу, отправляет сообщение выбранной модели и возвращает ответ без прерывания работы.",
+          "shortcut.list.global.title": "Глобальное сочетание:",
+          "shortcut.list.global.body": "Используйте Ctrl + R (рекомендуется), чтобы будить окно ввода на любой вкладке.",
+          "shortcut.list.models.title": "Переключатель моделей:",
+          "shortcut.list.models.body": "перед отправкой выберите GPT, Claude, Gemini или собственного помощника.",
+          "shortcut.list.suggestions.title": "Умные подсказки:",
+          "shortcut.list.suggestions.body": "встроенные подсказки подсказывают следующий шаг прямо под рукой.",
+          "shortcut.list.intent.title": "Предсказание намерений:",
+          "shortcut.list.intent.body":
+            "AI Quick Input предлагает, что спросить, исходя из текущей страницы. Включите опцию в Настройки → Расширение Zhipu → Предсказание намерений.",
+          "features.eyebrow": "Ключевые возможности",
+          "features.heading": "Самый быстрый способ сотрудничать с AI-помощниками внутри Chrome.",
+          "features.body":
+            "Переключайтесь между передовыми моделями, автоматизируйте типовые задачи и усиливайте любую страницу моментальными суммариями, переводами, анализом изображений и данными в реальном времени.",
+          "features.cards.quickInput.title": "AI Quick Input",
+          "features.cards.quickInput.body":
+            "Вызывайте диалог мгновенно, заранее выбирайте модель и при необходимости включайте автоотправку текста. Никаких лишних вкладок и копирования — просто напишите, нажмите Enter и получите ответ.",
+          "features.cards.multiModel.title": "Многомодельный разделённый экран",
+          "features.cards.multiModel.body":
+            "Переключайтесь между ChatGPT, Gemini и любым пользовательским лендингом или ведите диалог сразу с двумя помощниками в разбитом окне, чтобы сравнивать ответы моментально.",
+          "features.cards.webpage.title": "RigthChat",
+          "features.cards.webpage.body":
+            "RigthChat использует API Zhipu для контекстного чата, генерации изображений, видео и понимания картинок — всё прямо в боковой панели.",
+          "features.cards.translation.title": "Мгновенный перевод",
+          "features.cards.translation.body":
+            "Выделите фрагмент и переведите его в контексте. Right AI автоматически определяет язык и поддерживает мультиязычный вывод.",
+          "features.cards.ocr.title": "OCR изображений + перевод",
+          "features.cards.ocr.body":
+            "В одно касание распознавайте текст на изображениях страницы и переводите его на нужный язык, чтобы быстро использовать важные данные.",
+          "features.cards.stock.title": "Помощник по акциям",
+          "features.cards.stock.body":
+            "Отображайте котировки избранных тикеров, пока общаетесь с AI — удобно для мониторинга и инвестиционных решений.",
+          "workflow.eyebrow": "Три шага к непрерывному потоку",
+          "workflow.heading": "Установите, закрепите и держите AI рядом с любой задачей.",
+          "workflow.steps.install.title": "Установите расширение",
+          "workflow.steps.install.body":
+            "Нажмите \"Добавить в Chrome\" или скачайте dist.zip и загрузите распакованную папку через режим разработчика на chrome://extensions.",
+          "workflow.steps.pin.title": "Закрепите любимых помощников",
+          "workflow.steps.pin.body":
+            "Авторизуйтесь один раз, чтобы закрепить GPT, Claude и собственных агентов и вызывать их в один клик.",
+          "workflow.steps.launch.title": "Запускайте промпты с контекстом страницы",
+          "workflow.steps.launch.body":
+            "Выделяйте контент, запускайте шаблоны и получайте сводки, черновики или фрагменты кода за считанные секунды.",
+          "faq.eyebrow": "Частые вопросы",
+          "faq.heading": "Узнайте это перед установкой.",
+          "faq.q1.title": "Какие AI-сервисы поддерживает Right AI?",
+          "faq.q1.body":
+            "Поддерживается подключение GPT, Claude, Gemini и собственных эндпоинтов — переключайтесь и сравнивайте модели в любой момент.",
+          "faq.q2.title": "Хранятся ли данные на ваших серверах?",
+          "faq.q2.body":
+            "Промпты и ответы остаются у подключенных провайдеров. Дополнительно можно включить зашифрованную синхронизацию в облаке для истории.",
+          "faq.q4.title": "Работает ли расширение вне Chrome?",
+          "faq.q4.body":
+            "Расширение устанавливается в любом браузере на базе Chromium, включая Arc, Brave и Edge. Версия для Firefox сейчас в бета-тесте.",
+          "footer.heading": "Держите AI под рукой.",
+          "footer.body": "Установите Right AI и превратите браузер в личный AI-хаб.",
+          "footer.copyright": "&copy; <span id=\"year\"></span> Right AI",
+          "footer.contact.label": "Контакты",
+          "footer.contact.github": "GitHub",
+          "footer.contact.email": "Gmail",
+          "docs.hero.eyebrow": "Руководство по использованию",
+          "docs.hero.heading": "Освойте Right AI за несколько минут.",
+          "docs.hero.lead": "Следуйте модулям ниже, чтобы настроить Quick Input, интеграцию Zhipu и отслеживание акций.",
+          "docs.hero.card.quick.title": "Quick Input в любой точке",
+          "docs.hero.card.quick.body":
+            "Нажмите Ctrl + R, чтобы вызвать панель ввода на любой странице и отправить запрос выбранному AI.",
+          "docs.hero.card.zhipu.title": "Усиление с Zhipu",
+          "docs.hero.card.zhipu.body": "Подключите API-ключ BigModel, чтобы открыть переводы, OCR и творческую генерацию.",
+          "docs.hero.card.stock.title": "Акции под рукой",
+          "docs.hero.card.stock.body": "Закрепляйте несколько тикеров и наблюдайте, как они прокручиваются в боковой панели во время диалога.",
+          "docs.quick.eyebrow": "Модуль Quick Input",
+          "docs.quick.heading": "Запускайте AI с любой веб-страницы.",
+          "docs.quick.description":
+            "Quick Input всегда рядом: нажмите Ctrl + R (рекомендуется), напечатайте и отправьте. Никаких переключений вкладок и копирования.",
+          "docs.quick.list.hotkey.title": "Горячая клавиша",
+          "docs.quick.list.hotkey.body":
+            "Нажимайте Ctrl + R (можно изменить), чтобы открыть ввод в любом месте Chrome.",
+          "docs.quick.list.model.title": "Отправка в любой AI",
+          "docs.quick.list.model.body": "Выбирайте ChatGPT, Gemini, Claude или пользовательский эндпоинт перед отправкой.",
+          "docs.quick.list.free.title": "Без доплат",
+          "docs.quick.list.free.body":
+            "Right AI перенаправляет запрос к провайдеру, которым вы уже пользуетесь. Ответы покрываются вашим текущим тарифом.",
+          "docs.manual.zip.eyebrow": "Модуль ручной установки",
+          "docs.manual.zip.heading": "Загрузите упакованный ZIP в Chrome.",
+          "docs.manual.zip.description":
+            "Скачайте готовую сборку, один раз распакуйте и загрузите через менеджер расширений Chrome.",
+          "docs.manual.zip.step1.title": "Скачайте dist.zip",
+          "docs.manual.zip.step1.body":
+            "Нажмите \"Прямое скачивание\" на этой странице, чтобы сохранить последнюю версию расширения.",
+          "docs.manual.zip.step2.title": "Распакуйте архив",
+          "docs.manual.zip.step2.body":
+            "Распакуйте dist.zip в папку — Chrome ожидает именно распакованный каталог.",
+          "docs.manual.zip.step3.title": "Загрузите в режиме разработчика",
+          "docs.manual.zip.step3.body":
+            "Откройте chrome://extensions, включите режим разработчика, нажмите \"Загрузить распакованное\" и выберите распакованную папку.",
+          "docs.manual.zip.download": "Скачать dist.zip",
+          "docs.zhipu.eyebrow": "Модуль расширения Zhipu",
+          "docs.zhipu.heading": "Разблокируйте переводы, инструменты для изображений и диалоги с контекстом страницы.",
+          "docs.zhipu.description": "Right AI включает бесплатные возможности Zhipu. Подключите ключ один раз — и инструменты всегда под рукой.",
+          "docs.zhipu.steps.api.title": "1. Получите API-ключ",
+          "docs.zhipu.steps.api.body": "Зайдите на Bigmodel.cn, войдите и создайте ключ API в консоли.",
+          "docs.zhipu.steps.connect.title": "2. Вставьте его в Right AI",
+          "docs.zhipu.steps.connect.body": "Откройте настройки боковой панели, найдите интеграцию Zhipu и сохраните ключ.",
+          "docs.zhipu.steps.features.title": "Что станет доступно",
+          "docs.zhipu.steps.features.translation": "Перевод выделенного текста с мгновенным выводом на странице.",
+          "docs.zhipu.steps.features.ocr": "Извлечение текста с изображений (OCR) с переводом в один клик.",
+          "docs.zhipu.steps.features.image": "Генерация изображений на моделях Zhipu.",
+          "docs.zhipu.steps.features.video": "Запросы на генерацию видео через тот же интерфейс.",
+          "docs.zhipu.steps.features.chat": "Режим Right Chat, понимающий страницу, которую вы просматриваете.",
+          "docs.stock.eyebrow": "Модуль акций",
+          "docs.stock.heading": "Следите за нужными тикерами.",
+          "docs.stock.description": "Создайте прокручиваемый список, чтобы рынок всегда был рядом с чатом.",
+          "docs.stock.list.watchlist.title": "Гибкий список наблюдения",
+          "docs.stock.list.watchlist.body": "Добавляйте несколько символов, меняйте порядок или удаляйте по мере приоритетов.",
+          "docs.stock.list.marquee.title": "Строка прокрутки",
+          "docs.stock.list.marquee.body": "Цены плавно прокручиваются в бегущей строке, поэтому внутридневное движение всегда на виду.",
+          "docs.stock.list.sync.title": "Синхронизация в реальном времени",
+          "docs.stock.list.sync.body": "Котировки обновляются автоматически, пока вы продолжаете диалог.",
+          "docs.quick.figure.caption": "Ctrl + R открывает палитру Quick Input в любом месте Chrome.",
+          "docs.zhipu.figure.translation": "Zhipu выполняет перевод выделенного текста в реальном времени прямо на странице.",
+          "docs.zhipu.figure.ocr": "Извлекайте текст из изображений и сразу переводите его, не покидая боковую панель.",
+          "docs.stock.figure.caption": "Настройте несколько тикеров и следите за ними в прокручиваемой строке.",
+          "docs.back.overview": "Вернуться к обзору"
         },
         zh: {
           "nav.overview": "概览",
@@ -1310,6 +1479,9 @@
         }
         if (browserLanguage.startsWith("ko")) {
           return "ko";
+        }
+        if (browserLanguage.startsWith("ru")) {
+          return "ru";
         }
         return defaultLanguage;
       }
