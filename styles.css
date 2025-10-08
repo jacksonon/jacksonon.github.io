@@ -500,8 +500,10 @@ body[data-theme="dark"] .button-ghost:hover {
 }
 
 body[data-theme="light"] .step-card {
-  background: linear-gradient(150deg, rgba(99, 91, 255, 0.92), rgba(61, 139, 255, 0.92));
-  color: #ffffff;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(231, 237, 255, 0.92));
+  border-color: rgba(99, 91, 255, 0.18);
+  box-shadow: 0 30px 70px -55px rgba(99, 91, 255, 0.55);
+  color: var(--text);
 }
 
 .step-number {
