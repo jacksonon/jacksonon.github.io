@@ -64,24 +64,53 @@ img {
 }
 
 .hero {
-  padding: 32px clamp(20px, 5vw, 60px) 80px;
+  padding: clamp(56px, 9vw, 132px) clamp(20px, 5vw, 64px) clamp(132px, 18vw, 240px);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.75), rgba(220, 228, 255, 0.8));
   border-bottom: 1px solid rgba(99, 91, 255, 0.12);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(230, 236, 255, 0.88));
+  isolation: isolate;
+  min-height: clamp(640px, 70vh, 860px);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/intro.gif");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center top;
+  opacity: 0.78;
+  filter: saturate(1.05);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(99, 91, 255, 0.25), transparent 55%);
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.78) 42%, rgba(255, 255, 255, 0.4) 100%),
+    radial-gradient(120% 80% at 78% 12%, rgba(99, 91, 255, 0.18), transparent 68%);
   pointer-events: none;
 }
 
 body[data-theme="dark"] .hero {
-  background: linear-gradient(160deg, rgba(16, 23, 49, 0.85), rgba(6, 11, 27, 0.9));
+  background: linear-gradient(160deg, rgba(16, 23, 49, 0.76), rgba(6, 11, 27, 0.84));
   border-bottom-color: rgba(124, 92, 255, 0.18);
+}
+
+body[data-theme="dark"] .hero::before {
+  opacity: 0.58;
+  filter: brightness(0.88) saturate(1.18);
+}
+
+body[data-theme="dark"] .hero::after {
+  background:
+    linear-gradient(180deg, rgba(6, 11, 27, 0.88) 0%, rgba(6, 11, 27, 0.72) 46%, rgba(6, 11, 27, 0.55) 100%),
+    radial-gradient(120% 80% at 78% 12%, rgba(124, 92, 255, 0.26), transparent 68%);
 }
 
 .nav {
@@ -970,6 +999,11 @@ body[data-theme="dark"] .donate-qr-grid figure {
     grid-template-columns: 1fr;
   }
 
+  .hero::before {
+    background-size: cover;
+    background-position: center top;
+  }
+
 }
 
 @media (max-width: 720px) {
@@ -982,10 +1016,6 @@ body[data-theme="dark"] .donate-qr-grid figure {
   .nav-links {
     gap: 14px;
     flex-wrap: wrap;
-  }
-
-  .hero {
-    padding-top: 28px;
   }
 
   .hero-actions {
