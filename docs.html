@@ -39,7 +39,7 @@
             Add to Chrome
           </a>
           <a
-            class="button button-ghost"
+            class="button button-ghost direct-download"
             href="files/dist.zip"
             download
             data-i18n="cta.directDownload"
@@ -100,7 +100,7 @@
             Add to Chrome
           </a>
           <a
-            class="button button-ghost"
+            class="button button-ghost direct-download"
             href="files/dist.zip"
             download
             data-i18n="cta.directDownload"
@@ -193,7 +193,7 @@
           </li>
         </ol>
         <div class="doc-actions">
-          <a class="button button-ghost" href="files/dist.zip" download data-i18n="docs.manual.zip.download">Download dist.zip</a>
+          <a class="button button-ghost direct-download" href="files/dist.zip" download data-i18n="docs.manual.zip.download">Download dist.zip</a>
         </div>
       </section>
 
@@ -338,7 +338,7 @@
           Add to Chrome
         </a>
         <a
-          class="button button-ghost"
+          class="button button-ghost direct-download"
           href="files/dist.zip"
           download
           data-i18n="cta.directDownload"
@@ -1535,6 +1535,108 @@
             closeDonateModal();
           }
         });
+      }
+
+      const directDownloadButtons = Array.from(document.querySelectorAll(".direct-download"));
+
+      if (directDownloadButtons.length) {
+        const tooltip = document.createElement("div");
+        tooltip.className = "download-tooltip";
+        tooltip.setAttribute("role", "status");
+        document.body.appendChild(tooltip);
+
+        let versionLabel = "";
+        let isLoadingVersion = true;
+        let versionLoadFailed = false;
+        let activeAnchor = null;
+
+        function getTooltipText() {
+          if (versionLabel) {
+            return versionLabel;
+          }
+          if (versionLoadFailed) {
+            return "版本信息不可用";
+          }
+          if (isLoadingVersion) {
+            return "版本加载中…";
+          }
+          return "";
+        }
+
+        function positionTooltip(target) {
+          const rect = target.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+          const scrollX = window.scrollX || window.pageXOffset;
+          const tooltipHeight = tooltip.offsetHeight;
+          const tooltipWidth = tooltip.offsetWidth;
+          let top = rect.top + scrollY - tooltipHeight - 12;
+          if (top < scrollY + 8) {
+            top = rect.bottom + scrollY + 12;
+          }
+          let left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+          const minLeft = scrollX + 8;
+          const maxLeft = scrollX + window.innerWidth - tooltipWidth - 8;
+          left = Math.max(minLeft, Math.min(left, maxLeft));
+          tooltip.style.top = `${top}px`;
+          tooltip.style.left = `${left}px`;
+        }
+
+        function showTooltip(target) {
+          activeAnchor = target;
+          tooltip.textContent = getTooltipText();
+          tooltip.classList.add("is-visible");
+          positionTooltip(target);
+        }
+
+        function hideTooltip() {
+          activeAnchor = null;
+          tooltip.classList.remove("is-visible");
+        }
+
+        directDownloadButtons.forEach((button) => {
+          button.addEventListener("mouseenter", () => showTooltip(button));
+          button.addEventListener("mouseleave", hideTooltip);
+          button.addEventListener("focus", () => showTooltip(button));
+          button.addEventListener("blur", hideTooltip);
+        });
+
+        window.addEventListener("scroll", () => {
+          if (activeAnchor) {
+            positionTooltip(activeAnchor);
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (activeAnchor) {
+            positionTooltip(activeAnchor);
+          }
+        });
+
+        fetch("files/version.txt")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to load version");
+            }
+            return response.text();
+          })
+          .then((text) => {
+            const trimmed = text.trim();
+            versionLabel = trimmed;
+            isLoadingVersion = false;
+            if (!trimmed) {
+              versionLoadFailed = true;
+            }
+            if (activeAnchor) {
+              showTooltip(activeAnchor);
+            }
+          })
+          .catch(() => {
+            isLoadingVersion = false;
+            versionLoadFailed = true;
+            if (activeAnchor) {
+              showTooltip(activeAnchor);
+            }
+          });
       }
 
       prefersDark.addEventListener("change", (event) => {
