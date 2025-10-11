@@ -254,6 +254,12 @@ body[data-theme="dark"] .nav.is-floating {
   display: none;
 }
 
+.dropdown-only-mobile.theme-toggle,
+.dropdown-only-mobile.language-toggle,
+.dropdown-only-mobile.donate-trigger {
+  display: none;
+}
+
 .nav-dropdown {
   position: relative;
   flex: 0 0 auto;
@@ -346,6 +352,15 @@ body[data-theme="dark"] .nav-dropdown-menu {
   }
 
   .nav-divider.dropdown-only-mobile {
+    display: block;
+  }
+
+  .dropdown-only-mobile.theme-toggle,
+  .dropdown-only-mobile.donate-trigger {
+    display: inline-flex;
+  }
+
+  .dropdown-only-mobile.language-toggle {
     display: block;
   }
 
