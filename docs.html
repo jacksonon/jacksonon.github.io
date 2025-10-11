@@ -47,23 +47,44 @@
             <a href="index.html#features" role="menuitem" data-i18n="nav.features">Key Features</a>
             <a href="index.html#workflow" role="menuitem" data-i18n="nav.workflow">Workflow</a>
             <a href="index.html#faq" role="menuitem" data-i18n="nav.faq">FAQ</a>
+            <div class="nav-divider dropdown-only-mobile" role="separator"></div>
+            <button class="dropdown-action dropdown-only-mobile donate-trigger" type="button" data-i18n="nav.donate">
+              打赏
+            </button>
+            <div class="dropdown-control dropdown-only-mobile">
+              <label class="dropdown-label" for="nav-language-mobile" data-i18n="nav.language">Language</label>
+              <select class="language-toggle" id="nav-language-mobile" aria-label="Switch language">
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+                <option value="zh">简体中文</option>
+                <option value="zh-Hant">繁體中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+              </select>
+            </div>
+            <button class="dropdown-action dropdown-only-mobile theme-toggle" type="button" aria-label="Toggle color theme">
+              <span class="theme-toggle-icon"></span>
+              <span class="theme-toggle-label">Light</span>
+            </button>
           </div>
         </div>
-        <button class="button button-ghost donate-trigger" type="button" data-i18n="nav.donate">
-          打赏
-        </button>
-        <select class="language-toggle" aria-label="Switch language">
-          <option value="en">English</option>
-          <option value="ru">Русский</option>
-          <option value="zh">简体中文</option>
-          <option value="zh-Hant">繁體中文</option>
-          <option value="ja">日本語</option>
-          <option value="ko">한국어</option>
-        </select>
-        <button class="theme-toggle" type="button" aria-label="Toggle color theme">
-          <span class="theme-toggle-icon"></span>
-          <span class="theme-toggle-label">Light</span>
-        </button>
+        <div class="nav-quick-actions">
+          <button class="button button-ghost donate-trigger nav-desktop-action" type="button" data-i18n="nav.donate">
+            打赏
+          </button>
+          <select class="language-toggle nav-desktop-action" id="nav-language-desktop" aria-label="Switch language">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="zh">简体中文</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+          </select>
+          <button class="theme-toggle nav-desktop-action" type="button" aria-label="Toggle color theme">
+            <span class="theme-toggle-icon"></span>
+            <span class="theme-toggle-label">Light</span>
+          </button>
+        </div>
       </div>
     </nav>
 
@@ -365,9 +386,8 @@
       const languages = ["en", "ru", "zh", "zh-Hant", "ja", "ko"];
       const defaultLanguage = "en";
 
-      const themeToggle = document.querySelector(".theme-toggle");
-      const themeToggleLabel = document.querySelector(".theme-toggle-label");
-      const languageToggle = document.querySelector(".language-toggle");
+      const themeToggles = Array.from(document.querySelectorAll(".theme-toggle"));
+      const languageToggles = Array.from(document.querySelectorAll(".language-toggle"));
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const nav = document.querySelector(".nav");
@@ -375,6 +395,9 @@
       const navDropdownTrigger = navDropdown ? navDropdown.querySelector(".nav-dropdown-trigger") : null;
       const navDropdownMenu = navDropdown ? navDropdown.querySelector(".nav-dropdown-menu") : null;
       const navDropdownLinks = navDropdownMenu ? Array.from(navDropdownMenu.querySelectorAll("a")) : [];
+      const navDropdownExtras = navDropdownMenu
+        ? Array.from(navDropdownMenu.querySelectorAll(".dropdown-only-mobile.dropdown-action, .dropdown-only-mobile select"))
+        : [];
       let navDropdownHoverTimeout = null;
 
       const translations = {
@@ -382,6 +405,7 @@
           "nav.overview": "Overview",
           "nav.docs": "Docs",
           "nav.menu": "Explore",
+          "nav.language": "Language",
           "nav.manualInstall": "Manual install",
           "nav.quickInput": "Quick Input",
           "nav.features": "Key Features",
@@ -557,6 +581,7 @@
           "nav.overview": "Обзор",
           "nav.docs": "Документация",
           "nav.menu": "Разделы",
+          "nav.language": "Язык",
           "nav.manualInstall": "Ручная установка",
           "nav.quickInput": "Быстрый ввод",
           "nav.features": "Ключевые возможности",
@@ -726,6 +751,7 @@
           "nav.overview": "概览",
           "nav.docs": "使用文档",
           "nav.menu": "功能导航",
+          "nav.language": "语言",
           "nav.manualInstall": "手动安装",
           "nav.quickInput": "快捷输入",
           "nav.features": "核心功能",
@@ -883,6 +909,7 @@
           "nav.overview": "概覽",
           "nav.docs": "使用指南",
           "nav.menu": "功能導覽",
+          "nav.language": "語言",
           "nav.manualInstall": "手動安裝",
           "nav.quickInput": "快捷輸入",
           "nav.features": "核心功能",
@@ -1043,6 +1070,7 @@
           "nav.overview": "概要",
           "nav.docs": "ドキュメント",
           "nav.menu": "メニュー",
+          "nav.language": "言語",
           "nav.manualInstall": "手動インストール",
           "nav.quickInput": "クイック入力",
           "nav.features": "主な機能",
@@ -1203,6 +1231,7 @@
           "nav.overview": "개요",
           "nav.docs": "문서",
           "nav.menu": "메뉴",
+          "nav.language": "언어",
           "nav.manualInstall": "수동 설치",
           "nav.quickInput": "빠른 입력",
           "nav.features": "주요 기능",
@@ -1389,12 +1418,13 @@
       function applyTheme(theme) {
         const finalTheme = themes[theme] ? theme : themes.light;
         rootBody.setAttribute("data-theme", finalTheme);
-        if (themeToggleLabel) {
-          themeToggleLabel.textContent = finalTheme === themes.dark ? "Dark" : "Light";
-        }
-        if (themeToggle) {
-          themeToggle.classList.toggle("is-dark", finalTheme === themes.dark);
-        }
+        themeToggles.forEach((toggle) => {
+          toggle.classList.toggle("is-dark", finalTheme === themes.dark);
+          const label = toggle.querySelector(".theme-toggle-label");
+          if (label) {
+            label.textContent = finalTheme === themes.dark ? "Dark" : "Light";
+          }
+        });
       }
 
       function getStoredTheme() {
@@ -1439,9 +1469,11 @@
           }
         });
 
-        if (languageToggle) {
-          languageToggle.value = finalLanguage;
-        }
+        languageToggles.forEach((select) => {
+          if (select.value !== finalLanguage) {
+            select.value = finalLanguage;
+          }
+        });
 
         updateYear();
       }
@@ -1568,6 +1600,13 @@
           });
         });
 
+        navDropdownExtras.forEach((element) => {
+          const eventName = element.tagName === "SELECT" ? "change" : "click";
+          element.addEventListener(eventName, () => {
+            closeNavDropdown();
+          });
+        });
+
         document.addEventListener("click", (event) => {
           if (navDropdown.classList.contains("is-open") && !navDropdown.contains(event.target)) {
             closeNavDropdown();
@@ -1655,24 +1694,28 @@
         }
       });
 
-      if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-          const nextTheme = rootBody.getAttribute("data-theme") === themes.dark ? themes.light : themes.dark;
-          applyTheme(nextTheme);
-          storeTheme(nextTheme);
+      if (themeToggles.length) {
+        themeToggles.forEach((toggle) => {
+          toggle.addEventListener("click", () => {
+            const nextTheme = rootBody.getAttribute("data-theme") === themes.dark ? themes.light : themes.dark;
+            applyTheme(nextTheme);
+            storeTheme(nextTheme);
+          });
         });
       }
 
-      if (languageToggle) {
-        languageToggle.addEventListener("change", (event) => {
-          const nextLanguage = event.target.value;
-          applyLanguage(nextLanguage);
-          storeLanguage(nextLanguage);
+      if (languageToggles.length) {
+        languageToggles.forEach((select) => {
+          select.addEventListener("change", (event) => {
+            const nextLanguage = event.target.value;
+            applyLanguage(nextLanguage);
+            storeLanguage(nextLanguage);
+          });
         });
       }
 
       const donateModal = document.querySelector(".donate-modal");
-      const donateTrigger = document.querySelector(".donate-trigger");
+      const donateTriggers = Array.from(document.querySelectorAll(".donate-trigger"));
       const donateDialog = donateModal ? donateModal.querySelector(".donate-modal-dialog") : null;
       let donatePreviousFocus = null;
 
@@ -1702,8 +1745,10 @@
         }
       }
 
-      if (donateTrigger && donateModal && donateDialog) {
-        donateTrigger.addEventListener("click", openDonateModal);
+      if (donateTriggers.length && donateModal && donateDialog) {
+        donateTriggers.forEach((trigger) => {
+          trigger.addEventListener("click", openDonateModal);
+        });
         donateModal.addEventListener("click", (event) => {
           if (event.target.closest("[data-close]")) {
             event.preventDefault();
