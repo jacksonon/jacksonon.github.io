@@ -15,99 +15,95 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4829247059582292"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body data-theme="light" data-language="en">
-    <header class="hero" id="top">
-      <nav class="nav">
-        <a class="logo" href="index.html#top" aria-label="Right AI home">
-          <span class="logo-mark">AI</span>
-          <span class="logo-text">Right AI</span>
-        </a>
-        <div class="nav-links">
-          <a href="index.html#top" data-i18n="nav.overview">Overview</a>
-          <a href="docs.html#top" data-i18n="nav.docs">Docs</a>
-          <a href="#manual-install" data-i18n="nav.manualInstall">Manual install</a>
-          <a href="#quick-input" data-i18n="nav.quickInput">Quick Input</a>
-          <a href="index.html#features" data-i18n="nav.features">Key Features</a>
-          <a href="index.html#workflow" data-i18n="nav.workflow">Workflow</a>
-          <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
-          <a
-            class="button button-ghost"
-            href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
-            data-i18n="nav.cta"
+    <nav class="nav">
+      <a class="logo" href="index.html#top" aria-label="Right AI home">
+        <span class="logo-mark">AI</span>
+        <span class="logo-text">Right AI</span>
+      </a>
+      <div class="nav-utilities">
+        <div class="nav-dropdown">
+          <button
+            class="nav-dropdown-trigger"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="nav-primary-menu"
+            data-i18n="nav.menu"
           >
-            Add to Chrome
-          </a>
-          <a
-            class="button button-ghost direct-download"
-            href="files/dist.zip"
-            download
-            data-i18n="cta.directDownload"
-          >
-            Direct download
-          </a>
-          <button class="button button-ghost donate-trigger" type="button" data-i18n="nav.donate">
-            打赏
+            Explore
           </button>
-          <select class="language-toggle" aria-label="Switch language">
-            <option value="en">English</option>
-            <option value="ru">Русский</option>
-            <option value="zh">简体中文</option>
-            <option value="zh-Hant">繁體中文</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-          </select>
-          <button class="theme-toggle" type="button" aria-label="Toggle color theme">
-            <span class="theme-toggle-icon"></span>
-            <span class="theme-toggle-label">Light</span>
-          </button>
+          <div class="nav-dropdown-menu" id="nav-primary-menu" role="menu">
+            <a href="index.html#top" role="menuitem" data-i18n="nav.overview">Overview</a>
+            <a href="docs.html#top" role="menuitem" data-i18n="nav.docs">Docs</a>
+            <a href="#manual-install" role="menuitem" data-i18n="nav.manualInstall">Manual install</a>
+            <a href="#quick-input" role="menuitem" data-i18n="nav.quickInput">Quick Input</a>
+            <a href="index.html#features" role="menuitem" data-i18n="nav.features">Key Features</a>
+            <a href="index.html#workflow" role="menuitem" data-i18n="nav.workflow">Workflow</a>
+            <a href="index.html#faq" role="menuitem" data-i18n="nav.faq">FAQ</a>
+          </div>
         </div>
-      </nav>
+        <button class="button button-ghost donate-trigger" type="button" data-i18n="nav.donate">
+          打赏
+        </button>
+        <select class="language-toggle" aria-label="Switch language">
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+          <option value="zh">简体中文</option>
+          <option value="zh-Hant">繁體中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+          <span class="theme-toggle-icon"></span>
+          <span class="theme-toggle-label">Light</span>
+        </button>
+      </div>
+    </nav>
 
+    <header class="hero" id="top">
       <div class="hero-content">
-        <div class="hero-copy">
+        <div class="hero-copy scroll-reveal">
           <p class="eyebrow" data-i18n="docs.hero.eyebrow">Usage guide</p>
           <h1 data-i18n="docs.hero.heading">Master Right AI in minutes.</h1>
           <p class="lead" data-i18n="docs.hero.lead">
             Follow the modules below to set up Quick Input, Zhipu tools, and live stock tracking.
           </p>
           <div class="hero-highlights">
-            <article>
+            <article class="scroll-reveal">
               <h2 data-i18n="docs.hero.card.quick.title">Quick Input anywhere</h2>
               <p data-i18n="docs.hero.card.quick.body">
                 Press Ctrl + R to summon the input palette on any site and deliver prompts straight to your favourite AI.
               </p>
             </article>
-            <article>
+            <article class="scroll-reveal">
               <h2 data-i18n="docs.hero.card.zhipu.title">Zhipu power-ups</h2>
               <p data-i18n="docs.hero.card.zhipu.body">
                 Connect a BigModel API key to unlock translations, OCR, and creative generation.
               </p>
             </article>
-            <article>
+            <article class="scroll-reveal">
               <h2 data-i18n="docs.hero.card.stock.title">Live stocks at a glance</h2>
               <p data-i18n="docs.hero.card.stock.body">
                 Pin multiple tickers and watch them glide across the sidebar while you chat.
               </p>
             </article>
           </div>
-          <div class="doc-actions">
-          <a
-            class="button button-primary"
-            href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
-            data-i18n="cta.addToChrome"
-          >
-            Add to Chrome
-          </a>
-          <a
-            class="button button-ghost direct-download"
-            href="files/dist.zip"
-            download
-            data-i18n="cta.directDownload"
-          >
-            Direct download
-          </a>
-          <a class="button button-ghost" href="index.html#top" data-i18n="docs.back.overview">Back to overview</a>
+          <div class="doc-actions scroll-reveal">
+            <a
+              class="button button-primary"
+              href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+              data-i18n="cta.addToChrome"
+            >
+              Add to Chrome
+            </a>
+            <a class="button button-ghost" href="index.html#top" data-i18n="docs.back.overview">Back to overview</a>
           </div>
           <p class="hero-note" data-i18n="hero.note">
             Works with the latest Chrome and Chromium-based browsers. No account required to get started.
@@ -117,7 +113,7 @@
     </header>
 
     <main>
-      <section class="section doc-section" id="quick-input">
+      <section class="section doc-section scroll-reveal" id="quick-input">
         <div class="section-header">
           <p class="eyebrow" data-i18n="docs.quick.eyebrow">Quick Input module</p>
           <h2 data-i18n="docs.quick.heading">Launch AI from any webpage.</h2>
@@ -164,7 +160,7 @@
         </div>
       </section>
 
-      <section class="section doc-section" id="manual-install">
+      <section class="section doc-section scroll-reveal" id="manual-install">
         <div class="section-header">
           <p class="eyebrow" data-i18n="docs.manual.zip.eyebrow">Manual install</p>
           <h2 data-i18n="docs.manual.zip.heading">Load the packaged ZIP in Chrome.</h2>
@@ -197,7 +193,7 @@
         </div>
       </section>
 
-      <section class="section doc-section" id="zhipu">
+      <section class="section doc-section scroll-reveal" id="zhipu">
         <div class="section-header">
           <p class="eyebrow" data-i18n="docs.zhipu.eyebrow">Zhipu extension module</p>
           <h2 data-i18n="docs.zhipu.heading">Unlock translations, image tools, and page-aware conversations.</h2>
@@ -206,19 +202,19 @@
           </p>
         </div>
         <div class="doc-grid">
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.zhipu.steps.api.title">1. Grab your API key</h3>
             <p data-i18n="docs.zhipu.steps.api.body">
               Visit Bigmodel.cn, sign in, and create an API key from the console.
             </p>
           </article>
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.zhipu.steps.connect.title">2. Paste it into Right AI</h3>
             <p data-i18n="docs.zhipu.steps.connect.body">
               Open the sidebar settings, find Zhipu integration, and save the key securely.
             </p>
           </article>
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.zhipu.steps.features.title">Features you unlock</h3>
             <ul class="doc-sublist">
               <li data-i18n="docs.zhipu.steps.features.translation">
@@ -255,7 +251,7 @@
         </div>
       </section>
 
-      <section class="section doc-section" id="stocks">
+      <section class="section doc-section scroll-reveal" id="stocks">
         <div class="section-header">
           <p class="eyebrow" data-i18n="docs.stock.eyebrow">Stock module</p>
           <h2 data-i18n="docs.stock.heading">Keep track of the tickers that matter.</h2>
@@ -264,19 +260,19 @@
           </p>
         </div>
         <div class="doc-grid">
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.stock.list.watchlist.title">Flexible watchlist</h3>
             <p data-i18n="docs.stock.list.watchlist.body">
               Add multiple symbols, reorder them, or remove them as priorities change.
             </p>
           </article>
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.stock.list.marquee.title">Marquee view</h3>
             <p data-i18n="docs.stock.list.marquee.body">
               Prices loop in a smooth marquee so you never lose sight of intraday movement.
             </p>
           </article>
-          <article class="doc-card">
+          <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.stock.list.sync.title">Real-time sync</h3>
             <p data-i18n="docs.stock.list.sync.body">
               Quotes refresh automatically while you continue the conversation.
@@ -325,7 +321,7 @@
     </div>
 
     <footer class="footer">
-      <div class="footer-content">
+      <div class="footer-content scroll-reveal">
         <div>
           <h2 data-i18n="footer.heading">Keep AI at your fingertips.</h2>
           <p data-i18n="footer.body">Install Right AI and stay in flow with a personal AI hub inside the browser.</p>
@@ -346,16 +342,16 @@
           Direct download
         </a>
       </div>
-      <div class="footer-meta">
+      <div class="footer-meta scroll-reveal">
         <div class="footer-contact">
           <span class="contact-label" data-i18n="footer.contact.label">Contact</span>
           <a href="https://github.com/jacksonon" target="_blank" rel="noopener noreferrer">
             <span data-i18n="footer.contact.github">GitHub</span>
             <span>@jacksonon</span>
           </a>
-          <a href="mailto:wang542413041@gmaail.com">
+          <a href="mailto:wang542413041@gmail.com">
             <span data-i18n="footer.contact.email">Gmail</span>
-            <span>wang542413041@gmaail.com</span>
+            <span>wang542413041@gmail.com</span>
           </a>
         </div>
         <span data-i18n-html="footer.copyright">&copy; <span id="year"></span> Right AI</span>
@@ -364,6 +360,7 @@
 
     <script>
       const rootBody = document.body;
+      const rootElement = document.documentElement;
       const themes = { light: "light", dark: "dark" };
       const languages = ["en", "ru", "zh", "zh-Hant", "ja", "ko"];
       const defaultLanguage = "en";
@@ -372,11 +369,19 @@
       const themeToggleLabel = document.querySelector(".theme-toggle-label");
       const languageToggle = document.querySelector(".language-toggle");
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const nav = document.querySelector(".nav");
+      const navDropdown = document.querySelector(".nav-dropdown");
+      const navDropdownTrigger = navDropdown ? navDropdown.querySelector(".nav-dropdown-trigger") : null;
+      const navDropdownMenu = navDropdown ? navDropdown.querySelector(".nav-dropdown-menu") : null;
+      const navDropdownLinks = navDropdownMenu ? Array.from(navDropdownMenu.querySelectorAll("a")) : [];
+      let navDropdownHoverTimeout = null;
 
       const translations = {
         en: {
           "nav.overview": "Overview",
           "nav.docs": "Docs",
+          "nav.menu": "Explore",
           "nav.manualInstall": "Manual install",
           "nav.quickInput": "Quick Input",
           "nav.features": "Key Features",
@@ -551,6 +556,7 @@
         ru: {
           "nav.overview": "Обзор",
           "nav.docs": "Документация",
+          "nav.menu": "Разделы",
           "nav.manualInstall": "Ручная установка",
           "nav.quickInput": "Быстрый ввод",
           "nav.features": "Ключевые возможности",
@@ -719,6 +725,7 @@
         zh: {
           "nav.overview": "概览",
           "nav.docs": "使用文档",
+          "nav.menu": "功能导航",
           "nav.manualInstall": "手动安装",
           "nav.quickInput": "快捷输入",
           "nav.features": "核心功能",
@@ -875,6 +882,7 @@
         "zh-Hant": {
           "nav.overview": "概覽",
           "nav.docs": "使用指南",
+          "nav.menu": "功能導覽",
           "nav.manualInstall": "手動安裝",
           "nav.quickInput": "快捷輸入",
           "nav.features": "核心功能",
@@ -1034,6 +1042,7 @@
         ja: {
           "nav.overview": "概要",
           "nav.docs": "ドキュメント",
+          "nav.menu": "メニュー",
           "nav.manualInstall": "手動インストール",
           "nav.quickInput": "クイック入力",
           "nav.features": "主な機能",
@@ -1193,6 +1202,7 @@
         ko: {
           "nav.overview": "개요",
           "nav.docs": "문서",
+          "nav.menu": "메뉴",
           "nav.manualInstall": "수동 설치",
           "nav.quickInput": "빠른 입력",
           "nav.features": "주요 기능",
@@ -1473,8 +1483,177 @@
         applyLanguage(detectBrowserLanguage());
       }
 
+      function updateNavOffset() {
+        if (!nav) return;
+        const rect = nav.getBoundingClientRect();
+        const offsetTop = Math.max(rect.top, 0);
+        const extra = window.innerWidth <= 540 ? 28 : window.innerWidth <= 960 ? 22 : 18;
+        const offsetValue = Math.max(84, Math.round(rect.height + offsetTop + extra));
+        rootElement.style.setProperty("--nav-offset", `${offsetValue}px`);
+      }
+
+      function updateNavElevation() {
+        if (!nav) return;
+        const shouldFloat = window.scrollY > 16;
+        const isFloating = nav.classList.contains("is-floating");
+        if (shouldFloat !== isFloating) {
+          nav.classList.toggle("is-floating", shouldFloat);
+          updateNavOffset();
+        }
+      }
+
+      function openNavDropdown() {
+        if (!navDropdown || !navDropdownTrigger) return;
+        if (navDropdownHoverTimeout) {
+          clearTimeout(navDropdownHoverTimeout);
+          navDropdownHoverTimeout = null;
+        }
+        navDropdown.classList.add("is-open");
+        navDropdownTrigger.setAttribute("aria-expanded", "true");
+      }
+
+      function closeNavDropdown(options = {}) {
+        if (!navDropdown || !navDropdownTrigger) return;
+        if (navDropdownHoverTimeout) {
+          clearTimeout(navDropdownHoverTimeout);
+          navDropdownHoverTimeout = null;
+        }
+        navDropdown.classList.remove("is-open");
+        navDropdownTrigger.setAttribute("aria-expanded", "false");
+        if (options.focusTrigger && typeof navDropdownTrigger.focus === "function") {
+          navDropdownTrigger.focus();
+        }
+      }
+
+      function setupNavDropdown() {
+        if (!navDropdown || !navDropdownTrigger || !navDropdownMenu) {
+          return;
+        }
+
+        const supportsHover = window.matchMedia("(hover: hover)").matches;
+
+        navDropdownTrigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (navDropdown.classList.contains("is-open")) {
+            closeNavDropdown();
+          } else {
+            openNavDropdown();
+          }
+        });
+
+        if (supportsHover) {
+          navDropdown.addEventListener("mouseenter", () => {
+            openNavDropdown();
+          });
+
+          navDropdown.addEventListener("mouseleave", () => {
+            navDropdownHoverTimeout = window.setTimeout(() => {
+              closeNavDropdown();
+              navDropdownHoverTimeout = null;
+            }, 120);
+          });
+        }
+
+        navDropdownTrigger.addEventListener("focus", openNavDropdown);
+        navDropdown.addEventListener("focusout", (event) => {
+          if (!navDropdown.contains(event.relatedTarget)) {
+            closeNavDropdown();
+          }
+        });
+
+        navDropdownLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeNavDropdown();
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (navDropdown.classList.contains("is-open") && !navDropdown.contains(event.target)) {
+            closeNavDropdown();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && navDropdown.classList.contains("is-open")) {
+            closeNavDropdown({ focusTrigger: true });
+          }
+        });
+      }
+
+      function setupScrollReveal() {
+        const targets = Array.from(document.querySelectorAll(".scroll-reveal"));
+        if (!targets.length) {
+          return;
+        }
+
+        if (prefersReducedMotion.matches) {
+          targets.forEach((element) => {
+            element.classList.add("is-visible");
+          });
+          return;
+        }
+
+        const setDelay = (element, index) => {
+          if (!element.style.getPropertyValue("--reveal-delay")) {
+            const delay = Math.min(index * 0.08, 0.32);
+            element.style.setProperty("--reveal-delay", `${delay}s`);
+          }
+        };
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.18,
+              rootMargin: "0px 0px -48px 0px"
+            }
+          );
+
+          targets.forEach((element, index) => {
+            setDelay(element, index);
+            observer.observe(element);
+          });
+          return;
+        }
+
+        targets.forEach((element, index) => {
+          setDelay(element, index);
+          requestAnimationFrame(() => {
+            window.setTimeout(() => {
+              element.classList.add("is-visible");
+            }, Math.round(parseFloat(element.style.getPropertyValue("--reveal-delay")) * 1000));
+          });
+        });
+      }
+
       initTheme();
       initLanguage();
+      setupNavDropdown();
+      setupScrollReveal();
+      updateNavElevation();
+      updateNavOffset();
+      window.addEventListener("scroll", updateNavElevation, { passive: true });
+      window.addEventListener("resize", () => {
+        updateNavOffset();
+      });
+      window.addEventListener("load", () => {
+        updateNavOffset();
+      });
+      prefersReducedMotion.addEventListener("change", (event) => {
+        if (event.matches) {
+          document.querySelectorAll(".scroll-reveal").forEach((element) => {
+            element.classList.add("is-visible");
+          });
+        }
+      });
 
       if (themeToggle) {
         themeToggle.addEventListener("click", () => {

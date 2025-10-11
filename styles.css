@@ -15,6 +15,7 @@
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
+  --nav-offset: 140px;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text);
   background-color: var(--bg);
@@ -47,6 +48,11 @@ body {
   background: radial-gradient(circle at top left, #ffffff, #dfe6ff) fixed;
   color: var(--text);
   line-height: 1.6;
+  padding-top: var(--nav-offset, 140px);
+}
+
+html {
+  scroll-padding-top: var(--nav-offset, 140px);
 }
 
 body[data-theme="dark"] {
@@ -64,13 +70,12 @@ img {
 }
 
 .hero {
-  padding: clamp(56px, 9vw, 132px) clamp(20px, 5vw, 64px) clamp(132px, 18vw, 240px);
+  padding: clamp(40px, 7vw, 120px) clamp(20px, 5vw, 64px) clamp(88px, 14vw, 200px);
   position: relative;
-  overflow: hidden;
   border-bottom: 1px solid rgba(99, 91, 255, 0.12);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(230, 236, 255, 0.88));
   isolation: isolate;
-  min-height: clamp(640px, 70vh, 860px);
+  min-height: clamp(520px, 62vh, 780px);
 }
 
 .hero::before {
@@ -113,13 +118,46 @@ body[data-theme="dark"] .hero::after {
     radial-gradient(120% 80% at 78% 12%, rgba(124, 92, 255, 0.26), transparent 68%);
 }
 
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: clamp(50px, 7vw, 90px);
-  position: relative;
-  z-index: 2;
+  gap: clamp(16px, 4vw, 40px);
+  position: fixed;
+  top: clamp(12px, 3vw, 28px);
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: min(1200px, calc(100% - 2 * clamp(18px, 5vw, 64px)));
+  padding: 16px clamp(22px, 4vw, 36px);
+  border-radius: 26px;
+  border: 1px solid rgba(96, 112, 192, 0.24);
+  background: rgba(250, 251, 255, 0.75);
+  box-shadow: 0 22px 48px -30px rgba(35, 52, 96, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 200;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+body[data-theme="dark"] .nav {
+  background: linear-gradient(135deg, rgba(18, 24, 48, 0.88), rgba(10, 16, 36, 0.78));
+  border-color: rgba(124, 140, 220, 0.24);
+  box-shadow: 0 28px 52px -30px rgba(3, 6, 18, 0.8);
+}
+
+.nav.is-floating {
+  background: rgba(250, 251, 255, 0.88);
+  border-color: rgba(99, 91, 255, 0.28);
+  box-shadow: 0 28px 60px -28px rgba(30, 40, 90, 0.5);
+  transform: translate3d(-50%, -2px, 0);
+}
+
+body[data-theme="dark"] .nav.is-floating {
+  background: linear-gradient(135deg, rgba(24, 30, 60, 0.9), rgba(12, 18, 42, 0.82));
+  border-color: rgba(124, 92, 255, 0.3);
+  box-shadow: 0 32px 68px -28px rgba(0, 0, 0, 0.82);
+  transform: translate3d(-50%, -2px, 0);
 }
 
 .logo {
@@ -145,22 +183,112 @@ body[data-theme="dark"] .hero::after {
   box-shadow: 0 16px 30px -20px rgba(99, 91, 255, 0.85);
 }
 
-.nav-links {
+.nav-dropdown-trigger:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.nav-utilities {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: clamp(10px, 2vw, 18px);
 }
 
-.nav-links a {
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
   font-size: 15px;
   color: var(--text-muted);
-  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.nav-links a:hover {
+.nav-dropdown-trigger::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.24s ease;
+  margin-top: -2px;
+}
+
+.nav-dropdown.is-open .nav-dropdown-trigger {
   color: var(--text);
+  background: var(--accent-soft);
+}
+
+.nav-dropdown.is-open .nav-dropdown-trigger::after {
+  transform: rotate(-135deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  inset-inline-start: 0;
+  top: calc(100% + 12px);
+  min-width: 220px;
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  box-shadow: 0 24px 50px -24px rgba(45, 61, 120, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 10;
+}
+
+body[data-theme="dark"] .nav-dropdown-menu {
+  box-shadow: 0 24px 60px -24px rgba(8, 9, 36, 0.9);
+}
+
+.nav-dropdown a {
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-dropdown a:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+  transform: translateX(2px);
+}
+
+.nav-dropdown.is-open .nav-dropdown-menu {
   opacity: 1;
-  transform: translateY(-1px);
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.98);
+  transition:
+    opacity 0.7s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 .hero-content {
@@ -426,12 +554,20 @@ body[data-theme="dark"] .download-tooltip {
 
 .section {
   padding: clamp(70px, 8vw, 120px) clamp(20px, 5vw, 60px);
-  background: transparent;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 247, 255, 0.84));
   position: relative;
 }
 
+body[data-theme="dark"] .section {
+  background: linear-gradient(180deg, rgba(12, 16, 34, 0.92), rgba(8, 12, 26, 0.84));
+}
+
 .section.alt {
-  background: var(--bg-alt);
+  background: linear-gradient(180deg, rgba(234, 238, 255, 0.96), rgba(222, 229, 255, 0.86));
+}
+
+body[data-theme="dark"] .section.alt {
+  background: linear-gradient(180deg, rgba(16, 20, 38, 0.92), rgba(10, 14, 30, 0.84));
 }
 
 .section-header {
@@ -596,7 +732,7 @@ body[data-theme="light"] .step-card p {
 }
 
 .footer {
-  padding: clamp(60px, 6vw, 90px) clamp(20px, 5vw, 60px) 40px;
+  padding: clamp(44px, 5vw, 80px) clamp(20px, 5vw, 60px) 28px;
   background: linear-gradient(160deg, rgba(240, 244, 255, 0.95), rgba(220, 230, 255, 0.95));
   border-top: 1px solid rgba(99, 91, 255, 0.15);
 }
@@ -1032,18 +1168,75 @@ body[data-theme="dark"] .donate-qr-grid figure {
     background-position: center top;
   }
 
+  .nav {
+    width: calc(100% - 40px);
+    padding: 14px 18px;
+    gap: 18px;
+  }
+
+  .nav-utilities {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-dropdown {
+    flex: 1 1 100%;
+  }
+
+  .nav-dropdown-trigger {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-utilities .donate-trigger,
+  .nav-utilities .theme-toggle,
+  .nav-utilities .language-toggle {
+    flex: 0 0 auto;
+  }
+
+  .nav-utilities .donate-trigger,
+  .nav-utilities .theme-toggle {
+    justify-content: center;
+  }
+
+  .nav-utilities .language-toggle {
+    min-width: 140px;
+  }
 }
 
 @media (max-width: 720px) {
   .nav {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 16px;
+    top: 12px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    transform: none;
+    padding: 18px 20px;
   }
 
-  .nav-links {
-    gap: 14px;
-    flex-wrap: wrap;
+  .nav.is-floating,
+  body[data-theme="dark"] .nav.is-floating {
+    transform: translateY(-2px);
+  }
+
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-trigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-utilities {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
   .hero-actions {
@@ -1080,6 +1273,20 @@ body[data-theme="dark"] .donate-qr-grid figure {
 }
 
 @media (max-width: 540px) {
+  .nav {
+    top: 10px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    transform: none;
+    padding: 16px;
+  }
+
+  .nav.is-floating,
+  body[data-theme="dark"] .nav.is-floating {
+    transform: translateY(-2px);
+  }
+
   .hero-copy h1 {
     font-size: 34px;
   }
