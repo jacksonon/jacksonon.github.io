@@ -192,10 +192,6 @@ body[data-theme="dark"] .nav::after {
   transform: translate3d(-50%, -2px, 0);
 }
 
-.resume-link-hidden {
-  display: none !important;
-}
-
 body[data-theme="dark"] .nav.is-floating {
   background: linear-gradient(135deg, rgba(24, 30, 60, 0.9), rgba(12, 18, 42, 0.82));
   border-color: rgba(124, 92, 255, 0.3);
