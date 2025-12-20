@@ -48,8 +48,8 @@
           </button>
           <div class="nav-dropdown-menu" id="nav-primary-menu" role="menu">
             <a href="#top" role="menuitem" data-i18n="nav.overview">Overview</a>
-            <a href="docs.html#top" role="menuitem" data-i18n="nav.docs">Docs</a>
-            <a href="docs.html#manual-install" role="menuitem" data-i18n="nav.manualInstall">Manual install</a>
+            <a href="#docs" role="menuitem" data-i18n="nav.docs">Docs</a>
+            <a href="#manual-install" role="menuitem" data-i18n="nav.manualInstall">Manual install</a>
             <a href="#shortcut" role="menuitem" data-i18n="nav.quickInput">Quick Input</a>
             <a href="#features" role="menuitem" data-i18n="nav.features">Key Features</a>
             <a href="#workflow" role="menuitem" data-i18n="nav.workflow">Workflow</a>
@@ -227,6 +227,31 @@
         </div>
       </section>
 
+      <section class="section doc-section scroll-reveal" id="webpage-chat">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="webchat.eyebrow">Webpage conversation</p>
+          <h2 data-i18n="webchat.heading">Chat with the current webpage, and automate it your way.</h2>
+          <p data-i18n="webchat.description">
+            Use a Zhipu-powered assistant to ask questions about what you see, and extend it with custom commands to operate the page.
+          </p>
+        </div>
+        <ul class="doc-list">
+          <li>
+            <strong data-i18n="webchat.list.free.title">Free Zhipu model</strong>
+            <span data-i18n-html="webchat.list.free.body">
+              Powered by Zhipu's free model. Get your API key at
+              <a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a>.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="webchat.list.custom.title">Fully customizable</strong>
+            <span data-i18n="webchat.list.custom.body">
+              Supports chatting with webpages, operating the page, and any custom workflow you can imagine.
+            </span>
+          </li>
+        </ul>
+      </section>
+
       <section class="section scroll-reveal" id="features">
         <div class="section-header">
           <p class="eyebrow" data-i18n="features.eyebrow">Key Features</p>
@@ -348,6 +373,324 @@
               Highlight content, trigger templates, and watch the sidebar return summaries, drafts, or code snippets in seconds.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section class="section alt scroll-reveal" id="docs">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.hero.eyebrow">Usage guide</p>
+          <h2 data-i18n="docs.hero.heading">Master Right AI in minutes.</h2>
+          <p data-i18n="docs.hero.lead">
+            Follow the modules below to set up Quick Input, webpage tools, Zhipu tools, and live stock tracking.
+          </p>
+        </div>
+        <div class="hero-highlights">
+          <article class="scroll-reveal">
+            <h2 data-i18n="docs.hero.card.quick.title">Quick Input anywhere</h2>
+            <p data-i18n="docs.hero.card.quick.body">
+              Press Ctrl + R to summon the input palette on any site and deliver prompts straight to your favourite AI.
+            </p>
+          </article>
+          <article class="scroll-reveal">
+            <h2 data-i18n="docs.hero.card.webpage.title">Webpage tools</h2>
+            <p data-i18n="docs.hero.card.webpage.body">
+              Talk to the current page, toggle dark mode for any site, and pick the UI theme that fits your workflow.
+            </p>
+          </article>
+          <article class="scroll-reveal">
+            <h2 data-i18n="docs.hero.card.zhipu.title">Zhipu power-ups</h2>
+            <p data-i18n="docs.hero.card.zhipu.body">
+              Connect a BigModel API key to unlock translations, OCR, and creative generation.
+            </p>
+          </article>
+          <article class="scroll-reveal">
+            <h2 data-i18n="docs.hero.card.stock.title">Live stocks at a glance</h2>
+            <p data-i18n="docs.hero.card.stock.body">
+              Pin multiple tickers and watch them glide across the sidebar while you chat.
+            </p>
+          </article>
+        </div>
+        <div class="doc-actions scroll-reveal">
+          <a
+            class="button button-primary"
+            href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+            data-i18n="cta.addToChrome"
+          >
+            Add to Chrome
+          </a>
+          <a
+            class="button button-ghost direct-download"
+            href="files/dist.zip"
+            download
+            data-i18n="cta.directDownload"
+          >
+            Direct download
+          </a>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="quick-input">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.quick.eyebrow">Quick Input module</p>
+          <h2 data-i18n="docs.quick.heading">Launch AI from any webpage.</h2>
+          <p data-i18n="docs.quick.description">
+            Quick Input is always on: press Ctrl + R (recommended), type, and send. No tab juggling, no copy and paste.
+          </p>
+        </div>
+        <ul class="doc-list">
+          <li>
+            <strong data-i18n="docs.quick.list.hotkey.title">Hotkey</strong>
+            <span data-i18n="docs.quick.list.hotkey.body">
+              Press Ctrl + R (recommended, customisable) to open the input anywhere in Chrome.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.quick.list.model.title">Send to any AI</strong>
+            <span data-i18n="docs.quick.list.model.body">
+              Pick ChatGPT, Gemini, Claude, or a custom endpoint before sending.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.quick.list.free.title">No extra cost</strong>
+            <span data-i18n="docs.quick.list.free.body">
+              Right AI routes to the provider you already use. Your existing AI plan handles the responses.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.quick.list.intent.title">Intent prediction</strong>
+            <span data-i18n="docs.quick.list.intent.body">
+              Let AI Quick Input suggest what you might want to type or ask from the current page content. Toggle it under Settings → Zhipu Extension → Intent Prediction.
+            </span>
+          </li>
+        </ul>
+        <div class="doc-gallery">
+          <figure>
+            <img
+              src="assets/shortcut-quick-send.png"
+              alt="Quick Input palette overlaying a webpage"
+            />
+            <figcaption data-i18n="docs.quick.figure.caption">
+              Ctrl + R opens the Quick Input palette wherever you are in Chrome.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="webpage-tools">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.webpage.eyebrow">Webpage tools module</p>
+          <h2 data-i18n="docs.webpage.heading">Talk to the page, dim the lights, match your theme.</h2>
+          <p data-i18n="docs.webpage.description">
+            Wake the assistant directly inside any webpage, apply a dark theme to sites that don’t support one, and switch the sidebar theme anytime.
+          </p>
+        </div>
+        <div class="doc-grid">
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.webpage.cards.conversation.title">Webpage Conversation</h3>
+            <p data-i18n="docs.webpage.cards.conversation.body">
+              An intelligent assistant based on Zhipu AI's free model. Use a custom hotkey to summarize, extract key info, and understand images from the current page.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.webpage.cards.darkMode.title">Webpage Dark Mode</h3>
+            <p data-i18n="docs.webpage.cards.darkMode.body">
+              Toggle dark mode instantly for bright pages. Tune it with a shortcut so reading stays comfortable at night.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.webpage.cards.theme.title">Theme Settings</h3>
+            <p data-i18n="docs.webpage.cards.theme.body">
+              Pick Follow system, Dark, or Light modes in Settings to match your preference.
+            </p>
+          </article>
+        </div>
+        <div class="doc-gallery">
+          <figure>
+            <img src="assets/browser-agent.png" alt="Webpage conversation assistant in Right AI sidebar" />
+            <figcaption data-i18n="docs.webpage.figure.conversation">
+              Summarize content and ask questions about what you are viewing, without leaving the page.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/night-adapt.png" alt="Webpage dark mode and theme settings in Right AI" />
+            <figcaption data-i18n="docs.webpage.figure.darkMode">
+              Apply dark mode to bright pages with a single shortcut and keep reading comfortably.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="manual-install">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.manual.zip.eyebrow">Manual install</p>
+          <h2 data-i18n="docs.manual.zip.heading">Load the packaged ZIP in Chrome.</h2>
+          <p data-i18n="docs.manual.zip.description">
+            Download the prepared build, unzip it once, and load it in Chrome's extension manager.
+          </p>
+        </div>
+        <ol class="doc-list">
+          <li>
+            <strong data-i18n="docs.manual.zip.step1.title">Download dist.zip</strong>
+            <span data-i18n="docs.manual.zip.step1.body">
+              Click Direct download on this page to save the latest packaged extension locally.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.manual.zip.step2.title">Unzip the archive</strong>
+            <span data-i18n="docs.manual.zip.step2.body">
+              Extract dist.zip to a folder—Chrome needs the unpacked directory, not the ZIP file.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="docs.manual.zip.step3.title">Load it with Developer mode</strong>
+            <span data-i18n="docs.manual.zip.step3.body">
+              Open chrome://extensions, enable Developer mode, click Load unpacked, then pick the extracted folder.
+            </span>
+          </li>
+        </ol>
+        <div class="doc-actions">
+          <a
+            class="button button-ghost direct-download"
+            href="files/dist.zip"
+            download
+            data-i18n="docs.manual.zip.download"
+          >
+            Download dist.zip
+          </a>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="version-updates">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.changelog.eyebrow">Version updates</p>
+          <h2 data-i18n="docs.changelog.heading">Plugin version changes</h2>
+          <p data-i18n="docs.changelog.description">
+            Check what changed between releases, plus how to refresh a manual (unpacked) install.
+          </p>
+        </div>
+        <div class="doc-grid">
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.changelog.current.heading">Current version</h3>
+            <p>
+              <span data-i18n="docs.changelog.current.label">Current packaged build:</span>
+              <span class="version-inline" data-version-label>…</span>
+            </p>
+            <ul class="doc-sublist">
+              <li data-i18n="docs.changelog.update.step1">Download the latest dist.zip and unzip it.</li>
+              <li data-i18n="docs.changelog.update.step2">
+                If you unzip into the same folder as before, open chrome://extensions and click Reload.
+              </li>
+              <li data-i18n="docs.changelog.update.step3">
+                If you unzip into a new folder, use Load unpacked again and select the new folder.
+              </li>
+            </ul>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.changelog.history.heading">Release notes</h3>
+            <ul class="doc-sublist">
+              <li data-i18n="docs.changelog.history.v300">
+                3.0.0 — New webpage tools module docs, refreshed visuals, and version tooltip on direct download.
+              </li>
+              <li data-i18n="docs.changelog.history.v213">2.1.3 — Updated packaged resources and improved UI stability.</li>
+              <li data-i18n="docs.changelog.history.v212">2.1.2 — Initial public package with docs and downloadable build.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="zhipu">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.zhipu.eyebrow">Zhipu extension module</p>
+          <h2 data-i18n="docs.zhipu.heading">Unlock translations, image tools, and page-aware conversations.</h2>
+          <p data-i18n="docs.zhipu.description">
+            Right AI bundles Zhipu's free capabilities. Connect your key once and keep the tools on standby.
+          </p>
+        </div>
+        <div class="doc-grid">
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.zhipu.steps.api.title">1. Grab your API key</h3>
+            <p data-i18n="docs.zhipu.steps.api.body">
+              Visit Bigmodel.cn, sign in, and create an API key from the console.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.zhipu.steps.connect.title">2. Paste it into Right AI</h3>
+            <p data-i18n="docs.zhipu.steps.connect.body">
+              Open the sidebar settings, find Zhipu integration, and save the key securely.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.zhipu.steps.features.title">Features you unlock</h3>
+            <ul class="doc-sublist">
+              <li data-i18n="docs.zhipu.steps.features.translation">
+                Text selection translation with instant inline output.
+              </li>
+              <li data-i18n="docs.zhipu.steps.features.ocr">Image text extraction (OCR) with one-click translation.</li>
+              <li data-i18n="docs.zhipu.steps.features.image">Image generation powered by Zhipu's creative models.</li>
+              <li data-i18n="docs.zhipu.steps.features.video">Video generation requests routed through the same interface.</li>
+              <li data-i18n="docs.zhipu.steps.features.chat">
+                Right conversation mode that understands the page you are viewing.
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="doc-gallery">
+          <figure>
+            <img
+              src="assets/Text-Selection-Translation.png"
+              alt="Text selection translation using Zhipu integration"
+            />
+            <figcaption data-i18n="docs.zhipu.figure.translation">
+              Zhipu handles on-page text selection translation in real time.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/Image-OCR-Traanslation.png"
+              alt="Image OCR and translation workflow in Right AI"
+            />
+            <figcaption data-i18n="docs.zhipu.figure.ocr">
+              Extract text from images and translate it without leaving the sidebar.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section doc-section scroll-reveal" id="stocks">
+        <div class="section-header">
+          <p class="eyebrow" data-i18n="docs.stock.eyebrow">Stock module</p>
+          <h2 data-i18n="docs.stock.heading">Keep track of the tickers that matter.</h2>
+          <p data-i18n="docs.stock.description">
+            Create a rotating watchlist so market data stays visible alongside your AI chat.
+          </p>
+        </div>
+        <div class="doc-grid">
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.stock.list.watchlist.title">Flexible watchlist</h3>
+            <p data-i18n="docs.stock.list.watchlist.body">
+              Add multiple symbols, reorder them, or remove them as priorities change.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.stock.list.marquee.title">Marquee view</h3>
+            <p data-i18n="docs.stock.list.marquee.body">
+              Prices loop in a smooth marquee so you never lose sight of intraday movement.
+            </p>
+          </article>
+          <article class="doc-card scroll-reveal">
+            <h3 data-i18n="docs.stock.list.sync.title">Real-time sync</h3>
+            <p data-i18n="docs.stock.list.sync.body">
+              Quotes refresh automatically while you continue the conversation.
+            </p>
+          </article>
+        </div>
+        <div class="doc-gallery">
+          <figure>
+            <img src="assets/Stock.png" alt="Stock assistant displaying multiple tickers" />
+            <figcaption data-i18n="docs.stock.figure.caption">
+              Configure multiple watchlist symbols and view them in a scrolling marquee.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -531,6 +874,16 @@
           "shortcut.list.intent.title": "Intent prediction:",
           "shortcut.list.intent.body":
             "AI Quick Input can suggest what you may want to type or ask based on the current page. Toggle it in Settings → Zhipu Extension → Intent Prediction.",
+          "webchat.eyebrow": "Webpage conversation",
+          "webchat.heading": "Chat with the current webpage, and automate it your way.",
+          "webchat.description":
+            "Use a Zhipu-powered assistant to ask questions about what you see, and extend it with custom commands to operate the page.",
+          "webchat.list.free.title": "Free Zhipu model",
+          "webchat.list.free.body":
+            'Powered by Zhipu\'s free model. Get your API key at <a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a>.',
+          "webchat.list.custom.title": "Fully customizable",
+          "webchat.list.custom.body":
+            "Supports chatting with webpages, operating the page, and any custom workflow you can imagine.",
           "features.eyebrow": "Key Features",
           "features.heading": "The fastest way to collaborate with AI copilots inside Chrome.",
           "features.body":
@@ -589,14 +942,34 @@
           "footer.contact.email": "Gmail",
           "docs.hero.eyebrow": "Usage guide",
           "docs.hero.heading": "Master Right AI in minutes.",
-          "docs.hero.lead": "Follow the modules below to set up Quick Input, Zhipu tools, and live stock tracking.",
+          "docs.hero.lead": "Follow the modules below to set up Quick Input, webpage tools, Zhipu tools, and live stock tracking.",
           "docs.hero.card.quick.title": "Quick Input anywhere",
           "docs.hero.card.quick.body":
             "Press Ctrl + R to summon the input palette on any site and deliver prompts straight to your favourite AI.",
+          "docs.hero.card.webpage.title": "Webpage tools",
+          "docs.hero.card.webpage.body":
+            "Talk to the current page, toggle dark mode for any site, and pick the UI theme that fits your workflow.",
           "docs.hero.card.zhipu.title": "Zhipu power-ups",
           "docs.hero.card.zhipu.body": "Connect a BigModel API key to unlock translations, OCR, and creative generation.",
           "docs.hero.card.stock.title": "Live stocks at a glance",
           "docs.hero.card.stock.body": "Pin multiple tickers and watch them glide across the sidebar while you chat.",
+          "docs.webpage.eyebrow": "Webpage tools module",
+          "docs.webpage.heading": "Talk to the page, dim the lights, match your theme.",
+          "docs.webpage.description":
+            "Wake the assistant directly inside any webpage, apply a dark theme to sites that don’t support one, and switch the sidebar theme anytime.",
+          "docs.webpage.cards.conversation.title": "Webpage Conversation",
+          "docs.webpage.cards.conversation.body":
+            "An intelligent assistant based on Zhipu AI's free model. Use a custom hotkey to summarize, extract key info, and understand images from the current page.",
+          "docs.webpage.cards.darkMode.title": "Webpage Dark Mode",
+          "docs.webpage.cards.darkMode.body":
+            "Toggle dark mode instantly for bright pages. Tune it with a shortcut so reading stays comfortable at night.",
+          "docs.webpage.cards.theme.title": "Theme Settings",
+          "docs.webpage.cards.theme.body":
+            "Pick Follow system, Dark, or Light modes in Settings to match your preference.",
+          "docs.webpage.figure.conversation":
+            "Summarize content and ask questions about what you are viewing, without leaving the page.",
+          "docs.webpage.figure.darkMode":
+            "Apply dark mode to bright pages with a single shortcut and keep reading comfortably.",
           "docs.quick.eyebrow": "Quick Input module",
           "docs.quick.heading": "Launch AI from any webpage.",
           "docs.quick.description":
@@ -609,6 +982,9 @@
           "docs.quick.list.free.title": "No extra cost",
           "docs.quick.list.free.body":
             "Right AI routes to the provider you already use. Your existing AI plan handles the responses.",
+          "docs.quick.list.intent.title": "Intent prediction",
+          "docs.quick.list.intent.body":
+            "Let AI Quick Input suggest what you might want to type or ask from the current page content. Toggle it under Settings → Zhipu Extension → Intent Prediction.",
           "docs.manual.zip.eyebrow": "Manual install module",
           "docs.manual.zip.heading": "Load the packaged ZIP in Chrome.",
           "docs.manual.zip.description":
@@ -623,6 +999,22 @@
           "docs.manual.zip.step3.body":
             "Open chrome://extensions, enable Developer mode, press Load unpacked, and select the extracted folder.",
           "docs.manual.zip.download": "Download dist.zip",
+          "docs.changelog.eyebrow": "Version updates",
+          "docs.changelog.heading": "Plugin version changes",
+          "docs.changelog.description":
+            "Use the notes below to decide whether to update, plus how to refresh a manual (unpacked) install.",
+          "docs.changelog.current.heading": "Current version",
+          "docs.changelog.current.label": "Current packaged build:",
+          "docs.changelog.update.step1": "Download the latest dist.zip and unzip it.",
+          "docs.changelog.update.step2":
+            "If you unzip into the same folder as before, open chrome://extensions and click Reload.",
+          "docs.changelog.update.step3":
+            "If you unzip into a new folder, use Load unpacked again and select the new folder.",
+          "docs.changelog.history.heading": "Release notes",
+          "docs.changelog.history.v300":
+            "3.0.0 — New webpage tools module docs, refreshed visuals, and version tooltip on direct download.",
+          "docs.changelog.history.v213": "2.1.3 — Updated packaged resources and improved UI stability.",
+          "docs.changelog.history.v212": "2.1.2 — Initial public package with docs and downloadable build.",
           "docs.zhipu.eyebrow": "Zhipu extension module",
           "docs.zhipu.heading": "Unlock translations, image tools, and page-aware conversations.",
           "docs.zhipu.description": "Right AI bundles Zhipu's free capabilities. Connect your key once and keep the tools on standby.",
@@ -707,6 +1099,16 @@
           "shortcut.list.intent.title": "Предсказание намерений:",
           "shortcut.list.intent.body":
             "AI Quick Input предлагает, что спросить, исходя из текущей страницы. Включите опцию в Настройки → Расширение Zhipu → Предсказание намерений.",
+          "webchat.eyebrow": "Диалог с веб-страницей",
+          "webchat.heading": "Общайтесь с текущей страницей и автоматизируйте её по-своему.",
+          "webchat.description":
+            "Помощник на базе Zhipu отвечает на вопросы по содержимому страницы и расширяется пользовательскими командами для управления страницей.",
+          "webchat.list.free.title": "Бесплатная модель Zhipu",
+          "webchat.list.free.body":
+            'Работает на бесплатной модели Zhipu. Получите API-ключ на <a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a>.',
+          "webchat.list.custom.title": "Полная настройка",
+          "webchat.list.custom.body":
+            "Поддерживает диалог со страницей, управление веб-страницей и любые пользовательские сценарии.",
           "features.eyebrow": "Ключевые возможности",
           "features.heading": "Самый быстрый способ сотрудничать с AI-помощниками внутри Chrome.",
           "features.body":
@@ -779,6 +1181,9 @@
           "docs.quick.list.free.title": "Без доплат",
           "docs.quick.list.free.body":
             "Right AI перенаправляет запрос к провайдеру, которым вы уже пользуетесь. Ответы покрываются вашим текущим тарифом.",
+          "docs.quick.list.intent.title": "Предсказание намерений",
+          "docs.quick.list.intent.body":
+            "AI Quick Input предлагает, что спросить на основе текущей страницы. Управляйте опцией в Настройки → Расширение Zhipu → Предсказание намерений.",
           "docs.manual.zip.eyebrow": "Модуль ручной установки",
           "docs.manual.zip.heading": "Загрузите упакованный ZIP в Chrome.",
           "docs.manual.zip.description":
@@ -882,6 +1287,14 @@
           "shortcut.list.intent.title": "意图推测:",
           "shortcut.list.intent.body":
             "AI 快捷输入会根据当前页面内容推测你想输入或提问的内容, 可在设置 → 智谱扩展 → 意图推测中开启或关闭。",
+          "webchat.eyebrow": "网页对话功能",
+          "webchat.heading": "在网页里直接对话，并按你的方式操作网页。",
+          "webchat.description": "基于智谱模型的网页助手：读懂页面、回答问题，并支持通过自定义指令来操作网页。",
+          "webchat.list.free.title": "免费智谱模型",
+          "webchat.list.free.body":
+            '基于免费的智谱模型，纯免费。API Key 请前往 <a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a> 获取。',
+          "webchat.list.custom.title": "自定义能力",
+          "webchat.list.custom.body": "支持与网页对话、操作网页等任意你想要的自定义功能。",
           "features.eyebrow": "核心功能",
           "features.heading": "在 Chrome 内与 AI 默契协作。",
           "features.body":
@@ -940,13 +1353,30 @@
           "footer.contact.email": "Gmail",
           "docs.hero.eyebrow": "使用文档",
           "docs.hero.heading": "几分钟掌握 Right AI。",
-          "docs.hero.lead": "按照下面的模块快速完成快捷输入、智谱扩展以及股票看板的配置。",
+          "docs.hero.lead": "按照下面的模块快速完成快捷输入、网页工具、智谱扩展以及股票看板的配置。",
           "docs.hero.card.quick.title": "随处快捷输入",
           "docs.hero.card.quick.body": "按下 Ctrl + R 即可在任意网页唤起输入面板, 将指令快速发送给任意 AI。",
+          "docs.hero.card.webpage.title": "网页工具",
+          "docs.hero.card.webpage.body": "网页内对话助手、夜间适配与主题设置，让交互更顺手、更护眼。",
           "docs.hero.card.zhipu.title": "智谱能力加速",
           "docs.hero.card.zhipu.body": "绑定 BigModel API Key, 即可开启翻译、OCR 以及图像视频生成。",
           "docs.hero.card.stock.title": "股票滚动显示",
           "docs.hero.card.stock.body": "添加多只股票后, 行情会在侧边栏走马灯滚动展示。",
+          "docs.webpage.eyebrow": "网页工具模块",
+          "docs.webpage.heading": "网页内对话，一键夜间适配，主题随心切换。",
+          "docs.webpage.description":
+            "支持在网页内直接唤起智能助手，给不支持暗色模式的网站一键套用深色主题，并随时切换侧边栏主题风格。",
+          "docs.webpage.cards.conversation.title": "网页对话",
+          "docs.webpage.cards.conversation.body":
+            "基于智谱 AI 免费模型的网页内智能助手：支持自定义快捷键唤起，总结页面、提取要点、理解图片内容。",
+          "docs.webpage.cards.darkMode.title": "网页夜间适配",
+          "docs.webpage.cards.darkMode.body":
+            "为亮眼网页快速启用深色阅读模式，可用快捷键一键切换，夜间阅读更舒适。",
+          "docs.webpage.cards.theme.title": "主题设置",
+          "docs.webpage.cards.theme.body":
+            "设置页可在“跟随系统 / 深色 / 浅色”之间切换，让界面保持一致的观感。",
+          "docs.webpage.figure.conversation": "无需离开当前页面，直接总结内容、提问并理解图片。",
+          "docs.webpage.figure.darkMode": "一键为亮眼网页启用深色主题，让夜间浏览更舒适。",
           "docs.quick.eyebrow": "快捷输入模块",
           "docs.quick.heading": "在任意网页直接召唤 AI。",
           "docs.quick.description": "快捷输入始终在线: 推荐使用 Ctrl + R, 输入内容并发送, 无需来回切换标签页。",
@@ -956,6 +1386,9 @@
           "docs.quick.list.model.body": "在发送前选择 ChatGPT、Gemini、Claude 或自建终端。",
           "docs.quick.list.free.title": "完全免费",
           "docs.quick.list.free.body": "Right AI 仅代你调用原有的 AI 服务, 不额外收取费用。",
+          "docs.quick.list.intent.title": "意图推测",
+          "docs.quick.list.intent.body":
+            "AI 快捷输入会根据当前页面内容推测你可能想要输入或提问的内容，可在 设置 → 智谱扩展 → 意图推测 中开关该功能。",
           "docs.manual.zip.eyebrow": "手动安装模块",
           "docs.manual.zip.heading": "在 Chrome 中加载打包好的 ZIP。",
           "docs.manual.zip.description": "下载打包版本, 解压一次后在 Chrome 扩展管理页加载。",
@@ -967,6 +1400,18 @@
           "docs.manual.zip.step3.body":
             "打开 chrome://extensions, 打开开发者模式, 点击“加载已解压的扩展程序”, 并选择解压后的文件夹。",
           "docs.manual.zip.download": "下载 dist.zip",
+          "docs.changelog.eyebrow": "版本更新",
+          "docs.changelog.heading": "插件版本变更说明",
+          "docs.changelog.description": "查看各版本更新内容, 以及手动（解压）安装时如何升级。",
+          "docs.changelog.current.heading": "当前版本",
+          "docs.changelog.current.label": "当前打包版本：",
+          "docs.changelog.update.step1": "下载最新 dist.zip 并解压。",
+          "docs.changelog.update.step2": "若解压覆盖到同一目录, 打开 chrome://extensions 点击“重新加载”。",
+          "docs.changelog.update.step3": "若解压到新目录, 需要再次“加载已解压的扩展程序”, 并选择新目录。",
+          "docs.changelog.history.heading": "更新日志",
+          "docs.changelog.history.v300": "3.0.0 — 新增网页工具模块文档, 更新视觉与截图, 下载按钮悬浮显示版本。",
+          "docs.changelog.history.v213": "2.1.3 — 更新打包资源, 优化界面表现。",
+          "docs.changelog.history.v212": "2.1.2 — 首次发布可下载打包版本与使用文档。",
           "docs.zhipu.eyebrow": "智谱扩展模块",
           "docs.zhipu.heading": "解锁翻译、识图和上下文对话。",
           "docs.zhipu.description": "Right AI 集成智谱免费能力, 一次配置后即可随时调用。",
@@ -1056,6 +1501,14 @@
           "shortcut.list.intent.title": "意圖推測:",
           "shortcut.list.intent.body":
             "AI 快捷輸入會依據當前頁面內容推測你想輸入或提問的內容，可在「設定 → 智譜擴充 → 意圖推測」中開啟或關閉。",
+          "webchat.eyebrow": "網頁對話功能",
+          "webchat.heading": "在網頁裡直接對話，並按你的方式操作網頁。",
+          "webchat.description": "基於智譜模型的網頁助手：讀懂頁面、回答問題，並支援透過自訂指令來操作網頁。",
+          "webchat.list.free.title": "免費智譜模型",
+          "webchat.list.free.body":
+            '基於免費的智譜模型，純免費。API Key 請前往 <a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a> 取得。',
+          "webchat.list.custom.title": "自訂能力",
+          "webchat.list.custom.body": "支援與網頁對話、操作網頁等任意你想要的自訂功能。",
           "features.eyebrow": "核心功能",
           "features.heading": "在 Chrome 內與 AI 默契協作。",
           "features.body":
@@ -1114,13 +1567,30 @@
           "footer.contact.email": "Gmail",
           "docs.hero.eyebrow": "使用指南",
           "docs.hero.heading": "幾分鐘掌握 Right AI。",
-          "docs.hero.lead": "依照以下模組快速完成快捷輸入、智譜擴充以及股票看板的設定。",
+          "docs.hero.lead": "依照以下模組快速完成快捷輸入、網頁工具、智譜擴充以及股票看板的設定。",
           "docs.hero.card.quick.title": "隨處快捷輸入",
           "docs.hero.card.quick.body": "按下 Ctrl + R 即可在任意網頁喚起輸入面板，將指令快速傳送給任意 AI。",
+          "docs.hero.card.webpage.title": "網頁工具",
+          "docs.hero.card.webpage.body": "網頁內對話助理、夜間適配與主題設定，讓交互更順手、更護眼。",
           "docs.hero.card.zhipu.title": "智譜能力加速",
           "docs.hero.card.zhipu.body": "綁定 BigModel API Key，即可啟用翻譯、OCR 以及影像影片生成。",
           "docs.hero.card.stock.title": "股票滾動顯示",
           "docs.hero.card.stock.body": "新增多支股票後，行情會在側邊欄走馬燈滾動顯示。",
+          "docs.webpage.eyebrow": "網頁工具模組",
+          "docs.webpage.heading": "網頁內對話，一鍵夜間適配，主題隨心切換。",
+          "docs.webpage.description":
+            "支援在網頁內直接喚起智慧助理，給不支援暗色模式的網站一鍵套用深色主題，並隨時切換側邊欄主題風格。",
+          "docs.webpage.cards.conversation.title": "網頁對話",
+          "docs.webpage.cards.conversation.body":
+            "基於智譜 AI 免費模型的網頁內智慧助理：支援自訂快捷鍵喚起，摘要頁面、擷取要點、理解圖片內容。",
+          "docs.webpage.cards.darkMode.title": "網頁夜間適配",
+          "docs.webpage.cards.darkMode.body":
+            "為亮眼網頁快速啟用深色閱讀模式，可用快捷鍵一鍵切換，夜間閱讀更舒適。",
+          "docs.webpage.cards.theme.title": "主題設定",
+          "docs.webpage.cards.theme.body":
+            "設定頁可在「跟隨系統 / 深色 / 淺色」之間切換，讓介面保持一致的觀感。",
+          "docs.webpage.figure.conversation": "無需離開當前頁面，直接摘要內容、提問並理解圖片。",
+          "docs.webpage.figure.darkMode": "一鍵為亮眼網頁啟用深色主題，讓夜間瀏覽更舒適。",
           "docs.quick.eyebrow": "快捷輸入模組",
           "docs.quick.heading": "在任意網頁直接召喚 AI。",
           "docs.quick.description": "快捷輸入隨時在線：推薦使用 Ctrl + R，輸入內容並送出，無需來回切換分頁。",
@@ -1130,6 +1600,9 @@
           "docs.quick.list.model.body": "送出前選擇 ChatGPT、Gemini、Claude 或自建端點。",
           "docs.quick.list.free.title": "完全免費",
           "docs.quick.list.free.body": "Right AI 僅代你呼叫原有的 AI 服務，不額外收費。",
+          "docs.quick.list.intent.title": "意圖推測",
+          "docs.quick.list.intent.body":
+            "AI 快捷輸入會依據當前頁面內容推測你可能想要輸入或提問的內容，可在 設定 → 智譜擴充 → 意圖推測 中開關該功能。",
           "docs.manual.zip.eyebrow": "手動安裝模組",
           "docs.manual.zip.heading": "在 Chrome 中載入打包好的 ZIP。",
           "docs.manual.zip.description": "下載打包版本，解壓後在 Chrome 擴充功能管理頁載入。",
@@ -1141,6 +1614,18 @@
           "docs.manual.zip.step3.body":
             "打開 chrome://extensions，啟用開發者模式，點擊「載入未封裝項目」，並選擇解壓後的資料夾。",
           "docs.manual.zip.download": "下載 dist.zip",
+          "docs.changelog.eyebrow": "版本更新",
+          "docs.changelog.heading": "外掛版本變更說明",
+          "docs.changelog.description": "查看各版本更新內容，以及手動（解壓）安裝時如何升級。",
+          "docs.changelog.current.heading": "目前版本",
+          "docs.changelog.current.label": "目前打包版本：",
+          "docs.changelog.update.step1": "下載最新 dist.zip 並解壓。",
+          "docs.changelog.update.step2": "若解壓覆蓋到同一目錄，打開 chrome://extensions 點擊「重新載入」。",
+          "docs.changelog.update.step3": "若解壓到新目錄，需要再次「載入未封裝項目」，並選擇新目錄。",
+          "docs.changelog.history.heading": "更新日誌",
+          "docs.changelog.history.v300": "3.0.0 — 新增網頁工具模組文件，更新視覺與截圖，下載按鈕懸浮顯示版本。",
+          "docs.changelog.history.v213": "2.1.3 — 更新打包資源，優化介面表現。",
+          "docs.changelog.history.v212": "2.1.2 — 首次發佈可下載打包版本與使用文件。",
           "docs.zhipu.eyebrow": "智譜擴充模組",
           "docs.zhipu.heading": "解鎖翻譯、識圖與上下文對話。",
           "docs.zhipu.description": "Right AI 整合智譜免費能力，一次設定即可隨時使用。",
@@ -1224,6 +1709,16 @@
           "shortcut.list.intent.title": "意図推測:",
           "shortcut.list.intent.body":
             "AI クイック入力がページ内容をもとに入力候補を提案。設定 → Zhipu 拡張 → 意図推測 で切り替えできます。",
+          "webchat.eyebrow": "ウェブページ対話",
+          "webchat.heading": "閲覧中のページと会話し、好きなように操作を自動化。",
+          "webchat.description":
+            "Zhipu ベースのアシスタントでページ内容を質問し、カスタムコマンドでページ操作まで拡張できます。",
+          "webchat.list.free.title": "無料の Zhipu モデル",
+          "webchat.list.free.body":
+            '<a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a> で API Key を取得して利用できます（無料モデル対応）。',
+          "webchat.list.custom.title": "自由にカスタマイズ",
+          "webchat.list.custom.body":
+            "ページとの対話、ページ操作など、思い通りのカスタム機能を追加できます。",
           "features.eyebrow": "主な機能",
           "features.heading": "Chrome 内で AI と最速のコラボレーションを。",
           "features.body":
@@ -1291,6 +1786,9 @@
           "docs.quick.list.model.body": "送信前に ChatGPT・Gemini・Claude・独自エンドポイントを選択。",
           "docs.quick.list.free.title": "完全無料",
           "docs.quick.list.free.body": "Right AI は既存の AI サービスを代理実行するだけで追加料金はかかりません。",
+          "docs.quick.list.intent.title": "意図推測",
+          "docs.quick.list.intent.body":
+            "AI クイック入力がページ内容をもとに入力候補を提案。設定 → Zhipu 拡張 → 意図推測 で切り替えできます。",
           "docs.manual.zip.eyebrow": "手動インストール",
           "docs.manual.zip.heading": "Chrome で ZIP パッケージを読み込み。",
           "docs.manual.zip.description": "アーカイブをダウンロードし、一度解凍してから Chrome の拡張機能管理画面で読み込みます。",
@@ -1385,6 +1883,16 @@
           "shortcut.list.intent.title": "의도 예측:",
           "shortcut.list.intent.body":
             "AI 빠른 입력이 페이지 내용을 기반으로 질문을 제안합니다. 설정 → Zhipu 확장 → 의도 예측에서 켜거나 끕니다.",
+          "webchat.eyebrow": "웹페이지 대화",
+          "webchat.heading": "현재 웹페이지와 대화하고, 원하는 방식으로 자동화하세요.",
+          "webchat.description":
+            "Zhipu 기반 어시스턴트로 페이지 내용을 질문하고, 사용자 정의 명령으로 페이지 조작까지 확장할 수 있습니다.",
+          "webchat.list.free.title": "무료 Zhipu 모델",
+          "webchat.list.free.body":
+            '<a href="https://bigmodel.cn" target="_blank" rel="noopener noreferrer">bigmodel.cn</a> 에서 API Key 를 발급받아 사용하세요(무료 모델 지원).',
+          "webchat.list.custom.title": "완전한 커스터마이징",
+          "webchat.list.custom.body":
+            "웹페이지와의 대화, 페이지 조작 등 원하는 어떤 커스텀 워크플로도 만들 수 있습니다.",
           "features.eyebrow": "주요 기능",
           "features.heading": "Chrome 안에서 AI와 가장 빠르게 협업하세요.",
           "features.body":
@@ -1456,6 +1964,9 @@
           "docs.quick.list.free.title": "완전 무료",
           "docs.quick.list.free.body":
             "Right AI는 기존 AI 서비스를 대신 호출할 뿐이며 추가 비용이 들지 않습니다.",
+          "docs.quick.list.intent.title": "의도 예측",
+          "docs.quick.list.intent.body":
+            "AI 빠른 입력이 페이지 내용을 기반으로 질문을 제안합니다. 설정 → Zhipu 확장 → 의도 예측에서 켜거나 끕니다.",
           "docs.manual.zip.eyebrow": "수동 설치",
           "docs.manual.zip.heading": "Chrome에서 ZIP 번들을 불러오기.",
           "docs.manual.zip.description":
@@ -1870,10 +2381,19 @@
         tooltip.setAttribute("role", "status");
         document.body.appendChild(tooltip);
 
+        const versionLabelNodes = Array.from(document.querySelectorAll("[data-version-label]"));
         let versionLabel = "";
         let isLoadingVersion = true;
         let versionLoadFailed = false;
         let activeAnchor = null;
+
+        function updateVersionLabelNodes(label) {
+          if (!versionLabelNodes.length) return;
+          const fallback = label ? label : "—";
+          versionLabelNodes.forEach((node) => {
+            node.textContent = fallback;
+          });
+        }
 
         function getTooltipText() {
           if (versionLabel) {
@@ -1951,6 +2471,7 @@
             if (!trimmed) {
               versionLoadFailed = true;
             }
+            updateVersionLabelNodes(trimmed);
             if (activeAnchor) {
               showTooltip(activeAnchor);
             }
@@ -1958,6 +2479,7 @@
           .catch(() => {
             isLoadingVersion = false;
             versionLoadFailed = true;
+            updateVersionLabelNodes("");
             if (activeAnchor) {
               showTooltip(activeAnchor);
             }
