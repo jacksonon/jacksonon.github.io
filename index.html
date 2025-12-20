@@ -48,11 +48,18 @@
           </button>
           <div class="nav-dropdown-menu" id="nav-primary-menu" role="menu">
             <a href="#top" role="menuitem" data-i18n="nav.overview">Overview</a>
-            <a href="#docs" role="menuitem" data-i18n="nav.docs">Docs</a>
-            <a href="#manual-install" role="menuitem" data-i18n="nav.manualInstall">Manual install</a>
-            <a href="#shortcut" role="menuitem" data-i18n="nav.quickInput">Quick Input</a>
+            <a href="#shortcut" role="menuitem" data-i18n="nav.shortcut">Quick Input demo</a>
+            <a href="#webpage-chat" role="menuitem" data-i18n="nav.webpageChat">Webpage conversation</a>
             <a href="#features" role="menuitem" data-i18n="nav.features">Key Features</a>
             <a href="#workflow" role="menuitem" data-i18n="nav.workflow">Workflow</a>
+            <div class="nav-divider" role="separator"></div>
+            <a href="#docs" role="menuitem" data-i18n="nav.docs">Docs</a>
+            <a href="#quick-input" role="menuitem" data-i18n="nav.quickInput">Quick Input</a>
+            <a href="#webpage-tools" role="menuitem" data-i18n="nav.webpageTools">Webpage tools</a>
+            <a href="#zhipu" role="menuitem" data-i18n="nav.zhipu">Zhipu tools</a>
+            <a href="#stocks" role="menuitem" data-i18n="nav.stocks">Stocks</a>
+            <a href="#manual-install" role="menuitem" data-i18n="nav.manualInstall">Manual install</a>
+            <a href="#version-updates" role="menuitem" data-i18n="nav.versionUpdates">Version updates</a>
             <a href="#faq" role="menuitem" data-i18n="nav.faq">FAQ</a>
             <div class="nav-divider dropdown-only-mobile" role="separator"></div>
             <button class="dropdown-action dropdown-only-mobile donate-trigger" type="button" data-i18n="nav.donate">
@@ -588,6 +595,9 @@
           <article class="doc-card scroll-reveal">
             <h3 data-i18n="docs.changelog.history.heading">Release notes</h3>
             <ul class="doc-sublist">
+              <li data-i18n="docs.changelog.history.v301">
+                3.0.1 — Added an overlay opacity slider and improved Markdown rendering in webpage conversations.
+              </li>
               <li data-i18n="docs.changelog.history.v300">
                 3.0.0 — New webpage tools module docs, refreshed visuals, and version tooltip on direct download.
               </li>
@@ -819,6 +829,12 @@
           "nav.language": "Language",
           "nav.manualInstall": "Manual install",
           "nav.quickInput": "Quick Input",
+          "nav.shortcut": "Quick Input demo",
+          "nav.webpageChat": "Webpage conversation",
+          "nav.webpageTools": "Webpage tools",
+          "nav.zhipu": "Zhipu tools",
+          "nav.stocks": "Stocks",
+          "nav.versionUpdates": "Version updates",
           "nav.features": "Key Features",
           "nav.workflow": "Workflow",
           "nav.faq": "FAQ",
@@ -1011,6 +1027,8 @@
           "docs.changelog.update.step3":
             "If you unzip into a new folder, use Load unpacked again and select the new folder.",
           "docs.changelog.history.heading": "Release notes",
+          "docs.changelog.history.v301":
+            "3.0.1 — Added an overlay opacity slider and improved Markdown rendering in webpage conversations.",
           "docs.changelog.history.v300":
             "3.0.0 — New webpage tools module docs, refreshed visuals, and version tooltip on direct download.",
           "docs.changelog.history.v213": "2.1.3 — Updated packaged resources and improved UI stability.",
@@ -1050,6 +1068,12 @@
           "nav.language": "Язык",
           "nav.manualInstall": "Ручная установка",
           "nav.quickInput": "Быстрый ввод",
+          "nav.shortcut": "Демо быстрого ввода",
+          "nav.webpageChat": "Диалог с веб-страницей",
+          "nav.webpageTools": "Инструменты страницы",
+          "nav.zhipu": "Инструменты Zhipu",
+          "nav.stocks": "Акции",
+          "nav.versionUpdates": "Обновления версии",
           "nav.features": "Ключевые возможности",
           "nav.workflow": "Рабочий процесс",
           "nav.faq": "Вопросы и ответы",
@@ -1233,6 +1257,12 @@
           "nav.language": "语言",
           "nav.manualInstall": "手动安装",
           "nav.quickInput": "快捷输入",
+          "nav.shortcut": "快捷输入演示",
+          "nav.webpageChat": "网页对话",
+          "nav.webpageTools": "网页工具",
+          "nav.zhipu": "智谱工具",
+          "nav.stocks": "股票助手",
+          "nav.versionUpdates": "版本更新",
           "nav.features": "核心功能",
           "nav.workflow": "使用流程",
           "nav.faq": "常见问题",
@@ -1409,6 +1439,7 @@
           "docs.changelog.update.step2": "若解压覆盖到同一目录, 打开 chrome://extensions 点击“重新加载”。",
           "docs.changelog.update.step3": "若解压到新目录, 需要再次“加载已解压的扩展程序”, 并选择新目录。",
           "docs.changelog.history.heading": "更新日志",
+          "docs.changelog.history.v301": "3.0.1 — 新增网页遮罩透光度调节滑块，优化网页对话 Markdown 渲染。",
           "docs.changelog.history.v300": "3.0.0 — 新增网页工具模块文档, 更新视觉与截图, 下载按钮悬浮显示版本。",
           "docs.changelog.history.v213": "2.1.3 — 更新打包资源, 优化界面表现。",
           "docs.changelog.history.v212": "2.1.2 — 首次发布可下载打包版本与使用文档。",
@@ -1447,6 +1478,12 @@
           "nav.language": "語言",
           "nav.manualInstall": "手動安裝",
           "nav.quickInput": "快捷輸入",
+          "nav.shortcut": "快捷輸入示範",
+          "nav.webpageChat": "網頁對話",
+          "nav.webpageTools": "網頁工具",
+          "nav.zhipu": "智譜工具",
+          "nav.stocks": "股票助手",
+          "nav.versionUpdates": "版本更新",
           "nav.features": "核心功能",
           "nav.workflow": "使用流程",
           "nav.faq": "常見問題",
@@ -1623,6 +1660,7 @@
           "docs.changelog.update.step2": "若解壓覆蓋到同一目錄，打開 chrome://extensions 點擊「重新載入」。",
           "docs.changelog.update.step3": "若解壓到新目錄，需要再次「載入未封裝項目」，並選擇新目錄。",
           "docs.changelog.history.heading": "更新日誌",
+          "docs.changelog.history.v301": "3.0.1 — 新增網頁遮罩透光度調節滑桿，優化網頁對話 Markdown 渲染。",
           "docs.changelog.history.v300": "3.0.0 — 新增網頁工具模組文件，更新視覺與截圖，下載按鈕懸浮顯示版本。",
           "docs.changelog.history.v213": "2.1.3 — 更新打包資源，優化介面表現。",
           "docs.changelog.history.v212": "2.1.2 — 首次發佈可下載打包版本與使用文件。",
@@ -1661,6 +1699,12 @@
           "nav.language": "言語",
           "nav.manualInstall": "手動インストール",
           "nav.quickInput": "クイック入力",
+          "nav.shortcut": "クイック入力デモ",
+          "nav.webpageChat": "Web ページ会話",
+          "nav.webpageTools": "Web ページツール",
+          "nav.zhipu": "Zhipu ツール",
+          "nav.stocks": "株価",
+          "nav.versionUpdates": "バージョン更新",
           "nav.features": "主な機能",
           "nav.workflow": "ワークフロー",
           "nav.faq": "FAQ",
@@ -1835,6 +1879,12 @@
           "nav.language": "언어",
           "nav.manualInstall": "수동 설치",
           "nav.quickInput": "빠른 입력",
+          "nav.shortcut": "빠른 입력 데모",
+          "nav.webpageChat": "웹페이지 대화",
+          "nav.webpageTools": "웹페이지 도구",
+          "nav.zhipu": "Zhipu 도구",
+          "nav.stocks": "주식",
+          "nav.versionUpdates": "버전 업데이트",
           "nav.features": "주요 기능",
           "nav.workflow": "워크플로우",
           "nav.faq": "FAQ",
