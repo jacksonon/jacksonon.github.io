@@ -12,6 +12,21 @@
     en: "中文 / EN",
   };
 
+  const pdfLabels = {
+    zh: "下载 PDF",
+    en: "Download PDF",
+  };
+
+  const pdfFiles = {
+    zh: "resume-zh.pdf",
+    en: "resume-en.pdf",
+  };
+
+  const pdfDownloadNames = {
+    zh: "Jackson-WANG-Resume-zh.pdf",
+    en: "Jackson-WANG-Resume-en.pdf",
+  };
+
   function deriveThemeByTime() {
     const hour = new Date().getHours();
     return hour >= 7 && hour < 19 ? "light" : "dark";
@@ -32,23 +47,47 @@
 
     const themeLabelEl = document.querySelector('[data-role="theme-label"]');
     const langLabelEl = document.querySelector('[data-role="lang-label"]');
+    const pdfLabelEl = document.querySelector('[data-role="pdf-label"]');
+    const pdfDownloadEl = document.querySelector('[data-role="pdf-download"]');
     if (themeLabelEl) {
       themeLabelEl.textContent = themeLabels[lang] || themeLabels.zh;
     }
     if (langLabelEl) {
       langLabelEl.textContent = langLabels[lang] || langLabels.zh;
     }
+    if (pdfLabelEl) {
+      pdfLabelEl.textContent = pdfLabels[lang] || pdfLabels.zh;
+    }
+    if (pdfDownloadEl) {
+      pdfDownloadEl.setAttribute("href", pdfFiles[lang] || pdfFiles.zh);
+      pdfDownloadEl.setAttribute(
+        "download",
+        pdfDownloadNames[lang] || pdfDownloadNames.zh
+      );
+      pdfDownloadEl.setAttribute(
+        "aria-label",
+        pdfLabels[lang] || pdfLabels.zh
+      );
+    }
   }
 
   const savedTheme = window.localStorage.getItem(THEME_KEY);
   const savedLang = window.localStorage.getItem(LANG_KEY);
 
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get("lang");
+  const urlTheme = params.get("theme");
+
   const browserLang =
     (navigator.language || navigator.userLanguage || "en").toLowerCase();
   const defaultLang = browserLang.startsWith("zh") ? "zh" : "en";
 
-  const initialLang = savedLang || defaultLang;
-  const initialTheme = savedTheme || deriveThemeByTime();
+  const initialLang =
+    urlLang === "zh" || urlLang === "en" ? urlLang : savedLang || defaultLang;
+  const initialTheme =
+    urlTheme === "light" || urlTheme === "dark"
+      ? urlTheme
+      : savedTheme || deriveThemeByTime();
 
   applyTheme(initialTheme);
   applyLang(initialLang);
@@ -75,4 +114,3 @@
     });
   });
 })();
-

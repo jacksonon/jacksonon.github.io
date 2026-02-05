@@ -159,6 +159,7 @@ a:hover {
   align-items: center;
   gap: 6px;
   font-size: 0.8rem;
+  text-decoration: none;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.7);
@@ -171,6 +172,7 @@ a:hover {
 .toggle-button:hover {
   border-color: var(--accent);
   background: rgba(15, 23, 42, 0.98);
+  text-decoration: none;
 }
 
 .site-header {
@@ -482,5 +484,39 @@ body.theme-light .background-orb {
 
   .main-nav {
     gap: 4px;
+  }
+}
+
+@media print {
+  /* Print-friendly layout for "Save as PDF" / headless PDF generation. */
+  body {
+    background: #ffffff !important;
+    color: #0b1220 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    overflow: visible;
+  }
+
+  .background-orb,
+  .top-controls {
+    display: none !important;
+  }
+
+  .page {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow: visible;
+  }
+
+  .page::before {
+    display: none !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
   }
 }

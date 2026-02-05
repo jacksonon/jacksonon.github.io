@@ -2,14 +2,109 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=web-resume/index.html" />
-    <title>简历 - 跳转中</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jackson WANG · 简历</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+        color: #0b1220;
+        background: #ffffff;
+      }
+
+      .pdf-button {
+        position: fixed;
+        top: 16px;
+        right: 20px;
+        z-index: 10;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(248, 250, 252, 0.92);
+        color: #0b1220;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+
+      .pdf-button:hover {
+        border-color: #38bdf8;
+      }
+
+      .container {
+        max-width: 760px;
+        padding: 72px 20px 40px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+      }
+
+      p {
+        margin: 0 0 10px;
+        line-height: 1.55;
+      }
+    </style>
   </head>
   <body>
-    <p>
-      如果没有自动跳转，请点击
-      <a href="web-resume/index.html">这里查看简历</a>。
-    </p>
+    <a
+      class="pdf-button"
+      id="pdf-download"
+      href="web-resume/resume-zh.pdf"
+      download="Jackson-WANG-Resume-zh.pdf"
+      aria-label="下载 PDF"
+      >下载 PDF</a
+    >
+
+    <main class="container">
+      <h1 id="resume-heading">Jackson WANG · 资深 Apple 平台软件工程师 &amp; Agentic Engineering Developer</h1>
+      <p>正在跳转到网页版简历…</p>
+      <p>
+        如果没有自动跳转，请点击
+        <a id="resume-link" href="web-resume/index.html">这里查看简历</a>。
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const lang = params.get("lang") === "en" ? "en" : "zh";
+
+        const resumePath = "web-resume/index.html";
+        const pdfPath =
+          lang === "en" ? "web-resume/resume-en.pdf" : "web-resume/resume-zh.pdf";
+        const pdfName =
+          lang === "en" ? "Jackson-WANG-Resume-en.pdf" : "Jackson-WANG-Resume-zh.pdf";
+
+        const target = `${resumePath}${window.location.search || ""}${window.location.hash || ""}`;
+
+        const resumeLink = document.getElementById("resume-link");
+        if (resumeLink) resumeLink.href = target;
+
+        const headingEl = document.getElementById("resume-heading");
+        if (headingEl) {
+          headingEl.textContent =
+            lang === "en"
+              ? "Jackson WANG · Senior Apple Platform Software Engineer & Agentic Engineering Developer"
+              : "Jackson WANG · 资深 Apple 平台软件工程师 & Agentic Engineering Developer";
+        }
+        document.title = lang === "en" ? "Jackson WANG · Resume" : "Jackson WANG · 简历";
+
+        const pdfDownload = document.getElementById("pdf-download");
+        if (pdfDownload) {
+          pdfDownload.href = pdfPath;
+          pdfDownload.download = pdfName;
+          pdfDownload.setAttribute("aria-label", lang === "en" ? "Download PDF" : "下载 PDF");
+          pdfDownload.textContent = lang === "en" ? "Download PDF" : "下载 PDF";
+        }
+
+        // Quick redirect while still keeping a visible fallback link.
+        window.setTimeout(() => {
+          window.location.replace(target);
+        }, 250);
+      })();
+    </script>
   </body>
 </html>
-
