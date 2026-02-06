@@ -12,19 +12,9 @@
     en: "中文 / EN",
   };
 
-  const pdfLabels = {
-    zh: "下载 PDF",
-    en: "Download PDF",
-  };
-
-  const pdfFiles = {
-    zh: "resume-zh.pdf",
-    en: "resume-en.pdf",
-  };
-
-  const pdfDownloadNames = {
-    zh: "Jackson-WANG-Resume-zh.pdf",
-    en: "Jackson-WANG-Resume-en.pdf",
+  const printLabels = {
+    zh: "打印 / 导出 PDF",
+    en: "Print / Save as PDF",
   };
 
   function deriveThemeByTime() {
@@ -47,27 +37,20 @@
 
     const themeLabelEl = document.querySelector('[data-role="theme-label"]');
     const langLabelEl = document.querySelector('[data-role="lang-label"]');
-    const pdfLabelEl = document.querySelector('[data-role="pdf-label"]');
-    const pdfDownloadEl = document.querySelector('[data-role="pdf-download"]');
+    const printLabelEl = document.querySelector('[data-role="print-label"]');
+    const printButtonEl = document.querySelector('[data-role="print-toggle"]');
+
     if (themeLabelEl) {
       themeLabelEl.textContent = themeLabels[lang] || themeLabels.zh;
     }
     if (langLabelEl) {
       langLabelEl.textContent = langLabels[lang] || langLabels.zh;
     }
-    if (pdfLabelEl) {
-      pdfLabelEl.textContent = pdfLabels[lang] || pdfLabels.zh;
+    if (printLabelEl) {
+      printLabelEl.textContent = printLabels[lang] || printLabels.zh;
     }
-    if (pdfDownloadEl) {
-      pdfDownloadEl.setAttribute("href", pdfFiles[lang] || pdfFiles.zh);
-      pdfDownloadEl.setAttribute(
-        "download",
-        pdfDownloadNames[lang] || pdfDownloadNames.zh
-      );
-      pdfDownloadEl.setAttribute(
-        "aria-label",
-        pdfLabels[lang] || pdfLabels.zh
-      );
+    if (printButtonEl) {
+      printButtonEl.setAttribute("aria-label", printLabels[lang] || printLabels.zh);
     }
   }
 
@@ -113,4 +96,11 @@
       window.localStorage.setItem(LANG_KEY, nextLang);
     });
   });
+
+  const printButton = document.querySelector('[data-role="print-toggle"]');
+  if (printButton) {
+    printButton.addEventListener("click", () => {
+      window.print();
+    });
+  }
 })();

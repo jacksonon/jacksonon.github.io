@@ -13,7 +13,7 @@
         background: #ffffff;
       }
 
-      .pdf-button {
+      .print-button {
         position: fixed;
         top: 16px;
         right: 20px;
@@ -27,7 +27,7 @@
         text-decoration: none;
       }
 
-      .pdf-button:hover {
+      .print-button:hover {
         border-color: #38bdf8;
       }
 
@@ -49,14 +49,9 @@
     </style>
   </head>
   <body>
-    <a
-      class="pdf-button"
-      id="pdf-download"
-      href="web-resume/resume-zh.pdf"
-      download="Jackson-WANG-Resume-zh.pdf"
-      aria-label="下载 PDF"
-      >下载 PDF</a
-    >
+    <button class="print-button" id="print-export" type="button" aria-label="打印 / 导出 PDF">
+      打印 / 导出 PDF
+    </button>
 
     <main class="container">
       <h1 id="resume-heading">Jackson WANG · 资深 Apple 平台软件工程师 &amp; Agentic Engineering Developer</h1>
@@ -65,6 +60,7 @@
         如果没有自动跳转，请点击
         <a id="resume-link" href="web-resume/index.html">这里查看简历</a>。
       </p>
+      <p id="updated-at">最后更新：2026 年 2 月 6 日</p>
     </main>
 
     <script>
@@ -73,11 +69,6 @@
         const lang = params.get("lang") === "en" ? "en" : "zh";
 
         const resumePath = "web-resume/index.html";
-        const pdfPath =
-          lang === "en" ? "web-resume/resume-en.pdf" : "web-resume/resume-zh.pdf";
-        const pdfName =
-          lang === "en" ? "Jackson-WANG-Resume-en.pdf" : "Jackson-WANG-Resume-zh.pdf";
-
         const target = `${resumePath}${window.location.search || ""}${window.location.hash || ""}`;
 
         const resumeLink = document.getElementById("resume-link");
@@ -92,12 +83,23 @@
         }
         document.title = lang === "en" ? "Jackson WANG · Resume" : "Jackson WANG · 简历";
 
-        const pdfDownload = document.getElementById("pdf-download");
-        if (pdfDownload) {
-          pdfDownload.href = pdfPath;
-          pdfDownload.download = pdfName;
-          pdfDownload.setAttribute("aria-label", lang === "en" ? "Download PDF" : "下载 PDF");
-          pdfDownload.textContent = lang === "en" ? "Download PDF" : "下载 PDF";
+        const updatedAt = document.getElementById("updated-at");
+        if (updatedAt) {
+          updatedAt.textContent =
+            lang === "en" ? "Last updated: February 6, 2026" : "最后更新：2026 年 2 月 6 日";
+        }
+
+        const printExport = document.getElementById("print-export");
+        if (printExport) {
+          printExport.setAttribute(
+            "aria-label",
+            lang === "en" ? "Print / Save as PDF" : "打印 / 导出 PDF"
+          );
+          printExport.textContent =
+            lang === "en" ? "Print / Save as PDF" : "打印 / 导出 PDF";
+          printExport.addEventListener("click", () => {
+            window.print();
+          });
         }
 
         // Quick redirect while still keeping a visible fallback link.
