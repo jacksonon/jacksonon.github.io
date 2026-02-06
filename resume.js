@@ -1,6 +1,6 @@
 (function () {
-  const THEME_KEY = "wjw_theme";
-  const LANG_KEY = "wjw_lang";
+  const THEME_KEY = "resume_theme";
+  const LANG_KEY = "resume_lang";
 
   const themeLabels = {
     zh: "暗 / 亮模式",
@@ -18,8 +18,8 @@
   };
 
   const pageLabels = {
-    zh: "完整简历 · Full Resume",
-    en: "Full Resume · 中文 / EN",
+    zh: "Interactive Resume · 完整版",
+    en: "Interactive Resume · Full",
   };
 
   const pageTitles = {
@@ -35,6 +35,24 @@
   function deriveThemeByTime() {
     const hour = new Date().getHours();
     return hour >= 7 && hour < 19 ? "light" : "dark";
+  }
+
+  function getActiveLang() {
+    return document.body.classList.contains("lang-en") ? "en" : "zh";
+  }
+
+  function getActiveTheme() {
+    return document.body.classList.contains("theme-light") ? "light" : "dark";
+  }
+
+  function syncQuickLinks(lang) {
+    const quickLinks = document.querySelectorAll('[data-role="quick-link"]');
+    quickLinks.forEach((link) => {
+      const target = lang === "en" ? link.dataset.targetEn : link.dataset.targetZh;
+      if (target) {
+        link.setAttribute("href", target);
+      }
+    });
   }
 
   function applyTheme(theme) {
@@ -68,10 +86,7 @@
     }
 
     if (printButtonEl) {
-      printButtonEl.setAttribute(
-        "aria-label",
-        printLabels[lang] || printLabels.zh
-      );
+      printButtonEl.setAttribute("aria-label", printLabels[lang] || printLabels.zh);
     }
 
     if (pageLabelEl) {
@@ -79,10 +94,7 @@
     }
 
     if (brandEl) {
-      brandEl.setAttribute(
-        "aria-label",
-        lang === "zh" ? "返回简历首页" : "Back to resume home"
-      );
+      brandEl.setAttribute("aria-label", lang === "zh" ? "返回简历首页" : "Resume home");
     }
 
     const themeButton = document.querySelector('[data-role="theme-toggle"]');
@@ -96,10 +108,7 @@
     }
 
     if (langButton) {
-      langButton.setAttribute(
-        "aria-label",
-        lang === "zh" ? "切换语言" : "Switch language"
-      );
+      langButton.setAttribute("aria-label", lang === "zh" ? "切换语言" : "Switch language");
     }
 
     document.title = pageTitles[lang] || pageTitles.zh;
@@ -107,14 +116,8 @@
     if (desc) {
       desc.setAttribute("content", pageDescriptions[lang] || pageDescriptions.zh);
     }
-  }
 
-  function getActiveLang() {
-    return document.body.classList.contains("lang-en") ? "en" : "zh";
-  }
-
-  function getActiveTheme() {
-    return document.body.classList.contains("theme-light") ? "light" : "dark";
+    syncQuickLinks(lang);
   }
 
   function markActiveNav() {
@@ -127,12 +130,15 @@
     const navLinks = page.querySelectorAll(".main-nav a");
     navLinks.forEach((link) => link.classList.remove("is-active"));
 
+    const quickLinks = document.querySelectorAll('[data-role="quick-link"]');
+    quickLinks.forEach((link) => link.classList.remove("is-active"));
+
     const sections = Array.from(page.querySelectorAll(".section[id]"));
     if (sections.length === 0) {
       return;
     }
 
-    const offset = window.scrollY + 150;
+    const offset = window.scrollY + 160;
     let currentId = sections[0].id;
 
     sections.forEach((section) => {
@@ -146,6 +152,13 @@
         link.classList.add("is-active");
       }
     });
+
+    quickLinks.forEach((link) => {
+      const target = lang === "en" ? link.dataset.targetEn : link.dataset.targetZh;
+      if (target === `#${currentId}`) {
+        link.classList.add("is-active");
+      }
+    });
   }
 
   function setupScrollProgress() {
@@ -155,8 +168,7 @@
     }
 
     const update = () => {
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       progress.style.transform = `scaleX(${Math.min(Math.max(ratio, 0), 1)})`;
       markActiveNav();

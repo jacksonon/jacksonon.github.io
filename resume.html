@@ -3,109 +3,1503 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jackson WANG · 简历</title>
+    <title>Jackson WANG · 交互式简历</title>
+    <link rel="icon" href="data:," />
     <style>
+      :root {
+        --bg: #030712;
+        --text-main: #e2e8f0;
+        --text-muted: #94a3b8;
+        --text-strong: #f8fafc;
+        --surface: rgba(15, 23, 42, 0.68);
+        --surface-strong: rgba(15, 23, 42, 0.88);
+        --border: rgba(148, 163, 184, 0.24);
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.18);
+        --success: #34d399;
+        --radius-xl: 24px;
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --shadow-soft: 0 18px 45px rgba(2, 6, 23, 0.48);
+        --shadow-accent: 0 20px 60px rgba(56, 189, 248, 0.2);
+        --pointer-x: 50vw;
+        --pointer-y: 30vh;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-          "Segoe UI", sans-serif;
-        color: #0b1220;
-        background: #ffffff;
+        min-height: 100vh;
+        font-family: "Inter", "SF Pro Text", "PingFang SC", "Segoe UI", sans-serif;
+        color: var(--text-main);
+        background:
+          radial-gradient(1200px circle at -10% -20%, rgba(56, 189, 248, 0.2), transparent 45%),
+          radial-gradient(1200px circle at 110% 120%, rgba(59, 130, 246, 0.2), transparent 45%),
+          var(--bg);
+        position: relative;
+        overflow-x: hidden;
       }
 
-      .print-button {
+      body::after {
+        content: "";
         position: fixed;
-        top: 16px;
-        right: 20px;
-        z-index: 10;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        background: rgba(248, 250, 252, 0.92);
-        color: #0b1220;
-        padding: 8px 14px;
-        font-size: 0.9rem;
-        text-decoration: none;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          420px circle at var(--pointer-x) var(--pointer-y),
+          rgba(56, 189, 248, 0.08),
+          transparent 70%
+        );
+        z-index: 0;
       }
 
-      .print-button:hover {
-        border-color: #38bdf8;
+      body.theme-light {
+        --bg: #f1f5f9;
+        --text-main: #1e293b;
+        --text-muted: #475569;
+        --text-strong: #020617;
+        --surface: rgba(255, 255, 255, 0.72);
+        --surface-strong: rgba(255, 255, 255, 0.9);
+        --border: rgba(30, 41, 59, 0.12);
+        --accent-soft: rgba(56, 189, 248, 0.14);
+        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+        --shadow-accent: 0 16px 40px rgba(14, 165, 233, 0.16);
+      }
+
+      .background-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(58px);
+        opacity: 0.4;
+        mix-blend-mode: screen;
+        animation: float 18s ease-in-out infinite alternate;
+      }
+
+      .orb-a {
+        width: 360px;
+        height: 360px;
+        left: -80px;
+        top: -60px;
+        background: rgba(56, 189, 248, 0.58);
+      }
+
+      .orb-b {
+        width: 300px;
+        height: 300px;
+        right: -70px;
+        top: 16%;
+        background: rgba(16, 185, 129, 0.44);
+        animation-duration: 22s;
+      }
+
+      .orb-c {
+        width: 280px;
+        height: 280px;
+        left: 20%;
+        bottom: -90px;
+        background: rgba(99, 102, 241, 0.38);
+        animation-duration: 25s;
+      }
+
+      .noise-mask {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+        background-size: 2px 2px;
+        opacity: 0.22;
+      }
+
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        transform-origin: left;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, #22d3ee, #38bdf8, #60a5fa);
+        z-index: 90;
+      }
+
+      .topbar {
+        width: min(1180px, calc(100% - 24px));
+        margin: 14px auto 0;
+        padding: 10px 14px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: var(--shadow-soft);
+        position: sticky;
+        top: 10px;
+        z-index: 80;
+      }
+
+      .brand {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+        color: var(--text-strong);
+        font-weight: 700;
+        background: linear-gradient(130deg, rgba(56, 189, 248, 0.28), rgba(14, 165, 233, 0.08));
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        letter-spacing: 0.04em;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: color 0.2s ease, background 0.2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.is-active {
+        color: var(--text-main);
+        background: var(--accent-soft);
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .toolbar-button {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface-strong);
+        color: var(--text-main);
+        height: 36px;
+        padding: 0 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .toolbar-button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(56, 189, 248, 0.55);
+      }
+
+      .toolbar-button.primary {
+        background: linear-gradient(120deg, rgba(2, 132, 199, 0.88), rgba(14, 165, 233, 0.84));
+        border-color: rgba(56, 189, 248, 0.64);
+        color: #f8fafc;
       }
 
       .container {
-        max-width: 760px;
-        padding: 72px 20px 40px;
-        margin: 0 auto;
+        width: min(1160px, calc(100% - 24px));
+        margin: 22px auto 34px;
+        position: relative;
+        z-index: 1;
       }
 
-      h1 {
-        margin: 0 0 8px;
-        font-size: 1.35rem;
+      .panel {
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border);
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.42), rgba(2, 6, 23, 0.68));
+        box-shadow: var(--shadow-soft);
       }
 
-      p {
-        margin: 0 0 10px;
+      body.theme-light .panel {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+      }
+
+      .hero {
+        padding: 30px;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #67e8f9;
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+      }
+
+      .hero h1 {
+        margin: 12px 0;
+        color: var(--text-strong);
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        line-height: 1.08;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.7;
+        max-width: 58ch;
+      }
+
+      .cta-row {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cta {
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        padding: 10px 14px;
+        font-size: 0.86rem;
+        font-weight: 600;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        border-color: rgba(56, 189, 248, 0.58);
+        box-shadow: var(--shadow-accent);
+      }
+
+      .cta.primary {
+        color: #f8fafc;
+        background: linear-gradient(120deg, rgba(14, 165, 233, 0.88), rgba(56, 189, 248, 0.74));
+      }
+
+      .cta.ghost {
+        color: var(--text-main);
+        background: rgba(148, 163, 184, 0.08);
+      }
+
+      .updated {
+        margin: 12px 0 0;
+        color: var(--text-muted);
+        font-size: 0.82rem;
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 12px;
+      }
+
+      .avatar-card {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 16px;
+      }
+
+      .avatar-card img {
+        width: 82px;
+        height: 82px;
+        border-radius: 999px;
+        border: 2px solid rgba(56, 189, 248, 0.48);
+        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.26);
+      }
+
+      .status-line {
+        margin-top: 10px;
+        color: var(--text-muted);
+        font-size: 0.84rem;
         line-height: 1.55;
+      }
+
+      .status-line strong {
+        color: var(--success);
+      }
+
+      .stat-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stat {
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.38);
+        padding: 12px;
+      }
+
+      body.theme-light .stat {
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .stat .value {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .stat .label {
+        margin: 4px 0 0;
+        color: var(--text-muted);
+        font-size: 0.78rem;
+      }
+
+      .section {
+        margin-top: 16px;
+        padding: 24px;
+      }
+
+      .section-head {
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 1.26rem;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--text-muted);
+        max-width: 62ch;
+        line-height: 1.65;
+      }
+
+      .bento-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      .bento-card {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.4);
+        padding: 16px;
+      }
+
+      body.theme-light .bento-card {
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .bento-card:nth-child(1),
+      .bento-card:nth-child(4) {
+        grid-column: span 7;
+      }
+
+      .bento-card:nth-child(2),
+      .bento-card:nth-child(3) {
+        grid-column: span 5;
+      }
+
+      .bento-card h3 {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 0.98rem;
+      }
+
+      .bento-card p {
+        margin: 8px 0 0;
+        color: var(--text-muted);
+        line-height: 1.62;
+        font-size: 0.9rem;
+      }
+
+      .timeline {
+        margin-top: 14px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.4);
+        padding: 16px 16px 14px 24px;
+        position: relative;
+      }
+
+      body.theme-light .timeline-item {
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 18px;
+        bottom: 18px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(56, 189, 248, 0.55), rgba(56, 189, 248, 0.08));
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: 4px;
+        top: 16px;
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        border: 2px solid rgba(56, 189, 248, 0.72);
+        background: rgba(2, 6, 23, 0.85);
+      }
+
+      body.theme-light .timeline-dot {
+        background: #ffffff;
+      }
+
+      .timeline-item h3 {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 1rem;
+      }
+
+      .timeline-item .meta {
+        margin: 4px 0 10px;
+        color: var(--text-muted);
+        font-size: 0.82rem;
+      }
+
+      .timeline-item ul {
+        margin: 0;
+        padding-left: 16px;
+        color: var(--text-main);
+      }
+
+      .timeline-item li {
+        margin: 0 0 8px;
+      }
+
+      .timeline-item li:last-child {
+        margin-bottom: 0;
+      }
+
+      .skills-cloud {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-chip {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        color: var(--text-main);
+        background: rgba(148, 163, 184, 0.1);
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .skill-chip:hover {
+        transform: translateY(-1px);
+        border-color: rgba(56, 189, 248, 0.54);
+        background: rgba(56, 189, 248, 0.14);
+      }
+
+      .project-grid {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .project-card {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.4);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      body.theme-light .project-card {
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .project-card h3 {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 1rem;
+      }
+
+      .project-card p {
+        margin: 0;
+        color: var(--text-muted);
+        line-height: 1.62;
+        font-size: 0.9rem;
+      }
+
+      .project-card a {
+        margin-top: auto;
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      .project-card a:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        margin-top: 16px;
+        padding: 6px 0 2px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--text-muted);
+        text-align: center;
+      }
+
+      .lang-switch > .lang-copy,
+      .lang-switch-list .lang-copy {
+        display: none;
+      }
+
+      .inline-switch > .inline-lang {
+        display: none;
+      }
+
+      body.lang-zh .lang-switch > .lang-copy.lang-zh,
+      body.lang-en .lang-switch > .lang-copy.lang-en,
+      body.lang-zh .lang-switch-list .lang-copy.lang-zh,
+      body.lang-en .lang-switch-list .lang-copy.lang-en {
+        display: block;
+      }
+
+      body.lang-zh .inline-switch > .inline-lang.lang-zh,
+      body.lang-en .inline-switch > .inline-lang.lang-en {
+        display: inline;
+      }
+
+      .tilt-card {
+        transform: perspective(960px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--tilt-scale, 1));
+        transition: transform 0.24s ease, border-color 0.24s ease;
+        will-change: transform;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+
+      @keyframes float {
+        from {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        to {
+          transform: translate3d(22px, -20px, 0) scale(1.06);
+        }
+      }
+
+      @media (max-width: 1080px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 840px) {
+        .topbar {
+          border-radius: 16px;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .toolbar {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+
+        .toolbar-button {
+          flex: 1;
+          justify-content: center;
+        }
+
+        .bento-card:nth-child(1),
+        .bento-card:nth-child(2),
+        .bento-card:nth-child(3),
+        .bento-card:nth-child(4) {
+          grid-column: span 12;
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: calc(100% - 16px);
+        }
+
+        .hero,
+        .section {
+          padding: 16px;
+        }
+
+        .nav-links {
+          width: 100%;
+        }
+
+        .nav-links a {
+          flex: 1;
+          text-align: center;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media print {
+        body {
+          background: #ffffff !important;
+          color: #0f172a !important;
+        }
+
+        .background-layer,
+        .noise-mask,
+        .scroll-progress,
+        .topbar,
+        .cta-row {
+          display: none !important;
+        }
+
+        .container {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+
+        .panel,
+        .footer,
+        .timeline-item,
+        .project-card,
+        .bento-card,
+        .stat,
+        .avatar-card {
+          box-shadow: none !important;
+          border-color: rgba(100, 116, 139, 0.35) !important;
+          background: #ffffff !important;
+          color: #0f172a !important;
+          break-inside: avoid;
+        }
+
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        a {
+          color: inherit !important;
+          text-decoration: none !important;
+        }
       }
     </style>
   </head>
-  <body>
-    <button class="print-button" id="print-export" type="button" aria-label="打印 / 导出 PDF">
-      打印 / 导出 PDF
-    </button>
+  <body class="theme-dark lang-zh">
+    <div class="background-layer" aria-hidden="true">
+      <span class="orb orb-a"></span>
+      <span class="orb orb-b"></span>
+      <span class="orb orb-c"></span>
+    </div>
+    <div class="noise-mask" aria-hidden="true"></div>
+    <div class="scroll-progress" data-role="scroll-progress"></div>
 
-    <main class="container">
-      <h1 id="resume-heading">Jackson WANG · 资深 Apple 平台软件工程师 &amp; Agentic Engineering Developer</h1>
-      <p>正在跳转到网页版简历…</p>
-      <p>
-        如果没有自动跳转，请点击
-        <a id="resume-link" href="web-resume/index.html">这里查看简历</a>。
-      </p>
-      <p id="updated-at">最后更新：2026 年 2 月 6 日</p>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Home">JW</a>
+
+      <nav class="nav-links">
+        <a class="inline-switch" href="#overview">
+          <span class="inline-lang lang-zh">亮点</span>
+          <span class="inline-lang lang-en">Highlights</span>
+        </a>
+        <a class="inline-switch" href="#experience">
+          <span class="inline-lang lang-zh">经历</span>
+          <span class="inline-lang lang-en">Experience</span>
+        </a>
+        <a class="inline-switch" href="#education">
+          <span class="inline-lang lang-zh">教育</span>
+          <span class="inline-lang lang-en">Education</span>
+        </a>
+        <a class="inline-switch" href="#skills">
+          <span class="inline-lang lang-zh">技能</span>
+          <span class="inline-lang lang-en">Skills</span>
+        </a>
+        <a class="inline-switch" href="#projects">
+          <span class="inline-lang lang-zh">项目</span>
+          <span class="inline-lang lang-en">Projects</span>
+        </a>
+      </nav>
+
+      <div class="toolbar">
+        <button class="toolbar-button" type="button" data-role="theme-toggle" aria-label="切换主题">
+          <span class="inline-switch">
+            <span class="inline-lang lang-zh">主题</span>
+            <span class="inline-lang lang-en">Theme</span>
+          </span>
+        </button>
+        <button class="toolbar-button" type="button" data-role="lang-toggle" aria-label="切换语言">
+          <span class="inline-switch" data-role="lang-label">
+            <span class="inline-lang lang-zh">中文 / EN</span>
+            <span class="inline-lang lang-en">中文 / EN</span>
+          </span>
+        </button>
+        <button class="toolbar-button primary" type="button" data-role="print-toggle" aria-label="打印 / 导出 PDF">
+          <span class="inline-switch" data-role="print-label">
+            <span class="inline-lang lang-zh">打印 / 导出 PDF</span>
+            <span class="inline-lang lang-en">Print / Save as PDF</span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container" id="top">
+      <section class="hero panel reveal">
+        <div>
+          <p class="eyebrow lang-switch">
+            <span class="lang-copy lang-zh">SENIOR APPLE PLATFORM ENGINEER</span>
+            <span class="lang-copy lang-en">SENIOR APPLE PLATFORM ENGINEER</span>
+          </p>
+
+          <h1 class="lang-switch">
+            <span class="lang-copy lang-zh">Jackson WANG · 资深 Apple 平台工程师 / Agentic Engineering Developer</span>
+            <span class="lang-copy lang-en">Jackson WANG · Senior Apple Platform Engineer / Agentic Engineering Developer</span>
+          </h1>
+
+          <p class="lead lang-switch">
+            <span class="lang-copy lang-zh">把 Apple 平台工程能力、跨平台 SDK 架构与 Agentic Engineering 方法，落地到真实业务交付：更稳、更快、更可持续迭代。</span>
+            <span class="lang-copy lang-en">I turn Apple-platform engineering, cross-platform SDK architecture, and agentic workflows into real product delivery: more stable, faster, and more scalable iteration.</span>
+          </p>
+
+          <div class="cta-row">
+            <a class="cta primary inline-switch" href="tel:+8618519728741">
+              <span class="inline-lang lang-zh">电话沟通</span>
+              <span class="inline-lang lang-en">Call Me</span>
+            </a>
+            <a class="cta ghost inline-switch" href="mailto:wang542413041@gmail.com">
+              <span class="inline-lang lang-zh">邮件联系</span>
+              <span class="inline-lang lang-en">Email Me</span>
+            </a>
+            <a class="cta ghost inline-switch" href="https://github.com/jacksonon" target="_blank" rel="noreferrer">
+              <span class="inline-lang lang-zh">GitHub</span>
+              <span class="inline-lang lang-en">GitHub</span>
+            </a>
+          </div>
+
+          <p class="updated lang-switch">
+            <span class="lang-copy lang-zh">最后更新：2026 年 2 月 6 日</span>
+            <span class="lang-copy lang-en">Last updated: February 6, 2026</span>
+          </p>
+        </div>
+
+        <aside class="hero-side">
+          <article class="avatar-card tilt-card">
+            <img src="https://avatars.githubusercontent.com/u/14219702?s=160&v=4" alt="Jackson WANG avatar" />
+            <p class="status-line lang-switch">
+              <span class="lang-copy lang-zh"><strong>可协作方向：</strong>iOS / macOS 客户端架构、跨平台 SDK、稳定性治理、Agentic 工程化流程。</span>
+              <span class="lang-copy lang-en"><strong>Open to collaborate on:</strong> iOS / macOS architecture, cross-platform SDK, reliability engineering, and agentic engineering workflows.</span>
+            </p>
+          </article>
+
+          <div class="stat-grid">
+            <article class="stat tilt-card">
+              <p class="value">11+ yrs</p>
+              <p class="label lang-switch">
+                <span class="lang-copy lang-zh">客户端开发经验</span>
+                <span class="lang-copy lang-en">Client engineering experience</span>
+              </p>
+            </article>
+            <article class="stat tilt-card">
+              <p class="value">iOS · macOS · PS</p>
+              <p class="label lang-switch">
+                <span class="lang-copy lang-zh">多平台交付</span>
+                <span class="lang-copy lang-en">Multi-platform delivery</span>
+              </p>
+            </article>
+            <article class="stat tilt-card">
+              <p class="value">Swift / ObjC</p>
+              <p class="label lang-switch">
+                <span class="lang-copy lang-zh">核心技术栈</span>
+                <span class="lang-copy lang-en">Core stack</span>
+              </p>
+            </article>
+            <article class="stat tilt-card">
+              <p class="value">Agentic</p>
+              <p class="label lang-switch">
+                <span class="lang-copy lang-zh">需求到发布闭环</span>
+                <span class="lang-copy lang-en">Req-to-release loop</span>
+              </p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section panel reveal" id="overview">
+        <div class="section-head">
+          <h2 class="lang-switch">
+            <span class="lang-copy lang-zh">核心亮点</span>
+            <span class="lang-copy lang-en">Core Highlights</span>
+          </h2>
+          <p class="lang-switch">
+            <span class="lang-copy lang-zh">以“业务结果 + 工程质量”双目标推进研发，兼顾交付速度、稳定性和长期维护成本。</span>
+            <span class="lang-copy lang-en">I optimize for both product outcomes and engineering quality, balancing delivery speed, reliability, and long-term maintainability.</span>
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <article class="bento-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">跨平台架构落地</span>
+              <span class="lang-copy lang-en">Cross-platform architecture</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">持续构建并迭代 iOS / macOS / PlayStation SDK，覆盖 Unity / Unreal 接入，降低业务团队集成成本。</span>
+              <span class="lang-copy lang-en">Built and iterated iOS / macOS / PlayStation SDKs for Unity / Unreal projects, reducing integration overhead for product teams.</span>
+            </p>
+          </article>
+
+          <article class="bento-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">稳定性与性能优先</span>
+              <span class="lang-copy lang-en">Reliability-first delivery</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">通过崩溃分析、性能剖析与监控驱动迭代，持续降低线上问题密度并提升核心场景体验。</span>
+              <span class="lang-copy lang-en">Used crash diagnostics, performance profiling, and monitoring data to continuously reduce production issues.</span>
+            </p>
+          </article>
+
+          <article class="bento-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">Agentic Engineering 实践</span>
+              <span class="lang-copy lang-en">Agentic engineering practice</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">将 Codex / Gemini 工作流引入需求澄清、代码改造、测试检查和 PR 评审，提高个人与团队迭代效率。</span>
+              <span class="lang-copy lang-en">Applied Codex / Gemini workflows across requirement clarification, refactoring, validation, and PR review to accelerate delivery.</span>
+            </p>
+          </article>
+
+          <article class="bento-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">工程效率体系</span>
+              <span class="lang-copy lang-en">Engineering efficiency system</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">推动自动化构建、包扫描、组件迁移与代码规范，缩短发布周期并降低回归风险。</span>
+              <span class="lang-copy lang-en">Drove automation for build pipelines, package scanning, component migration, and code quality controls to shorten release cycles.</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section panel reveal" id="experience">
+        <div class="section-head">
+          <h2 class="lang-switch">
+            <span class="lang-copy lang-zh">工作经历</span>
+            <span class="lang-copy lang-en">Work Experience</span>
+          </h2>
+          <p class="lang-switch">
+            <span class="lang-copy lang-zh">完整呈现从金融到游戏场景的客户端架构与交付经验，覆盖跨平台 SDK、性能稳定性与工程化提效。</span>
+            <span class="lang-copy lang-en">Complete experience from fintech to gaming, spanning client architecture, cross-platform SDK delivery, reliability, and engineering efficiency.</span>
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item tilt-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <h3>Perfect World Games · Senior iOS Developer</h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2019.09 – 至今 · 北京，中国</span>
+              <span class="lang-copy lang-en">2019.09 – Present · Beijing, China</span>
+            </p>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">负责并主导稳定的 iOS / macOS / PlayStation（Unity/Unreal）跨平台 SDK 开发与实施，按期高质量交付。</span>
+                <span class="lang-copy lang-en">Lead development of stable cross-platform SDKs for iOS / macOS / PlayStation (Unity / Unreal), delivering on schedule and quality.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">基于数据与监控持续迭代 SDK，改善用户体验并降低线上问题，整体提升产品稳定性。</span>
+                <span class="lang-copy lang-en">Iterate SDKs with monitoring and data to improve UX and reduce production issues.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">分析并解决关键稳定性问题，降低应用崩溃率，提升核心业务场景的可靠性。</span>
+                <span class="lang-copy lang-en">Analyze and resolve critical stability issues, lowering crash rates and improving reliability.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">与产品和跨职能团队紧密合作，梳理需求与技术方案，成功上线多项 iOS 新功能，提升用户留存与活跃度。</span>
+                <span class="lang-copy lang-en">Collaborate with product and cross-functional teams to ship iOS features that improve retention and engagement.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">参与基础模块建设及维护，搭建自动化构建流程、包管理扫描、Swift 基础组件迁移等提效工具，缩短构建与集成周期。</span>
+                <span class="lang-copy lang-en">Build and maintain client infra including automated builds, package scanning, and Swift component migration.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">负责 SDK 整体架构设计与关键技术决策，主导核心模块方案评审和代码评审。</span>
+                <span class="lang-copy lang-en">Own SDK architecture and key technical decisions, leading module design and code reviews.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">在 iOS 端主要使用 Swift / Objective-C、UIKit、网络与持久化相关框架进行开发，熟悉与 Unity / Unreal 等游戏引擎的集成流程。</span>
+                <span class="lang-copy lang-en">Main stack: Swift / Objective-C, UIKit, networking, persistence, and Unity / Unreal integration pipelines.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="timeline-item tilt-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <h3>Zhuanzhuan · Senior iOS Developer</h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2019.06 – 2019.09 · 北京，中国</span>
+              <span class="lang-copy lang-en">2019.06 – 2019.09 · Beijing, China</span>
+            </p>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">负责 VOIP 内容推送功能改造，提升推送送达的稳定性与可靠性，优化通话相关体验。</span>
+                <span class="lang-copy lang-en">Implemented VOIP push enhancements to improve delivery reliability and call-related UX.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">作为核心开发参与转转 App 首页大改版与辅助验机应用，在紧迫周期内多次高质量交付版本。</span>
+                <span class="lang-copy lang-en">Core contributor to home page redesign and inspection assistant app under tight release schedules.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">重构首页功能模块并参与代码审查，引入更清晰的布局与数据流设计，减少错误上报并提升页面性能。</span>
+                <span class="lang-copy lang-en">Refactored home module and improved layout/data-flow patterns to reduce defects and improve performance.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">主要技术栈包括 Swift / Objective-C、UIKit、Auto Layout 和网络层封装，在保持快速迭代的同时兼顾运行效率。</span>
+                <span class="lang-copy lang-en">Primary stack: Swift / Objective-C, UIKit, Auto Layout, and networking abstractions for fast yet stable iteration.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="timeline-item tilt-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <h3>9F Group · Senior iOS Developer</h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2018.05 – 2019.05 · 北京，中国</span>
+              <span class="lang-copy lang-en">2018.05 – 2019.05 · Beijing, China</span>
+            </p>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">作为主程，独立牵头并交付高性能 iOS 应用「悟空理财」（Objective-C / React Native 混合应用），保持线上长期稳定运行。</span>
+                <span class="lang-copy lang-en">Lead iOS developer for high-performance app “Wukong Licai” (Objective-C + React Native), ensuring long-term production stability.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">参与公司内部 APM 项目，从需求梳理、业务开发到系统落地，为稳定性与性能治理提供基础数据能力。</span>
+                <span class="lang-copy lang-en">Participated in internal APM from requirements to delivery, enabling observability for reliability and performance work.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">持续进行代码审查与技术指导，帮助初级开发者提升代码质量与架构意识，提升团队整体效率。</span>
+                <span class="lang-copy lang-en">Performed continuous code reviews and mentoring, improving code quality and team efficiency.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">在悟空理财项目中负责客户端架构演进，设计原生模块与 React Native 之间的边界、路由与数据流，提升可维护性与扩展性。</span>
+                <span class="lang-copy lang-en">Drove client architecture evolution, defining native/RN boundaries, routing, and data flow for maintainability.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="timeline-item tilt-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <h3>Beijing Kuohong Technology · iOS Developer</h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2015.11 – 2017.04 · 北京 / 首尔</span>
+              <span class="lang-copy lang-en">2015.11 – 2017.04 · Beijing / Seoul</span>
+            </p>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">从 0–1 开发与维护多款 iOS 应用，覆盖账号注册、证书管理、企业应用构建与分发、线上构建发布等完整流程。</span>
+                <span class="lang-copy lang-en">Built and maintained multiple iOS apps from scratch across registration, certificate management, enterprise distribution, and releases.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">设计并实现推送通知、应用内购买（微信、支付宝等）等核心功能，增强产品整体功能与商业能力。</span>
+                <span class="lang-copy lang-en">Designed and implemented core features including push notifications and in-app purchases (WeChat / Alipay).</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">深度参与测试与调试，通过系统化缺陷排查与修复，持续提升应用稳定性并降低崩溃。</span>
+                <span class="lang-copy lang-en">Performed deep testing and debugging with systematic defect analysis to reduce crashes and improve stability.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">发起并参与代码评审，推动代码规范与可维护性，建设相对完整的 iOS 开发、测试与上线流程。</span>
+                <span class="lang-copy lang-en">Initiated and joined code reviews, improving quality and helping formalize iOS development/testing/release workflows.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">熟悉 Apple 平台证书与签名、推送配置、企业分发等流程与工具。</span>
+                <span class="lang-copy lang-en">Became familiar with Apple certificates/signing, push setup, and enterprise distribution tooling.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section panel reveal" id="education">
+        <div class="section-head">
+          <h2 class="lang-switch">
+            <span class="lang-copy lang-zh">教育背景</span>
+            <span class="lang-copy lang-en">Education</span>
+          </h2>
+          <p class="lang-switch">
+            <span class="lang-copy lang-zh">本科阶段系统学习软件工程、数据库与算法，为后续客户端工程实践打下扎实基础。</span>
+            <span class="lang-copy lang-en">Formal software engineering training in university established strong fundamentals for client architecture work.</span>
+          </p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item tilt-card">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">牡丹江师范学院 · 软件工程（本科）</span>
+              <span class="lang-copy lang-en">Mudanjiang Normal University · B.Eng. in Software Engineering</span>
+            </h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2012.09 – 2016.06 · 黑龙江牡丹江，中国</span>
+              <span class="lang-copy lang-en">2012.09 – 2016.06 · Mudanjiang, Heilongjiang, China</span>
+            </p>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">主修课程：软件工程、数据库设计、C/C++/Java 语言、UML 设计、算法、计算机基础等。</span>
+              <span class="lang-copy lang-en">Core coursework: software engineering, database design, C/C++/Java, UML, algorithms, and CS fundamentals.</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section panel reveal" id="skills">
+        <div class="section-head">
+          <h2 class="lang-switch">
+            <span class="lang-copy lang-zh">技术能力</span>
+            <span class="lang-copy lang-en">Technical Skills</span>
+          </h2>
+          <p class="lang-switch">
+            <span class="lang-copy lang-zh">完整覆盖平台能力、语言栈、架构工程化、性能稳定性与 Agentic Engineering 实践。</span>
+            <span class="lang-copy lang-en">Comprehensive capabilities across platforms, languages, engineering architecture, reliability, and agentic workflows.</span>
+          </p>
+        </div>
+
+        <div class="skills-cloud" aria-label="Skills">
+          <span class="skill-chip">Swift</span>
+          <span class="skill-chip">Objective-C</span>
+          <span class="skill-chip">UIKit</span>
+          <span class="skill-chip">AppKit</span>
+          <span class="skill-chip">C++ / C#</span>
+          <span class="skill-chip">React Native</span>
+          <span class="skill-chip">Flutter</span>
+          <span class="skill-chip">Unity / Unreal</span>
+          <span class="skill-chip">APM</span>
+          <span class="skill-chip">Crash Analysis</span>
+          <span class="skill-chip">Xcode Instruments</span>
+          <span class="skill-chip">GitHub Actions</span>
+          <span class="skill-chip">Codex</span>
+          <span class="skill-chip">Gemini</span>
+          <span class="skill-chip">Agentic Engineering</span>
+        </div>
+
+        <div class="project-grid" style="margin-top: 14px;">
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">平台与框架</span>
+              <span class="lang-copy lang-en">Platforms & Frameworks</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">iOS / iPadOS / macOS，熟悉 UIKit / AppKit、Auto Layout、推送、应用内购买等系统能力。</span>
+                <span class="lang-copy lang-en">iOS / iPadOS / macOS with UIKit / AppKit, Auto Layout, push, and in-app purchase capabilities.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">熟悉 React Native、Flutter 等跨平台技术，并在实际项目中完成与原生模块集成。</span>
+                <span class="lang-copy lang-en">Familiar with React Native and Flutter, including hands-on native module integration.</span>
+              </li>
+            </ul>
+            <h3 class="lang-switch" style="margin-top: 4px;">
+              <span class="lang-copy lang-zh">编程语言</span>
+              <span class="lang-copy lang-en">Languages</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">精通 Swift、Objective-C，熟悉 C++ / C#。</span>
+                <span class="lang-copy lang-en">Proficient in Swift and Objective-C; familiar with C++ / C#.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">了解 Java、前端 Vue 等，能在全链路场景下与后端和前端团队协作沟通。</span>
+                <span class="lang-copy lang-en">Working knowledge of Java and Vue for smooth cross-stack collaboration.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">架构与工程实践</span>
+              <span class="lang-copy lang-en">Architecture & Engineering</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">熟练使用 MVC、MVVM 等架构模式，关注模块化、可测试性与长期可维护性。</span>
+                <span class="lang-copy lang-en">Comfortable with MVC / MVVM, focused on modularity, testability, and maintainability.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">具备客户端工程化经验，如自动化构建、包管理扫描、基础组件拆分与迁移等。</span>
+                <span class="lang-copy lang-en">Experienced in client engineering automation: builds, package scanning, and component migration.</span>
+              </li>
+            </ul>
+            <h3 class="lang-switch" style="margin-top: 4px;">
+              <span class="lang-copy lang-zh">性能与稳定性</span>
+              <span class="lang-copy lang-en">Performance & Reliability</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">熟练使用 Xcode Instruments、崩溃日志分析等工具进行问题排查与性能调优。</span>
+                <span class="lang-copy lang-en">Skilled in Xcode Instruments and crash-log diagnostics for tuning and troubleshooting.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">参与 APM 体系接入与建设，能够通过数据驱动稳定性与性能迭代。</span>
+                <span class="lang-copy lang-en">Participated in APM integration/evolution, using data to drive reliability and performance improvements.</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">Agentic Engineering 实践</span>
+              <span class="lang-copy lang-en">Agentic Engineering Practice</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">持续基于最新 Agentic 工具（如 Codex / Gemini）学习并应用，理解其基础原理与能力边界。</span>
+                <span class="lang-copy lang-en">Continuously learn and apply tools like Codex / Gemini with a solid understanding of their principles and boundaries.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">将 skills、automation 实践到需求理解、开发实现、检查测试、代码提交与 PR 审核，形成端到端提效闭环。</span>
+                <span class="lang-copy lang-en">Apply skills/automation across requirement analysis, implementation, checks/tests, commits, and PR reviews for end-to-end efficiency.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section panel reveal" id="projects">
+        <div class="section-head">
+          <h2 class="lang-switch">
+            <span class="lang-copy lang-zh">代表项目与成果</span>
+            <span class="lang-copy lang-en">Representative Projects</span>
+          </h2>
+          <p class="lang-switch">
+            <span class="lang-copy lang-zh">包含公司业务与基础设施建设成果，以及个人开源项目的持续迭代实践。</span>
+            <span class="lang-copy lang-en">Includes both company product/infrastructure achievements and ongoing iterations in personal open-source projects.</span>
+          </p>
+        </div>
+
+        <h3 class="lang-switch" style="margin: 0 0 10px; color: var(--text-strong);">
+          <span class="lang-copy lang-zh">公司项目与基础设施</span>
+          <span class="lang-copy lang-en">Company Projects & Infrastructure</span>
+        </h3>
+        <div class="project-grid">
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">转转 App 及辅助验机应用</span><span class="lang-copy lang-en">Zhuanzhuan app & inspection tools</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">核心开发参与首页改版、VOIP 推送与验机工具迭代，在高频业务场景平衡性能与体验。</span><span class="lang-copy lang-en">Core contributor for homepage redesign, VOIP push, and inspection tools with a balance of performance and UX.</span></p>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">悟空理财 iOS 客户端</span><span class="lang-copy lang-en">Wukong Licai iOS client</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">主程负责 Objective-C + React Native 混合架构与关键功能，保障金融场景稳定体验。</span><span class="lang-copy lang-en">Lead engineer for Objective-C + React Native hybrid architecture and key features in fintech scenarios.</span></p>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">玖富钱包 iOS 客户端</span><span class="lang-copy lang-en">9F Wallet iOS client</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">参与账户与资金模块设计与实现，结合 APM 与监控体系进行稳定性与体验优化。</span><span class="lang-copy lang-en">Contributed to account/funds modules and optimized reliability with APM and monitoring systems.</span></p>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">跨平台 SDK（iOS / macOS / PlayStation）</span><span class="lang-copy lang-en">Cross-platform SDK</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">主导设计与实现稳定跨平台 SDK，服务 Unity/Unreal 场景，提升多端集成体验与复用能力。</span><span class="lang-copy lang-en">Designed and delivered robust cross-platform SDKs for Unity/Unreal scenarios across Apple and console platforms.</span></p>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">移动端性能与稳定性治理（APM）</span><span class="lang-copy lang-en">Mobile performance & stability (APM)</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">参与内部 APM 建设，将监控能力与业务开发结合，支撑崩溃率与性能指标改进。</span><span class="lang-copy lang-en">Helped build internal APM and connected telemetry to code paths for targeted reliability/performance improvements.</span></p>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch"><span class="lang-copy lang-zh">构建与发布自动化</span><span class="lang-copy lang-en">Build & release automation</span></h3>
+            <p class="lang-switch"><span class="lang-copy lang-zh">推动自动化构建、包扫描与组件迁移，减少人工错误并缩短交付周期。</span><span class="lang-copy lang-en">Drove automated builds, package scanning, and component migration to reduce manual errors and cycle time.</span></p>
+          </article>
+        </div>
+
+        <h3 class="lang-switch" style="margin: 18px 0 10px; color: var(--text-strong);">
+          <span class="lang-copy lang-zh">个人与开源项目</span>
+          <span class="lang-copy lang-en">Personal & Open-source Projects</span>
+        </h3>
+        <div class="project-grid">
+          <article class="project-card tilt-card">
+            <h3>AI Pic App (Capwords-like)</h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">基于多模态模型的 iOS 应用，实现图片理解与文案生成，并优化系统级分享体验。</span>
+              <span class="lang-copy lang-en">iOS app leveraging multimodal models for image understanding and copy generation with native share flows.</span>
+            </p>
+            <a href="https://github.com/jacksonon/ai-pic-app" target="_blank" rel="noreferrer">github.com/jacksonon/ai-pic-app</a>
+          </article>
+          <article class="project-card tilt-card">
+            <h3>AI Sidebar / Quick Send</h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">Chrome 插件：支持选中网页内容后调用 AI 总结、润色与生成，提高阅读与开发效率。</span>
+              <span class="lang-copy lang-en">Chrome extension enabling AI summarize/refine/generate workflows for selected web content.</span>
+            </p>
+            <a href="https://chromewebstore.google.com/detail/ai-sidebar-quick-send-rig/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">Chrome Web Store</a>
+          </article>
+          <article class="project-card tilt-card">
+            <h3>ChatGLM Multi-platform Client</h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">基于 GLM API 的多端客户端（macOS / iOS / iPadOS），统一会话管理与跨设备体验。</span>
+              <span class="lang-copy lang-en">GLM API clients on macOS / iOS / iPadOS with unified conversation and multi-device experience.</span>
+            </p>
+            <a href="https://github.com/jacksonon/chatGLM" target="_blank" rel="noreferrer">github.com/jacksonon/chatGLM</a>
+          </article>
+          <article class="project-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">macOS 状态栏应用与 GitHub Workflow 实践</span>
+              <span class="lang-copy lang-en">macOS status bar app & GitHub Workflow practice</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">结合 GitHub Actions 自动构建与发布，持续优化个人工具迭代效率。</span>
+              <span class="lang-copy lang-en">Combined with GitHub Actions for automated build/release to improve personal tooling iteration speed.</span>
+            </p>
+            <a href="https://github.com/jacksonon/packycode-macos-statusbar" target="_blank" rel="noreferrer">github.com/jacksonon/packycode-macos-statusbar</a>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>© 2026 Jackson WANG</span>
+      </footer>
     </main>
 
     <script>
       (function () {
-        const params = new URLSearchParams(window.location.search);
-        const lang = params.get("lang") === "en" ? "en" : "zh";
+        const THEME_KEY = "resume_theme";
+        const LANG_KEY = "resume_lang";
 
-        const resumePath = "web-resume/index.html";
-        const target = `${resumePath}${window.location.search || ""}${window.location.hash || ""}`;
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get("lang");
+        const urlTheme = urlParams.get("theme");
 
-        const resumeLink = document.getElementById("resume-link");
-        if (resumeLink) resumeLink.href = target;
+        const savedLang = window.localStorage.getItem(LANG_KEY);
+        const savedTheme = window.localStorage.getItem(THEME_KEY);
 
-        const headingEl = document.getElementById("resume-heading");
-        if (headingEl) {
-          headingEl.textContent =
-            lang === "en"
-              ? "Jackson WANG · Senior Apple Platform Software Engineer & Agentic Engineering Developer"
-              : "Jackson WANG · 资深 Apple 平台软件工程师 & Agentic Engineering Developer";
+        const browserLang = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
+
+        const initialLang =
+          urlLang === "zh" || urlLang === "en" ? urlLang : savedLang || browserLang;
+        const initialTheme =
+          urlTheme === "dark" || urlTheme === "light"
+            ? urlTheme
+            : savedTheme || (prefersLight ? "light" : "dark");
+
+        const body = document.body;
+        const langToggle = document.querySelector('[data-role="lang-toggle"]');
+        const themeToggle = document.querySelector('[data-role="theme-toggle"]');
+        const printToggle = document.querySelector('[data-role="print-toggle"]');
+
+        function currentLang() {
+          return body.classList.contains("lang-en") ? "en" : "zh";
         }
-        document.title = lang === "en" ? "Jackson WANG · Resume" : "Jackson WANG · 简历";
 
-        const updatedAt = document.getElementById("updated-at");
-        if (updatedAt) {
-          updatedAt.textContent =
-            lang === "en" ? "Last updated: February 6, 2026" : "最后更新：2026 年 2 月 6 日";
+        function currentTheme() {
+          return body.classList.contains("theme-light") ? "light" : "dark";
         }
 
-        const printExport = document.getElementById("print-export");
-        if (printExport) {
-          printExport.setAttribute(
-            "aria-label",
-            lang === "en" ? "Print / Save as PDF" : "打印 / 导出 PDF"
-          );
-          printExport.textContent =
-            lang === "en" ? "Print / Save as PDF" : "打印 / 导出 PDF";
-          printExport.addEventListener("click", () => {
+        function applyLang(lang) {
+          body.classList.remove("lang-zh", "lang-en");
+          body.classList.add(`lang-${lang}`);
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+          document.title =
+            lang === "zh"
+              ? "Jackson WANG · 交互式简历"
+              : "Jackson WANG · Interactive Resume";
+
+          if (langToggle) {
+            langToggle.setAttribute(
+              "aria-label",
+              lang === "zh" ? "Switch to English" : "切换到中文"
+            );
+          }
+
+          if (themeToggle) {
+            themeToggle.setAttribute(
+              "aria-label",
+              lang === "zh" ? "切换主题" : "Toggle theme"
+            );
+          }
+
+          if (printToggle) {
+            printToggle.setAttribute(
+              "aria-label",
+              lang === "zh" ? "打印 / 导出 PDF" : "Print / Save as PDF"
+            );
+          }
+
+          window.localStorage.setItem(LANG_KEY, lang);
+        }
+
+        function applyTheme(theme) {
+          body.classList.remove("theme-dark", "theme-light");
+          body.classList.add(`theme-${theme}`);
+          document.documentElement.setAttribute("data-theme", theme);
+          window.localStorage.setItem(THEME_KEY, theme);
+        }
+
+        applyLang(initialLang);
+        applyTheme(initialTheme);
+
+        if (langToggle) {
+          langToggle.addEventListener("click", () => {
+            const next = currentLang() === "zh" ? "en" : "zh";
+            applyLang(next);
+          });
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const next = currentTheme() === "dark" ? "light" : "dark";
+            applyTheme(next);
+          });
+        }
+
+        if (printToggle) {
+          printToggle.addEventListener("click", () => {
             window.print();
           });
         }
 
-        // Quick redirect while still keeping a visible fallback link.
-        window.setTimeout(() => {
-          window.location.replace(target);
-        }, 250);
+        const progress = document.querySelector('[data-role="scroll-progress"]');
+        const updateProgress = () => {
+          if (!progress) return;
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+          const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+          progress.style.transform = `scaleX(${Math.min(Math.max(ratio, 0), 1)})`;
+
+          const sections = ["overview", "experience", "education", "skills", "projects"];
+          let current = sections[0];
+          sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el && el.offsetTop <= window.scrollY + 140) {
+              current = id;
+            }
+          });
+
+          document.querySelectorAll(".nav-links a").forEach((a) => {
+            const active = a.getAttribute("href") === `#${current}`;
+            a.classList.toggle("is-active", active);
+          });
+        };
+
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+
+        document.addEventListener(
+          "pointermove",
+          (event) => {
+            document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+            document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+          },
+          { passive: true }
+        );
+
+        const revealItems = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries, io) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.16 }
+          );
+          revealItems.forEach((item) => observer.observe(item));
+        } else {
+          revealItems.forEach((item) => item.classList.add("visible"));
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const hoverCapable = window.matchMedia("(hover: hover)").matches;
+
+        if (!reduceMotion && hoverCapable) {
+          document.querySelectorAll(".tilt-card").forEach((card) => {
+            card.addEventListener("mousemove", (event) => {
+              const rect = card.getBoundingClientRect();
+              const x = (event.clientX - rect.left) / rect.width;
+              const y = (event.clientY - rect.top) / rect.height;
+              const tiltX = (0.5 - y) * 7;
+              const tiltY = (x - 0.5) * 9;
+
+              card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
+              card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
+              card.style.setProperty("--tilt-scale", "1.01");
+            });
+
+            card.addEventListener("mouseleave", () => {
+              card.style.setProperty("--tilt-x", "0deg");
+              card.style.setProperty("--tilt-y", "0deg");
+              card.style.setProperty("--tilt-scale", "1");
+            });
+          });
+        }
       })();
     </script>
   </body>
