@@ -221,7 +221,7 @@ summary:focus-visible {
   opacity: 0.34;
   background: radial-gradient(circle, rgba(97, 218, 251, 0.42), rgba(143, 125, 255, 0.16) 45%, transparent 70%);
   filter: blur(18px);
-  transform: translate3d(calc(var(--cursor-x, 50vw) - 50%), calc(var(--cursor-y, 45vh) - 50%), 0);
+  transform: translate3d(-50%, -50%, 0);
   transition: transform 180ms var(--ease-snappy), opacity 260ms ease;
   will-change: transform;
 }
