@@ -29,7 +29,7 @@
     ></script>
     <script defer src="home.js"></script>
   </head>
-  <body data-theme="dark">
+  <body data-theme="dark" data-language="zh">
     <div id="scroll-progress" aria-hidden="true"></div>
     <div class="ambient-bg" aria-hidden="true"></div>
     <div class="noise-layer" aria-hidden="true"></div>
@@ -38,29 +38,39 @@
 
     <header class="site-header">
       <div class="nav-inner">
-        <a class="brand" href="#top" aria-label="Right AI 首页">
+        <a class="brand" href="#top" aria-label="Right AI Home">
           <span class="brand-mark">AI</span>
           <span class="brand-text">Right AI</span>
         </a>
-        <nav class="nav-links" aria-label="主导航">
-          <a href="#top">首页</a>
-          <a href="#features">能力矩阵</a>
-          <a href="#workflow">工作流</a>
-          <a href="#docs">文档</a>
-          <a href="#faq">FAQ</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#top" data-i18n="nav.home">首页</a>
+          <a href="#features" data-i18n="nav.features">能力矩阵</a>
+          <a href="#workflow" data-i18n="nav.workflow">工作流</a>
+          <a href="#docs" data-i18n="nav.docs">文档</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
         </nav>
         <div class="nav-actions">
+          <label class="sr-only" for="language-toggle" data-i18n="nav.language">Language</label>
+          <select id="language-toggle" class="language-toggle" aria-label="Language switcher">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="zh">简体中文</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+          </select>
           <a
             class="nav-cta"
             href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
             target="_blank"
             rel="noopener"
+            data-i18n="nav.chrome"
           >
             Add to Chrome
           </a>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
             <span aria-hidden="true">◐</span>
-            <span data-theme-label>切换主题</span>
+            <span data-theme-label data-i18n="theme.toggle">切换主题</span>
           </button>
         </div>
       </div>
@@ -70,11 +80,10 @@
       <section class="section hero" id="top">
         <div class="hero-grid">
           <div class="hero-copy reveal">
-            <p class="kicker">Right AI 2.0 · Browser Intelligence Hub</p>
-            <h1>最先进、最现代、充满交互的 AI 网页控制中心</h1>
-            <p>
-              你的浏览器不该只是“看网页”，而应成为“完成任务”的核心界面。Right AI 把 Quick Input、Multi-Model
-              Split View、Webpage Agent 和自动化工具融合在一个流畅界面里。
+            <p class="kicker" data-i18n="hero.kicker">Right AI 2.0 · Browser Intelligence Hub</p>
+            <h1 data-i18n="hero.title">最先进、最现代、充满交互的 AI 网页控制中心</h1>
+            <p data-i18n="hero.desc">
+              你的浏览器不该只是“看网页”，而应成为“完成任务”的核心界面。Right AI 把 Quick Input、Multi-Model Split View、Webpage Agent 和自动化工具融合在一个流畅界面里。
             </p>
             <div class="hero-actions" id="download">
               <a
@@ -82,22 +91,23 @@
                 href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
                 target="_blank"
                 rel="noopener"
+                data-i18n="hero.cta.install"
               >
                 立即安装 Chrome 扩展
               </a>
-              <a class="cta cta-secondary" href="files/dist.zip" download>
+              <a class="cta cta-secondary" href="files/dist.zip" download data-i18n="hero.cta.download">
                 直接下载 ZIP
               </a>
-              <a class="cta cta-ghost" href="#docs">查看安装指南</a>
+              <a class="cta cta-ghost" href="#docs" data-i18n="hero.cta.docs">查看安装指南</a>
             </div>
-            <ul class="trust-list" aria-label="产品亮点">
-              <li>Ctrl + R 随时唤起 Quick Input</li>
-              <li>多模型并行对话，减少上下文切换</li>
-              <li>网页级 AI 交互 + 图文理解 + 深色适配</li>
+            <ul class="trust-list" aria-label="Highlights">
+              <li data-i18n="hero.trust.1">Ctrl + R 随时唤起 Quick Input</li>
+              <li data-i18n="hero.trust.2">多模型并行对话，减少上下文切换</li>
+              <li data-i18n="hero.trust.3">网页级 AI 交互 + 图文理解 + 深色适配</li>
             </ul>
           </div>
 
-          <aside class="hero-panel reveal" aria-label="Right AI 交互演示">
+          <aside class="hero-panel reveal" aria-label="Right AI interactive demo">
             <div class="command-shell" id="command-shell">
               <div class="shell-head">
                 <div class="shell-controls" aria-hidden="true">
@@ -108,41 +118,42 @@
                 <span class="shell-path">rightai://interactive-shell</span>
               </div>
               <div class="shell-body" id="shell-output" aria-live="polite">
-                <div class="shell-line is-command">$ 初始化右栏助手并绑定快捷键</div>
-                <div class="shell-line is-response">Right AI ready. 按 Ctrl + R 可在任意页面调起输入面板。</div>
-                <div class="shell-line is-command">$ 生成本页摘要 + 给出下一步行动</div>
-                <div class="shell-line is-response">摘要已生成，同时已建议 3 个可执行动作。</div>
+                <div class="shell-line is-command" data-i18n="shell.init.command1">$ 初始化右栏助手并绑定快捷键</div>
+                <div class="shell-line is-response" data-i18n="shell.init.response1">Right AI ready. 按 Ctrl + R 可在任意页面调起输入面板。</div>
+                <div class="shell-line is-command" data-i18n="shell.init.command2">$ 生成本页摘要 + 给出下一步行动</div>
+                <div class="shell-line is-response" data-i18n="shell.init.response2">摘要已生成，同时已建议 3 个可执行动作。</div>
               </div>
             </div>
             <div class="command-input-row">
-              <label class="sr-only" for="command-input">输入命令</label>
+              <label class="sr-only" for="command-input" data-i18n="shell.input.label">输入命令</label>
               <input
                 id="command-input"
                 type="text"
+                data-i18n-placeholder="shell.input.placeholder"
                 placeholder="试试：开启 quick input / multi model / webpage mode"
                 autocomplete="off"
               />
-              <button id="run-command" type="button">执行</button>
+              <button id="run-command" type="button" data-i18n="shell.input.run">执行</button>
             </div>
-            <div class="chip-row" aria-label="推荐提示词">
-              <button class="prompt-chip" type="button" data-prompt="开启 quick input 并设置 Ctrl + R 快捷键">Quick Input</button>
-              <button class="prompt-chip" type="button" data-prompt="使用 multi model 对比回答质量">Multi Model</button>
-              <button class="prompt-chip" type="button" data-prompt="在当前 webpage 上提取重点并总结">Webpage Agent</button>
-              <button class="prompt-chip" type="button" data-prompt="切换 dark mode 并同步到所有页面">Dark Mode</button>
+            <div class="chip-row" aria-label="Prompt chips">
+              <button class="prompt-chip" type="button" data-prompt-key="prompts.quick" data-i18n="chips.quick">Quick Input</button>
+              <button class="prompt-chip" type="button" data-prompt-key="prompts.multi" data-i18n="chips.multi">Multi Model</button>
+              <button class="prompt-chip" type="button" data-prompt-key="prompts.webpage" data-i18n="chips.webpage">Webpage Agent</button>
+              <button class="prompt-chip" type="button" data-prompt-key="prompts.dark" data-i18n="chips.dark">Dark Mode</button>
             </div>
 
             <div class="stats-grid">
               <article class="stat-card">
                 <span class="stat-value" data-target="95%">0%</span>
-                <p>任务切换时间平均减少</p>
+                <p data-i18n="stats.one">任务切换时间平均减少</p>
               </article>
               <article class="stat-card">
                 <span class="stat-value" data-target="4.8x">0x</span>
-                <p>跨模型验证效率提升</p>
+                <p data-i18n="stats.two">跨模型验证效率提升</p>
               </article>
               <article class="stat-card">
                 <span class="stat-value" data-target="12+">0+</span>
-                <p>高频网页场景即插即用</p>
+                <p data-i18n="stats.three">高频网页场景即插即用</p>
               </article>
             </div>
           </aside>
@@ -151,37 +162,37 @@
 
       <section class="section features" id="features">
         <div class="section-heading reveal">
-          <p class="kicker">Feature System</p>
-          <h2 class="section-title">一个界面，覆盖输入、理解、推理、执行全链路</h2>
-          <p class="section-lead">
+          <p class="kicker" data-i18n="features.kicker">Feature System</p>
+          <h2 class="section-title" data-i18n="features.title">一个界面，覆盖输入、理解、推理、执行全链路</h2>
+          <p class="section-lead" data-i18n="features.lead">
             不再在插件、标签页、工具站点之间跳转。Right AI 把最常用的智能操作整合为可视化可交互模块。
           </p>
         </div>
 
         <div class="feature-tabs reveal" role="tablist" aria-label="核心能力标签">
-          <button class="feature-tab is-active" type="button" role="tab" aria-selected="true" data-tab="quick-input">
+          <button class="feature-tab is-active" type="button" role="tab" aria-selected="true" data-tab="quick-input" data-i18n="tabs.quick">
             AI Quick Input
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-model">
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-model" data-i18n="tabs.multi">
             Multi Model Split
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="webpage-agent">
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="webpage-agent" data-i18n="tabs.webpage">
             Webpage Agent
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="adaptive-dark">
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
             Adaptive Dark Mode
           </button>
         </div>
 
         <article class="feature-panel is-active reveal" data-panel="quick-input" id="quick-input">
           <div class="feature-panel-grid">
-            <img src="assets/shortcut-quick-send.png" alt="Right AI Quick Input 输入面板" loading="lazy" />
+            <img src="assets/shortcut-quick-send.png" alt="Right AI Quick Input" loading="lazy" />
             <div class="feature-panel-copy">
-              <h3>用 Ctrl + R 直接把想法送进模型</h3>
+              <h3 data-i18n="panels.quick.title">用 Ctrl + R 直接把想法送进模型</h3>
               <ul>
-                <li>任意页面即时唤起，保持思维连续性。</li>
-                <li>支持快捷发送、意图预测、自动补全。</li>
-                <li>把“想法”变成“执行动作”，少一次切换就是快一倍。</li>
+                <li data-i18n="panels.quick.1">任意页面即时唤起，保持思维连续性。</li>
+                <li data-i18n="panels.quick.2">支持快捷发送、意图预测、自动补全。</li>
+                <li data-i18n="panels.quick.3">把“想法”变成“执行动作”，少一次切换就是快一倍。</li>
               </ul>
             </div>
           </div>
@@ -189,13 +200,13 @@
 
         <article class="feature-panel reveal" data-panel="multi-model" id="multi-model" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/Multi-Model-Support.png" alt="多模型分屏对比" loading="lazy" />
+            <img src="assets/Multi-Model-Support.png" alt="Multi model split" loading="lazy" />
             <div class="feature-panel-copy">
-              <h3>多模型同屏协同，结果更稳更准</h3>
+              <h3 data-i18n="panels.multi.title">多模型同屏协同，结果更稳更准</h3>
               <ul>
-                <li>ChatGPT、Gemini、Claude 与自定义模型并行输出。</li>
-                <li>同一任务多答案并列，秒级完成交叉验证。</li>
-                <li>复杂任务自动拆解并路由到最适合的模型。</li>
+                <li data-i18n="panels.multi.1">ChatGPT、Gemini、Claude 与自定义模型并行输出。</li>
+                <li data-i18n="panels.multi.2">同一任务多答案并列，秒级完成交叉验证。</li>
+                <li data-i18n="panels.multi.3">复杂任务自动拆解并路由到最适合的模型。</li>
               </ul>
             </div>
           </div>
@@ -203,13 +214,13 @@
 
         <article class="feature-panel reveal" data-panel="webpage-agent" id="webpage-chat" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/Rigth-Chat.png" alt="网页上下文对话与智能体能力" loading="lazy" />
+            <img src="assets/Rigth-Chat.png" alt="Webpage agent" loading="lazy" />
             <div class="feature-panel-copy">
-              <h3>网页就是上下文，AI 在原位完成理解与执行</h3>
+              <h3 data-i18n="panels.web.title">网页就是上下文，AI 在原位完成理解与执行</h3>
               <ul>
-                <li>自动读取当前网页内容，支持问答、总结、改写与翻译。</li>
-                <li>配合 OCR、视觉理解，实现图文混合信息处理。</li>
-                <li>研究、竞品分析、内容策划可直接沉浸式完成。</li>
+                <li data-i18n="panels.web.1">自动读取当前网页内容，支持问答、总结、改写与翻译。</li>
+                <li data-i18n="panels.web.2">配合 OCR、视觉理解，实现图文混合信息处理。</li>
+                <li data-i18n="panels.web.3">研究、竞品分析、内容策划可直接沉浸式完成。</li>
               </ul>
             </div>
           </div>
@@ -217,13 +228,13 @@
 
         <article class="feature-panel reveal" data-panel="adaptive-dark" id="webpage-tools" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/night-adapt.png" alt="网页暗色主题自适应" loading="lazy" />
+            <img src="assets/night-adapt.png" alt="Adaptive dark mode" loading="lazy" />
             <div class="feature-panel-copy">
-              <h3>任何网页，一键进入舒适暗色工作模式</h3>
+              <h3 data-i18n="panels.dark.title">任何网页，一键进入舒适暗色工作模式</h3>
               <ul>
-                <li>即使网站没有原生 Dark Mode，也可稳定适配。</li>
-                <li>配合系统主题与扩展主题联动，夜间阅读更护眼。</li>
-                <li>保持层级清晰与文本对比，兼顾美观与可读性。</li>
+                <li data-i18n="panels.dark.1">即使网站没有原生 Dark Mode，也可稳定适配。</li>
+                <li data-i18n="panels.dark.2">配合系统主题与扩展主题联动，夜间阅读更护眼。</li>
+                <li data-i18n="panels.dark.3">保持层级清晰与文本对比，兼顾美观与可读性。</li>
               </ul>
             </div>
           </div>
@@ -232,120 +243,120 @@
 
       <section class="section workflow" id="workflow">
         <div class="section-heading reveal">
-          <p class="kicker">Workflow Engine</p>
-          <h2 class="section-title">四步完成高密度信息任务</h2>
+          <p class="kicker" data-i18n="workflow.kicker">Workflow Engine</p>
+          <h2 class="section-title" data-i18n="workflow.title">四步完成高密度信息任务</h2>
         </div>
         <div class="workflow-track">
           <article class="workflow-step reveal" id="shortcut">
-            <h3>01 · Capture</h3>
-            <p>在任何网页按下 Ctrl + R，输入任务目标，Right AI 自动捕获上下文。</p>
+            <h3 data-i18n="workflow.1.title">01 · Capture</h3>
+            <p data-i18n="workflow.1.body">在任何网页按下 Ctrl + R，输入任务目标，Right AI 自动捕获上下文。</p>
           </article>
           <article class="workflow-step reveal">
-            <h3>02 · Route</h3>
-            <p>系统按任务类型自动分配模型，支持并行比对与结果融合。</p>
+            <h3 data-i18n="workflow.2.title">02 · Route</h3>
+            <p data-i18n="workflow.2.body">系统按任务类型自动分配模型，支持并行比对与结果融合。</p>
           </article>
           <article class="workflow-step reveal">
-            <h3>03 · Generate</h3>
-            <p>在侧栏实时生成摘要、行动清单、改写版本与下一步建议。</p>
+            <h3 data-i18n="workflow.3.title">03 · Generate</h3>
+            <p data-i18n="workflow.3.body">在侧栏实时生成摘要、行动清单、改写版本与下一步建议。</p>
           </article>
           <article class="workflow-step reveal">
-            <h3>04 · Execute</h3>
-            <p>直接把结论用于写作、调研、协作，形成可持续的闭环流程。</p>
+            <h3 data-i18n="workflow.4.title">04 · Execute</h3>
+            <p data-i18n="workflow.4.body">直接把结论用于写作、调研、协作，形成可持续的闭环流程。</p>
           </article>
         </div>
       </section>
 
       <section class="section showcase" id="showcase">
         <div class="section-heading reveal">
-          <p class="kicker">Interactive Scenarios</p>
-          <h2 class="section-title">面向真实工作场景的交互设计</h2>
+          <p class="kicker" data-i18n="showcase.kicker">Interactive Scenarios</p>
+          <h2 class="section-title" data-i18n="showcase.title">面向真实工作场景的交互设计</h2>
         </div>
         <div class="showcase-grid">
           <article class="tilt-card showcase-card reveal">
-            <h3>市场研究</h3>
-            <p>在行业报道页面直接提炼关键信号，自动生成结构化洞察与风险提示。</p>
-            <span>网页总结 · 对比分析</span>
+            <h3 data-i18n="showcase.1.title">市场研究</h3>
+            <p data-i18n="showcase.1.body">在行业报道页面直接提炼关键信号，自动生成结构化洞察与风险提示。</p>
+            <span data-i18n="showcase.1.tag">网页总结 · 对比分析</span>
           </article>
           <article class="tilt-card showcase-card reveal">
-            <h3>产品与运营</h3>
-            <p>把用户反馈、竞品信息、文案素材即时拼接成可执行运营策略。</p>
-            <span>多模型协同 · 快速迭代</span>
+            <h3 data-i18n="showcase.2.title">产品与运营</h3>
+            <p data-i18n="showcase.2.body">把用户反馈、竞品信息、文案素材即时拼接成可执行运营策略。</p>
+            <span data-i18n="showcase.2.tag">多模型协同 · 快速迭代</span>
           </article>
           <article class="tilt-card showcase-card reveal">
-            <h3>知识学习</h3>
-            <p>复杂概念自动转译为可理解步骤，结合翻译与问答持续追问直到吃透。</p>
-            <span>深度阅读 · 智能追问</span>
+            <h3 data-i18n="showcase.3.title">知识学习</h3>
+            <p data-i18n="showcase.3.body">复杂概念自动转译为可理解步骤，结合翻译与问答持续追问直到吃透。</p>
+            <span data-i18n="showcase.3.tag">深度阅读 · 智能追问</span>
           </article>
         </div>
       </section>
 
       <section class="section docs" id="docs">
         <div class="section-heading reveal">
-          <p class="kicker">Get Started</p>
-          <h2 class="section-title">3 分钟内完成安装并启动第一条命令</h2>
+          <p class="kicker" data-i18n="docs.kicker">Get Started</p>
+          <h2 class="section-title" data-i18n="docs.title">3 分钟内完成安装并启动第一条命令</h2>
         </div>
 
         <div class="docs-grid">
           <article class="docs-card reveal" id="manual-install">
-            <h3>快速安装</h3>
+            <h3 data-i18n="docs.install.title">快速安装</h3>
             <ol class="install-steps">
               <li>
-                从 Chrome Web Store 安装
+                <span data-i18n="docs.install.step1.start">从 Chrome Web Store 安装</span>
                 <a
                   href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
                   target="_blank"
                   rel="noopener"
                 >Right AI</a>
-                ，或下载
-                <a href="files/dist.zip" download>离线包</a>
-                进行手动安装。
+                <span data-i18n="docs.install.step1.middle">，或下载</span>
+                <a href="files/dist.zip" download data-i18n="docs.install.step1.offline">离线包</a>
+                <span data-i18n="docs.install.step1.end">进行手动安装。</span>
               </li>
-              <li>打开扩展页面，固定 Right AI 到工具栏。</li>
-              <li>进入任意网页，按 <strong>Ctrl + R</strong> 立即唤起 Quick Input。</li>
+              <li data-i18n="docs.install.step2">打开扩展页面，固定 Right AI 到工具栏。</li>
+              <li data-i18n="docs.install.step3">进入任意网页，按 Ctrl + R 立即唤起 Quick Input。</li>
             </ol>
-            <p class="shortcut-note">手动安装路径：chrome://extensions → Developer mode → Load unpacked</p>
+            <p class="shortcut-note" data-i18n="docs.install.note">手动安装路径：chrome://extensions → Developer mode → Load unpacked</p>
           </article>
 
           <article class="docs-card reveal" id="version-updates">
-            <h3>版本更新节奏</h3>
+            <h3 data-i18n="docs.update.title">版本更新节奏</h3>
             <ul class="update-list">
-              <li><strong>周更</strong>：Prompt 模板、快捷动作与视觉细节优化。</li>
-              <li><strong>双周</strong>：模型路由策略更新与稳定性增强。</li>
-              <li><strong>月更</strong>：新增场景化 Agent 能力与性能升级。</li>
+              <li data-i18n="docs.update.1">周更：Prompt 模板、快捷动作与视觉细节优化。</li>
+              <li data-i18n="docs.update.2">双周：模型路由策略更新与稳定性增强。</li>
+              <li data-i18n="docs.update.3">月更：新增场景化 Agent 能力与性能升级。</li>
             </ul>
-            <p>建议开启自动更新，确保第一时间体验最新交互与能力。</p>
+            <p data-i18n="docs.update.note">建议开启自动更新，确保第一时间体验最新交互与能力。</p>
           </article>
         </div>
       </section>
 
       <section class="section faq" id="faq">
         <div class="section-heading reveal">
-          <p class="kicker">FAQ</p>
-          <h2 class="section-title">你可能关心的问题</h2>
+          <p class="kicker" data-i18n="faq.kicker">FAQ</p>
+          <h2 class="section-title" data-i18n="faq.title">你可能关心的问题</h2>
         </div>
 
         <details class="reveal">
-          <summary>Right AI 支持哪些浏览器？</summary>
-          <p>推荐最新版 Chrome。基于 Chromium 的 Edge 等浏览器通常也可正常运行。</p>
+          <summary data-i18n="faq.1.q">Right AI 支持哪些浏览器？</summary>
+          <p data-i18n="faq.1.a">推荐最新版 Chrome。基于 Chromium 的 Edge 等浏览器通常也可正常运行。</p>
         </details>
         <details class="reveal">
-          <summary>我必须登录账号才能用吗？</summary>
-          <p>安装后即可使用核心能力。部分模型服务可能需要你在扩展内配置自己的 API 信息。</p>
+          <summary data-i18n="faq.2.q">我必须登录账号才能用吗？</summary>
+          <p data-i18n="faq.2.a">安装后即可使用核心能力。部分模型服务可能需要你在扩展内配置自己的 API 信息。</p>
         </details>
         <details class="reveal">
-          <summary>如何快速调起输入面板？</summary>
-          <p>默认推荐快捷键是 <strong>Ctrl + R</strong>。你也可以在扩展设置里自定义快捷键。</p>
+          <summary data-i18n="faq.3.q">如何快速调起输入面板？</summary>
+          <p data-i18n="faq.3.a">默认推荐快捷键是 Ctrl + R。你也可以在扩展设置里自定义快捷键。</p>
         </details>
         <details class="reveal">
-          <summary>离线包应该怎么安装？</summary>
-          <p>下载 <code>files/dist.zip</code>，解压后在 <code>chrome://extensions</code> 开启开发者模式并选择“加载已解压的扩展程序”。</p>
+          <summary data-i18n="faq.4.q">离线包应该怎么安装？</summary>
+          <p data-i18n="faq.4.a">下载 files/dist.zip，解压后在 chrome://extensions 开启开发者模式并选择“加载已解压的扩展程序”。</p>
         </details>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Right AI · Build faster decisions inside your browser.</p>
-      <a href="#top">Back to top ↑</a>
+      <p data-i18n="footer.tagline">Right AI · Build faster decisions inside your browser.</p>
+      <a href="#top" data-i18n="footer.back">Back to top ↑</a>
     </footer>
   </body>
 </html>
