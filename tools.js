@@ -428,6 +428,26 @@
     return "";
   }
 
+  function getObjectByKey(field, key) {
+    if (!field || typeof field !== "object" || Array.isArray(field)) {
+      return null;
+    }
+
+    const directValue = field[key];
+    if (directValue && typeof directValue === "object" && !Array.isArray(directValue)) {
+      return directValue;
+    }
+
+    const lowerKey = key.toLowerCase();
+    for (const [entryKey, entryValue] of Object.entries(field)) {
+      if (entryKey.toLowerCase() === lowerKey && entryValue && typeof entryValue === "object" && !Array.isArray(entryValue)) {
+        return entryValue;
+      }
+    }
+
+    return null;
+  }
+
   function resolveLocalizedField(value, language) {
     if (typeof value === "string") {
       return value.trim();
@@ -454,6 +474,38 @@
     return "";
   }
 
+  function resolveFieldFromI18nMap(i18nMap, field, language) {
+    if (!i18nMap || typeof i18nMap !== "object" || Array.isArray(i18nMap)) {
+      return "";
+    }
+
+    const candidates = getLanguageCandidates(language);
+    for (const candidate of candidates) {
+      const localeEntry = getObjectByKey(i18nMap, candidate);
+      if (!localeEntry) {
+        continue;
+      }
+
+      const localized = localeEntry[field];
+      if (typeof localized === "string" && localized.trim()) {
+        return localized.trim();
+      }
+    }
+
+    for (const entryValue of Object.values(i18nMap)) {
+      if (!entryValue || typeof entryValue !== "object" || Array.isArray(entryValue)) {
+        continue;
+      }
+
+      const localized = entryValue[field];
+      if (typeof localized === "string" && localized.trim()) {
+        return localized.trim();
+      }
+    }
+
+    return "";
+  }
+
   function normalizeTools(payload) {
     const list = Array.isArray(payload)
       ? payload
@@ -463,17 +515,25 @@
 
     return list
       .map((item) => {
-        const url = typeof item?.url === "string" ? item.url.trim() : "";
-        const name = resolveLocalizedField(item?.name, DEFAULT_LANGUAGE);
-        const description = resolveLocalizedField(item?.description, DEFAULT_LANGUAGE);
+        const safeItem = item && typeof item === "object" && !Array.isArray(item)
+          ? item
+          : {};
+        const url = typeof safeItem.url === "string" ? safeItem.url.trim() : "";
+        const fallbackName = resolveFieldFromI18nMap(safeItem.i18n, "name", DEFAULT_LANGUAGE)
+          || resolveLocalizedField(safeItem.name, DEFAULT_LANGUAGE);
+        const fallbackDescription = resolveFieldFromI18nMap(safeItem.i18n, "description", DEFAULT_LANGUAGE)
+          || resolveLocalizedField(safeItem.description, DEFAULT_LANGUAGE);
 
-        if (!name || !description || !url) {
+        if (!fallbackName || !fallbackDescription || !url) {
           return null;
         }
 
         return {
-          name: item.name,
-          description: item.description,
+          name: safeItem.name,
+          description: safeItem.description,
+          i18n: safeItem.i18n,
+          fallbackName,
+          fallbackDescription,
           url
         };
       })
@@ -571,8 +631,12 @@
     const normalizedKeyword = normalizeSearchValue(trimmedKeyword);
 
     const localizedTools = state.tools.map((tool) => ({
-      name: resolveLocalizedField(tool.name, state.language),
-      description: resolveLocalizedField(tool.description, state.language),
+      name: resolveFieldFromI18nMap(tool.i18n, "name", state.language)
+        || resolveLocalizedField(tool.name, state.language)
+        || tool.fallbackName,
+      description: resolveFieldFromI18nMap(tool.i18n, "description", state.language)
+        || resolveLocalizedField(tool.description, state.language)
+        || tool.fallbackDescription,
       url: tool.url
     }));
 
