@@ -828,7 +828,7 @@
         <button class="toolbar-button" type="button" data-role="lang-toggle" aria-label="切换语言">
           <span class="inline-switch" data-role="lang-label">
             <span class="inline-lang lang-zh">中文 / EN</span>
-            <span class="inline-lang lang-en">中文 / EN</span>
+            <span class="inline-lang lang-en">EN / 中文</span>
           </span>
         </button>
         <button class="toolbar-button primary" type="button" data-role="print-toggle" aria-label="打印 / 导出 PDF">
@@ -1367,8 +1367,11 @@
 
         const browserLang = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
 
-        const initialLang =
-          urlLang === "zh" || urlLang === "en" ? urlLang : savedLang || browserLang;
+        function normalizeLang(lang) {
+          return lang === "en" ? "en" : "zh";
+        }
+
+        const initialLang = normalizeLang(urlLang || savedLang || browserLang);
         const initialTheme =
           urlTheme === "dark" || urlTheme === "light"
             ? urlTheme
@@ -1388,36 +1391,38 @@
         }
 
         function applyLang(lang) {
+          const finalLang = normalizeLang(lang);
+
           body.classList.remove("lang-zh", "lang-en");
-          body.classList.add(`lang-${lang}`);
-          document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+          body.classList.add(`lang-${finalLang}`);
+          document.documentElement.lang = finalLang === "zh" ? "zh-CN" : "en";
           document.title =
-            lang === "zh"
+            finalLang === "zh"
               ? "Jackson WANG · 交互式简历"
               : "Jackson WANG · Interactive Resume";
 
           if (langToggle) {
             langToggle.setAttribute(
               "aria-label",
-              lang === "zh" ? "Switch to English" : "切换到中文"
+              finalLang === "zh" ? "Switch to English" : "切换到中文"
             );
           }
 
           if (themeToggle) {
             themeToggle.setAttribute(
               "aria-label",
-              lang === "zh" ? "切换主题" : "Toggle theme"
+              finalLang === "zh" ? "切换主题" : "Toggle theme"
             );
           }
 
           if (printToggle) {
             printToggle.setAttribute(
               "aria-label",
-              lang === "zh" ? "打印 / 导出 PDF" : "Print / Save as PDF"
+              finalLang === "zh" ? "打印 / 导出 PDF" : "Print / Save as PDF"
             );
           }
 
-          window.localStorage.setItem(LANG_KEY, lang);
+          window.localStorage.setItem(LANG_KEY, finalLang);
         }
 
         function applyTheme(theme) {

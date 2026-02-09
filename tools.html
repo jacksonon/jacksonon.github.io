@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>站长工具列表 | Right AI</title>
+    <meta
+      name="description"
+      content="站长工具列表：聚合 SEO、测速、索引与抓取分析工具，快速访问常用站长资源。"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="tools.css" />
+    <script defer src="tools.js"></script>
+  </head>
+  <body data-theme="dark">
+    <div class="ambient-bg" aria-hidden="true"></div>
+    <div class="noise-layer" aria-hidden="true"></div>
+    <div class="grid-layer" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="返回 Right AI 首页">
+          <span class="brand-mark">AI</span>
+          <span class="brand-text">Right AI</span>
+        </a>
+        <nav class="nav-links" aria-label="页面导航">
+          <a href="index.html">← 返回首页</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
+            <span aria-hidden="true">◐</span>
+            <span data-theme-label>切换主题</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="tools-main">
+      <section class="section tools-section" aria-labelledby="tools-page-title">
+        <header class="tools-intro">
+          <p class="tools-kicker">Webmaster Resources</p>
+          <h1 class="tools-title" id="tools-page-title">站长工具列表</h1>
+          <p class="tools-lead">
+            快速检索常用站长工具，覆盖收录提交、SEO 诊断、性能测速和站点分析等典型场景。
+          </p>
+        </header>
+
+        <div class="search-panel" role="search" aria-label="站长工具搜索">
+          <label class="sr-only" for="tool-search">搜索站长工具</label>
+          <div class="search-input-wrap">
+            <input
+              id="tool-search"
+              type="search"
+              placeholder="输入工具名称或描述进行筛选"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <p class="search-hint" id="search-hint">支持按名称和描述实时筛选。</p>
+        </div>
+
+        <div class="results-row" aria-live="polite">
+          <p class="results-count" id="results-count"></p>
+          <p class="status-message" id="status-message" role="status"></p>
+        </div>
+
+        <ul class="tools-grid" id="tools-list" aria-describedby="search-hint"></ul>
+        <p class="empty-state" id="empty-state" hidden>没有匹配的工具，请尝试其他关键词。</p>
+      </section>
+    </main>
+  </body>
+</html>
