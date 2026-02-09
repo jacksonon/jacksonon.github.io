@@ -1016,25 +1016,6 @@ summary:focus-visible {
   font-size: 0.8rem;
 }
 
-.webmaster-tools .docs-grid {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.webmaster-card {
-  border-color: color-mix(in srgb, var(--accent-1) 28%, var(--line-soft));
-  background:
-    radial-gradient(50rem 18rem at 10% -60%, color-mix(in srgb, var(--accent-1) 24%, transparent), transparent 70%),
-    color-mix(in srgb, var(--bg-surface) 78%, transparent);
-}
-
-.webmaster-points {
-  margin: 0.88rem 0 0;
-  padding-left: 1.18rem;
-  display: grid;
-  gap: 0.45rem;
-  color: var(--text-secondary);
-}
-
 .site-footer {
   width: min(var(--max-content), calc(100% - 2rem));
   margin: 0 auto 2.2rem;

@@ -4,66 +4,6 @@
       "name": "Apple Store 语言显示分析",
       "description": "快速推断苹果商店显示的首选语言及介绍本地化",
       "url": "https://predictor-app-store-language.pages.dev/"
-    },
-    {
-      "name": "Google Search Console",
-      "description": "查看 Google 收录、抓取异常与核心搜索表现，支持 Sitemap 提交。",
-      "url": "https://search.google.com/search-console"
-    },
-    {
-      "name": "Bing Webmaster Tools",
-      "description": "提交网站到 Bing 并分析索引覆盖、关键词点击与技术 SEO 问题。",
-      "url": "https://www.bing.com/webmasters/about"
-    },
-    {
-      "name": "百度搜索资源平台",
-      "description": "百度官方站长平台，可做链接提交、抓取诊断与流量关键词分析。",
-      "url": "https://ziyuan.baidu.com/"
-    },
-    {
-      "name": "Yandex Webmaster",
-      "description": "面向 Yandex 搜索的站点管理工具，支持抓取状态与索引监控。",
-      "url": "https://webmaster.yandex.com/"
-    },
-    {
-      "name": "Ahrefs Webmaster Tools",
-      "description": "免费审计网站 SEO 健康度，查看外链、关键词与技术问题清单。",
-      "url": "https://ahrefs.com/webmaster-tools"
-    },
-    {
-      "name": "Screaming Frog SEO Spider",
-      "description": "桌面爬虫工具，适合批量扫描链接、标题、元标签与重定向链路。",
-      "url": "https://www.screamingfrog.co.uk/seo-spider/"
-    },
-    {
-      "name": "PageSpeed Insights",
-      "description": "获取页面 Core Web Vitals 指标与前端性能优化建议。",
-      "url": "https://pagespeed.web.dev/"
-    },
-    {
-      "name": "GTmetrix",
-      "description": "从加载瀑布图定位速度瓶颈，支持地区、设备和网络条件模拟。",
-      "url": "https://gtmetrix.com/"
-    },
-    {
-      "name": "WebPageTest",
-      "description": "深度性能测试平台，可分析首屏、缓存、请求链与渲染过程。",
-      "url": "https://www.webpagetest.org/"
-    },
-    {
-      "name": "Cloudflare Radar",
-      "description": "查看互联网趋势、流量变化与网络事件，辅助站点运维判断。",
-      "url": "https://radar.cloudflare.com/"
-    },
-    {
-      "name": "XML-Sitemaps",
-      "description": "在线生成 XML Sitemap，便于小型站点快速建立搜索引擎地图。",
-      "url": "https://www.xml-sitemaps.com/"
-    },
-    {
-      "name": "robots.txt Generator",
-      "description": "快速生成 robots.txt 规则，控制爬虫访问路径与抓取优先级。",
-      "url": "https://www.robotstxt.org/robotstxt.html"
     }
   ]
 }
