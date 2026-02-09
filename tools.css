@@ -2,6 +2,10 @@
   padding-bottom: clamp(2.6rem, 6vw, 5rem);
 }
 
+.tools-language-toggle {
+  min-width: 7.2rem;
+}
+
 .tools-section {
   display: grid;
   gap: 1.25rem;
@@ -243,6 +247,10 @@
 }
 
 @media (max-width: 720px) {
+  .tools-language-toggle {
+    min-width: 4.8rem;
+  }
+
   .results-row {
     flex-direction: column;
     align-items: flex-start;

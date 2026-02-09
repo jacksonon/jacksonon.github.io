@@ -25,24 +25,43 @@
     <link rel="stylesheet" href="tools.css" />
     <script defer src="tools.js"></script>
   </head>
-  <body data-theme="dark">
+  <body data-theme="dark" data-language="zh">
     <div class="ambient-bg" aria-hidden="true"></div>
     <div class="noise-layer" aria-hidden="true"></div>
     <div class="grid-layer" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="nav-inner">
-        <a class="brand" href="index.html" aria-label="返回 Right AI 首页">
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="返回 Right AI 首页"
+          data-i18n-aria-label="brand.homeAria"
+        >
           <span class="brand-mark">AI</span>
           <span class="brand-text">Right AI</span>
         </a>
-        <nav class="nav-links" aria-label="页面导航">
-          <a href="index.html">← 返回首页</a>
+        <nav class="nav-links" aria-label="页面导航" data-i18n-aria-label="nav.aria">
+          <a href="index.html" data-i18n="nav.backHome">← 返回首页</a>
         </nav>
         <div class="nav-actions">
+          <label class="sr-only" for="language-toggle" data-i18n="nav.language">语言</label>
+          <select
+            id="language-toggle"
+            class="language-toggle tools-language-toggle"
+            aria-label="语言切换器"
+            data-i18n-aria-label="nav.languageAria"
+          >
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="zh">简体中文</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+          </select>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
             <span aria-hidden="true">◐</span>
-            <span data-theme-label>切换主题</span>
+            <span data-theme-label data-i18n="theme.toggle">切换主题</span>
           </button>
         </div>
       </div>
@@ -51,25 +70,31 @@
     <main class="tools-main">
       <section class="section tools-section" aria-labelledby="tools-page-title">
         <header class="tools-intro">
-          <p class="tools-kicker">Webmaster Resources</p>
-          <h1 class="tools-title" id="tools-page-title">站长工具列表</h1>
-          <p class="tools-lead">
+          <p class="tools-kicker" data-i18n="intro.kicker">Webmaster Resources</p>
+          <h1 class="tools-title" id="tools-page-title" data-i18n="intro.title">站长工具列表</h1>
+          <p class="tools-lead" data-i18n="intro.lead">
             快速检索常用站长工具，覆盖收录提交、SEO 诊断、性能测速和站点分析等典型场景。
           </p>
         </header>
 
-        <div class="search-panel" role="search" aria-label="站长工具搜索">
-          <label class="sr-only" for="tool-search">搜索站长工具</label>
+        <div
+          class="search-panel"
+          role="search"
+          aria-label="站长工具搜索"
+          data-i18n-aria-label="search.regionAria"
+        >
+          <label class="sr-only" for="tool-search" data-i18n="search.label">搜索站长工具</label>
           <div class="search-input-wrap">
             <input
               id="tool-search"
               type="search"
               placeholder="输入工具名称或描述进行筛选"
+              data-i18n-placeholder="search.placeholder"
               autocomplete="off"
               spellcheck="false"
             />
           </div>
-          <p class="search-hint" id="search-hint">支持按名称和描述实时筛选。</p>
+          <p class="search-hint" id="search-hint" data-i18n="search.hint">支持按名称和描述实时筛选。</p>
         </div>
 
         <div class="results-row" aria-live="polite">

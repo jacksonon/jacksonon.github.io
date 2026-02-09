@@ -1,8 +1,14 @@
 {
   "tools": [
     {
-      "name": "Apple Store 语言显示分析",
-      "description": "快速推断苹果商店显示的首选语言及介绍本地化",
+      "name": {
+        "zh": "Apple Store 语言显示分析",
+        "en": "Apple Store Language Display Analyzer"
+      },
+      "description": {
+        "zh": "快速推断苹果商店显示的首选语言及介绍本地化",
+        "en": "Quickly infer the preferred language shown in the App Store and the active localized description."
+      },
       "url": "https://predictor-app-store-language.pages.dev/"
     }
   ]
