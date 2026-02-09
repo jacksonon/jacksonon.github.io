@@ -10,6 +10,11 @@
         }
       },
       "url": "https://predictor-app-store-language.pages.dev/"
+    },
+    {
+      "name": "应用本地化工具",
+      "description": "快速制作并导出本地化内容，适用于应用全球化。",
+      "url": "https://localization-web.pages.dev/"
     }
   ]
 }
