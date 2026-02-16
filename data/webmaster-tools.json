@@ -12,9 +12,14 @@
       "url": "https://predictor-app-store-language.pages.dev/"
     },
     {
-      "name": "应用本地化工具",
+      "name": "AI Daily",
+      "description": "每日模型最新资讯",
+      "url": "https://ai-daily-pages.pages.dev/"
+    },
+    {
+      "name": "应用全球化翻译与本地化工具",
       "description": "快速制作并导出本地化内容，适用于应用全球化。",
-      "url": "https://localization-web.pages.dev/"
+      "url": "https://tooooools.cn/#/projects"
     }
   ]
 }
