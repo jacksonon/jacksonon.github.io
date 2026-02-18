@@ -326,24 +326,6 @@ summary:focus-visible {
   box-shadow: var(--shadow-glow);
 }
 
-.nav-cta {
-  min-height: 42px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent-1) 36%, var(--line-soft));
-  padding: 0.62rem 0.92rem;
-  font-size: 0.84rem;
-  font-weight: 650;
-  color: var(--text-primary);
-  background: linear-gradient(140deg, color-mix(in srgb, var(--accent-2) 21%, var(--bg-surface)), color-mix(in srgb, var(--accent-1) 18%, var(--bg-surface)));
-  box-shadow: var(--shadow-sm);
-  transition: transform 220ms var(--ease-snappy), box-shadow 220ms var(--ease-standard), border-color 220ms var(--ease-standard);
-}
-
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
-}
-
 .nav-links a {
   position: relative;
   display: inline-flex;
@@ -520,6 +502,32 @@ summary:focus-visible {
 .cta-ghost:hover {
   border-color: color-mix(in srgb, var(--accent-1) 36%, var(--line-soft));
   box-shadow: var(--shadow-sm);
+}
+
+.download-tooltip {
+  position: absolute;
+  z-index: 1200;
+  max-width: min(260px, calc(100vw - 1.2rem));
+  padding: 0.45rem 0.62rem;
+  border-radius: 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--accent-1) 28%, var(--line-soft));
+  background: color-mix(in srgb, var(--bg-surface-strong) 88%, var(--bg-canvas));
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 140ms var(--ease-standard), transform 140ms var(--ease-standard);
+}
+
+.download-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .trust-list {
@@ -1134,6 +1142,106 @@ summary:focus-visible {
   color: var(--text-secondary);
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
+.donate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.donate-modal[hidden] {
+  display: none;
+}
+
+.donate-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 10, 22, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.donate-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 680px);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--bg-surface-strong) 88%, var(--bg-canvas));
+  box-shadow: var(--shadow-lg);
+  padding: clamp(1rem, 3vw, 1.6rem);
+}
+
+.donate-modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-snappy), color 160ms var(--ease-standard), border-color 160ms var(--ease-standard);
+}
+
+.donate-modal-close:hover {
+  color: var(--text-primary);
+  border-color: var(--line-soft);
+  transform: scale(1.06);
+}
+
+.donate-modal-dialog h2 {
+  font-size: clamp(1.32rem, 3vw, 1.8rem);
+}
+
+.donate-modal-dialog p {
+  margin-top: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.donate-qr-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.donate-qr-grid figure {
+  margin: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+  box-shadow: var(--shadow-sm);
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.donate-qr-grid figure img {
+  width: auto;
+  max-width: 100%;
+  max-height: clamp(220px, 40vh, 320px);
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.donate-qr-grid figcaption {
+  margin-top: 0.58rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
 @media (max-width: 1100px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1183,10 +1291,6 @@ summary:focus-visible {
   }
 
   .brand-text {
-    display: none;
-  }
-
-  .nav-cta {
     display: none;
   }
 

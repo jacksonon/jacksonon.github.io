@@ -49,6 +49,7 @@
           <a href="#docs" data-i18n="nav.docs">文档</a>
           <a href="#faq" data-i18n="nav.faq">FAQ</a>
           <a href="tools.html" data-i18n="nav.tools">站长工具</a>
+          <a href="#" class="donate-trigger" data-i18n="nav.donate">打赏</a>
         </nav>
         <div class="nav-actions">
           <label class="sr-only" for="language-toggle" data-i18n="nav.language">Language</label>
@@ -60,15 +61,6 @@
             <option value="ja">日本語</option>
             <option value="ko">한국어</option>
           </select>
-          <a
-            class="nav-cta"
-            href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
-            target="_blank"
-            rel="noopener"
-            data-i18n="nav.chrome"
-          >
-            Add to Chrome
-          </a>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
             <span aria-hidden="true">◐</span>
             <span data-theme-label data-i18n="theme.toggle">切换主题</span>
@@ -96,7 +88,7 @@
               >
                 立即安装 Chrome 扩展
               </a>
-              <a class="cta cta-secondary" href="files/dist.zip" download data-i18n="hero.cta.download">
+              <a class="cta cta-secondary direct-download" href="files/dist.zip" download data-i18n="hero.cta.download">
                 直接下载 ZIP
               </a>
               <a class="cta cta-ghost" href="#docs" data-i18n="hero.cta.docs">查看安装指南</a>
@@ -180,6 +172,12 @@
           <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="webpage-agent" data-i18n="tabs.webpage">
             Webpage Agent
           </button>
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="stock-agent" data-i18n="tabs.stock">
+            Stock Assistant
+          </button>
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="text-ocr" data-i18n="tabs.ocr">
+            OCR &amp; Text
+          </button>
           <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
             Adaptive Dark Mode
           </button>
@@ -192,8 +190,8 @@
               <h3 data-i18n="panels.quick.title">用 Ctrl + R 直接把想法送进模型</h3>
               <ul>
                 <li data-i18n="panels.quick.1">任意页面即时唤起，保持思维连续性。</li>
-                <li data-i18n="panels.quick.2">支持快捷发送、意图预测、自动补全。</li>
-                <li data-i18n="panels.quick.3">把“想法”变成“执行动作”，少一次切换就是快一倍。</li>
+                <li data-i18n="panels.quick.2">支持在当前页面直接打开模型对话窗口（右下角），无需额外跳转。</li>
+                <li data-i18n="panels.quick.3">设置新增：对话页直开、唤起切回 Chrome、再次按快捷键一键关闭。</li>
               </ul>
             </div>
           </div>
@@ -222,6 +220,34 @@
                 <li data-i18n="panels.web.1">自动读取当前网页内容，支持问答、总结、改写与翻译。</li>
                 <li data-i18n="panels.web.2">配合 OCR、视觉理解，实现图文混合信息处理。</li>
                 <li data-i18n="panels.web.3">研究、竞品分析、内容策划可直接沉浸式完成。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-panel reveal" data-panel="stock-agent" id="stock-agent" hidden>
+          <div class="feature-panel-grid">
+            <img src="assets/Stock.png" alt="Right AI stock assistant" loading="lazy" />
+            <div class="feature-panel-copy">
+              <h3 data-i18n="panels.stock.title">股票模块：行情盯盘 + AI 解读一体化</h3>
+              <ul>
+                <li data-i18n="panels.stock.1">在侧栏实时查看自选股、涨跌幅与关键价位。</li>
+                <li data-i18n="panels.stock.2">结合多模型问答，快速生成盘前/盘中分析与风险提示。</li>
+                <li data-i18n="panels.stock.3">研究资讯、财报、公告时可直接调用股票上下文。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-panel reveal" data-panel="text-ocr" id="text-ocr" hidden>
+          <div class="feature-panel-grid">
+            <img src="assets/Image-OCR-Traanslation.png" alt="Right AI OCR and translation" loading="lazy" />
+            <div class="feature-panel-copy">
+              <h3 data-i18n="panels.ocr.title">文本识别：OCR 提取 + 翻译一步完成</h3>
+              <ul>
+                <li data-i18n="panels.ocr.1">对网页图片与截图进行文字识别，自动提取可复制文本。</li>
+                <li data-i18n="panels.ocr.2">识别结果可直接翻译、总结或继续追问。</li>
+                <li data-i18n="panels.ocr.3">适合处理海报、PDF 截图、社媒图文等场景。</li>
               </ul>
             </div>
           </div>
@@ -309,7 +335,7 @@
                   rel="noopener"
                 >Right AI</a>
                 <span data-i18n="docs.install.step1.middle">，或下载</span>
-                <a href="files/dist.zip" download data-i18n="docs.install.step1.offline">离线包</a>
+                <a class="direct-download" href="files/dist.zip" download data-i18n="docs.install.step1.offline">离线包</a>
                 <span data-i18n="docs.install.step1.end">进行手动安装。</span>
               </li>
               <li data-i18n="docs.install.step2">打开扩展页面，固定 Right AI 到工具栏。</li>
@@ -326,6 +352,16 @@
               <li data-i18n="docs.update.3">月更：新增场景化 Agent 能力与性能升级。</li>
             </ul>
             <p data-i18n="docs.update.note">建议开启自动更新，确保第一时间体验最新交互与能力。</p>
+          </article>
+
+          <article class="docs-card reveal" id="quick-chat-updates">
+            <h3 data-i18n="docs.quickchat.title">AI Quick Input 对话页（新）</h3>
+            <ul class="update-list">
+              <li data-i18n="docs.quickchat.1">唤起后可在网页右下角直接进入模型对话界面。</li>
+              <li data-i18n="docs.quickchat.2">设置新增「快捷弹窗显示模型对话页」与「唤起时切回 Chrome 前台」。</li>
+              <li data-i18n="docs.quickchat.3">可开启「再次按快捷键关闭快捷对话窗口」实现快速开关。</li>
+            </ul>
+            <p data-i18n="docs.quickchat.note">建议在扩展设置中按你的使用习惯组合上述选项。</p>
           </article>
         </div>
       </section>
@@ -354,6 +390,34 @@
         </details>
       </section>
     </main>
+
+    <div class="donate-modal" hidden>
+      <div class="donate-modal-backdrop" data-close></div>
+      <div
+        class="donate-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="donate-title"
+        aria-describedby="donate-description"
+        tabindex="-1"
+      >
+        <button class="donate-modal-close" type="button" data-close aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 id="donate-title" data-i18n="donate.title">感谢支持 Right AI！</h2>
+        <p id="donate-description" data-i18n="donate.message">扫描任意二维码完成打赏，感谢你的支持！</p>
+        <div class="donate-qr-grid">
+          <figure>
+            <img src="assets/Ali-Pay.JPG" alt="支付宝打赏二维码" loading="lazy" />
+            <figcaption data-i18n="donate.alipay">支付宝</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Wechat-Pay.jpg" alt="微信打赏二维码" loading="lazy" />
+            <figcaption data-i18n="donate.wechat">微信</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <p data-i18n="footer.tagline">Right AI · Build faster decisions inside your browser.</p>

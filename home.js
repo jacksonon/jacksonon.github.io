@@ -15,6 +15,7 @@
   "nav.tools": "Tools",
   "nav.language": "Language",
   "nav.chrome": "Add to Chrome",
+  "nav.donate": "Donate",
   "theme.toggle": "Toggle Theme",
   "hero.title": "The most modern and interactive AI command center for your browser",
   "hero.desc": "Your browser should do more than browsing. Right AI combines Quick Input, Multi-Model Split View, Webpage Agent, and automation into one smooth workspace.",
@@ -42,8 +43,8 @@
   "features.lead": "No more jumping between tabs and tools. Right AI consolidates core AI actions into an interactive workflow.",
   "panels.quick.title": "Use Ctrl + R to send ideas directly to models",
   "panels.quick.1": "Launch instantly on any page and keep your flow.",
-  "panels.quick.2": "Supports smart suggestions, intent prediction, and fast send.",
-  "panels.quick.3": "Turn intent into execution with fewer interruptions.",
+  "panels.quick.2": "Open a model conversation window right on the current page (bottom-right) without switching away.",
+  "panels.quick.3": "New settings: open chat page directly, bring Chrome to foreground, and press shortcut again to close.",
   "panels.multi.title": "Collaborate with multiple models on one screen",
   "panels.multi.1": "Run ChatGPT, Gemini, Claude, and custom models side by side.",
   "panels.multi.2": "Cross-check answers instantly for higher confidence.",
@@ -52,6 +53,14 @@
   "panels.web.1": "Read current page context for Q&A, rewrite, summary, and translation.",
   "panels.web.2": "Combine OCR and vision understanding for mixed-media tasks.",
   "panels.web.3": "Complete research and planning directly inside the page.",
+  "panels.stock.title": "Stock module: live watch + AI analysis in one view",
+  "panels.stock.1": "Track watchlist symbols, price moves, and key levels directly in the sidebar.",
+  "panels.stock.2": "Combine market data with multi-model Q&A for pre-market and intraday analysis.",
+  "panels.stock.3": "Use stock context while reading news, financial reports, and announcements.",
+  "panels.ocr.title": "Text recognition: OCR extraction + translation in one step",
+  "panels.ocr.1": "Extract copyable text from webpage images and screenshots with one click.",
+  "panels.ocr.2": "Translate, summarize, and continue asking follow-up questions from OCR output.",
+  "panels.ocr.3": "Ideal for posters, PDF screenshots, social images, and mixed-media content.",
   "panels.dark.title": "One-click comfortable dark mode for any website",
   "panels.dark.1": "Works even when websites do not provide native dark mode.",
   "panels.dark.2": "Sync with system and extension theme preferences.",
@@ -85,6 +94,11 @@
   "docs.update.2": "Bi-weekly: model routing improvements and stability updates.",
   "docs.update.3": "Monthly: new scenario agents and performance upgrades.",
   "docs.update.note": "Enable auto update to get the newest interactions first.",
+  "docs.quickchat.title": "AI Quick Input chat mode (new)",
+  "docs.quickchat.1": "After launching, open the model chat page directly at the bottom-right of the current webpage.",
+  "docs.quickchat.2": "New settings include \"Show model chat page in quick popup\" and \"Switch Chrome to front when triggered\".",
+  "docs.quickchat.3": "Enable \"Press shortcut again to close quick chat window\" for fast open/close control.",
+  "docs.quickchat.note": "Mix these options in extension settings based on your workflow preference.",
   "faq.title": "Common Questions",
   "faq.1.q": "Which browsers are supported?",
   "faq.1.a": "Latest Chrome is recommended. Most Chromium-based browsers are also compatible.",
@@ -100,6 +114,8 @@
   "tabs.quick": "AI Quick Input",
   "tabs.multi": "Multi Model Split",
   "tabs.webpage": "Webpage Agent",
+  "tabs.stock": "Stock Assistant",
+  "tabs.ocr": "OCR & Text",
   "tabs.dark": "Adaptive Dark Mode",
   "workflow.kicker": "Workflow Engine",
   "workflow.1.title": "01 · Capture",
@@ -109,6 +125,13 @@
   "showcase.kicker": "Interactive Scenarios",
   "docs.kicker": "Get Started",
   "faq.kicker": "FAQ",
+  "donate.title": "Thanks for supporting Right AI!",
+  "donate.message": "Scan either QR code to leave a tip. Your support keeps Right AI moving.",
+  "donate.alipay": "Alipay",
+  "donate.wechat": "WeChat",
+  "download.tooltip.loading": "Loading version…",
+  "download.tooltip.unavailable": "Version unavailable",
+  "download.tooltip.prefix": "Version ",
   "footer.tagline": "Right AI · Build faster decisions inside your browser."
 };
 
@@ -124,6 +147,7 @@
     "nav.tools": "站長工具",
     "nav.language": "語言",
     "nav.chrome": "加入 Chrome",
+    "nav.donate": "打賞",
     "theme.toggle": "切換主題",
     "hero.title": "為你的瀏覽器打造最現代、最具互動性的 AI 指揮中心",
     "hero.desc": "瀏覽器不該只用來瀏覽。Right AI 將快速輸入、多模型分割視圖、網頁代理與自動化整合為一個流暢的工作空間。",
@@ -231,6 +255,7 @@
     "nav.tools": "ウェブマスターツール",
     "nav.language": "言語",
     "nav.chrome": "Chrome に追加",
+    "nav.donate": "寄付",
     "theme.toggle": "テーマ切替",
     "hero.title": "ブラウザのための、最先端でインタラクティブな AI コマンドセンター",
     "hero.desc": "ブラウザは閲覧だけのものではありません。Right AI はクイック入力、マルチモデル分割ビュー、Webページエージェント、自動化を 1 つの滑らかなワークスペースに統合します。",
@@ -338,6 +363,7 @@
     "nav.tools": "웹마스터 도구",
     "nav.language": "언어",
     "nav.chrome": "Chrome에 추가",
+    "nav.donate": "후원하기",
     "theme.toggle": "테마 전환",
     "hero.title": "브라우저를 위한 가장 현대적이고 인터랙티브한 AI 커맨드 센터",
     "hero.desc": "브라우저는 단순한 탐색 그 이상이어야 합니다. Right AI는 Quick Input, 멀티 모델 분할 보기, 웹페이지 에이전트, 자동화를 하나의 매끄러운 워크스페이스로 결합합니다.",
@@ -445,6 +471,7 @@
     "nav.tools": "Инструменты вебмастера",
     "nav.language": "Язык",
     "nav.chrome": "Добавить в Chrome",
+    "nav.donate": "Поддержать",
     "theme.toggle": "Сменить тему",
     "hero.title": "Самый современный и интерактивный AI-командный центр для вашего браузера",
     "hero.desc": "Ваш браузер должен уметь больше, чем просто просмотр страниц. Right AI объединяет Quick Input, Multi-Model Split View, Webpage Agent и автоматизацию в единое плавное рабочее пространство.",
@@ -654,6 +681,39 @@
   }
 };
 
+  const DOWNLOAD_TOOLTIP_TEXT = {
+  "zh": {
+    "loading": "版本加载中…",
+    "unavailable": "版本信息不可用",
+    "prefix": "版本 "
+  },
+  "zh-Hant": {
+    "loading": "版本載入中…",
+    "unavailable": "版本資訊不可用",
+    "prefix": "版本 "
+  },
+  "ja": {
+    "loading": "バージョンを読み込み中…",
+    "unavailable": "バージョン情報を取得できません",
+    "prefix": "Version "
+  },
+  "ko": {
+    "loading": "버전 정보를 불러오는 중…",
+    "unavailable": "버전 정보를 불러올 수 없습니다",
+    "prefix": "Version "
+  },
+  "ru": {
+    "loading": "Загрузка версии…",
+    "unavailable": "Версия недоступна",
+    "prefix": "Version "
+  },
+  "en": {
+    "loading": "Loading version…",
+    "unavailable": "Version unavailable",
+    "prefix": "Version "
+  }
+};
+
   const defaultTextByKey = Object.create(null);
   const defaultPlaceholderByKey = Object.create(null);
   let initialTitle = "";
@@ -760,6 +820,11 @@
     const normalized = normalizeLanguage(language);
     const responses = RESPONSE_TEXT[normalized] || RESPONSE_TEXT.en;
     return responses?.[type] ?? RESPONSE_TEXT.en[type] ?? RESPONSE_TEXT.zh[type] ?? "";
+  }
+
+  function getDownloadTooltipCopy(language) {
+    const normalized = normalizeLanguage(language);
+    return DOWNLOAD_TOOLTIP_TEXT[normalized] || DOWNLOAD_TOOLTIP_TEXT.en;
   }
 
   function cacheDefaultCopy() {
@@ -1355,6 +1420,175 @@
     });
   }
 
+  function setupDonateModal() {
+    const donateModal = document.querySelector(".donate-modal");
+    const donateDialog = donateModal?.querySelector(".donate-modal-dialog") || null;
+    const donateTriggers = Array.from(document.querySelectorAll(".donate-trigger"));
+
+    if (!donateModal || !donateDialog || donateTriggers.length === 0) {
+      return;
+    }
+
+    let previousFocusedNode = null;
+
+    const closeDonateModal = () => {
+      donateModal.hidden = true;
+      document.body.classList.remove("modal-open");
+      document.removeEventListener("keydown", onDonateKeydown);
+
+      if (previousFocusedNode && typeof previousFocusedNode.focus === "function") {
+        previousFocusedNode.focus();
+      }
+      previousFocusedNode = null;
+    };
+
+    const openDonateModal = () => {
+      previousFocusedNode = document.activeElement;
+      donateModal.hidden = false;
+      document.body.classList.add("modal-open");
+      donateDialog.focus();
+      document.addEventListener("keydown", onDonateKeydown);
+    };
+
+    function onDonateKeydown(event) {
+      if (event.key === "Escape") {
+        closeDonateModal();
+      }
+    }
+
+    donateTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        openDonateModal();
+      });
+    });
+
+    donateModal.addEventListener("click", (event) => {
+      if (event.target.closest("[data-close]")) {
+        event.preventDefault();
+        closeDonateModal();
+        return;
+      }
+
+      if (!event.target.closest(".donate-modal-dialog")) {
+        closeDonateModal();
+      }
+    });
+  }
+
+  function setupDownloadVersionTooltip() {
+    const downloadAnchors = Array.from(document.querySelectorAll(".direct-download"));
+
+    if (downloadAnchors.length === 0) {
+      return;
+    }
+
+    const tooltip = document.createElement("div");
+    tooltip.className = "download-tooltip";
+    tooltip.setAttribute("role", "status");
+    document.body.appendChild(tooltip);
+
+    let versionLabel = "";
+    let versionLoadFailed = false;
+    let activeAnchor = null;
+
+    const getTooltipText = () => {
+      const copy = getDownloadTooltipCopy(getCurrentLanguage());
+      if (versionLabel) {
+        return `${copy.prefix}${versionLabel}`;
+      }
+
+      if (versionLoadFailed) {
+        return copy.unavailable;
+      }
+
+      return copy.loading;
+    };
+
+    const positionTooltip = (targetNode) => {
+      const rect = targetNode.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
+      const tooltipHeight = tooltip.offsetHeight;
+      const tooltipWidth = tooltip.offsetWidth;
+
+      let top = rect.top + scrollY - tooltipHeight - 12;
+      if (top < scrollY + 8) {
+        top = rect.bottom + scrollY + 12;
+      }
+
+      let left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+      const minLeft = scrollX + 8;
+      const maxLeft = scrollX + window.innerWidth - tooltipWidth - 8;
+      left = Math.max(minLeft, Math.min(left, maxLeft));
+
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
+    };
+
+    const showTooltip = (targetNode) => {
+      activeAnchor = targetNode;
+      tooltip.textContent = getTooltipText();
+      tooltip.classList.add("is-visible");
+      positionTooltip(targetNode);
+    };
+
+    const hideTooltip = () => {
+      activeAnchor = null;
+      tooltip.classList.remove("is-visible");
+    };
+
+    downloadAnchors.forEach((anchor) => {
+      anchor.addEventListener("mouseenter", () => showTooltip(anchor));
+      anchor.addEventListener("mouseleave", hideTooltip);
+      anchor.addEventListener("focus", () => showTooltip(anchor));
+      anchor.addEventListener("blur", hideTooltip);
+    });
+
+    window.addEventListener("scroll", () => {
+      if (activeAnchor) {
+        positionTooltip(activeAnchor);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (activeAnchor) {
+        positionTooltip(activeAnchor);
+      }
+    });
+
+    document.addEventListener("rightai:language-change", () => {
+      if (activeAnchor) {
+        showTooltip(activeAnchor);
+      }
+    });
+
+    fetch("files/version.txt")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load version");
+        }
+
+        return response.text();
+      })
+      .then((text) => {
+        const trimmed = text.trim();
+        versionLabel = trimmed;
+        versionLoadFailed = !trimmed;
+
+        if (activeAnchor) {
+          showTooltip(activeAnchor);
+        }
+      })
+      .catch(() => {
+        versionLoadFailed = true;
+
+        if (activeAnchor) {
+          showTooltip(activeAnchor);
+        }
+      });
+  }
+
   function initHomeInteractions() {
     setupLanguageSwitcher();
     setupThemeToggle();
@@ -1365,6 +1599,8 @@
     setupFeatureTabs();
     setupCommandPlayground();
     setupTiltCards();
+    setupDonateModal();
+    setupDownloadVersionTooltip();
   }
 
   onReady(initHomeInteractions);
