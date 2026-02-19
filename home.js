@@ -656,28 +656,34 @@
 
   const themeLabelByLanguage = {
   "zh": {
-    "light": "切到浅色",
-    "dark": "切到深色"
+    "system": "跟随系统",
+    "dark": "切换深色",
+    "light": "切换浅色"
   },
   "zh-Hant": {
-    "light": "切到淺色",
-    "dark": "切到深色"
+    "system": "跟隨系統",
+    "dark": "切換深色",
+    "light": "切換淺色"
   },
   "ja": {
-    "light": "ライトへ",
-    "dark": "ダークへ"
+    "system": "システム追従",
+    "dark": "ダークへ切替",
+    "light": "ライトへ切替"
   },
   "ko": {
-    "light": "라이트 모드",
-    "dark": "다크 모드"
+    "system": "시스템 따라가기",
+    "dark": "다크로 전환",
+    "light": "라이트로 전환"
   },
   "ru": {
-    "light": "Светлая тема",
-    "dark": "Темная тема"
+    "system": "Системная тема",
+    "dark": "В тёмную тему",
+    "light": "В светлую тему"
   },
   "en": {
-    "light": "Light Mode",
-    "dark": "Dark Mode"
+    "system": "Follow System",
+    "dark": "Switch Dark",
+    "light": "Switch Light"
   }
 };
 
@@ -968,51 +974,89 @@
       return;
     }
 
-    const storedTheme = readStorage(THEME_STORAGE_KEY);
-    const hasValidStoredTheme = storedTheme === "light" || storedTheme === "dark";
-    const systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-    const initialTheme = hasValidStoredTheme ? storedTheme : systemTheme;
+    const systemPreference = typeof window.matchMedia === "function"
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+      : null;
 
-    const applyTheme = (theme) => {
-      body.setAttribute("data-theme", theme);
-
-      if (!themeToggle) {
-        return;
+    const normalizeThemeMode = (mode) => {
+      if (mode === "light" || mode === "dark" || mode === "system") {
+        return mode;
       }
+      return "system";
+    };
 
-      const isDark = theme === "dark";
-      themeToggle.setAttribute("aria-pressed", String(isDark));
-      themeToggle.setAttribute(
-        "aria-label",
-        isDark ? "Switch to light theme" : "Switch to dark theme"
-      );
+    const resolveThemeFromMode = (mode) => {
+      if (mode === "light" || mode === "dark") {
+        return mode;
+      }
+      return systemPreference?.matches ? "dark" : "light";
+    };
 
-      if (themeLabel) {
+    const getNextThemeMode = (mode) => {
+      if (mode === "system") {
+        return "dark";
+      }
+      if (mode === "dark") {
+        return "light";
+      }
+      return "system";
+    };
+
+    let currentThemeMode = normalizeThemeMode(readStorage(THEME_STORAGE_KEY));
+
+    const applyThemeMode = (mode, persist) => {
+      currentThemeMode = normalizeThemeMode(mode);
+      const resolvedTheme = resolveThemeFromMode(currentThemeMode);
+      body.setAttribute("data-theme-mode", currentThemeMode);
+      body.setAttribute("data-theme", resolvedTheme);
+
+      if (themeToggle) {
         const language = getCurrentLanguage();
         const labels = themeLabelByLanguage[language] || themeLabelByLanguage.en;
-        themeLabel.textContent = isDark ? labels.light : labels.dark;
+        const nextThemeMode = getNextThemeMode(currentThemeMode);
+        const toggleLabel = labels[nextThemeMode] || themeLabelByLanguage.en[nextThemeMode];
+
+        themeToggle.setAttribute("aria-pressed", String(resolvedTheme === "dark"));
+        themeToggle.setAttribute("aria-label", toggleLabel);
+
+        if (themeLabel) {
+          themeLabel.textContent = toggleLabel;
+        }
+      }
+
+      if (persist) {
+        writeStorage(THEME_STORAGE_KEY, currentThemeMode);
       }
     };
 
-    applyTheme(initialTheme);
+    applyThemeMode(currentThemeMode, false);
 
     document.addEventListener("rightai:language-change", () => {
-      const currentTheme = body.getAttribute("data-theme") === "dark" ? "dark" : "light";
-      applyTheme(currentTheme);
+      applyThemeMode(currentThemeMode, false);
     });
+
+    const onSystemThemeChange = () => {
+      if (currentThemeMode !== "system") {
+        return;
+      }
+      applyThemeMode("system", false);
+    };
+
+    if (systemPreference) {
+      if (typeof systemPreference.addEventListener === "function") {
+        systemPreference.addEventListener("change", onSystemThemeChange);
+      } else if (typeof systemPreference.addListener === "function") {
+        systemPreference.addListener(onSystemThemeChange);
+      }
+    }
 
     if (!themeToggle) {
       return;
     }
 
     themeToggle.addEventListener("click", () => {
-      const currentTheme = body.getAttribute("data-theme") === "dark" ? "dark" : "light";
-      const nextTheme = currentTheme === "dark" ? "light" : "dark";
-
-      applyTheme(nextTheme);
-      writeStorage(THEME_STORAGE_KEY, nextTheme);
+      const nextThemeMode = getNextThemeMode(currentThemeMode);
+      applyThemeMode(nextThemeMode, true);
     });
   }
 
