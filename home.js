@@ -6,7 +6,7 @@
 
   const EN_TEXT = {
   "meta.title": "Right AI - Intelligent Browser Workspace",
-  "meta.description": "Right AI transforms your browser into an AI workspace with quick input, multi-model workflows, webpage agent tools, and adaptive dark mode.",
+  "meta.description": "Right AI turns your browser into an AI workspace with quick conversations, split-model chat, stock analysis, webpage agent tools, and adaptive dark mode.",
   "nav.home": "Home",
   "nav.features": "Features",
   "nav.workflow": "Workflow",
@@ -17,8 +17,8 @@
   "nav.chrome": "Add to Chrome",
   "nav.donate": "Donate",
   "theme.toggle": "Toggle Theme",
-  "hero.title": "The most modern and interactive AI command center for your browser",
-  "hero.desc": "Your browser should do more than browsing. Right AI combines Quick Input, Multi-Model Split View, Webpage Agent, and automation into one smooth workspace.",
+  "hero.title": "Quick conversations, stay focused!",
+  "hero.desc": "Solve the problem of installing multiple AI apps or jumping to a different site for every model. Right AI lets different model conversations serve you seamlessly, while continuing to explore more specialized features for convenience.",
   "hero.cta.install": "Install from Chrome Web Store",
   "hero.cta.download": "Direct Download ZIP",
   "hero.cta.docs": "View Setup Guide",
@@ -40,7 +40,7 @@
   "stats.two": "Higher multi-model validation efficiency",
   "stats.three": "High-frequency web scenarios ready out of the box",
   "features.title": "One interface for input, understanding, reasoning, and execution",
-  "features.lead": "No more jumping between tabs and tools. Right AI consolidates core AI actions into an interactive workflow.",
+  "features.lead": "No more jumping between tabs and tools. Right AI combines core AI actions and stock analysis into one interactive workflow.",
   "panels.quick.title": "Use Ctrl + R to send ideas directly to models",
   "panels.quick.1": "Launch instantly on any page and keep your flow.",
   "panels.quick.2": "Open a model conversation window on the current page (bottom-right) and keep webpage context attached for follow-up chat.",
@@ -57,10 +57,10 @@
   "panels.web.1": "Read current page context for Q&A, rewrite, summary, and translation.",
   "panels.web.2": "Combine OCR and vision understanding for mixed-media tasks.",
   "panels.web.3": "Complete research and planning directly inside the page.",
-  "panels.stock.title": "Stock module: live watch + AI analysis in one view",
-  "panels.stock.1": "Track watchlist symbols, price moves, and key levels directly in the sidebar.",
-  "panels.stock.2": "Combine market data with multi-model Q&A for pre-market and intraday analysis.",
-  "panels.stock.3": "Use stock context while reading news, financial reports, and announcements.",
+  "panels.stock.title": "Stock tools: watchlists, news, and AI analysis together",
+  "panels.stock.1": "Track watchlists, price moves, intraday action, and key levels directly in the sidebar.",
+  "panels.stock.2": "Turn current-page news, filings, and reports into stock analysis and risk cues.",
+  "panels.stock.3": "Send stock questions directly to a selected model and stay in the same research flow.",
   "panels.ocr.title": "Text recognition: OCR extraction + translation in one step",
   "panels.ocr.1": "Extract copyable text from webpage images and screenshots with one click.",
   "panels.ocr.2": "Translate, summarize, and continue asking follow-up questions from OCR output.",
@@ -70,8 +70,8 @@
   "panels.dark.2": "Sync with system and extension theme preferences.",
   "panels.dark.3": "Keeps contrast readable while preserving visual hierarchy.",
   "workflow.title": "Four steps to complete dense information tasks",
-  "workflow.1.body": "Press Ctrl + R on any webpage and input the goal. Right AI captures context automatically.",
-  "workflow.2.body": "Tasks are routed by type and can be processed in parallel across models.",
+  "workflow.1.body": "Press Ctrl + R on any webpage and enter what you want to send. Right AI can send it to a selected model, and if you configure Zhipu AI it can infer intent from the current page context.",
+  "workflow.2.body": "Use split view to chat with two models at the same time.",
   "workflow.3.body": "Generate summaries, action lists, rewrites, and recommendations in the sidebar.",
   "workflow.4.body": "Use outputs directly for writing, research, and collaboration.",
   "showcase.title": "Interaction design built for real work",
@@ -94,10 +94,10 @@
   "docs.install.step3": "Open any webpage and press Ctrl + R to trigger Quick Input.",
   "docs.install.note": "Manual path: chrome://extensions -> Developer mode -> Load unpacked",
   "docs.update.title": "Release Rhythm",
-  "docs.update.1": "Weekly: prompt templates, quick actions, and visual refinements.",
+  "docs.update.1": "Monthly: we follow the latest AI news and keep Right AI aligned with current usage scenarios.",
   "docs.update.2": "Bi-weekly: model routing improvements and stability updates.",
   "docs.update.3": "Monthly: new scenario agents and performance upgrades.",
-  "docs.update.note": "Enable auto update to get the newest interactions first.",
+  "docs.update.note": "Enable auto update so Right AI stays aligned with the latest model capabilities and usage trends.",
   "docs.quickchat.title": "AI Quick Input chat mode (new)",
   "docs.quickchat.1": "After launching, open the model chat page directly at the bottom-right of the current webpage.",
   "docs.quickchat.2": "New settings include \"Show model chat page in quick popup\" and \"Switch Chrome to front when triggered\".",
@@ -109,10 +109,19 @@
   "faq.2.q": "Do I need an account to start?",
   "faq.2.a": "Core features work right after installation. Some model endpoints may require your own API key.",
   "faq.3.q": "How do I quickly open the input panel?",
-  "faq.3.a": "The default recommended shortcut is Ctrl + R. You can also customize it in extension settings.",
+  "faq.3.a": "The default recommended shortcut is Ctrl + R for opening the right sidebar. You can also customize shortcuts in Right AI settings.",
   "faq.4.q": "How do I install the offline package?",
   "faq.4.a": "Download files/dist.zip, unzip it, open chrome://extensions, enable developer mode, and load unpacked.",
-  "footer.back": "Back to top ↑",
+  "faq.5.q": "What shortcut setup is recommended?",
+  "faq.5.intro": "Recommended shortcut mappings:",
+  "faq.5.head.shortcut": "Shortcut",
+  "faq.5.head.action": "Action",
+  "faq.5.r": "Open the right sidebar.",
+  "faq.5.w": "Open browser chat.",
+  "faq.5.qk": "Quick send a message or open the AI floating window.",
+  "faq.5.l": "Adapt webpage brightness.",
+  "faq.5.note": "Configure these inside the Right AI panel by opening Settings and editing the matching entries.",
+  "footer.back": "Back to top",
   "hero.kicker": "Right AI · Browser Intelligence Hub",
   "features.kicker": "Feature System",
   "tabs.quick": "AI Quick Input",
@@ -124,7 +133,7 @@
   "tabs.dark": "Adaptive Dark Mode",
   "workflow.kicker": "Workflow Engine",
   "workflow.1.title": "01 · Capture",
-  "workflow.2.title": "02 · Route",
+  "workflow.2.title": "02 · Split View",
   "workflow.3.title": "03 · Generate",
   "workflow.4.title": "04 · Execute",
   "showcase.kicker": "Interactive Scenarios",
@@ -137,13 +146,13 @@
   "download.tooltip.loading": "Loading version…",
   "download.tooltip.unavailable": "Version unavailable",
   "download.tooltip.prefix": "Version ",
-  "footer.tagline": "Right AI · Build faster decisions inside your browser."
+  "footer.copyright": "© 2026 RightAI. All rights reserved."
 };
 
   const LOCALE_OVERRIDES = {
   "zh-Hant": {
     "meta.title": "Right AI - 智慧瀏覽器工作空間",
-    "meta.description": "Right AI 將你的瀏覽器轉化為 AI 工作空間，提供快速輸入、多模型工作流、網頁代理工具與自適應深色模式。",
+    "meta.description": "Right AI 將你的瀏覽器轉化為 AI 工作空間，提供快速對話、模型分屏、股票助手、網頁代理工具與自適應深色模式。",
     "nav.home": "首頁",
     "nav.features": "功能",
     "nav.workflow": "工作流程",
@@ -154,8 +163,8 @@
     "nav.chrome": "加入 Chrome",
     "nav.donate": "打賞",
     "theme.toggle": "切換主題",
-    "hero.title": "為你的瀏覽器打造最現代、最具互動性的 AI 指揮中心",
-    "hero.desc": "瀏覽器不該只用來瀏覽。Right AI 將快速輸入、多模型分割視圖、網頁代理與自動化整合為一個流暢的工作空間。",
+    "hero.title": "快速對話，保持專注！",
+    "hero.desc": "為你解決安裝多個 AI 應用，或每使用一個模型就要切換到對應網站的問題。讓各個模型對話無縫為你提供服務，同時也探索更多特色服務帶來便利。期待你的使用。",
     "hero.cta.install": "從 Chrome 線上應用程式商店安裝",
     "hero.cta.download": "直接下載 ZIP",
     "hero.cta.docs": "查看安裝指南",
@@ -177,7 +186,7 @@
     "stats.two": "多模型驗證效率更高",
     "stats.three": "高頻網頁場景開箱即用",
     "features.title": "一個介面完成輸入、理解、推理與執行",
-    "features.lead": "不用再在分頁與工具間跳轉。Right AI 將核心 AI 動作整合為互動式工作流程。",
+    "features.lead": "不用再在分頁與工具間跳轉。Right AI 將核心 AI 動作與股票分析能力整合為互動式工作流程。",
     "panels.quick.title": "按 Ctrl + R，想法可直接送往模型",
     "panels.quick.1": "任意頁面即開即用，不中斷你的節奏。",
     "panels.quick.2": "支援在當前頁面直接開啟對話視窗，並攜帶網頁上下文持續對話。",
@@ -194,10 +203,10 @@
     "panels.web.1": "讀取當前頁面上下文，支援問答、改寫、摘要與翻譯。",
     "panels.web.2": "結合 OCR 與視覺理解，處理圖文混合任務。",
     "panels.web.3": "研究與規劃可直接在頁面內完成。",
-    "panels.stock.title": "股票模組：盯盤與 AI 解讀整合",
-    "panels.stock.1": "可在側欄即時查看自選股、漲跌幅與關鍵價位。",
-    "panels.stock.2": "結合多模型問答，快速產出盤前與盤中分析。",
-    "panels.stock.3": "閱讀新聞、財報與公告時可直接帶入股票上下文。",
+    "panels.stock.title": "股票助手：盯盤、資訊、AI 解讀一體化",
+    "panels.stock.1": "可在側欄即時查看自選股、漲跌幅、分時與關鍵價位。",
+    "panels.stock.2": "結合目前網頁資訊、財報與公告，快速產出個股解讀與風險提示。",
+    "panels.stock.3": "可把股票問題直接送到指定模型，在研究與盯盤之間保持連續。",
     "panels.ocr.title": "文字辨識：OCR 擷取與翻譯一步完成",
     "panels.ocr.1": "可對網頁圖片與截圖進行文字辨識，快速擷取可複製文字。",
     "panels.ocr.2": "辨識結果可直接翻譯、摘要並持續追問。",
@@ -207,8 +216,8 @@
     "panels.dark.2": "可與系統與擴充功能的主題偏好同步。",
     "panels.dark.3": "在保留視覺層級的同時維持可讀對比。",
     "workflow.title": "四步驟完成高密度資訊任務",
-    "workflow.1.body": "在任何網頁按下 Ctrl + R 輸入目標，Right AI 會自動擷取上下文。",
-    "workflow.2.body": "任務會依類型分流，並可跨模型並行處理。",
+    "workflow.1.body": "在任何網頁按下 Ctrl + R，輸入要發給模型的內容。Right AI 可快速發送到指定模型；若你已配置智譜 AI，還能基於當前頁面內容分析輸入意圖。",
+    "workflow.2.body": "模型分屏，可同時和兩個模型對話。",
     "workflow.3.body": "在側邊欄生成摘要、行動清單、改寫版本與建議。",
     "workflow.4.body": "將輸出直接用於寫作、研究與協作。",
     "showcase.title": "為真實工作打造的互動設計",
@@ -231,10 +240,10 @@
     "docs.install.step3": "開啟任一網頁後按 Ctrl + R，即可觸發快速輸入。",
     "docs.install.note": "手動路徑：chrome://extensions -> 開發人員模式 -> 載入未封裝項目",
     "docs.update.title": "更新節奏",
-    "docs.update.1": "每週：提示詞範本、快速操作與視覺細節優化。",
+    "docs.update.1": "每月：跟進最新 AI 資訊，持續提供符合當前場景的 AI 服務。",
     "docs.update.2": "雙週：模型路由優化與穩定性更新。",
     "docs.update.3": "每月：新增場景代理與效能升級。",
-    "docs.update.note": "建議啟用自動更新，優先體驗最新互動。",
+    "docs.update.note": "建議啟用自動更新，讓 Right AI 持續貼合最新模型能力與使用場景。",
     "docs.quickchat.title": "AI 快速輸入對話頁（新）",
     "docs.quickchat.1": "喚起後可在網頁右下角直接進入模型對話頁。",
     "docs.quickchat.2": "新增「快捷彈窗顯示模型對話頁」與「喚起時切回 Chrome 前景」設定。",
@@ -246,10 +255,19 @@
     "faq.2.q": "開始使用需要帳號嗎？",
     "faq.2.a": "核心功能安裝後即可使用；部分模型端點可能需要你自行提供 API 金鑰。",
     "faq.3.q": "如何快速開啟輸入面板？",
-    "faq.3.a": "預設建議快捷鍵是 Ctrl + R，你也可以在擴充功能設定中自訂。",
+    "faq.3.a": "預設建議快捷鍵是 Ctrl + R，用於喚起右側面板。你也可以在 Right AI 設定中自訂快捷鍵。",
     "faq.4.q": "如何安裝離線安裝包？",
     "faq.4.a": "下載 files/dist.zip 並解壓，開啟 chrome://extensions，啟用開發人員模式後點選「載入未封裝項目」。",
-    "footer.back": "回到頂部 ↑",
+    "faq.5.q": "快捷鍵怎麼設定更順手？",
+    "faq.5.intro": "建議可依下列方式配置：",
+    "faq.5.head.shortcut": "快捷鍵",
+    "faq.5.head.action": "對應功能",
+    "faq.5.r": "喚起右側面板。",
+    "faq.5.w": "喚起瀏覽器對話。",
+    "faq.5.qk": "快速傳送訊息或喚起 AI 浮層視窗。",
+    "faq.5.l": "網頁亮度適配。",
+    "faq.5.note": "這些設定需要在 Right AI 面板中點擊「設定」，並在對應項目內完成配置。",
+    "footer.back": "回到頂部",
     "hero.kicker": "Right AI · 瀏覽器智慧中樞",
     "features.kicker": "功能系統",
     "tabs.quick": "AI 快速輸入",
@@ -261,7 +279,7 @@
     "tabs.dark": "自適應深色模式",
     "workflow.kicker": "工作流引擎",
     "workflow.1.title": "01 · 擷取",
-    "workflow.2.title": "02 · 路由",
+    "workflow.2.title": "02 · 分屏",
     "workflow.3.title": "03 · 生成",
     "workflow.4.title": "04 · 執行",
     "showcase.kicker": "互動場景",
@@ -271,11 +289,11 @@
     "donate.message": "掃描任一付款碼即可完成打賞，感謝你的支持！",
     "donate.alipay": "支付寶",
     "donate.wechat": "微信",
-    "footer.tagline": "Right AI · 在你的瀏覽器中更快做出決策。"
+    "footer.copyright": "© 2026 RightAI。保留所有權利。"
   },
   "ja": {
     "meta.title": "Right AI - インテリジェント・ブラウザワークスペース",
-    "meta.description": "Right AI はブラウザを、クイック入力、マルチモデルワークフロー、Webページエージェントツール、適応型ダークモードを備えた AI ワークスペースへ変えます。",
+    "meta.description": "Right AI はブラウザを、クイック対話、モデル分割表示、株式アシスタント、Webページエージェント、適応型ダークモードを備えた AI ワークスペースへ変えます。",
     "nav.home": "ホーム",
     "nav.features": "機能",
     "nav.workflow": "ワークフロー",
@@ -286,8 +304,8 @@
     "nav.chrome": "Chrome に追加",
     "nav.donate": "寄付",
     "theme.toggle": "テーマ切替",
-    "hero.title": "ブラウザのための、最先端でインタラクティブな AI コマンドセンター",
-    "hero.desc": "ブラウザは閲覧だけのものではありません。Right AI はクイック入力、マルチモデル分割ビュー、Webページエージェント、自動化を 1 つの滑らかなワークスペースに統合します。",
+    "hero.title": "素早く対話して、集中を保つ",
+    "hero.desc": "複数の AI アプリを入れたり、モデルごとに別サイトへ移動したりする手間を減らします。Right AI は複数モデルとの対話をシームレスにし、さらに便利な独自機能も広げていきます。",
     "hero.cta.install": "Chrome ウェブストアからインストール",
     "hero.cta.download": "ZIP を直接ダウンロード",
     "hero.cta.docs": "セットアップガイドを見る",
@@ -309,7 +327,7 @@
     "stats.two": "マルチモデル検証効率の向上",
     "stats.three": "高頻度の Web シナリオに標準対応",
     "features.title": "入力・理解・推論・実行を 1 つのインターフェースに",
-    "features.lead": "タブやツールを行き来する必要はありません。Right AI は主要な AI 操作をインタラクティブなワークフローに集約します。",
+    "features.lead": "タブやツールを行き来する必要はありません。Right AI は主要な AI 操作と株式分析機能を 1 つのインタラクティブなワークフローに集約します。",
     "panels.quick.title": "Ctrl + R でアイデアを直接モデルへ送信",
     "panels.quick.1": "任意のページで即時起動し、作業フローを維持。",
     "panels.quick.2": "現在のページ上で対話ウィンドウを開き、ページ文脈を引き継いで会話を続けられます。",
@@ -326,10 +344,10 @@
     "panels.web.1": "現在ページの文脈を読み取り、Q&A・リライト・要約・翻訳に活用。",
     "panels.web.2": "OCR と画像理解を組み合わせ、混在メディアの作業に対応。",
     "panels.web.3": "調査や計画をページ内で直接完了。",
-    "panels.stock.title": "株式モジュール：監視と AI 分析を一体化",
-    "panels.stock.1": "サイドバーでウォッチリスト銘柄、騰落率、重要価格帯をリアルタイム確認。",
-    "panels.stock.2": "マルチモデル Q&A と組み合わせ、寄り前・場中の分析を素早く作成。",
-    "panels.stock.3": "ニュース、決算、開示を読む際に株式コンテキストを直接利用できます。",
+    "panels.stock.title": "株式アシスタント: 監視、ニュース、AI 分析を一体化",
+    "panels.stock.1": "サイドバーでウォッチリスト、値動き、場中の動き、重要価格帯をリアルタイム確認。",
+    "panels.stock.2": "現在のページ上のニュース、決算、開示から銘柄分析とリスク示唆をすばやく生成。",
+    "panels.stock.3": "株式関連の質問を指定モデルへ直接送り、調査フローを途切れさせません。",
     "panels.ocr.title": "テキスト認識：OCR 抽出と翻訳をワンステップで",
     "panels.ocr.1": "Web画像やスクリーンショットからコピー可能なテキストを素早く抽出。",
     "panels.ocr.2": "抽出結果はそのまま翻訳・要約し、追加質問も可能です。",
@@ -339,8 +357,8 @@
     "panels.dark.2": "システムと拡張機能のテーマ設定を同期。",
     "panels.dark.3": "視覚階層を保ちながら読みやすいコントラストを維持。",
     "workflow.title": "情報密度の高い作業を完了する 4 ステップ",
-    "workflow.1.body": "任意の Web ページで Ctrl + R を押し、目標を入力。Right AI が文脈を自動取得します。",
-    "workflow.2.body": "タスクは種類ごとに振り分けられ、モデル間で並列処理できます。",
+    "workflow.1.body": "任意の Web ページで Ctrl + R を押し、モデルへ送る内容を入力します。Right AI は指定モデルへすぐ送信でき、智譜 AI を設定していれば現在ページ文脈から入力意図も分析できます。",
+    "workflow.2.body": "分割表示で 2 つのモデルと同時に対話できます。",
     "workflow.3.body": "サイドバーで要約、アクションリスト、リライト、推奨を生成。",
     "workflow.4.body": "出力をそのまま執筆・調査・コラボレーションに活用。",
     "showcase.title": "実務のために設計されたインタラクション",
@@ -363,10 +381,10 @@
     "docs.install.step3": "任意の Web ページを開き、Ctrl + R を押してクイック入力を起動。",
     "docs.install.note": "手動手順: chrome://extensions -> デベロッパーモード -> パッケージ化されていない拡張機能を読み込む",
     "docs.update.title": "リリースサイクル",
-    "docs.update.1": "毎週: プロンプトテンプレート、クイックアクション、表示改善。",
+    "docs.update.1": "毎月: 最新の AI ニュースを追い、現在の利用シーンに合う AI サービスへ更新します。",
     "docs.update.2": "隔週: モデルルーティングの改善と安定性アップデート。",
     "docs.update.3": "毎月: 新しいシナリオエージェントと性能向上。",
-    "docs.update.note": "自動更新を有効にして、最新インタラクションをいち早く利用。",
+    "docs.update.note": "自動更新を有効にして、最新のモデル能力と利用トレンドに合わせてください。",
     "docs.quickchat.title": "AI クイック入力の対話ページ（新）",
     "docs.quickchat.1": "起動後、現在のWebページ右下からモデル対話ページへ直接入れます。",
     "docs.quickchat.2": "「クイックポップアップでモデル対話ページを表示」と「起動時に Chrome を前面表示」の設定を追加。",
@@ -378,10 +396,19 @@
     "faq.2.q": "開始にアカウントは必要ですか？",
     "faq.2.a": "コア機能はインストール直後に利用できます。一部のモデルエンドポイントでは独自の API キーが必要な場合があります。",
     "faq.3.q": "入力パネルを素早く開くには？",
-    "faq.3.a": "既定の推奨ショートカットは Ctrl + R です。拡張機能設定で変更することもできます。",
+    "faq.3.a": "既定の推奨ショートカットは Ctrl + R で、右サイドバーを開きます。Right AI の設定で変更することもできます。",
     "faq.4.q": "オフラインパッケージはどうインストールしますか？",
     "faq.4.a": "files/dist.zip をダウンロードして解凍し、chrome://extensions を開いてデベロッパーモードを有効化し、パッケージ化されていない拡張機能を読み込みます。",
-    "footer.back": "トップへ ↑",
+    "faq.5.q": "おすすめのショートカット設定は？",
+    "faq.5.intro": "おすすめの割り当て例:",
+    "faq.5.head.shortcut": "ショートカット",
+    "faq.5.head.action": "機能",
+    "faq.5.r": "右サイドバーを開く。",
+    "faq.5.w": "ブラウザ対話を開く。",
+    "faq.5.qk": "メッセージを素早く送る、または AI フローティングウィンドウを開く。",
+    "faq.5.l": "Web ページの明るさを調整する。",
+    "faq.5.note": "これらは Right AI パネル内の設定を開き、対応する項目で設定してください。",
+    "footer.back": "トップへ",
     "hero.kicker": "Right AI · ブラウザインテリジェンスハブ",
     "features.kicker": "機能システム",
     "tabs.quick": "AI クイック入力",
@@ -393,7 +420,7 @@
     "tabs.dark": "適応型ダークモード",
     "workflow.kicker": "ワークフローエンジン",
     "workflow.1.title": "01 · 収集",
-    "workflow.2.title": "02 · 振り分け",
+    "workflow.2.title": "02 · 分割表示",
     "workflow.3.title": "03 · 生成",
     "workflow.4.title": "04 · 実行",
     "showcase.kicker": "インタラクティブシナリオ",
@@ -403,11 +430,11 @@
     "donate.message": "いずれかの QR コードを読み取って応援できます。ご支援ありがとうございます！",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
-    "footer.tagline": "Right AI · ブラウザ内でより速く意思決定。"
+    "footer.copyright": "© 2026 RightAI. All rights reserved."
   },
   "ko": {
     "meta.title": "Right AI - 브라우저용 지능형 워크스페이스",
-    "meta.description": "Right AI는 브라우저를 빠른 입력, 멀티 모델 워크플로, 웹페이지 에이전트 도구, 적응형 다크 모드를 갖춘 AI 워크스페이스로 바꿔줍니다.",
+    "meta.description": "Right AI는 브라우저를 빠른 대화, 모델 분할 대화, 주식 도구, 웹페이지 에이전트, 적응형 다크 모드를 갖춘 AI 워크스페이스로 바꿔줍니다.",
     "nav.home": "홈",
     "nav.features": "기능",
     "nav.workflow": "워크플로",
@@ -418,8 +445,8 @@
     "nav.chrome": "Chrome에 추가",
     "nav.donate": "후원하기",
     "theme.toggle": "테마 전환",
-    "hero.title": "브라우저를 위한 가장 현대적이고 인터랙티브한 AI 커맨드 센터",
-    "hero.desc": "브라우저는 단순한 탐색 그 이상이어야 합니다. Right AI는 Quick Input, 멀티 모델 분할 보기, 웹페이지 에이전트, 자동화를 하나의 매끄러운 워크스페이스로 결합합니다.",
+    "hero.title": "빠르게 대화하고, 집중을 유지하세요!",
+    "hero.desc": "여러 AI 앱을 설치하거나 모델마다 다른 사이트로 이동해야 하는 문제를 줄여줍니다. Right AI는 여러 모델 대화를 끊김 없이 연결하고, 더 편리한 특화 기능도 계속 확장합니다.",
     "hero.cta.install": "Chrome 웹 스토어에서 설치",
     "hero.cta.download": "ZIP 직접 다운로드",
     "hero.cta.docs": "설정 가이드 보기",
@@ -441,7 +468,7 @@
     "stats.two": "멀티 모델 검증 효율 향상",
     "stats.three": "고빈도 웹 시나리오를 즉시 사용 가능",
     "features.title": "입력, 이해, 추론, 실행을 하나로 묶은 인터페이스",
-    "features.lead": "탭과 도구 사이를 오갈 필요가 없습니다. Right AI가 핵심 AI 작업을 인터랙티브 워크플로로 통합합니다.",
+    "features.lead": "탭과 도구 사이를 오갈 필요가 없습니다. Right AI가 핵심 AI 작업과 주식 분석 기능을 하나의 인터랙티브 워크플로로 통합합니다.",
     "panels.quick.title": "Ctrl + R로 아이디어를 모델에 바로 보내기",
     "panels.quick.1": "어느 페이지에서나 즉시 실행해 흐름을 유지하세요.",
     "panels.quick.2": "현재 페이지에서 대화 창을 열고 웹페이지 컨텍스트를 함께 붙여 후속 대화를 이어갈 수 있습니다.",
@@ -458,10 +485,10 @@
     "panels.web.1": "현재 페이지 컨텍스트를 읽어 Q&A, 재작성, 요약, 번역을 수행합니다.",
     "panels.web.2": "OCR과 비전 이해를 결합해 혼합 미디어 작업을 처리합니다.",
     "panels.web.3": "페이지 안에서 바로 리서치와 계획을 완료하세요.",
-    "panels.stock.title": "주식 모듈: 시세 확인 + AI 해석 통합",
-    "panels.stock.1": "사이드바에서 관심 종목, 등락률, 핵심 가격대를 실시간으로 확인합니다.",
-    "panels.stock.2": "멀티 모델 Q&A와 결합해 장전/장중 분석을 빠르게 생성합니다.",
-    "panels.stock.3": "뉴스, 재무제표, 공시를 볼 때 주식 컨텍스트를 바로 활용할 수 있습니다.",
+    "panels.stock.title": "주식 도우미: 시세, 뉴스, AI 해석 통합",
+    "panels.stock.1": "사이드바에서 관심 종목, 등락률, 장중 흐름, 핵심 가격대를 실시간으로 확인합니다.",
+    "panels.stock.2": "현재 페이지의 뉴스, 재무제표, 공시를 종목 분석과 리스크 힌트로 빠르게 바꿉니다.",
+    "panels.stock.3": "주식 질문을 지정한 모델에 바로 보내며 같은 리서치 흐름을 유지할 수 있습니다.",
     "panels.ocr.title": "텍스트 인식: OCR 추출 + 번역을 한 번에",
     "panels.ocr.1": "웹 이미지와 스크린샷에서 복사 가능한 텍스트를 빠르게 추출합니다.",
     "panels.ocr.2": "인식 결과를 바로 번역·요약하고 추가 질문을 이어갈 수 있습니다.",
@@ -471,8 +498,8 @@
     "panels.dark.2": "시스템 및 확장 프로그램의 테마 설정과 동기화합니다.",
     "panels.dark.3": "시각적 위계를 유지하면서도 가독성 높은 대비를 제공합니다.",
     "workflow.title": "고밀도 정보 작업을 끝내는 4단계",
-    "workflow.1.body": "아무 웹페이지에서 Ctrl + R을 누르고 목표를 입력하세요. Right AI가 컨텍스트를 자동으로 수집합니다.",
-    "workflow.2.body": "작업은 유형별로 라우팅되며 모델 간 병렬 처리할 수 있습니다.",
+    "workflow.1.body": "아무 웹페이지에서 Ctrl + R을 누르고 모델에 보낼 내용을 입력하세요. Right AI가 지정 모델로 빠르게 보내며, 지푸 AI를 설정했다면 현재 페이지 컨텍스트 기반으로 입력 의도도 분석합니다.",
+    "workflow.2.body": "분할 화면으로 두 모델과 동시에 대화할 수 있습니다.",
     "workflow.3.body": "사이드바에서 요약, 실행 목록, 재작성, 추천을 생성합니다.",
     "workflow.4.body": "결과물을 글쓰기, 리서치, 협업에 바로 활용하세요.",
     "showcase.title": "실제 업무를 위해 설계된 인터랙션 디자인",
@@ -495,10 +522,10 @@
     "docs.install.step3": "아무 웹페이지를 열고 Ctrl + R을 눌러 Quick Input을 실행하세요.",
     "docs.install.note": "수동 경로: chrome://extensions -> 개발자 모드 -> 압축해제된 확장 프로그램 로드",
     "docs.update.title": "릴리스 주기",
-    "docs.update.1": "매주: 프롬프트 템플릿, 빠른 작업, 시각적 개선.",
+    "docs.update.1": "매월: 최신 AI 뉴스를 따라가며 현재 시나리오에 맞는 AI 서비스를 계속 제공합니다.",
     "docs.update.2": "격주: 모델 라우팅 개선 및 안정성 업데이트.",
     "docs.update.3": "매월: 새로운 시나리오 에이전트와 성능 업그레이드.",
-    "docs.update.note": "최신 상호작용을 가장 먼저 받으려면 자동 업데이트를 켜세요.",
+    "docs.update.note": "최신 모델 기능과 사용 흐름에 맞추려면 자동 업데이트를 켜 두세요.",
     "docs.quickchat.title": "AI 빠른 입력 대화 페이지 (신규)",
     "docs.quickchat.1": "실행 후 현재 웹페이지 오른쪽 아래에서 모델 대화 페이지를 바로 열 수 있습니다.",
     "docs.quickchat.2": "\"퀵 팝업에 모델 대화 페이지 표시\" 및 \"실행 시 Chrome을 전면으로 전환\" 설정이 추가되었습니다.",
@@ -510,10 +537,19 @@
     "faq.2.q": "시작하려면 계정이 필요한가요?",
     "faq.2.a": "핵심 기능은 설치 직후 바로 사용할 수 있습니다. 일부 모델 엔드포인트는 개인 API 키가 필요할 수 있습니다.",
     "faq.3.q": "입력 패널을 빠르게 여는 방법은?",
-    "faq.3.a": "기본 권장 단축키는 Ctrl + R입니다. 확장 프로그램 설정에서 직접 변경할 수도 있습니다.",
+    "faq.3.a": "기본 권장 단축키는 Ctrl + R이며 오른쪽 사이드바를 엽니다. Right AI 설정에서 직접 변경할 수도 있습니다.",
     "faq.4.q": "오프라인 패키지는 어떻게 설치하나요?",
     "faq.4.a": "files/dist.zip을 다운로드해 압축을 풀고 chrome://extensions를 연 뒤 개발자 모드를 켜고 압축해제된 확장 프로그램을 로드하세요.",
-    "footer.back": "맨 위로 ↑",
+    "faq.5.q": "추천 단축키 구성은 무엇인가요?",
+    "faq.5.intro": "권장 매핑은 다음과 같습니다:",
+    "faq.5.head.shortcut": "단축키",
+    "faq.5.head.action": "기능",
+    "faq.5.r": "오른쪽 사이드바 열기.",
+    "faq.5.w": "브라우저 대화 열기.",
+    "faq.5.qk": "메시지 빠르게 보내기 또는 AI 플로팅 창 열기.",
+    "faq.5.l": "웹페이지 밝기 적응.",
+    "faq.5.note": "이 설정은 Right AI 패널에서 설정을 열고 해당 항목에서 구성해야 합니다.",
+    "footer.back": "맨 위로",
     "hero.kicker": "Right AI · 브라우저 인텔리전스 허브",
     "features.kicker": "기능 시스템",
     "tabs.quick": "AI 빠른 입력",
@@ -525,7 +561,7 @@
     "tabs.dark": "적응형 다크 모드",
     "workflow.kicker": "워크플로 엔진",
     "workflow.1.title": "01 · 수집",
-    "workflow.2.title": "02 · 라우팅",
+    "workflow.2.title": "02 · 분할",
     "workflow.3.title": "03 · 생성",
     "workflow.4.title": "04 · 실행",
     "showcase.kicker": "인터랙티브 시나리오",
@@ -535,11 +571,11 @@
     "donate.message": "원하는 QR 코드를 스캔해 후원할 수 있습니다. 소중한 지원에 감사드립니다!",
     "donate.alipay": "알리페이",
     "donate.wechat": "위챗페이",
-    "footer.tagline": "Right AI · 브라우저 안에서 더 빠르게 의사결정하세요."
+    "footer.copyright": "© 2026 RightAI. All rights reserved."
   },
   "ru": {
     "meta.title": "Right AI — интеллектуальное рабочее пространство в браузере",
-    "meta.description": "Right AI превращает ваш браузер в AI-рабочее пространство с быстрым вводом, мульти-модельными сценариями, инструментами агента веб-страницы и адаптивной темной темой.",
+    "meta.description": "Right AI превращает браузер в AI-пространство с быстрыми диалогами, разделением моделей, биржевым помощником, агентом веб-страницы и адаптивной тёмной темой.",
     "nav.home": "Главная",
     "nav.features": "Возможности",
     "nav.workflow": "Процесс",
@@ -550,8 +586,8 @@
     "nav.chrome": "Добавить в Chrome",
     "nav.donate": "Поддержать",
     "theme.toggle": "Сменить тему",
-    "hero.title": "Самый современный и интерактивный AI-командный центр для вашего браузера",
-    "hero.desc": "Ваш браузер должен уметь больше, чем просто просмотр страниц. Right AI объединяет Quick Input, Multi-Model Split View, Webpage Agent и автоматизацию в единое плавное рабочее пространство.",
+    "hero.title": "Быстрый диалог, меньше отвлечений!",
+    "hero.desc": "Right AI решает проблему установки множества AI-приложений и постоянных переходов на отдельные сайты для каждой модели. Диалоги с разными моделями работают бесшовно, а дополнительные специальные функции делают работу удобнее.",
     "hero.cta.install": "Установить из Chrome Web Store",
     "hero.cta.download": "Скачать ZIP напрямую",
     "hero.cta.docs": "Открыть руководство по настройке",
@@ -573,7 +609,7 @@
     "stats.two": "Более высокая эффективность проверки в мульти-модельном режиме",
     "stats.three": "Высокочастотные веб-сценарии готовы из коробки",
     "features.title": "Единый интерфейс для ввода, понимания, рассуждения и выполнения",
-    "features.lead": "Больше не нужно прыгать между вкладками и инструментами. Right AI объединяет ключевые AI-действия в интерактивный рабочий процесс.",
+    "features.lead": "Больше не нужно прыгать между вкладками и инструментами. Right AI объединяет ключевые AI-действия и биржевые сценарии в один интерактивный процесс.",
     "panels.quick.title": "Используйте Ctrl + R, чтобы отправлять идеи моделям напрямую",
     "panels.quick.1": "Мгновенный запуск на любой странице без потери потока.",
     "panels.quick.2": "Открывает окно диалога на текущей странице и сохраняет контекст веб-страницы для продолжения разговора.",
@@ -590,10 +626,10 @@
     "panels.web.1": "Читает контекст текущей страницы для Q&A, переписывания, сводки и перевода.",
     "panels.web.2": "Объединяет OCR и анализ изображений для мультимедийных задач.",
     "panels.web.3": "Проводите исследование и планирование прямо внутри страницы.",
-    "panels.stock.title": "Модуль акций: мониторинг котировок и AI-анализ в одном окне",
-    "panels.stock.1": "Отслеживайте список акций, динамику цены и ключевые уровни прямо в сайдбаре.",
-    "panels.stock.2": "Комбинируйте рыночные данные с мульти-модельным Q&A для до- и внутридневного анализа.",
-    "panels.stock.3": "Используйте биржевой контекст при чтении новостей, отчетов и объявлений.",
+    "panels.stock.title": "Биржевой помощник: котировки, новости и AI-анализ вместе",
+    "panels.stock.1": "Следите за списком акций, движением цены, внутридневной динамикой и ключевыми уровнями прямо в сайдбаре.",
+    "panels.stock.2": "Преобразуйте новости, отчеты и раскрытия с текущей страницы в анализ акции и сигналы риска.",
+    "panels.stock.3": "Отправляйте вопросы по акциям прямо выбранной модели и не выпадaйте из исследования.",
     "panels.ocr.title": "Распознавание текста: OCR-извлечение и перевод в один шаг",
     "panels.ocr.1": "Извлекайте копируемый текст из изображений и скриншотов на веб-странице.",
     "panels.ocr.2": "Результаты OCR можно сразу переводить, суммировать и уточнять вопросами.",
@@ -603,8 +639,8 @@
     "panels.dark.2": "Синхронизируется с системной темой и настройками расширения.",
     "panels.dark.3": "Сохраняет читаемую контрастность и визуальную иерархию.",
     "workflow.title": "Четыре шага для задач с плотной информацией",
-    "workflow.1.body": "Нажмите Ctrl + R на любой веб-странице и задайте цель. Right AI автоматически захватит контекст.",
-    "workflow.2.body": "Задачи маршрутизируются по типу и могут обрабатываться параллельно разными моделями.",
+    "workflow.1.body": "Нажмите Ctrl + R на любой странице и введите текст для модели. Right AI быстро отправит его выбранной модели, а при настройке Zhipu AI сможет определить намерение по контексту текущей страницы.",
+    "workflow.2.body": "Режим разделения позволяет одновременно общаться с двумя моделями.",
     "workflow.3.body": "Генерируйте сводки, списки действий, переписывания и рекомендации в боковой панели.",
     "workflow.4.body": "Используйте результаты сразу для письма, исследований и совместной работы.",
     "showcase.title": "Дизайн взаимодействия, созданный для реальной работы",
@@ -627,10 +663,10 @@
     "docs.install.step3": "Откройте любую веб-страницу и нажмите Ctrl + R, чтобы запустить Quick Input.",
     "docs.install.note": "Ручной путь: chrome://extensions -> Режим разработчика -> Загрузить распакованное расширение",
     "docs.update.title": "Ритм релизов",
-    "docs.update.1": "Еженедельно: шаблоны промптов, быстрые действия и визуальные улучшения.",
+    "docs.update.1": "Ежемесячно: следим за новостями AI и обновляем Right AI под актуальные сценарии использования.",
     "docs.update.2": "Раз в две недели: улучшение маршрутизации моделей и обновления стабильности.",
     "docs.update.3": "Ежемесячно: новые сценарные агенты и апгрейды производительности.",
-    "docs.update.note": "Включите автообновление, чтобы первыми получать новые взаимодействия.",
+    "docs.update.note": "Включите автообновление, чтобы Right AI оставался актуальным под новые модели и сценарии.",
     "docs.quickchat.title": "Страница диалога AI быстрого ввода (новое)",
     "docs.quickchat.1": "После запуска можно сразу открыть страницу диалога модели в правом нижнем углу текущей веб-страницы.",
     "docs.quickchat.2": "Добавлены настройки \"Показывать страницу диалога модели в быстром окне\" и \"Переключать Chrome на передний план при запуске\".",
@@ -642,10 +678,19 @@
     "faq.2.q": "Нужна ли учетная запись для начала?",
     "faq.2.a": "Базовые функции работают сразу после установки. Для некоторых модельных endpointов может понадобиться ваш собственный API-ключ.",
     "faq.3.q": "Как быстро открыть панель ввода?",
-    "faq.3.a": "Рекомендуемая горячая клавиша по умолчанию — Ctrl + R. Ее также можно изменить в настройках расширения.",
+    "faq.3.a": "Рекомендуемая клавиша по умолчанию — Ctrl + R для открытия правой панели. Ее можно изменить в настройках Right AI.",
     "faq.4.q": "Как установить офлайн-пакет?",
     "faq.4.a": "Скачайте files/dist.zip, распакуйте архив, откройте chrome://extensions, включите режим разработчика и загрузите распакованное расширение.",
-    "footer.back": "Наверх ↑",
+    "faq.5.q": "Какая схема горячих клавиш рекомендуется?",
+    "faq.5.intro": "Рекомендуемая настройка:",
+    "faq.5.head.shortcut": "Горячая клавиша",
+    "faq.5.head.action": "Действие",
+    "faq.5.r": "Открыть правую панель.",
+    "faq.5.w": "Открыть браузерный диалог.",
+    "faq.5.qk": "Быстро отправить сообщение или открыть плавающее AI-окно.",
+    "faq.5.l": "Адаптация яркости веб-страницы.",
+    "faq.5.note": "Эти параметры задаются внутри панели Right AI: откройте Settings и настройте соответствующие пункты.",
+    "footer.back": "Наверх",
     "hero.kicker": "Right AI · Интеллектуальный хаб в браузере",
     "features.kicker": "Система возможностей",
     "tabs.quick": "Быстрый ввод AI",
@@ -657,7 +702,7 @@
     "tabs.dark": "Адаптивная темная тема",
     "workflow.kicker": "Движок процесса",
     "workflow.1.title": "01 · Сбор",
-    "workflow.2.title": "02 · Маршрутизация",
+    "workflow.2.title": "02 · Разделение",
     "workflow.3.title": "03 · Генерация",
     "workflow.4.title": "04 · Выполнение",
     "showcase.kicker": "Интерактивные сценарии",
@@ -667,7 +712,7 @@
     "donate.message": "Отсканируйте любой QR-код, чтобы оставить донат. Спасибо за вашу поддержку!",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
-    "footer.tagline": "Right AI · Принимайте решения быстрее прямо в браузере."
+    "footer.copyright": "© 2026 RightAI. Все права защищены."
   }
 };
 
@@ -976,6 +1021,22 @@
       const translated = translateKey(key, finalLanguage);
       if (translated) {
         node.textContent = translated;
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
+      const key = node.getAttribute("data-i18n-aria-label");
+      const translated = translateKey(key, finalLanguage);
+      if (translated) {
+        node.setAttribute("aria-label", translated);
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-title]").forEach((node) => {
+      const key = node.getAttribute("data-i18n-title");
+      const translated = translateKey(key, finalLanguage);
+      if (translated) {
+        node.setAttribute("title", translated);
       }
     });
 
@@ -1734,6 +1795,41 @@
       });
   }
 
+  function setupBackToTopButton() {
+    const backToTopButton = document.querySelector("#back-to-top");
+
+    if (!backToTopButton) {
+      return;
+    }
+
+    let rafId = null;
+
+    const updateVisibility = () => {
+      rafId = null;
+      const shouldShow = (window.scrollY || window.pageYOffset || 0) > window.innerHeight;
+      backToTopButton.classList.toggle("is-visible", shouldShow);
+    };
+
+    const requestUpdate = () => {
+      if (rafId !== null) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(updateVisibility);
+    };
+
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
+    });
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    requestUpdate();
+  }
+
   function initHomeInteractions() {
     setupLanguageSwitcher();
     setupThemeToggle();
@@ -1746,6 +1842,7 @@
     setupTiltCards();
     setupDonateModal();
     setupDownloadVersionTooltip();
+    setupBackToTopButton();
   }
 
   onReady(initHomeInteractions);

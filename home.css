@@ -1027,21 +1027,80 @@ summary:focus-visible {
 .site-footer {
   width: min(var(--max-content), calc(100% - 2rem));
   margin: 0 auto 2.2rem;
-  padding: 1rem 1.15rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--line-soft);
-  background: color-mix(in srgb, var(--bg-surface) 74%, transparent);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
+  padding: 0.2rem 0 0;
   color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-.site-footer a {
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 1.85rem);
+  bottom: clamp(1rem, 2.8vw, 1.85rem);
+  width: 3.55rem;
+  height: 3.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
   color: var(--text-primary);
-  font-weight: 600;
+  background:
+    linear-gradient(color-mix(in srgb, var(--bg-surface-strong) 94%, transparent), color-mix(in srgb, var(--bg-surface) 90%, transparent)) padding-box,
+    conic-gradient(from 180deg, var(--accent-1), var(--accent-2), var(--accent-3), #ffd86f, var(--accent-1)) border-box;
+  box-shadow:
+    0 16px 34px rgba(10, 16, 30, 0.22),
+    0 0 0 1px color-mix(in srgb, var(--accent-1) 20%, transparent);
+  z-index: 1250;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.9);
+  transition:
+    opacity 220ms var(--ease-standard),
+    transform 220ms var(--ease-snappy),
+    visibility 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
+}
+
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border-radius: inherit;
+  background: conic-gradient(from 160deg, var(--accent-1), var(--accent-2), var(--accent-3), #ffd86f, var(--accent-1));
+  filter: blur(15px);
+  opacity: 0.74;
+  z-index: -2;
+}
+
+.back-to-top::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--bg-surface-strong) 94%, transparent);
+  z-index: -1;
+}
+
+.back-to-top span {
+  font-size: 1.26rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 20px 42px rgba(10, 16, 30, 0.28),
+    0 0 26px rgba(97, 218, 251, 0.22),
+    0 0 36px rgba(143, 125, 255, 0.2);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 
 .tilt-card {
@@ -1140,6 +1199,58 @@ summary:focus-visible {
 .faq details > :not(summary) {
   padding: 0 1.1rem 1rem;
   color: var(--text-secondary);
+}
+
+.faq-shortcuts-wrap {
+  margin-top: 0.7rem;
+  overflow-x: auto;
+}
+
+.faq-shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+}
+
+.faq-shortcuts-table th,
+.faq-shortcuts-table td {
+  padding: 0.8rem 0.95rem;
+  text-align: left;
+  vertical-align: middle;
+  border-top: 1px solid color-mix(in srgb, var(--line-soft) 88%, transparent);
+}
+
+.faq-shortcuts-table thead th {
+  color: var(--text-primary);
+  font-weight: 650;
+  background: color-mix(in srgb, var(--bg-canvas) 52%, transparent);
+}
+
+.faq-shortcuts-table tbody tr:last-child td {
+  border-bottom: 1px solid color-mix(in srgb, var(--line-soft) 88%, transparent);
+}
+
+.faq-shortcuts-table td:first-child,
+.faq-shortcuts-table th:first-child {
+  width: 12.5rem;
+  white-space: nowrap;
+}
+
+.faq-shortcuts-table code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line-soft) 86%, transparent);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  display: inline-block;
+}
+
+.faq-shortcut-note {
+  margin-top: 0.72rem;
 }
 
 body.modal-open {
@@ -1399,8 +1510,14 @@ body.modal-open {
 
   .site-footer {
     width: min(var(--max-content), calc(100% - 1.2rem));
-    flex-direction: column;
-    align-items: flex-start;
+    font-size: 0.88rem;
+  }
+
+  .back-to-top {
+    width: 3.08rem;
+    height: 3.08rem;
+    right: 0.9rem;
+    bottom: 0.95rem;
   }
 }
 
