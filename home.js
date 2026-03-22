@@ -1797,17 +1797,32 @@
 
   function setupBackToTopButton() {
     const backToTopButton = document.querySelector("#back-to-top");
+    const arrow = backToTopButton?.querySelector("span") || null;
 
-    if (!backToTopButton) {
+    if (!backToTopButton || !arrow) {
       return;
     }
 
     let rafId = null;
+    let isVisible = false;
+
+    const setArrowAngle = (degrees) => {
+      arrow.style.transform = `rotate(${degrees}deg)`;
+    };
+
+    const resetArrow = () => {
+      setArrowAngle(0);
+    };
 
     const updateVisibility = () => {
       rafId = null;
       const shouldShow = (window.scrollY || window.pageYOffset || 0) > window.innerHeight;
       backToTopButton.classList.toggle("is-visible", shouldShow);
+      isVisible = shouldShow;
+
+      if (!shouldShow) {
+        resetArrow();
+      }
     };
 
     const requestUpdate = () => {
@@ -1824,6 +1839,26 @@
         behavior: prefersReducedMotion() ? "auto" : "smooth",
       });
     });
+
+    if (!prefersReducedMotion()) {
+      window.addEventListener("mousemove", (event) => {
+        if (!isVisible) {
+          return;
+        }
+
+        const rect = backToTopButton.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = event.clientX - centerX;
+        const deltaY = event.clientY - centerY;
+        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI) + 90;
+
+        setArrowAngle(angle);
+      }, { passive: true });
+
+      document.documentElement.addEventListener("mouseleave", resetArrow);
+      window.addEventListener("blur", resetArrow);
+    }
 
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);

@@ -1087,6 +1087,9 @@ summary:focus-visible {
   font-size: 1.26rem;
   line-height: 1;
   font-weight: 700;
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 180ms var(--ease-snappy);
 }
 
 .back-to-top:hover {
