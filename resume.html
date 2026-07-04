@@ -251,12 +251,8 @@
       .panel {
         border-radius: var(--radius-xl);
         border: 1px solid var(--border);
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.42), rgba(2, 6, 23, 0.68));
+        background: var(--surface-strong);
         box-shadow: var(--shadow-soft);
-      }
-
-      body.theme-light .panel {
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
       }
 
       .hero {
@@ -366,12 +362,8 @@
       .stat {
         border-radius: 14px;
         border: 1px solid var(--border);
-        background: rgba(2, 6, 23, 0.38);
+        background: var(--surface);
         padding: 12px;
-      }
-
-      body.theme-light .stat {
-        background: rgba(255, 255, 255, 0.82);
       }
 
       .stat .value {
@@ -423,12 +415,8 @@
       .bento-card {
         border-radius: var(--radius-lg);
         border: 1px solid var(--border);
-        background: rgba(15, 23, 42, 0.4);
+        background: var(--surface);
         padding: 16px;
-      }
-
-      body.theme-light .bento-card {
-        background: rgba(255, 255, 255, 0.76);
       }
 
       .bento-card:nth-child(1),
@@ -463,13 +451,9 @@
       .timeline-item {
         border-radius: var(--radius-lg);
         border: 1px solid var(--border);
-        background: rgba(15, 23, 42, 0.4);
+        background: var(--surface);
         padding: 16px 16px 14px 24px;
         position: relative;
-      }
-
-      body.theme-light .timeline-item {
-        background: rgba(255, 255, 255, 0.76);
       }
 
       .timeline-item::before {
@@ -490,11 +474,7 @@
         height: 14px;
         border-radius: 999px;
         border: 2px solid rgba(56, 189, 248, 0.72);
-        background: rgba(2, 6, 23, 0.85);
-      }
-
-      body.theme-light .timeline-dot {
-        background: #ffffff;
+        background: var(--surface-strong);
       }
 
       .timeline-item h3 {
@@ -536,7 +516,7 @@
         padding: 6px 12px;
         font-size: 0.8rem;
         color: var(--text-main);
-        background: rgba(148, 163, 184, 0.1);
+        background: var(--accent-soft);
         transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       }
 
@@ -556,15 +536,11 @@
       .project-card {
         border-radius: var(--radius-lg);
         border: 1px solid var(--border);
-        background: rgba(15, 23, 42, 0.4);
+        background: var(--surface);
         padding: 16px;
         display: flex;
         flex-direction: column;
         gap: 10px;
-      }
-
-      body.theme-light .project-card {
-        background: rgba(255, 255, 255, 0.78);
       }
 
       .project-card h3 {
@@ -736,6 +712,198 @@
         }
       }
 
+      /* Project images */
+      .project-hero {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .project-hero-row {
+        display: flex;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .project-img-wrap {
+        flex: 0 0 160px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-img-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.82rem;
+        letter-spacing: 0.03em;
+      }
+
+      .project-img-placeholder svg {
+        opacity: 0.85;
+      }
+
+      .img-zhuanzhuan .project-img-placeholder {
+        background: linear-gradient(135deg, #00b578, #009966);
+      }
+
+      .img-wukong .project-img-placeholder {
+        background: linear-gradient(135deg, #ff6b35, #e55a2b);
+      }
+
+      .img-jiufu .project-img-placeholder {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+      }
+
+      .img-yihuan .project-img-placeholder {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      }
+
+      .img-sdk .project-img-placeholder {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+      }
+
+      .project-detail-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .project-detail-card {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 14px;
+      }
+
+      .project-detail-card h4 {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-size: 0.88rem;
+      }
+
+      .project-detail-card ul {
+        margin: 0;
+        padding-left: 14px;
+        color: var(--text-main);
+        font-size: 0.86rem;
+        line-height: 1.6;
+      }
+
+      .project-detail-card li {
+        margin: 0 0 5px;
+      }
+
+      .project-detail-card li:last-child {
+        margin-bottom: 0;
+      }
+
+      .project-metric {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 6px;
+        background: rgba(56, 189, 248, 0.14);
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-left: 4px;
+      }
+
+      @media (max-width: 640px) {
+        .project-hero-row {
+          flex-direction: column;
+        }
+
+        .project-img-wrap {
+          flex: none;
+          height: 140px;
+        }
+      }
+
+      /* Game carousel */
+      .game-carousel {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: inherit;
+      }
+
+      .game-carousel .game-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+
+      .game-carousel .game-slide.active {
+        opacity: 1;
+      }
+
+      .game-carousel .game-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .game-carousel .game-label {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 600;
+        backdrop-filter: blur(6px);
+        pointer-events: none;
+      }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: flex;
+        gap: 5px;
+        z-index: 2;
+      }
+
+      .carousel-dots span {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .carousel-dots span.active {
+        background: #fff;
+      }
+
+      .img-wukong .project-img-placeholder {
+        background: linear-gradient(135deg, #ff6b35, #e55a2b);
+      }
+
       @media print {
         body {
           background: #ffffff !important;
@@ -844,22 +1012,22 @@
       <section class="hero panel reveal">
         <div>
           <p class="eyebrow lang-switch">
-            <span class="lang-copy lang-zh">SENIOR APPLE PLATFORM ENGINEER</span>
-            <span class="lang-copy lang-en">SENIOR APPLE PLATFORM ENGINEER</span>
+            <span class="lang-copy lang-zh">SENIOR iOS/macOS TECH EXPERT · CROSS-PLATFORM ARCHITECTURE</span>
+            <span class="lang-copy lang-en">SENIOR iOS/macOS TECH EXPERT · CROSS-PLATFORM ARCHITECTURE</span>
           </p>
 
           <h1 class="lang-switch">
-            <span class="lang-copy lang-zh">Jackson WANG · 资深 Apple 平台工程师 / Agentic Engineering Developer</span>
-            <span class="lang-copy lang-en">Jackson WANG · Senior Apple Platform Engineer / Agentic Engineering Developer</span>
+            <span class="lang-copy lang-zh">Jackson WANG · 资深 iOS/macOS 技术专家 / 跨平台架构方向</span>
+            <span class="lang-copy lang-en">Jackson WANG · Senior iOS/macOS Tech Expert / Cross-platform Architecture</span>
           </h1>
 
           <p class="lead lang-switch">
-            <span class="lang-copy lang-zh">把 Apple 平台工程能力、跨平台 SDK 架构与 Agentic Engineering 方法，落地到真实业务交付：更稳、更快、更可持续迭代。</span>
-            <span class="lang-copy lang-en">I turn Apple-platform engineering, cross-platform SDK architecture, and agentic workflows into real product delivery: more stable, faster, and more scalable iteration.</span>
+            <span class="lang-copy lang-zh">10 年+ 客户端开发经验，深耕 iOS/macOS 原生开发，在 React Native 与 Flutter 跨平台方向有丰富的架构设计与落地经验。主导过玖富金融 App 核心架构升级与完美世界海外游戏 SDK 从零到一搭建。</span>
+            <span class="lang-copy lang-en">10+ years in client engineering, specializing in iOS/macOS native development with extensive RN/Flutter cross-platform architecture experience. Led 99F financial app architecture overhaul and Perfect World overseas game SDK from scratch.</span>
           </p>
 
           <div class="cta-row">
-            <a class="cta primary inline-switch" href="tel:+8618519728741">
+            <a class="cta primary inline-switch" href="tel:+8615300226057">
               <span class="inline-lang lang-zh">电话沟通</span>
               <span class="inline-lang lang-en">Call Me</span>
             </a>
@@ -874,8 +1042,8 @@
           </div>
 
           <p class="updated lang-switch">
-            <span class="lang-copy lang-zh">最后更新：2026 年 2 月 6 日</span>
-            <span class="lang-copy lang-en">Last updated: February 6, 2026</span>
+            <span class="lang-copy lang-zh">最后更新：2026 年 6 月</span>
+            <span class="lang-copy lang-en">Last updated: June 2026</span>
           </p>
         </div>
 
@@ -883,38 +1051,38 @@
           <article class="avatar-card tilt-card">
             <img src="https://avatars.githubusercontent.com/u/14219702?s=160&v=4" alt="Jackson WANG avatar" />
             <p class="status-line lang-switch">
-              <span class="lang-copy lang-zh"><strong>可协作方向：</strong>iOS / macOS 客户端架构、跨平台 SDK、稳定性治理、Agentic 工程化流程。</span>
-              <span class="lang-copy lang-en"><strong>Open to collaborate on:</strong> iOS / macOS architecture, cross-platform SDK, reliability engineering, and agentic engineering workflows.</span>
+              <span class="lang-copy lang-zh"><strong>可协作方向：</strong>iOS / macOS 客户端架构、跨平台 SDK（Unity / Unreal / PlayStation）、性能稳定性治理、AI Agent 工程化。</span>
+              <span class="lang-copy lang-en"><strong>Open to collaborate on:</strong> iOS / macOS architecture, cross-platform SDK (Unity / Unreal / PlayStation), reliability engineering, and AI Agent engineering.</span>
             </p>
           </article>
 
           <div class="stat-grid">
             <article class="stat tilt-card">
-              <p class="value">11+ yrs</p>
+              <p class="value">10+ yrs</p>
               <p class="label lang-switch">
                 <span class="lang-copy lang-zh">客户端开发经验</span>
                 <span class="lang-copy lang-en">Client engineering experience</span>
               </p>
             </article>
             <article class="stat tilt-card">
-              <p class="value">iOS · macOS · PS</p>
+              <p class="value">$200万+/月</p>
               <p class="label lang-switch">
-                <span class="lang-copy lang-zh">多平台交付</span>
-                <span class="lang-copy lang-en">Multi-platform delivery</span>
+                <span class="lang-copy lang-zh">峰值支付流水</span>
+                <span class="lang-copy lang-en">Peak monthly payment volume</span>
               </p>
             </article>
             <article class="stat tilt-card">
-              <p class="value">Swift / ObjC</p>
+              <p class="value">20+ 款游戏</p>
               <p class="label lang-switch">
-                <span class="lang-copy lang-zh">核心技术栈</span>
-                <span class="lang-copy lang-en">Core stack</span>
+                <span class="lang-copy lang-zh">SDK 覆盖 10+ 国家</span>
+                <span class="lang-copy lang-en">SDK across 10+ countries</span>
               </p>
             </article>
             <article class="stat tilt-card">
-              <p class="value">Agentic</p>
+              <p class="value">0.01%</p>
               <p class="label lang-switch">
-                <span class="lang-copy lang-zh">需求到发布闭环</span>
-                <span class="lang-copy lang-en">Req-to-release loop</span>
+                <span class="lang-copy lang-zh">SDK 崩溃率</span>
+                <span class="lang-copy lang-en">SDK crash rate</span>
               </p>
             </article>
           </div>
@@ -940,41 +1108,41 @@
               <span class="lang-copy lang-en">Cross-platform architecture</span>
             </h3>
             <p class="lang-switch">
-              <span class="lang-copy lang-zh">持续构建并迭代 iOS / macOS / PlayStation SDK，覆盖 Unity / Unreal 接入，降低业务团队集成成本。</span>
-              <span class="lang-copy lang-en">Built and iterated iOS / macOS / PlayStation SDKs for Unity / Unreal projects, reducing integration overhead for product teams.</span>
+              <span class="lang-copy lang-zh">Core + Plugin 插件化 SDK 设计，多端共享 IGameSDK C++ 抽象接口（复用率 90%+），覆盖 iOS / macOS / PlayStation，游戏方接入成本从 2 周降至 2 天。SDK 崩溃率 0.01%，覆盖 10+ 国家、20+ 款游戏。</span>
+              <span class="lang-copy lang-en">Core + Plugin SDK design with shared IGameSDK C++ abstraction (90%+ reuse), covering iOS / macOS / PlayStation. Integration time 2 weeks → 2 days. SDK crash rate 0.01%, serving 20+ games across 10+ countries.</span>
             </p>
           </article>
 
           <article class="bento-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">稳定性与性能优先</span>
-              <span class="lang-copy lang-en">Reliability-first delivery</span>
+              <span class="lang-copy lang-zh">金融级性能与稳定性治理</span>
+              <span class="lang-copy lang-en">Fintech-grade performance & reliability</span>
             </h3>
             <p class="lang-switch">
-              <span class="lang-copy lang-zh">通过崩溃分析、性能剖析与监控驱动迭代，持续降低线上问题密度并提升核心场景体验。</span>
-              <span class="lang-copy lang-en">Used crash diagnostics, performance profiling, and monitoring data to continuously reduce production issues.</span>
+              <span class="lang-copy lang-zh">玖富 App 冷启动 4.2s → 1.8s（−57%），崩溃率 0.8% → 0.12%；支付成功率 91% → 96.5%；端侧风控日均拦截 5000+ 次异常请求。25+ 模块组件化重构，编译耗时降低 67%。</span>
+              <span class="lang-copy lang-en">99F cold start 4.2s → 1.8s (−57%), crash rate 0.8% → 0.12%; payment success 91% → 96.5%; on-device risk engine blocks 5000+ daily. 25+ module componentization, build time −67%.</span>
             </p>
           </article>
 
           <article class="bento-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">Agentic Engineering 实践</span>
-              <span class="lang-copy lang-en">Agentic engineering practice</span>
+              <span class="lang-copy lang-zh">游戏引擎插件与工具链</span>
+              <span class="lang-copy lang-en">Game engine plugins & toolchain</span>
             </h3>
             <p class="lang-switch">
-              <span class="lang-copy lang-zh">将 Codex / Gemini 工作流引入需求澄清、代码改造、测试检查和 PR 评审，提高个人与团队迭代效率。</span>
-              <span class="lang-copy lang-en">Applied Codex / Gemini workflows across requirement clarification, refactoring, validation, and PR review to accelerate delivery.</span>
+              <span class="lang-copy lang-zh">Unity (C#) / Unreal Engine (C++) 多引擎插件开发，自建 UE 插件包管理系统。动态挂载/替换 SDK 方案将更新周期从 3 天缩至 2 小时。PlayStation 4/PS5 原生 SDK 适配，PS5 DualSense 特性集成。</span>
+              <span class="lang-copy lang-en">Unity (C#) / UE (C++) plugin development with custom UE package registry. Dynamic SDK mount/replace cuts update cycle 3 days → 2 hours. PS4/PS5 native SDK with DualSense integration.</span>
             </p>
           </article>
 
           <article class="bento-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">工程效率体系</span>
-              <span class="lang-copy lang-en">Engineering efficiency system</span>
+              <span class="lang-copy lang-zh">AI Agent 工程化实践</span>
+              <span class="lang-copy lang-en">AI Agent engineering practice</span>
             </h3>
             <p class="lang-switch">
-              <span class="lang-copy lang-zh">推动自动化构建、包扫描、组件迁移与代码规范，缩短发布周期并降低回归风险。</span>
-              <span class="lang-copy lang-en">Drove automation for build pipelines, package scanning, component migration, and code quality controls to shorten release cycles.</span>
+              <span class="lang-copy lang-zh">2023 年起将 AI Agent 能力融入客户端工程：端侧意图识别、智能对话系统（Streaming SSE）；LLM 驱动开发全链路（需求 → 编码 → 测试 → Review → 发布 → 运维），研发效率提升 35%，线上 Bug 密度降低 30%。</span>
+              <span class="lang-copy lang-en">Since 2023, integrated AI Agents into client engineering: on-device intent recognition, streaming SSE chat systems; LLM-driven full dev loop (requirements → coding → testing → review → release → ops), +35% efficiency, −30% bug density.</span>
             </p>
           </article>
         </div>
@@ -995,124 +1163,116 @@
         <div class="timeline">
           <article class="timeline-item tilt-card">
             <span class="timeline-dot" aria-hidden="true"></span>
-            <h3>Perfect World Games · Senior iOS Developer</h3>
+            <h3>Perfect World Games · iOS Tech Expert</h3>
             <p class="meta lang-switch">
-              <span class="lang-copy lang-zh">2019.09 – 至今 · 北京，中国</span>
-              <span class="lang-copy lang-en">2019.09 – Present · Beijing, China</span>
+              <span class="lang-copy lang-zh">2019.10 – 至今 · 北京，中国 · 团队 10 人</span>
+              <span class="lang-copy lang-en">2019.10 – Present · Beijing, China · Team of 10</span>
             </p>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">负责并主导稳定的 iOS / macOS / PlayStation（Unity/Unreal）跨平台 SDK 开发与实施，按期高质量交付。</span>
-                <span class="lang-copy lang-en">Lead development of stable cross-platform SDKs for iOS / macOS / PlayStation (Unity / Unreal), delivering on schedule and quality.</span>
+                <span class="lang-copy lang-zh">独立设计海外游戏 SDK 整体架构（Core + Plugin 插件化），覆盖 10+ 国家、20+ 款游戏，月支付流水峰值 $200 万+，SDK 崩溃率 0.01%。</span>
+                <span class="lang-copy lang-en">Independently designed overseas game SDK architecture (Core + Plugin), covering 10+ countries, 20+ games, peak $2M+/mo payment volume, 0.01% crash rate.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">基于数据与监控持续迭代 SDK，改善用户体验并降低线上问题，整体提升产品稳定性。</span>
-                <span class="lang-copy lang-en">Iterate SDKs with monitoring and data to improve UX and reduce production issues.</span>
+                <span class="lang-copy lang-zh">设计多端共享 IGameSDK C++ 抽象接口层，iOS / Android / macOS / PlayStation 各平台 Platform Adapter 实现，接口层代码复用率 90%+。</span>
+                <span class="lang-copy lang-en">Designed shared IGameSDK C++ abstraction layer with Platform Adapter implementations across iOS / Android / macOS / PlayStation; 90%+ interface reuse.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">分析并解决关键稳定性问题，降低应用崩溃率，提升核心业务场景的可靠性。</span>
-                <span class="lang-copy lang-en">Analyze and resolve critical stability issues, lowering crash rates and improving reliability.</span>
+                <span class="lang-copy lang-zh">Unity (C#) / Unreal Engine (C++) 引擎插件开发，自建 UE 插件包管理系统（Git + HTTP API），动态挂载/替换 SDK 方案将更新周期从 3 天缩至 2 小时。</span>
+                <span class="lang-copy lang-en">Unity (C#) / UE (C++) plugin development; built custom UE package registry (Git + HTTP API); dynamic SDK mount/replace cuts update 3 days → 2 hours.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">与产品和跨职能团队紧密合作，梳理需求与技术方案，成功上线多项 iOS 新功能，提升用户留存与活跃度。</span>
-                <span class="lang-copy lang-en">Collaborate with product and cross-functional teams to ship iOS features that improve retention and engagement.</span>
+                <span class="lang-copy lang-zh">PlayStation 4/PS5 原生 SDK 开发，对接 PSN 账号体系与 PS Store IAP（月流水 $50 万+），适配 PS5 DualSense 自适应扳机与触觉反馈。</span>
+                <span class="lang-copy lang-en">PS4/PS5 native SDK development; PSN auth + PS Store IAP ($500K+/mo); PS5 DualSense adaptive triggers + haptic feedback.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">参与基础模块建设及维护，搭建自动化构建流程、包管理扫描、Swift 基础组件迁移等提效工具，缩短构建与集成周期。</span>
-                <span class="lang-copy lang-en">Build and maintain client infra including automated builds, package scanning, and Swift component migration.</span>
+                <span class="lang-copy lang-zh">对接 10+ 海外广告平台（AdMob / Meta / Unity Ads / ironSource 等），封装统一广告接口层。IAP + 第三方支付统一抽象层，支付成功率 99.2%。</span>
+                <span class="lang-copy lang-en">Integrated 10+ ad platforms with unified ad interface layer. IAP + third-party payment abstraction; 99.2% payment success rate.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">负责 SDK 整体架构设计与关键技术决策，主导核心模块方案评审和代码评审。</span>
-                <span class="lang-copy lang-en">Own SDK architecture and key technical decisions, leading module design and code reviews.</span>
+                <span class="lang-copy lang-zh">App Store Connect API 自动化平台：全球上线从 4 小时缩至 15 分钟，TestFlight 发版从 1 天缩至 2 小时。macOS 资源管理工具（AppKit + Swift），发布效率 +60%。</span>
+                <span class="lang-copy lang-en">Store Connect API automation: global release 4h → 15min; TestFlight 1d → 2h. macOS resource tool (AppKit + Swift); publish efficiency +60%.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">在 iOS 端主要使用 Swift / Objective-C、UIKit、网络与持久化相关框架进行开发，熟悉与 Unity / Unreal 等游戏引擎的集成流程。</span>
-                <span class="lang-copy lang-en">Main stack: Swift / Objective-C, UIKit, networking, persistence, and Unity / Unreal integration pipelines.</span>
+                <span class="lang-copy lang-zh">SDK 异常自愈机制（Crash 拦截 + 自动降级），接入文档站（DocC）+ FAQ 知识库，客户响应时效 24h → 4h，历史版本维护覆盖 12 个月。</span>
+                <span class="lang-copy lang-en">SDK self-healing (crash intercept + auto-degrade); DocC docs site + FAQ; customer response 24h → 4h; 12-month legacy support.</span>
               </li>
             </ul>
           </article>
 
           <article class="timeline-item tilt-card">
             <span class="timeline-dot" aria-hidden="true"></span>
-            <h3>Zhuanzhuan · Senior iOS Developer</h3>
+            <h3>Zhuanzhuan · iOS Developer</h3>
             <p class="meta lang-switch">
-              <span class="lang-copy lang-zh">2019.06 – 2019.09 · 北京，中国</span>
-              <span class="lang-copy lang-en">2019.06 – 2019.09 · Beijing, China</span>
+              <span class="lang-copy lang-zh">2019.07 – 2019.09 · 北京，中国 · DAU 百万级，App Store 生活榜 Top 10</span>
+              <span class="lang-copy lang-en">2019.07 – 2019.09 · Beijing, China · 1M+ DAU, App Store Top 10 Lifestyle</span>
             </p>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">负责 VOIP 内容推送功能改造，提升推送送达的稳定性与可靠性，优化通话相关体验。</span>
-                <span class="lang-copy lang-en">Implemented VOIP push enhancements to improve delivery reliability and call-related UX.</span>
+                <span class="lang-copy lang-zh">首页 UI 架构重构：设计楼层化组件架构，CellBuilder 协议支持 15+ 种 Cell 动态混排；UICollectionViewCompositionalLayout + DiffableDataSource，帧率提升 30%。</span>
+                <span class="lang-copy lang-en">Homepage UI architecture: floor-based component design with CellBuilder protocol for 15+ cell types; CompositionalLayout + DiffableDataSource; frame rate +30%.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">作为核心开发参与转转 App 首页大改版与辅助验机应用，在紧迫周期内多次高质量交付版本。</span>
-                <span class="lang-copy lang-en">Core contributor to home page redesign and inspection assistant app under tight release schedules.</span>
+                <span class="lang-copy lang-zh">VOIP 音视频通讯：基于 WebRTC 实现实时音视频通话，WebSocket 信令层对接，弱网环境自适应码率调整。</span>
+                <span class="lang-copy lang-en">VOIP audio/video: WebRTC real-time calls with WebSocket signaling; adaptive bitrate for weak networks.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">重构首页功能模块并参与代码审查，引入更清晰的布局与数据流设计，减少错误上报并提升页面性能。</span>
-                <span class="lang-copy lang-en">Refactored home module and improved layout/data-flow patterns to reduce defects and improve performance.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">主要技术栈包括 Swift / Objective-C、UIKit、Auto Layout 和网络层封装，在保持快速迭代的同时兼顾运行效率。</span>
-                <span class="lang-copy lang-en">Primary stack: Swift / Objective-C, UIKit, Auto Layout, and networking abstractions for fast yet stable iteration.</span>
+                <span class="lang-copy lang-zh">首屏加载优化：预加载（Prefetching）+ 分页缓存 + 离屏 Cell 回收，首屏速度提升 20%。</span>
+                <span class="lang-copy lang-en">First-screen optimization: prefetching + pagination cache + off-screen cell reuse; first-screen speed +20%.</span>
               </li>
             </ul>
           </article>
 
           <article class="timeline-item tilt-card">
             <span class="timeline-dot" aria-hidden="true"></span>
-            <h3>9F Group · Senior iOS Developer</h3>
+            <h3>99F Group · Senior iOS Developer / Tech Lead</h3>
             <p class="meta lang-switch">
-              <span class="lang-copy lang-zh">2018.05 – 2019.05 · 北京，中国</span>
-              <span class="lang-copy lang-en">2018.05 – 2019.05 · Beijing, China</span>
+              <span class="lang-copy lang-zh">2017.07 – 2019.06 · 北京，中国 · 带领 8 人 iOS 团队</span>
+              <span class="lang-copy lang-en">2017.07 – 2019.06 · Beijing, China · Led 8-person iOS team</span>
             </p>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">作为主程，独立牵头并交付高性能 iOS 应用「悟空理财」（Objective-C / React Native 混合应用），保持线上长期稳定运行。</span>
-                <span class="lang-copy lang-en">Lead iOS developer for high-performance app “Wukong Licai” (Objective-C + React Native), ensuring long-term production stability.</span>
+                <span class="lang-copy lang-zh">主导玖富金融 App 组件化架构重构：15+ 业务组件 + 10+ 基础能力组件，CTMediator + MGJRouter 零直接引用，编译耗时 12min → 4min（−67%），代码冲突率 −80%。</span>
+                <span class="lang-copy lang-en">Led 99F App component architecture overhaul: 15+ business + 10+ infra components, CTMediator + MGJRouter zero direct refs, build 12min → 4min (−67%), conflict rate −80%.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">参与公司内部 APM 项目，从需求梳理、业务开发到系统落地，为稳定性与性能治理提供基础数据能力。</span>
-                <span class="lang-copy lang-en">Participated in internal APM from requirements to delivery, enabling observability for reliability and performance work.</span>
+                <span class="lang-copy lang-zh">设计统一支付网关抽象层，支持 6+ 种支付方式灵活切换，支付成功率 91% → 96.5%；掉单率 1.2% → 0.15%。</span>
+                <span class="lang-copy lang-en">Designed unified payment gateway for 6+ methods; success rate 91% → 96.5%; dropped order rate 1.2% → 0.15%.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">持续进行代码审查与技术指导，帮助初级开发者提升代码质量与架构意识，提升团队整体效率。</span>
-                <span class="lang-copy lang-en">Performed continuous code reviews and mentoring, improving code quality and team efficiency.</span>
+                <span class="lang-copy lang-zh">端侧风控引擎集成：设备指纹 30+ 维度采集，日均拦截异常请求 5000+ 次；RSA+AES 混合加密通过 PCI-DSS 合规审计。</span>
+                <span class="lang-copy lang-en">On-device risk engine: 30+ dimension device fingerprint, 5000+ daily blocks; RSA+AES encryption passes PCI-DSS.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">在悟空理财项目中负责客户端架构演进，设计原生模块与 React Native 之间的边界、路由与数据流，提升可维护性与扩展性。</span>
-                <span class="lang-copy lang-en">Drove client architecture evolution, defining native/RN boundaries, routing, and data flow for maintainability.</span>
+                <span class="lang-copy lang-zh">冷启动优化：dylib 懒加载 + 50+ 个 +load 延迟化改造，4.2s → 1.8s（−57%）；崩溃率 0.8% → 0.12%；内存 180MB → 110MB。</span>
+                <span class="lang-copy lang-en">Cold start: dylib lazy load + 50+ +load deferrals, 4.2s → 1.8s (−57%); crash rate 0.8% → 0.12%; memory 180MB → 110MB.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">基于 Jenkins + Fastlane 搭建 CI/CD 流水线，发版周期 2 周 → 每周，热修复 30min；Code Review 规范推行后缺陷率 −40%。</span>
+                <span class="lang-copy lang-en">Jenkins + Fastlane CI/CD pipeline; release cycle 2wk → weekly; hotfix 30min; CR adoption cut defect rate −40%.</span>
               </li>
             </ul>
           </article>
 
           <article class="timeline-item tilt-card">
             <span class="timeline-dot" aria-hidden="true"></span>
-            <h3>Beijing Kuohong Technology · iOS Developer</h3>
+            <h3>Beijing Kuohong Technology (快宏科技) · iOS Developer</h3>
             <p class="meta lang-switch">
-              <span class="lang-copy lang-zh">2015.11 – 2017.04 · 北京 / 首尔</span>
-              <span class="lang-copy lang-en">2015.11 – 2017.04 · Beijing / Seoul</span>
+              <span class="lang-copy lang-zh">2015.12 – 2017.03 · 北京（中韩合作）</span>
+              <span class="lang-copy lang-en">2015.12 – 2017.03 · Beijing (Sino-Korean venture)</span>
             </p>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">从 0–1 开发与维护多款 iOS 应用，覆盖账号注册、证书管理、企业应用构建与分发、线上构建发布等完整流程。</span>
-                <span class="lang-copy lang-en">Built and maintained multiple iOS apps from scratch across registration, certificate management, enterprise distribution, and releases.</span>
+                <span class="lang-copy lang-zh">独立完成「超食在」社区服务 App 从零到一交付：LBS 定位附近店铺推荐（首次下单转化率 +30%）、会员卡积分体系、APNs 地理围栏智能推送。</span>
+                <span class="lang-copy lang-en">Built "Chaoshizai" community app from scratch: LBS nearby store recommendation (+30% first-order conversion), membership/points system, APNs geofence smart push.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">设计并实现推送通知、应用内购买（微信、支付宝等）等核心功能，增强产品整体功能与商业能力。</span>
-                <span class="lang-copy lang-en">Designed and implemented core features including push notifications and in-app purchases (WeChat / Alipay).</span>
+                <span class="lang-copy lang-zh">独立开发「易起送」配送 App：高德地图 SDK 路线规划与导航、多角色权限体系、订单状态机（接单→配送→送达），平均配送 45 分钟。</span>
+                <span class="lang-copy lang-en">Built "Yiqisong" delivery app: Amap SDK route planning, multi-role permission system, order state machine, 45min avg delivery.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">深度参与测试与调试，通过系统化缺陷排查与修复，持续提升应用稳定性并降低崩溃。</span>
-                <span class="lang-copy lang-en">Performed deep testing and debugging with systematic defect analysis to reduce crashes and improve stability.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">发起并参与代码评审，推动代码规范与可维护性，建设相对完整的 iOS 开发、测试与上线流程。</span>
-                <span class="lang-copy lang-en">Initiated and joined code reviews, improving quality and helping formalize iOS development/testing/release workflows.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">熟悉 Apple 平台证书与签名、推送配置、企业分发等流程与工具。</span>
-                <span class="lang-copy lang-en">Became familiar with Apple certificates/signing, push setup, and enterprise distribution tooling.</span>
+                <span class="lang-copy lang-zh">作为公司 iOS 唯一开发者，独立完成 2 款 App 上架，积累完整产品开发、App Store 审核与 IAP 集成经验。</span>
+                <span class="lang-copy lang-en">Sole iOS developer; shipped 2 apps end-to-end including App Store review and IAP integration.</span>
               </li>
             </ul>
           </article>
@@ -1164,97 +1324,128 @@
         <div class="skills-cloud" aria-label="Skills">
           <span class="skill-chip">Swift</span>
           <span class="skill-chip">Objective-C</span>
+          <span class="skill-chip">C/C++</span>
+          <span class="skill-chip">C#</span>
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">Dart</span>
           <span class="skill-chip">UIKit</span>
+          <span class="skill-chip">SwiftUI</span>
           <span class="skill-chip">AppKit</span>
-          <span class="skill-chip">C++ / C#</span>
+          <span class="skill-chip">Combine</span>
           <span class="skill-chip">React Native</span>
           <span class="skill-chip">Flutter</span>
-          <span class="skill-chip">Unity / Unreal</span>
-          <span class="skill-chip">APM</span>
-          <span class="skill-chip">Crash Analysis</span>
-          <span class="skill-chip">Xcode Instruments</span>
+          <span class="skill-chip">Unity</span>
+          <span class="skill-chip">Unreal Engine</span>
+          <span class="skill-chip">PlayStation SDK</span>
+          <span class="skill-chip">LangGraph</span>
+          <span class="skill-chip">CrewAI</span>
+          <span class="skill-chip">RAG</span>
+          <span class="skill-chip">LangChain</span>
+          <span class="skill-chip">OpenAI API</span>
+          <span class="skill-chip">Core ML</span>
+          <span class="skill-chip">Prompt Engineering</span>
+          <span class="skill-chip">CocoaPods</span>
+          <span class="skill-chip">SPM</span>
+          <span class="skill-chip">Tuist</span>
+          <span class="skill-chip">Bazel</span>
+          <span class="skill-chip">Fastlane</span>
           <span class="skill-chip">GitHub Actions</span>
-          <span class="skill-chip">Codex</span>
-          <span class="skill-chip">Gemini</span>
-          <span class="skill-chip">Agentic Engineering</span>
+          <span class="skill-chip">Instruments</span>
+          <span class="skill-chip">MetricKit</span>
         </div>
 
         <div class="project-grid" style="margin-top: 14px;">
           <article class="project-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">平台与框架</span>
-              <span class="lang-copy lang-en">Platforms & Frameworks</span>
+              <span class="lang-copy lang-zh">原生开发</span>
+              <span class="lang-copy lang-en">Native Development</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">iOS / iPadOS / macOS，熟悉 UIKit / AppKit、Auto Layout、推送、应用内购买等系统能力。</span>
-                <span class="lang-copy lang-en">iOS / iPadOS / macOS with UIKit / AppKit, Auto Layout, push, and in-app purchase capabilities.</span>
+                <span class="lang-copy lang-zh">精通 Swift / Objective-C，iOS / macOS / iPadOS / watchOS / visionOS / PlayStation 多平台。</span>
+                <span class="lang-copy lang-en">Expert in Swift / Objective-C; iOS / macOS / iPadOS / watchOS / visionOS / PlayStation.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">熟悉 React Native、Flutter 等跨平台技术，并在实际项目中完成与原生模块集成。</span>
-                <span class="lang-copy lang-en">Familiar with React Native and Flutter, including hands-on native module integration.</span>
+                <span class="lang-copy lang-zh">UIKit / SwiftUI / AppKit / Combine / Swift Concurrency (async/await/Actor) / Metal。</span>
+                <span class="lang-copy lang-en">UIKit / SwiftUI / AppKit / Combine / Swift Concurrency / Metal.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">网络：URLSession / gRPC / WebSocket / TLS Pinning / CryptoKit。</span>
+                <span class="lang-copy lang-en">Networking: URLSession / gRPC / WebSocket / TLS Pinning / CryptoKit.</span>
               </li>
             </ul>
             <h3 class="lang-switch" style="margin-top: 4px;">
-              <span class="lang-copy lang-zh">编程语言</span>
-              <span class="lang-copy lang-en">Languages</span>
+              <span class="lang-copy lang-zh">跨平台开发</span>
+              <span class="lang-copy lang-en">Cross-platform</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">精通 Swift、Objective-C，熟悉 C++ / C#。</span>
-                <span class="lang-copy lang-en">Proficient in Swift and Objective-C; familiar with C++ / C#.</span>
+                <span class="lang-copy lang-zh">React Native 0.72+ 新架构（Fabric / TurboModules / JSI），Flutter 3.x + Dart 3。</span>
+                <span class="lang-copy lang-en">React Native 0.72+ new architecture (Fabric / TurboModules / JSI), Flutter 3.x + Dart 3.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">了解 Java、前端 Vue 等，能在全链路场景下与后端和前端团队协作沟通。</span>
-                <span class="lang-copy lang-en">Working knowledge of Java and Vue for smooth cross-stack collaboration.</span>
+                <span class="lang-copy lang-zh">Platform Channel / FFI 桥接，RN 与原生混合工程，CodePush 热更新。</span>
+                <span class="lang-copy lang-en">Platform Channel / FFI bridging, RN-native hybrid projects, CodePush hot update.</span>
               </li>
             </ul>
           </article>
 
           <article class="project-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">架构与工程实践</span>
+              <span class="lang-copy lang-zh">游戏引擎与工程化</span>
+              <span class="lang-copy lang-en">Game Engines & Engineering</span>
+            </h3>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">Unity 2020+ LTS（C# 插件 / IL2CPP / UnitySendMessage），Unreal 4.27–5.3（C++ 插件 / Blueprint）。</span>
+                <span class="lang-copy lang-en">Unity 2020+ LTS (C# plugins / IL2CPP), UE 4.27–5.3 (C++ plugins / Blueprint).</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">PlayStation 4/PS5 SDK：PSN 登录 / PS Store IAP / DualSense 适配。</span>
+                <span class="lang-copy lang-en">PS4/PS5 SDK: PSN auth / PS Store IAP / DualSense adaptation.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">C++ 中间层跨语言桥接，引擎无关统一 Native SDK 接口设计。</span>
+                <span class="lang-copy lang-en">C++ middleware cross-language bridging, engine-agnostic unified SDK interface design.</span>
+              </li>
+            </ul>
+            <h3 class="lang-switch" style="margin-top: 4px;">
+              <span class="lang-copy lang-zh">架构与工程化</span>
               <span class="lang-copy lang-en">Architecture & Engineering</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">熟练使用 MVC、MVVM 等架构模式，关注模块化、可测试性与长期可维护性。</span>
-                <span class="lang-copy lang-en">Comfortable with MVC / MVVM, focused on modularity, testability, and maintainability.</span>
+                <span class="lang-copy lang-zh">MVVM / VIPER / Clean Architecture / TCA，组件化 / 插件化架构。</span>
+                <span class="lang-copy lang-en">MVVM / VIPER / Clean Architecture / TCA, component/plugin architecture.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">具备客户端工程化经验，如自动化构建、包管理扫描、基础组件拆分与迁移等。</span>
-                <span class="lang-copy lang-en">Experienced in client engineering automation: builds, package scanning, and component migration.</span>
-              </li>
-            </ul>
-            <h3 class="lang-switch" style="margin-top: 4px;">
-              <span class="lang-copy lang-zh">性能与稳定性</span>
-              <span class="lang-copy lang-en">Performance & Reliability</span>
-            </h3>
-            <ul class="lang-switch-list">
-              <li>
-                <span class="lang-copy lang-zh">熟练使用 Xcode Instruments、崩溃日志分析等工具进行问题排查与性能调优。</span>
-                <span class="lang-copy lang-en">Skilled in Xcode Instruments and crash-log diagnostics for tuning and troubleshooting.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">参与 APM 体系接入与建设，能够通过数据驱动稳定性与性能迭代。</span>
-                <span class="lang-copy lang-en">Participated in APM integration/evolution, using data to drive reliability and performance improvements.</span>
+                <span class="lang-copy lang-zh">CocoaPods / SPM / Tuist / Bazel / Fastlane / GitHub Actions。</span>
+                <span class="lang-copy lang-en">CocoaPods / SPM / Tuist / Bazel / Fastlane / GitHub Actions.</span>
               </li>
             </ul>
           </article>
 
           <article class="project-card tilt-card">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">Agentic Engineering 实践</span>
-              <span class="lang-copy lang-en">Agentic Engineering Practice</span>
+              <span class="lang-copy lang-zh">AI Agent & LLM 工程化</span>
+              <span class="lang-copy lang-en">AI Agent & LLM Engineering</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">持续基于最新 Agentic 工具（如 Codex / Gemini）学习并应用，理解其基础原理与能力边界。</span>
-                <span class="lang-copy lang-en">Continuously learn and apply tools like Codex / Gemini with a solid understanding of their principles and boundaries.</span>
+                <span class="lang-copy lang-zh">LangGraph 状态机编排 / CrewAI 多智能体 / RAG（Embedding + 向量数据库 + Reranker）。</span>
+                <span class="lang-copy lang-en">LangGraph state machine orchestration / CrewAI multi-agent / RAG (Embedding + vector DB + Reranker).</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">将 skills、automation 实践到需求理解、开发实现、检查测试、代码提交与 PR 审核，形成端到端提效闭环。</span>
-                <span class="lang-copy lang-en">Apply skills/automation across requirement analysis, implementation, checks/tests, commits, and PR reviews for end-to-end efficiency.</span>
+                <span class="lang-copy lang-zh">OpenAI GPT-4 / Claude / Gemini 集成，Prompt Engineering（CoT / ToT / ReAct）。</span>
+                <span class="lang-copy lang-en">OpenAI GPT-4 / Claude / Gemini integration, Prompt Engineering (CoT / ToT / ReAct).</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">端侧推理：Core ML / MLX / TensorFlow Lite / ONNX Runtime Mobile。</span>
+                <span class="lang-copy lang-en">On-device inference: Core ML / MLX / TensorFlow Lite / ONNX Runtime Mobile.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">LLM 驱动全链路：需求解析 → 编码 → 测试 → Review → 发布 → 运维，效率 +35%。</span>
+                <span class="lang-copy lang-en">LLM-driven full loop: requirements → coding → testing → review → release → ops, +35% efficiency.</span>
               </li>
             </ul>
           </article>
@@ -1268,40 +1459,212 @@
             <span class="lang-copy lang-en">Representative Projects</span>
           </h2>
           <p class="lang-switch">
-            <span class="lang-copy lang-zh">包含公司业务与基础设施建设成果，以及个人开源项目的持续迭代实践。</span>
-            <span class="lang-copy lang-en">Includes both company product/infrastructure achievements and ongoing iterations in personal open-source projects.</span>
+            <span class="lang-copy lang-zh">涵盖金融、二手交易、游戏 SDK 等领域的核心架构与交付成果。</span>
+            <span class="lang-copy lang-en">Core architecture and delivery across fintech, marketplace, and gaming SDK domains.</span>
           </p>
         </div>
 
-        <h3 class="lang-switch" style="margin: 0 0 10px; color: var(--text-strong);">
-          <span class="lang-copy lang-zh">公司项目与基础设施</span>
-          <span class="lang-copy lang-en">Company Projects & Infrastructure</span>
-        </h3>
-        <div class="project-grid">
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">转转 App 及辅助验机应用</span><span class="lang-copy lang-en">Zhuanzhuan app & inspection tools</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">核心开发参与首页改版、VOIP 推送与验机工具迭代，在高频业务场景平衡性能与体验。</span><span class="lang-copy lang-en">Core contributor for homepage redesign, VOIP push, and inspection tools with a balance of performance and UX.</span></p>
-          </article>
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">悟空理财 iOS 客户端</span><span class="lang-copy lang-en">Wukong Licai iOS client</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">主程负责 Objective-C + React Native 混合架构与关键功能，保障金融场景稳定体验。</span><span class="lang-copy lang-en">Lead engineer for Objective-C + React Native hybrid architecture and key features in fintech scenarios.</span></p>
-          </article>
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">玖富钱包 iOS 客户端</span><span class="lang-copy lang-en">9F Wallet iOS client</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">参与账户与资金模块设计与实现，结合 APM 与监控体系进行稳定性与体验优化。</span><span class="lang-copy lang-en">Contributed to account/funds modules and optimized reliability with APM and monitoring systems.</span></p>
-          </article>
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">跨平台 SDK（iOS / macOS / PlayStation）</span><span class="lang-copy lang-en">Cross-platform SDK</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">主导设计与实现稳定跨平台 SDK，服务 Unity/Unreal 场景，提升多端集成体验与复用能力。</span><span class="lang-copy lang-en">Designed and delivered robust cross-platform SDKs for Unity/Unreal scenarios across Apple and console platforms.</span></p>
-          </article>
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">移动端性能与稳定性治理（APM）</span><span class="lang-copy lang-en">Mobile performance & stability (APM)</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">参与内部 APM 建设，将监控能力与业务开发结合，支撑崩溃率与性能指标改进。</span><span class="lang-copy lang-en">Helped build internal APM and connected telemetry to code paths for targeted reliability/performance improvements.</span></p>
-          </article>
-          <article class="project-card tilt-card">
-            <h3 class="lang-switch"><span class="lang-copy lang-zh">构建与发布自动化</span><span class="lang-copy lang-en">Build & release automation</span></h3>
-            <p class="lang-switch"><span class="lang-copy lang-zh">推动自动化构建、包扫描与组件迁移，减少人工错误并缩短交付周期。</span><span class="lang-copy lang-en">Drove automated builds, package scanning, and component migration to reduce manual errors and cycle time.</span></p>
-          </article>
+        <!-- 玖富金融 -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-jiufu">
+              <img src="assets/jiufu-screenshot.png" alt="玖富钱包 App 截图" />
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">玖富金融 App — 核心架构升级与技术团队管理</span>
+                <span class="lang-copy lang-en">99F Group — Core Architecture Upgrade & Team Leadership</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">资深 iOS 开发 / 技术负责人 · 2017.07 – 2019.06 · 带领 8 人 iOS 团队</span>
+                <span class="lang-copy lang-en">Senior iOS Dev / Tech Lead · 2017.07 – 2019.06 · Led 8-person iOS team</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">组件化架构重构</span><span class="lang-copy lang-en">Component Architecture</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">拆分为 15+ 业务组件 + 10+ 基础能力组件，全量编译 12min → 4min（降幅 67%）</span><span class="lang-copy lang-en">Split into 15+ business + 10+ infra components; full build 12min → 4min (−67%)</span></li>
+                <li><span class="lang-copy lang-zh">CTMediator + MGJRouter 模块间零直接引用，代码冲突率下降 80%</span><span class="lang-copy lang-en">CTMediator + MGJRouter for zero direct references; conflict rate −80%</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付网关与风控</span><span class="lang-copy lang-en">Payment Gateway & Risk Control</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">统一支付网关支持 6+ 种支付方式，成功率 91% → 96.5%</span><span class="lang-copy lang-en">Unified gateway for 6+ payment methods; success rate 91% → 96.5%</span></li>
+                <li><span class="lang-copy lang-zh">端侧风控引擎日均拦截 5000+ 次异常请求，RSA+AES 混合加密通过 PCI-DSS</span><span class="lang-copy lang-en">On-device risk engine blocks 5000+ daily; RSA+AES encryption passes PCI-DSS</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">性能治理</span><span class="lang-copy lang-en">Performance Optimization</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">冷启动 4.2s → 1.8s（−57%），崩溃率 0.8% → 0.12%，内存 180MB → 110MB</span><span class="lang-copy lang-en">Cold start 4.2s → 1.8s (−57%); crash rate 0.8% → 0.12%; memory 180MB → 110MB</span></li>
+                <li><span class="lang-copy lang-zh">RunLoop 卡顿监控 >200ms 事件减少 70%</span><span class="lang-copy lang-en">RunLoop jank monitoring: >200ms events −70%</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">CI/CD 与团队</span><span class="lang-copy lang-en">CI/CD & Team</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">Jenkins + Fastlane 自动化流水线，发版周期 2 周 → 每周，热修复 30min</span><span class="lang-copy lang-en">Jenkins + Fastlane pipeline; release cycle 2wk → weekly; hotfix in 30min</span></li>
+                <li><span class="lang-copy lang-zh">Code Review 规范推行后代码缺陷率下降 40%，培养 2 名高级工程师</span><span class="lang-copy lang-en">CR adoption cut defect rate −40%; mentored 2 engineers to senior level</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 转转 -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-zhuanzhuan">
+              <img src="assets/zhuanzhuan-screenshot.png" alt="转转 App 截图" />
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">转转 App — 首页改版与音视频通讯</span>
+                <span class="lang-copy lang-en">Zhuanzhuan — Homepage Redesign & VOIP</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">iOS 开发工程师 · 2019.07 – 2019.09 · DAU 百万级，App Store 生活榜 Top 10</span>
+                <span class="lang-copy lang-en">iOS Developer · 2019.07 – 2019.09 · 1M+ DAU, App Store Top 10 Lifestyle</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">首页 UI 架构重构</span><span class="lang-copy lang-en">Homepage UI Architecture</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">楼层化组件架构，CellBuilder 协议支持 15+ 种 Cell 动态混排</span><span class="lang-copy lang-en">Floor-based component architecture with CellBuilder protocol for 15+ cell types</span></li>
+                <li><span class="lang-copy lang-zh">UICollectionViewCompositionalLayout + DiffableDataSource，帧率提升 30%</span><span class="lang-copy lang-en">CompositionalLayout + DiffableDataSource; frame rate +30%</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">VOIP 音视频通讯</span><span class="lang-copy lang-en">VOIP Audio/Video</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">基于 WebRTC 实现实时音视频通话，WebSocket 信令层对接</span><span class="lang-copy lang-en">WebRTC real-time audio/video with WebSocket signaling</span></li>
+                <li><span class="lang-copy lang-zh">弱网环境自适应码率调整，保障通话连通性与流畅度</span><span class="lang-copy lang-en">Adaptive bitrate for weak networks; reliable call quality</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 悟空理财 -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-wukong">
+              <div class="project-img-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <span>悟空理财</span>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">悟空理财 iOS 客户端 — 混合架构与性能治理</span>
+                <span class="lang-copy lang-en">Wukong Licai — Hybrid Architecture & Performance</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">主程 · 9F Group · 2018.05 – 2019.05 · Objective-C + React Native 混合应用</span>
+                <span class="lang-copy lang-en">Lead Dev · 9F Group · 2018.05 – 2019.05 · ObjC + React Native hybrid app</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">混合架构设计</span><span class="lang-copy lang-en">Hybrid Architecture</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">独立负责 OC + RN 混合架构设计，定义原生模块与 RN 之间的边界、路由与数据流</span><span class="lang-copy lang-en">Sole owner of OC + RN hybrid architecture; defined native/RN boundaries, routing, and data flow</span></li>
+                <li><span class="lang-copy lang-zh">保障金融场景长期稳定运行，持续优化可维护性与扩展性</span><span class="lang-copy lang-en">Ensured long-term stability in fintech scenarios; improved maintainability and extensibility</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">APM 与稳定性</span><span class="lang-copy lang-en">APM & Reliability</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">参与内部 APM 项目，从需求梳理到系统落地，支撑崩溃率与性能指标改进</span><span class="lang-copy lang-en">Built internal APM from requirements to delivery; enabled crash/performance observability</span></li>
+                <li><span class="lang-copy lang-zh">持续代码审查与技术指导，帮助初级开发者提升代码质量与架构意识</span><span class="lang-copy lang-en">Continuous code reviews and mentoring; improved team code quality and architecture awareness</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 完美世界 / 异环游戏 SDK -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-yihuan" style="position: relative;">
+              <div class="game-carousel" data-carousel>
+                <div class="game-slide active">
+                  <img src="assets/yihuan-screenshot.jpg" alt="异环" />
+                  <span class="game-label">异环</span>
+                </div>
+                <div class="game-slide">
+                  <img src="assets/wanshi-screenshot.jpg" alt="完美世界" />
+                  <span class="game-label">完美世界</span>
+                </div>
+                <div class="game-slide">
+                  <img src="assets/menghuan-screenshot.jpg" alt="梦幻新诛仙" />
+                  <span class="game-label">梦幻新诛仙</span>
+                </div>
+              </div>
+              <div class="carousel-dots" data-dots>
+                <span class="active" data-i="0"></span>
+                <span data-i="1"></span>
+                <span data-i="2"></span>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">完美世界海外游戏 SDK — 从零搭建（异环等 20+ 款游戏）</span>
+                <span class="lang-copy lang-en">Perfect World Overseas Game SDK — Built from Scratch (Yihuan + 20+ titles)</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">iOS 技术专家 · 2019.10 – 至今 · 覆盖 10+ 国家、20+ 款游戏、月支付流水峰值 $200 万+</span>
+                <span class="lang-copy lang-en">iOS Tech Expert · 2019.10 – Present · 10+ countries, 20+ games, peak monthly revenue $2M+</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">SDK 架构设计</span><span class="lang-copy lang-en">SDK Architecture</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">Core + Plugin 插件化设计，接入成本从 2 周降至 2 天</span><span class="lang-copy lang-en">Core + Plugin design; integration time 2 weeks → 2 days</span></li>
+                <li><span class="lang-copy lang-zh">多端共享 IGameSDK C++ 抽象接口，复用率 90%+，崩溃率 0.01%</span><span class="lang-copy lang-en">Shared IGameSDK C++ abstraction; 90%+ reuse; crash rate 0.01%</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付与广告</span><span class="lang-copy lang-en">Payment & Ads</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">IAP + Google Pay / PayPal / Stripe 统一抽象，月流水 $200 万+，成功率 99.2%</span><span class="lang-copy lang-en">IAP + Google Pay / PayPal / Stripe abstraction; $2M+/mo, 99.2% success</span></li>
+                <li><span class="lang-copy lang-zh">对接 10+ 海外广告平台（AdMob / Meta / Unity Ads / ironSource 等）</span><span class="lang-copy lang-en">Integrated 10+ ad platforms (AdMob / Meta / Unity Ads / ironSource etc.)</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">引擎插件开发</span><span class="lang-copy lang-en">Engine Plugins</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">Unity (C#) / Unreal Engine (C++) 插件，自建 UE 插件包管理系统</span><span class="lang-copy lang-en">Unity (C#) / UE (C++) plugins; built custom UE package registry</span></li>
+                <li><span class="lang-copy lang-zh">动态挂载/替换 SDK，更新周期 3 天 → 2 小时</span><span class="lang-copy lang-en">Dynamic SDK mount/replace; update cycle 3 days → 2 hours</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">PlayStation 平台</span><span class="lang-copy lang-en">PlayStation Platform</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">PS4/PS5 SDK 开发，对接 PSN 账号与 PS Store IAP，月流水 $50 万+</span><span class="lang-copy lang-en">PS4/PS5 SDK; PSN auth + PS Store IAP; $500K+/mo</span></li>
+                <li><span class="lang-copy lang-zh">PS5 DualSense 自适应扳机与触觉反馈适配，覆盖 8+ 款主机游戏</span><span class="lang-copy lang-en">DualSense adaptive triggers + haptic feedback; 8+ console titles</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">工具链与自动化</span><span class="lang-copy lang-en">Toolchain & Automation</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">macOS 资源管理工具（AppKit + Swift），资源发布效率 +60%</span><span class="lang-copy lang-en">macOS resource tool (AppKit + Swift); publish efficiency +60%</span></li>
+                <li><span class="lang-copy lang-zh">App Store Connect API 自动化：全球上线 4h → 15min，TestFlight 1天 → 2h</span><span class="lang-copy lang-en">Store Connect API automation: global release 4h → 15min; TF 1d → 2h</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">SDK 质量与生态</span><span class="lang-copy lang-en">SDK Quality & Ecosystem</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">SDK 异常自愈（Crash 拦截 + 自动降级），接入文档站 + FAQ 知识库</span><span class="lang-copy lang-en">SDK self-healing (crash intercept + auto-degrade); docs site + FAQ</span></li>
+                <li><span class="lang-copy lang-zh">12 个月历史版本维护，客户响应时效 24h → 4h</span><span class="lang-copy lang-en">12-month legacy support; customer response 24h → 4h</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <h3 class="lang-switch" style="margin: 18px 0 10px; color: var(--text-strong);">
@@ -1532,6 +1895,30 @@
             });
           });
         }
+
+        // Game carousel auto-rotation
+        document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+          const slides = carousel.querySelectorAll(".game-slide");
+          const dots = carousel.parentElement.querySelectorAll("[data-dots] span");
+          if (slides.length <= 1) return;
+          let idx = 0;
+          setInterval(() => {
+            slides[idx].classList.remove("active");
+            dots[idx] && dots[idx].classList.remove("active");
+            idx = (idx + 1) % slides.length;
+            slides[idx].classList.add("active");
+            dots[idx] && dots[idx].classList.add("active");
+          }, 3000);
+          dots.forEach((dot) => {
+            dot.addEventListener("click", () => {
+              slides[idx].classList.remove("active");
+              dots[idx] && dots[idx].classList.remove("active");
+              idx = parseInt(dot.dataset.i, 10);
+              slides[idx].classList.add("active");
+              dots[idx] && dots[idx].classList.add("active");
+            });
+          });
+        });
       })();
     </script>
   </body>
