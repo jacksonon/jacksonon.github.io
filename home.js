@@ -25,6 +25,8 @@
   "hero.trust.1": "Press Ctrl + R to launch Quick Input anywhere",
   "hero.trust.2": "Parallel model conversations with less context switching",
   "hero.trust.3": "Web-native AI interaction, OCR, translation, and dark adaptation",
+  "hero.trust.4": "Independent window chat / multi-model chat / with webpage context",
+  "hero.trust.5": "Send messages to multiple web pages simultaneously",
   "shell.init.command1": "$ initialize sidebar assistant and bind shortcut",
   "shell.init.response1": "Right AI ready. Press Ctrl + R to open the input panel on any page.",
   "shell.init.command2": "$ summarize this page and suggest next actions",
@@ -165,6 +167,8 @@
     "hero.trust.1": "按 Ctrl + R，隨時喚起快速輸入",
     "hero.trust.2": "模型並行對話，減少來回切換",
     "hero.trust.3": "原生網頁 AI 互動、OCR、翻譯與深色自適應",
+    "hero.trust.4": "獨立視窗對話/多模型對話/可附帶網頁上下文",
+    "hero.trust.5": "同時給多網頁發送消息",
     "shell.init.command1": "$ 初始化側邊欄助手並綁定快捷鍵",
     "shell.init.response1": "Right AI 已就緒。按 Ctrl + R 可在任何頁面開啟輸入面板。",
     "shell.init.command2": "$ 摘要此頁內容並建議下一步行動",
@@ -302,6 +306,8 @@
     "hero.trust.1": "どこでも Ctrl + R でクイック入力を起動",
     "hero.trust.2": "コンテキスト切り替えを減らした並列モデル会話",
     "hero.trust.3": "Web ネイティブな AI 操作、OCR、翻訳、ダーク適応",
+    "hero.trust.4": "独立ウィンドウチャット/マルチモデルチャット/Webページコンテキスト対応",
+    "hero.trust.5": "複数Webページに同時にメッセージ送信",
     "shell.init.command1": "$ サイドバーアシスタントを初期化してショートカットを割り当てる",
     "shell.init.response1": "Right AI の準備ができました。任意のページで Ctrl + R を押すと入力パネルが開きます。",
     "shell.init.command2": "$ このページを要約して次のアクションを提案する",
@@ -439,6 +445,8 @@
     "hero.trust.1": "어디서나 Ctrl + R로 Quick Input 실행",
     "hero.trust.2": "컨텍스트 전환을 줄인 병렬 모델 대화",
     "hero.trust.3": "웹 네이티브 AI 상호작용, OCR, 번역, 다크 모드 적응",
+    "hero.trust.4": "독립 창 채팅/멀티모델 채팅/웹페이지 컨텍스트 포함",
+    "hero.trust.5": "여러 웹페이지에 동시에 메시지 전송",
     "shell.init.command1": "$ 사이드바 어시스턴트를 초기화하고 단축키를 바인딩",
     "shell.init.response1": "Right AI 준비 완료. 아무 페이지에서 Ctrl + R을 눌러 입력 패널을 여세요.",
     "shell.init.command2": "$ 이 페이지를 요약하고 다음 실행 작업을 제안해줘",
@@ -576,6 +584,8 @@
     "hero.trust.1": "Нажмите Ctrl + R, чтобы запускать Quick Input где угодно",
     "hero.trust.2": "Параллельные диалоги с моделями с меньшим переключением контекста",
     "hero.trust.3": "Нативное AI-взаимодействие в вебе, OCR, перевод и адаптация к темной теме",
+    "hero.trust.4": "Диалог в отдельном окне / мульти-модельный диалог / с контекстом веб-страницы",
+    "hero.trust.5": "Отправка сообщений на несколько веб-страниц одновременно",
     "shell.init.command1": "$ инициализировать бокового ассистента и назначить горячую клавишу",
     "shell.init.response1": "Right AI готов. Нажмите Ctrl + R, чтобы открыть панель ввода на любой странице.",
     "shell.init.command2": "$ суммируй эту страницу и предложи следующие действия",
@@ -1651,11 +1661,65 @@
     requestUpdate();
   }
 
+  function setupHeroCarousel() {
+    const track = document.querySelector(".carousel-track");
+    const dots = document.querySelector(".carousel-dots");
+    if (!track || !dots) return;
+
+    const images = Array.from(track.querySelectorAll("img"));
+    if (images.length < 2) return;
+
+    let current = 0;
+    let interval = null;
+
+    const show = (index) => {
+      images.forEach((img, i) => {
+        img.classList.toggle("is-active", i === index);
+      });
+      Array.from(dots.children).forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === index);
+      });
+      current = index;
+    };
+
+    const start = () => {
+      stop();
+      interval = window.setInterval(() => {
+        show((current + 1) % images.length);
+      }, 3500);
+    };
+
+    const stop = () => {
+      if (interval) {
+        window.clearInterval(interval);
+        interval = null;
+      }
+    };
+
+    images.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.setAttribute("type", "button");
+      dot.setAttribute("aria-label", `Slide ${i + 1}`);
+      dot.addEventListener("click", () => {
+        show(i);
+        start();
+      });
+      dots.appendChild(dot);
+    });
+
+    show(0);
+    start();
+
+    track.addEventListener("pointerenter", stop);
+    track.addEventListener("pointerleave", start);
+  }
+
   function initHomeInteractions() {
     setupNavScrollEffect();
     setupLanguageSwitcher();
     setupThemeToggle();
     setupScrollProgress();
+    setupHeroCarousel();
     setupCursorGlow();
     setupRevealOnScroll();
     setupFeatureTabs();
