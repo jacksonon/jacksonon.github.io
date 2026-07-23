@@ -701,6 +701,30 @@
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
     "footer.copyright": "© 2026 RightAI. Все права защищены."
+  },
+  "zh": {
+    "meta.title": "Right AI - 智能浏览器工作空间",
+    "meta.description": "Right AI 将你的浏览器转化为 AI 工作空间，提供快速对话、模型分屏、股票助手、网页代理工具与自适应深色模式。",
+    "nav.home": "首页",
+    "nav.features": "功能",
+    "nav.workflow": "工作流程",
+    "nav.docs": "文档",
+    "nav.faq": "常见问题",
+    "nav.tools": "站长工具",
+    "nav.language": "语言",
+    "nav.chrome": "加入 Chrome",
+    "nav.donate": "打赏",
+    "theme.toggle": "切换主题",
+    "hero.title": "快速对话，保持专注！",
+    "hero.desc": "为您解决安装多个AI应用或每使用一个模型就要切换到对应网站的问题。让各个模型对话无缝为您提供服务。同时还探索更多特色服务为您提供便利性。期待您的使用",
+    "hero.cta.install": "立即安装 Chrome 扩展",
+    "hero.cta.download": "直接下载 ZIP",
+    "hero.cta.docs": "查看安装指南",
+    "hero.trust.1": "Ctrl + R 随时唤起 Quick Input",
+    "hero.trust.2": "多模型并行对话，减少上下文切换",
+    "hero.trust.3": "网页级 AI 交互 + 图文理解 + 深色适配",
+    "hero.trust.4": "独立窗口对话/多模型对话/可附带网页上下文",
+    "hero.trust.5": "同时给多网页发送消息"
   }
 };
 
@@ -1719,16 +1743,22 @@
     if (!sticker) return;
 
     customElements.whenDefined("sticker-forge").then(() => {
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(":host, :host * { outline: none !important; }");
+      sticker.shadowRoot?.adoptedStyleSheets.push(sheet);
       sticker.setOptions({
+        outline: { width: 18, color: "#ffffff" },
         shadow: { opacity: 0.22, blur: 22, distance: 16, angle: 42 },
-        peel: { radius: 0.12, stiffness: 0.72, maxAngle: 3.55, release: "stay" },
-        sound: { enabled: false },
+        peel: { radius: 0.12, stiffness: 0.72, maxAngle: 3.55, release: "snap" },
+        sound: { enabled: true, volume: 0.68 },
         back: { color: "#f7f5f2", gloss: 0.7, roughness: 0.3 },
+        tilt: -3,
+        wind: 0.25,
       });
 
       const updateText = () => {
         const lang = getCurrentLanguage();
-        const title = translateKey("hero.title", lang);
+        const title = translateKey("hero.title", lang).replace(/[！!]$/, "");
         sticker.setSource({
           type: "text",
           richText: {
@@ -1742,7 +1772,7 @@
               {
                 align: "center",
                 runs: [
-                  { text: "@Right AI", fontSize: 40, fontWeight: 700, color: "#19191d" },
+                  { text: " @Right AI", fontSize: 40, fontWeight: 700, color: "#19191d" },
                 ],
               },
             ],
