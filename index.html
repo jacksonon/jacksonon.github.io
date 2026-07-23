@@ -71,8 +71,7 @@
 
     <main>
       <section class="section hero" id="top">
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
+        <div class="hero-copy reveal">
             <p class="kicker" data-i18n="hero.kicker">Right AI · 浏览器智能中枢</p>
             <h1 data-i18n="hero.title">快速对话，保持专注！</h1>
             <p data-i18n="hero.desc">
@@ -99,58 +98,6 @@
               <li data-i18n="hero.trust.3">网页级 AI 交互 + 图文理解 + 深色适配</li>
             </ul>
           </div>
-
-          <aside class="hero-panel reveal" aria-label="Right AI interactive demo">
-            <div class="command-shell" id="command-shell">
-              <div class="shell-head">
-                <div class="shell-controls" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <span class="shell-path">rightai://interactive-shell</span>
-              </div>
-              <div class="shell-body" id="shell-output" aria-live="polite">
-                <div class="shell-line is-command" data-i18n="shell.init.command1">$ 初始化右栏助手并绑定快捷键</div>
-                <div class="shell-line is-response" data-i18n="shell.init.response1">Right AI ready. 按 Ctrl + R 可在任意页面调起输入面板。</div>
-                <div class="shell-line is-command" data-i18n="shell.init.command2">$ 生成本页摘要 + 给出下一步行动</div>
-                <div class="shell-line is-response" data-i18n="shell.init.response2">摘要已生成，同时已建议 3 个可执行动作。</div>
-              </div>
-            </div>
-            <div class="command-input-row">
-              <label class="sr-only" for="command-input" data-i18n="shell.input.label">输入命令</label>
-              <input
-                id="command-input"
-                type="text"
-                data-i18n-placeholder="shell.input.placeholder"
-                placeholder="试试：开启 quick input / multi model / webpage mode"
-                autocomplete="off"
-              />
-              <button id="run-command" type="button" data-i18n="shell.input.run">执行</button>
-            </div>
-            <div class="chip-row" aria-label="Prompt chips">
-              <button class="prompt-chip" type="button" data-prompt-key="prompts.quick" data-i18n="chips.quick">Quick Input</button>
-              <button class="prompt-chip" type="button" data-prompt-key="prompts.multi" data-i18n="chips.multi">Multi Model</button>
-              <button class="prompt-chip" type="button" data-prompt-key="prompts.webpage" data-i18n="chips.webpage">Webpage Agent</button>
-              <button class="prompt-chip" type="button" data-prompt-key="prompts.dark" data-i18n="chips.dark">Dark Mode</button>
-            </div>
-
-            <div class="stats-grid">
-              <article class="stat-card">
-                <span class="stat-value" data-target="95%">0%</span>
-                <p data-i18n="stats.one">任务切换时间平均减少</p>
-              </article>
-              <article class="stat-card">
-                <span class="stat-value" data-target="4.8x">0x</span>
-                <p data-i18n="stats.two">跨模型验证效率提升</p>
-              </article>
-              <article class="stat-card">
-                <span class="stat-value" data-target="12+">0+</span>
-                <p data-i18n="stats.three">高频网页场景即插即用</p>
-              </article>
-            </div>
-          </aside>
-        </div>
       </section>
 
       <section class="section features" id="features">
