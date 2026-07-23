@@ -643,6 +643,19 @@ summary:focus-visible {
   object-fit: cover;
 }
 
+.multi-talk-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.multi-talk-images img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  max-height: 480px;
+  width: 100%;
+}
+
 .feature-panel-copy h3 {
   font-size: clamp(1.1rem, 2vw, 1.38rem);
 }

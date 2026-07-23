@@ -119,15 +119,13 @@
           <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-model" data-i18n="tabs.multi">
             多模型分屏
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="webpage-agent" data-i18n="tabs.webpage">
-            网页智能体
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-talk" data-i18n="tabs.multiTalk">
+            多模型同时对话
           </button>
           <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="stock-agent" data-i18n="tabs.stock">
             股票助手
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="text-ocr" data-i18n="tabs.ocr">
-            OCR 与文本
-          </button>
+
           <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
             自适应深色模式
           </button>
@@ -175,15 +173,17 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="webpage-agent" id="webpage-chat" hidden>
+        <article class="feature-panel reveal" data-panel="multi-talk" id="multi-talk" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/Rigth-Chat.png" alt="Webpage agent" loading="lazy" />
+            <div class="multi-talk-images">
+              <img src="assets/multi-model-talk.png" alt="Multi model simultaneous chat" loading="lazy" />
+              <img src="assets/multi-model-talk2.png" alt="Multi model response comparison" loading="lazy" />
+            </div>
             <div class="feature-panel-copy">
-              <h3 data-i18n="panels.web.title">网页就是上下文，AI 在原位完成理解与执行</h3>
+              <h3 data-i18n="panels.multiTalk.title">多模型同时对话</h3>
               <ul>
-                <li data-i18n="panels.web.1">自动读取当前网页内容，支持问答、总结、改写与翻译。</li>
-                <li data-i18n="panels.web.2">配合 OCR、视觉理解，实现图文混合信息处理。</li>
-                <li data-i18n="panels.web.3">研究、竞品分析、内容策划可直接沉浸式完成。</li>
+                <li data-i18n="panels.multiTalk.1">同时发送消息给多个模型，无需付费。</li>
+                <li data-i18n="panels.multiTalk.2">可滚动对比多个对话返回的消息，择优进行继续对话。</li>
               </ul>
             </div>
           </div>
@@ -203,19 +203,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="text-ocr" id="text-ocr" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/Image-OCR-Traanslation.png" alt="Right AI OCR and translation" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.ocr.title">文本识别：OCR 提取 + 翻译一步完成</h3>
-              <ul>
-                <li data-i18n="panels.ocr.1">对网页图片与截图进行文字识别，自动提取可复制文本。</li>
-                <li data-i18n="panels.ocr.2">识别结果可直接翻译、总结或继续追问。</li>
-                <li data-i18n="panels.ocr.3">适合处理海报、PDF 截图、社媒图文等场景。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
+
 
         <article class="feature-panel reveal" data-panel="adaptive-dark" id="webpage-tools" hidden>
           <div class="feature-panel-grid">
