@@ -1714,11 +1714,58 @@
     track.addEventListener("pointerleave", start);
   }
 
+  function setupHeroSticker() {
+    const sticker = document.querySelector("#hero-sticker");
+    if (!sticker) return;
+
+    customElements.whenDefined("sticker-forge").then(() => {
+      sticker.setOptions({
+        shadow: { opacity: 0.22, blur: 22, distance: 16, angle: 42 },
+        peel: { radius: 0.12, stiffness: 0.72, maxAngle: 3.55, release: "stay" },
+        sound: { enabled: false },
+        back: { color: "#f7f5f2", gloss: 0.7, roughness: 0.3 },
+      });
+
+      const updateText = () => {
+        const lang = getCurrentLanguage();
+        const title = translateKey("hero.title", lang);
+        sticker.setSource({
+          type: "text",
+          richText: {
+            blocks: [
+              {
+                align: "center",
+                runs: [
+                  { text: title, fontSize: 96, fontWeight: 900, color: "#19191d" },
+                ],
+              },
+              {
+                align: "center",
+                runs: [
+                  { text: "@Right AI", fontSize: 40, fontWeight: 700, color: "#19191d" },
+                ],
+              },
+            ],
+          },
+          fontFamily: "Arial Rounded MT Bold, Arial Black, sans-serif",
+        });
+      };
+
+      updateText();
+      document.addEventListener("rightai:language-change", updateText);
+
+      sticker.addEventListener("peelend", () => {
+        setTimeout(() => sticker.reset(), 1500);
+      });
+    });
+  }
+
   function initHomeInteractions() {
     setupNavScrollEffect();
     setupLanguageSwitcher();
     setupThemeToggle();
     setupScrollProgress();
+    setupHeroSticker();
     setupHeroCarousel();
     setupCursorGlow();
     setupRevealOnScroll();

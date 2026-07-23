@@ -423,7 +423,7 @@ summary:focus-visible {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   align-items: center;
   gap: clamp(1.8rem, 4vw, 4rem);
   width: 100%;
@@ -496,31 +496,10 @@ summary:focus-visible {
   z-index: 1;
 }
 
-.kicker {
-  width: fit-content;
-  padding: 0.38rem 0.72rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent-1) 38%, var(--line-soft));
-  background: color-mix(in srgb, var(--accent-1) 12%, var(--bg-surface));
-  color: var(--text-secondary);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.hero-copy h1 {
-  margin: 0;
-  font-size: clamp(2rem, 6vw, 4.2rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-@media (max-width: 600px) {
-  .hero-copy h1 {
-    white-space: normal;
-  }
+.hero-sticker {
+  display: block;
+  width: 100%;
+  aspect-ratio: 800 / 500;
 }
 
 .hero-copy p {

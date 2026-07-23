@@ -27,6 +27,7 @@
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4829247059582292"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/embed/sticker-forge.es.js"></script>
     <script defer src="home.js"></script>
   </head>
   <body data-theme="dark" data-language="zh">
@@ -73,8 +74,10 @@
       <section class="section hero" id="top">
         <div class="hero-layout">
           <div class="hero-copy reveal">
-            <p class="kicker" data-i18n="hero.kicker">Right AI · 浏览器智能中枢</p>
-            <h1 data-i18n="hero.title">快速对话，保持专注！</h1>
+            <sticker-forge
+              id="hero-sticker"
+              class="hero-sticker"
+            ></sticker-forge>
             <p data-i18n="hero.desc">
               为您解决安装多个AI应用或每使用一个模型就要切换到对应网站的问题。让各个模型对话无缝为您提供服务。同时还探索更多特色服务为您提供便利性。期待您的使用
             </p>
