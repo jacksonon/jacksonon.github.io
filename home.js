@@ -1865,7 +1865,28 @@
     requestUpdate();
   }
 
+  function setupNavScrollEffect() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+
+    let rafId = null;
+
+    const updateNav = () => {
+      rafId = null;
+      header.classList.toggle("is-scrolled", (window.scrollY || window.pageYOffset || 0) > 20);
+    };
+
+    const requestUpdate = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(updateNav);
+    };
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    requestUpdate();
+  }
+
   function initHomeInteractions() {
+    setupNavScrollEffect();
     setupLanguageSwitcher();
     setupThemeToggle();
     setupScrollProgress();
