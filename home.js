@@ -137,6 +137,7 @@
   "faq.kicker": "FAQ",
   "donate.title": "Thanks for supporting Right AI!",
   "donate.message": "Scan either QR code to leave a tip. Your support keeps Right AI moving.",
+  "hero.sticker.back": "One more try!",
   "donate.alipay": "Alipay",
   "donate.wechat": "WeChat",
   "download.tooltip.loading": "Loading version…",
@@ -283,6 +284,7 @@
     "donate.message": "掃描任一付款碼即可完成打賞，感謝你的支持！",
     "donate.alipay": "支付寶",
     "donate.wechat": "微信",
+    "hero.sticker.back": "再來一次！",
     "footer.copyright": "© 2026 RightAI。保留所有權利。"
   },
   "ja": {
@@ -420,6 +422,7 @@
     "faq.kicker": "よくある質問",
     "donate.title": "Right AI を応援していただきありがとうございます！",
     "donate.message": "いずれかの QR コードを読み取って応援できます。ご支援ありがとうございます！",
+    "hero.sticker.back": "もう一度！",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
     "footer.copyright": "© 2026 RightAI. All rights reserved."
@@ -561,6 +564,7 @@
     "donate.message": "원하는 QR 코드를 스캔해 후원할 수 있습니다. 소중한 지원에 감사드립니다!",
     "donate.alipay": "알리페이",
     "donate.wechat": "위챗페이",
+    "hero.sticker.back": "한 번 더!",
     "footer.copyright": "© 2026 RightAI. All rights reserved."
   },
   "ru": {
@@ -698,6 +702,7 @@
     "faq.kicker": "Частые вопросы",
     "donate.title": "Спасибо за поддержку Right AI!",
     "donate.message": "Отсканируйте любой QR-код, чтобы оставить донат. Спасибо за вашу поддержку!",
+    "hero.sticker.back": "Попробуйте снова!",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
     "footer.copyright": "© 2026 RightAI. Все права защищены."
