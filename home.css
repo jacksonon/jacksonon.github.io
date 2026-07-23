@@ -514,7 +514,13 @@ summary:focus-visible {
   font-size: clamp(2rem, 6vw, 4.2rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  max-width: 17ch;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .hero-copy h1 {
+    white-space: normal;
+  }
 }
 
 .hero-copy p {
