@@ -441,21 +441,32 @@ summary:focus-visible {
   width: 100%;
   max-width: 460px;
   overflow: hidden;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--line-soft);
-  box-shadow: var(--shadow-lg);
-  background: var(--bg-surface);
+}
+
+.carousel-track::before {
+  content: "";
+  display: block;
+  padding-bottom: 172%;
 }
 
 .carousel-track img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.4s ease;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
-.carousel-track img:not(.is-active) {
-  display: none;
+.carousel-track img.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.carousel-track img:nth-child(3) {
+  transform: scale(1.35);
 }
 
 .carousel-dots {
