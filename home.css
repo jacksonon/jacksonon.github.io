@@ -421,6 +421,28 @@ summary:focus-visible {
   padding-top: clamp(1rem, 2vw, 2rem);
 }
 
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(1.8rem, 4vw, 4rem);
+  width: 100%;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-lg);
+}
+
 .hero-copy {
   position: relative;
   z-index: 1;
@@ -1160,6 +1182,18 @@ body.modal-open {
 }
 
 @media (max-width: 1100px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image {
+    order: -1;
+  }
+
+  .hero-image img {
+    max-width: 300px;
+  }
+
   .feature-panel-grid {
     grid-template-columns: 1fr;
   }
