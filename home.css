@@ -658,6 +658,13 @@ summary:focus-visible {
   margin-top: 0.76rem;
   font-size: clamp(1.58rem, 3.2vw, 2.45rem);
   line-height: 1.16;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    white-space: normal;
+  }
 }
 
 .section-lead {
