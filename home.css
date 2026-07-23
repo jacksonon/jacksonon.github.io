@@ -239,11 +239,6 @@ summary:focus-visible {
   align-items: center;
 }
 
-.site-header.is-scrolled {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-canvas) 82%, transparent) 0%, transparent 100%);
-  backdrop-filter: saturate(150%) blur(6px);
-}
-
 .nav-inner {
   width: min(var(--max-content), calc(100% - 2rem));
   margin-inline: auto;
