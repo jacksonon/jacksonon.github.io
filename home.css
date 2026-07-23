@@ -306,12 +306,12 @@ summary:focus-visible {
 
 .language-toggle {
   min-height: 42px;
-  min-width: 8rem;
+  min-width: 4rem;
   border-radius: 999px;
-  border: 1px solid var(--glass-edge);
-  background: var(--glass-bg);
+  border: none;
+  background: transparent;
   color: var(--text-primary);
-  padding: 0 2rem 0 0.85rem;
+  padding: 0 1.6rem 0 0.6rem;
   font-size: 0.84rem;
   font-weight: 580;
   cursor: pointer;
@@ -320,17 +320,21 @@ summary:focus-visible {
     linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
     linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
   background-position:
-    calc(100% - 1rem) 1.05rem,
-    calc(100% - 0.72rem) 1.05rem;
+    calc(100% - 0.45rem) 1.05rem,
+    calc(100% - 0.18rem) 1.05rem;
   background-size: 0.38rem 0.38rem, 0.38rem 0.38rem;
   background-repeat: no-repeat;
-  box-shadow: var(--shadow-sm);
-  transition: transform 220ms var(--ease-snappy), box-shadow 220ms var(--ease-standard), border-color 220ms var(--ease-standard);
+  transition: transform 220ms var(--ease-snappy);
 }
 
 .language-toggle:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+}
+
+.language-toggle:focus,
+.language-toggle:focus-visible,
+.language-toggle:hover {
+  outline: none !important;
 }
 
 .nav-links a {
@@ -374,27 +378,37 @@ summary:focus-visible {
 }
 
 .theme-toggle {
-  border: 1px solid var(--glass-edge);
-  background: var(--glass-bg);
+  background: transparent;
   color: var(--text-primary);
   border-radius: 999px;
   min-height: 42px;
-  padding: 0 0.95rem;
-  font-size: 0.88rem;
+  padding: 0 0.62rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: transform 220ms var(--ease-snappy), box-shadow 220ms var(--ease-standard), background-color 220ms var(--ease-standard);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  transition: transform 220ms var(--ease-snappy);
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.theme-toggle:focus,
+.theme-toggle:focus-visible,
+.theme-toggle:active {
+  border: none;
+  outline: none;
+  box-shadow: none;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+}
+
+.theme-toggle .theme-icon {
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .section {
@@ -1298,17 +1312,17 @@ body.modal-open {
 
   .theme-toggle {
     min-height: 38px;
-    padding: 0 0.78rem;
+    padding: 0 0.5rem;
   }
 
   .language-toggle {
     min-height: 38px;
-    min-width: 4.8rem;
-    padding: 0 1.55rem 0 0.62rem;
+    min-width: 3.6rem;
+    padding: 0 1.4rem 0 0.5rem;
     font-size: 0.78rem;
     background-position:
-      calc(100% - 0.85rem) 0.96rem,
-      calc(100% - 0.62rem) 0.96rem;
+      calc(100% - 0.38rem) 0.96rem,
+      calc(100% - 0.12rem) 0.96rem;
   }
 
   .nav-links::-webkit-scrollbar {

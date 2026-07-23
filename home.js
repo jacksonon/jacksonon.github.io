@@ -1146,7 +1146,6 @@
 
   function setupThemeToggle() {
     const themeToggle = document.querySelector("#theme-toggle");
-    const themeLabel = themeToggle?.querySelector("[data-theme-label]") || null;
     const body = document.body;
 
     if (!body) {
@@ -1198,9 +1197,10 @@
         themeToggle.setAttribute("aria-pressed", String(resolvedTheme === "dark"));
         themeToggle.setAttribute("aria-label", toggleLabel);
 
-        if (themeLabel) {
-          themeLabel.textContent = toggleLabel;
-        }
+        themeToggle.querySelectorAll("[data-theme-icon]").forEach((el) => {
+          const iconTheme = el.getAttribute("data-theme-icon");
+          el.hidden = iconTheme !== currentThemeMode;
+        });
       }
 
       if (persist) {

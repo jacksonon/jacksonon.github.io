@@ -366,9 +366,9 @@
       isDark ? t("theme.switchToLight") : t("theme.switchToDark")
     );
 
-    if (elements.themeLabel) {
-      elements.themeLabel.textContent = isDark ? t("theme.light") : t("theme.dark");
-    }
+    elements.themeToggle.querySelectorAll("[data-theme-icon]").forEach((el) => {
+      el.hidden = el.getAttribute("data-theme-icon") !== (isDark ? "dark" : "light");
+    });
   }
 
   function setupThemeToggle() {
