@@ -935,6 +935,21 @@ summary:focus-visible {
   font-size: 0.95rem;
 }
 
+.footer-stats {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+}
+
+.footer-stat-sep {
+  margin: 0 0.5rem;
+  opacity: 0.55;
+}
+
+.footer-stat-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
 .back-to-top {
   position: fixed;
   right: clamp(1rem, 2.5vw, 1.85rem);

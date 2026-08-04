@@ -143,7 +143,9 @@
   "download.tooltip.loading": "Loading version…",
   "download.tooltip.unavailable": "Version unavailable",
   "download.tooltip.prefix": "Version ",
-  "footer.copyright": "© 2026 RightAI. All rights reserved."
+  "footer.copyright": "© 2026 RightAI. All rights reserved.",
+  "footer.pv": "Total visits",
+  "footer.uv": "Unique visitors"
 };
 
   const LOCALE_OVERRIDES = {
@@ -285,7 +287,9 @@
     "donate.alipay": "支付寶",
     "donate.wechat": "微信",
     "hero.sticker.back": "再來一次！",
-    "footer.copyright": "© 2026 RightAI。保留所有權利。"
+    "footer.copyright": "© 2026 RightAI。保留所有權利。",
+    "footer.pv": "本站總訪問量",
+    "footer.uv": "訪客數"
   },
   "ja": {
     "meta.title": "Right AI - インテリジェント・ブラウザワークスペース",
@@ -425,7 +429,9 @@
     "hero.sticker.back": "もう一度！",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
-    "footer.copyright": "© 2026 RightAI. All rights reserved."
+    "footer.copyright": "© 2026 RightAI. All rights reserved.",
+    "footer.pv": "総訪問数",
+    "footer.uv": "訪問者数"
   },
   "ko": {
     "meta.title": "Right AI - 브라우저용 지능형 워크스페이스",
@@ -565,7 +571,9 @@
     "donate.alipay": "알리페이",
     "donate.wechat": "위챗페이",
     "hero.sticker.back": "한 번 더!",
-    "footer.copyright": "© 2026 RightAI. All rights reserved."
+    "footer.copyright": "© 2026 RightAI. All rights reserved.",
+    "footer.pv": "총 방문수",
+    "footer.uv": "방문자 수"
   },
   "ru": {
     "meta.title": "Right AI — интеллектуальное рабочее пространство в браузере",
@@ -705,7 +713,9 @@
     "hero.sticker.back": "Попробуйте снова!",
     "donate.alipay": "Alipay",
     "donate.wechat": "WeChat",
-    "footer.copyright": "© 2026 RightAI. Все права защищены."
+    "footer.copyright": "© 2026 RightAI. Все права защищены.",
+    "footer.pv": "Всего посещений",
+    "footer.uv": "Посетителей"
   },
   "zh": {
     "meta.title": "Right AI - 智能浏览器工作空间",
