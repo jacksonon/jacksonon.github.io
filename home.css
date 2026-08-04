@@ -950,6 +950,10 @@ summary:focus-visible {
   font-weight: 600;
 }
 
+.giscus {
+  margin-top: 2.2rem;
+}
+
 .back-to-top {
   position: fixed;
   right: clamp(1rem, 2.5vw, 1.85rem);

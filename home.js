@@ -145,7 +145,9 @@
   "download.tooltip.prefix": "Version ",
   "footer.copyright": "© 2026 RightAI. All rights reserved.",
   "footer.pv": "Total visits",
-  "footer.uv": "Unique visitors"
+  "footer.uv": "Unique visitors",
+  "comments.kicker": "Community",
+  "comments.title": "Comments"
 };
 
   const LOCALE_OVERRIDES = {
@@ -289,7 +291,9 @@
     "hero.sticker.back": "再來一次！",
     "footer.copyright": "© 2026 RightAI。保留所有權利。",
     "footer.pv": "本站總訪問量",
-    "footer.uv": "訪客數"
+    "footer.uv": "訪客數",
+    "comments.kicker": "社群互動",
+    "comments.title": "評論區"
   },
   "ja": {
     "meta.title": "Right AI - インテリジェント・ブラウザワークスペース",
@@ -431,7 +435,9 @@
     "donate.wechat": "WeChat",
     "footer.copyright": "© 2026 RightAI. All rights reserved.",
     "footer.pv": "総訪問数",
-    "footer.uv": "訪問者数"
+    "footer.uv": "訪問者数",
+    "comments.kicker": "コミュニティ",
+    "comments.title": "コメント"
   },
   "ko": {
     "meta.title": "Right AI - 브라우저용 지능형 워크스페이스",
@@ -573,7 +579,9 @@
     "hero.sticker.back": "한 번 더!",
     "footer.copyright": "© 2026 RightAI. All rights reserved.",
     "footer.pv": "총 방문수",
-    "footer.uv": "방문자 수"
+    "footer.uv": "방문자 수",
+    "comments.kicker": "커뮤니티",
+    "comments.title": "댓글"
   },
   "ru": {
     "meta.title": "Right AI — интеллектуальное рабочее пространство в браузере",
@@ -715,7 +723,9 @@
     "donate.wechat": "WeChat",
     "footer.copyright": "© 2026 RightAI. Все права защищены.",
     "footer.pv": "Всего посещений",
-    "footer.uv": "Посетителей"
+    "footer.uv": "Посетителей",
+    "comments.kicker": "Сообщество",
+    "comments.title": "Комментарии"
   },
   "zh": {
     "meta.title": "Right AI - 智能浏览器工作空间",
@@ -1216,6 +1226,12 @@
       if (persist) {
         writeStorage(THEME_STORAGE_KEY, currentThemeMode);
       }
+
+      document.dispatchEvent(
+        new CustomEvent("rightai:theme-change", {
+          detail: { mode: currentThemeMode, theme: resolvedTheme },
+        })
+      );
     };
 
     applyThemeMode(currentThemeMode, false);
@@ -1805,10 +1821,93 @@
     });
   }
 
+  const GISCUS_LANGUAGE_MAP = {
+  en: "en",
+  ru: "ru",
+  zh: "zh-CN",
+  "zh-Hant": "zh-TW",
+  ja: "ja",
+  ko: "ko",
+};
+
+  function setupGiscus() {
+    const container = document.querySelector(".giscus");
+
+    if (!container) {
+      return;
+    }
+
+    const getGiscusLanguage = () => GISCUS_LANGUAGE_MAP[getCurrentLanguage()] || "en";
+
+    const getGiscusTheme = () => {
+      const mode = document.body?.getAttribute("data-theme-mode") || "system";
+
+      if (mode === "dark") {
+        return "dark";
+      }
+
+      if (mode === "light") {
+        return "light";
+      }
+
+      return "preferred_color_scheme";
+    };
+
+    const loadGiscus = () => {
+      if (container.dataset.loaded) {
+        return;
+      }
+
+      container.dataset.loaded = "true";
+
+      const script = document.createElement("script");
+      script.src = "https://giscus.app/client.js";
+      script.setAttribute("data-repo", "jacksonon/jacksonon.github.io");
+      script.setAttribute("data-repo-id", "R_kgDOP9MaGg");
+      script.setAttribute("data-category", "General");
+      script.setAttribute("data-category-id", "DIC_kwDOP9MaGs4DCpIU");
+      script.setAttribute("data-mapping", "pathname");
+      script.setAttribute("data-strict", "0");
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-input-position", "bottom");
+      script.setAttribute("data-theme", getGiscusTheme());
+      script.setAttribute("data-lang", getGiscusLanguage());
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+      container.appendChild(script);
+    };
+
+    const syncGiscusConfig = () => {
+      const frame = container.querySelector("iframe.giscus-frame");
+
+      if (!frame) {
+        return;
+      }
+
+      frame.contentWindow.postMessage(
+        {
+          giscus: {
+            setConfig: {
+              lang: getGiscusLanguage(),
+              theme: getGiscusTheme(),
+            },
+          },
+        },
+        "https://giscus.app"
+      );
+    };
+
+    loadGiscus();
+    document.addEventListener("rightai:language-change", syncGiscusConfig);
+    document.addEventListener("rightai:theme-change", syncGiscusConfig);
+  }
+
   function initHomeInteractions() {
     setupNavScrollEffect();
     setupLanguageSwitcher();
     setupThemeToggle();
+    setupGiscus();
     setupScrollProgress();
     setupHeroSticker();
     setupHeroCarousel();
