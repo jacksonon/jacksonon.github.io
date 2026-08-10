@@ -148,6 +148,8 @@
   "footer.links.title": "Friendly Links",
   "footer.links.1": "Online app management service built on the Apple Store Connect API",
   "footer.links.2": "Predicts and explains the language order of store product pages based on language configuration",
+  "footer.links.3": "Resource site offering free AI agents",
+  "footer.links.4": "Open-source AI coding agent",
   "comments.kicker": "Community",
   "comments.title": "Comments"
 };
@@ -296,6 +298,8 @@
     "footer.links.title": "友情連結",
     "footer.links.1": "基於 Apple Store Connect API 的應用線上管理服務",
     "footer.links.2": "一個基於語言配置，推測及講解商店商品頁語言順序",
+    "footer.links.3": "提供免費 Agent 工具的資源站點",
+    "footer.links.4": "開源 AI 程式 Agent",
     "comments.kicker": "社群互動",
     "comments.title": "評論區"
   },
@@ -442,6 +446,8 @@
     "footer.links.title": "リンク集",
     "footer.links.1": "Apple Store Connect API を利用したアプリのオンライン管理サービス",
     "footer.links.2": "言語設定に基づいて、ストア商品ページの言語順序を推測・解説するサービス",
+    "footer.links.3": "無料の AI エージェントを提供するリソースサイト",
+    "footer.links.4": "オープンソースの AI コーディングエージェント",
     "comments.kicker": "コミュニティ",
     "comments.title": "コメント"
   },
@@ -588,6 +594,8 @@
     "footer.links.title": "링크 모음",
     "footer.links.1": "Apple Store Connect API 기반 앱 온라인 관리 서비스",
     "footer.links.2": "언어 설정을 바탕으로 스토어 상품 페이지의 언어 순서를 추측하고 설명하는 서비스",
+    "footer.links.3": "무료 AI 에이전트를 제공하는 리소스 사이트",
+    "footer.links.4": "오픈소스 AI 코딩 에이전트",
     "comments.kicker": "커뮤니티",
     "comments.title": "댓글"
   },
@@ -734,6 +742,8 @@
     "footer.links.title": "Дружественные ссылки",
     "footer.links.1": "Онлайн-сервис управления приложениями на основе Apple Store Connect API",
     "footer.links.2": "Сервис, который на основе языковых настроек предсказывает и объясняет порядок языков на страницах магазина",
+    "footer.links.3": "Сайт с бесплатными AI-агентами",
+    "footer.links.4": "Открытый AI-агент для написания кода",
     "comments.kicker": "Сообщество",
     "comments.title": "Комментарии"
   },
