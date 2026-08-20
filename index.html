@@ -83,8 +83,21 @@
             </div>
             <span hidden data-i18n="hero.title">快速对话，保持专注！</span>
             <p data-i18n="hero.desc">
-              为您解决安装多个AI应用或每使用一个模型就要切换到对应网站的问题。让各个模型对话无缝为您提供服务。同时还探索更多特色服务为您提供便利性。期待您的使用
+              RightAI 把常用 AI 都收到 Chrome 侧边栏里，并内置一个真正能在浏览器里替你「动手」的代理。
             </p>
+            <div class="hero-desc-detail">
+              <p class="hero-desc-sub" data-i18n="hero.desc.sub">两大能力，一打开就用：</p>
+              <ul class="hero-desc-list">
+                <li>
+                  <span class="hero-desc-name" data-i18n="hero.cap.1.name">Omni — 浏览器代理</span>
+                  <span data-i18n="hero.cap.1.desc">：给 Omni 一个目标，它会读网页、点按钮、填表单、切标签，运行受限的页面脚本，并把结果写入你授权过的本地目录。每一次有风险的操作都会先在侧边栏弹确认卡片，等你点头才会执行。</span>
+                </li>
+                <li>
+                  <span class="hero-desc-name" data-i18n="hero.cap.2.name">多模型并行问答</span>
+                  <span data-i18n="hero.cap.2.desc">：把同一个问题同时发给 ChatGPT、Claude、Gemini、DeepSeek、Kimi，以及任何 OpenAI 兼容接口。回答并排摆在一起，挑你最信任的那一个。</span>
+                </li>
+              </ul>
+            </div>
             <div class="hero-actions" id="download">
               <a
                 class="cta cta-primary"
@@ -100,19 +113,14 @@
               </a>
               <a class="cta cta-ghost" href="#docs" data-i18n="hero.cta.docs">查看安装指南</a>
             </div>
-            <ul class="trust-list" aria-label="Highlights">
-              <li data-i18n="hero.trust.1">Ctrl + R 随时唤起 Quick Input</li>
-              <li data-i18n="hero.trust.2">多模型并行对话，减少上下文切换</li>
-              <li data-i18n="hero.trust.3">网页级 AI 交互 + 图文理解 + 深色适配</li>
-              <li data-i18n="hero.trust.4">独立窗口对话/多模型对话/可附带网页上下文</li>
-              <li data-i18n="hero.trust.5">同时给多网页发送消息</li>
-            </ul>
           </div>
           <div class="hero-carousel">
             <div class="carousel-track">
-              <img src="assets/core.png" alt="Right AI core features" loading="lazy" />
-              <img src="assets/core2.png" alt="Right AI capabilities" loading="lazy" />
-              <img src="assets/shortcut-quick-send.png" alt="Quick send shortcut" loading="lazy" />
+              <img src="assets/right01.png" alt="RightAI 4.0 功能预览 1" loading="lazy" />
+              <img src="assets/right02.png" alt="RightAI 4.0 功能预览 2" loading="lazy" />
+              <img src="assets/right03.png" alt="RightAI 4.0 功能预览 3" loading="lazy" />
+              <img src="assets/right04.png" alt="RightAI 4.0 功能预览 4" loading="lazy" />
+              <img src="assets/right05.png" alt="RightAI 4.0 功能预览 5" loading="lazy" />
             </div>
             <div class="carousel-dots"></div>
           </div>
@@ -129,6 +137,9 @@
         </div>
 
         <div class="feature-tabs reveal" role="tablist" aria-label="核心能力标签">
+          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="omni-agent" data-i18n="tabs.omni">
+            Omni 浏览器代理
+          </button>
           <button class="feature-tab is-active" type="button" role="tab" aria-selected="true" data-tab="quick-input" data-i18n="tabs.quick">
             AI 快速输入
           </button>
@@ -160,6 +171,22 @@
                 <li data-i18n="panels.quick.2">支持在当前页面直接打开模型对话窗口（右下角），并携带网页上下文继续对话，无需额外跳转。</li>
                 <li data-i18n="panels.quick.3">设置新增：对话页直开、唤起切回 Chrome、再次按快捷键一键关闭。</li>
               </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-panel reveal" data-panel="omni-agent" id="omni-agent" hidden>
+          <div class="feature-panel-grid">
+            <img src="assets/browser-agent.png" alt="Right AI Omni 浏览器代理" loading="lazy" />
+            <div class="feature-panel-copy">
+              <h3 data-i18n="panels.omni.title">Omni — 浏览器代理：给它一个目标，替你「动手」</h3>
+              <ul>
+                <li data-i18n="panels.omni.1">读写文件：read_file / write_file / diff_file。可授权整个目录，也可只勾选若干文件，每次访问都会写入审计日志。</li>
+                <li data-i18n="panels.omni.2">驱动页面：截图、运行受限页面 JavaScript（无法访问 Chrome 扩展 API 与本地文件）、打开新标签、切换标签、罗列标签。</li>
+                <li data-i18n="panels.omni.3">复合任务：perform_task。一句话目标，端到端执行，流式进度实时显示在侧边栏。</li>
+                <li data-i18n="panels.omni.4">一切本地优先：API Key、设置与审计日志只留在你的设备上；所有有副作用的动作都会先在侧边栏列出要做什么，等你确认后再执行。</li>
+              </ul>
+              <p class="feature-panel-note" data-i18n="panels.omni.note">不想先付费申请 API？Omni 设置页里有一份一步步教你申请 OpenCode Zen 免费 key 的教程。</p>
             </div>
           </div>
         </article>
@@ -335,6 +362,36 @@
         </div>
       </section>
 
+      <section class="section zen" id="zen">
+        <div class="section-heading reveal">
+          <p class="kicker" data-i18n="zen.kicker">免费模型获取</p>
+          <h2 class="section-title" data-i18n="zen.title">OpenCode Zen 免费 API Key 获取指南</h2>
+          <p class="section-lead" data-i18n="zen.lead">
+            注册免费的 OpenCode 账号并创建 API Key，即可让 Omni 使用 Zen 的免费模型。
+          </p>
+        </div>
+        <div class="zen-steps reveal">
+          <ol>
+            <li>
+              <span data-i18n="zen.step1.pre">前往 </span>
+              <a href="https://opencode.ai/go?ref=WBJ8HDW7QJ" target="_blank" rel="noopener nofollow">OpenCode</a>
+              <span data-i18n="zen.step1.post">注册 / 登录并创建 API Key。</span>
+            </li>
+            <li data-i18n="zen.step2">进入「API 密钥」→「创建 API 密钥」，然后复制生成的密钥。</li>
+            <li>
+              <span data-i18n="zen.step3.start">回到 Omni 设置页，在 API Key 中粘贴密钥，并将 Base URL 填为：</span>
+              <code>https://opencode.ai/zen/v1</code>
+            </li>
+            <li>
+              <span data-i18n="zen.step4.start">测试连接，并在模型列表中选择带有 </span>
+              <code>free</code>
+              <span data-i18n="zen.step4.end"> 字样的模型，即可开始使用 Omni。</span>
+            </li>
+          </ol>
+          <p class="zen-note" data-i18n="zen.note">提示：免费模型的可用性、限额和服务条款以 OpenCode Zen 当前页面为准。</p>
+        </div>
+      </section>
+
       <section class="section faq" id="faq">
         <div class="section-heading reveal">
           <p class="kicker" data-i18n="faq.kicker">常见问题</p>
@@ -423,6 +480,23 @@
           </figure>
         </div>
       </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <div class="lightbox-backdrop" data-lightbox-close></div>
+      <figure class="lightbox-dialog">
+        <img id="lightbox-image" alt="" />
+        <figcaption id="lightbox-caption" class="lightbox-caption"></figcaption>
+      </figure>
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="关闭预览">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="上一张">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="下一张">
+        <span aria-hidden="true">›</span>
+      </button>
     </div>
 
     <footer class="site-footer">

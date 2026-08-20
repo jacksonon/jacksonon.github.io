@@ -17,7 +17,29 @@
   "nav.donate": "Donate",
   "theme.toggle": "Toggle Theme",
   "hero.title": "Quick conversations, stay focused!",
-  "hero.desc": "Solve the problem of installing multiple AI apps or jumping to a different site for every model. Right AI lets different model conversations serve you seamlessly, while continuing to explore more specialized features for convenience.",
+  "hero.desc": "RightAI gathers the AI tools you use every day into a Chrome sidebar, and ships with an agent that can actually take action in your browser.",
+  "hero.desc.sub": "Two capabilities, ready to use the moment you open it:",
+  "hero.cap.1.name": "Omni — Browser Agent",
+  "hero.cap.1.desc": ": Give Omni a goal and it reads pages, clicks buttons, fills forms, switches tabs, runs sandboxed page scripts, and writes results to local folders you authorize. Every risky action first asks for your confirmation in the sidebar before it runs.",
+  "hero.cap.2.name": "Multi-model Parallel Q&A",
+  "hero.cap.2.desc": ": Send the same question to ChatGPT, Claude, Gemini, DeepSeek, Kimi, and any OpenAI-compatible endpoint at the same time. Answers sit side by side — pick the one you trust most.",
+  "tabs.omni": "Omni Browser Agent",
+  "panels.omni.title": "Omni — the browser agent that gets things done for you",
+  "panels.omni.1": "File tools: read_file / write_file / diff_file. Authorize a whole folder or pick individual files; every access is written to the audit log.",
+  "panels.omni.2": "Page control: screenshots, sandboxed page JavaScript (no access to Chrome extension APIs or local files), open a new tab, switch tabs, list tabs.",
+  "panels.omni.3": "Composite tasks: perform_task. Give a one-sentence goal and it runs end to end, with live streaming progress in the sidebar.",
+  "panels.omni.4": "Local-first by design: API keys, settings, and audit logs stay on your device. Every action with side effects first lists what it will do in the sidebar and waits for your approval.",
+  "panels.omni.note": "Don't want to pay for an API up front? The Omni settings page includes a step-by-step tutorial for getting a free OpenCode Zen key.",
+  "zen.kicker": "Free Model Access",
+  "zen.title": "Get a free API key from OpenCode Zen",
+  "zen.lead": "Register a free OpenCode account and create an API key so Omni can use Zen's free models.",
+  "zen.step1.pre": "Go to ",
+  "zen.step1.post": " to register or sign in, then create an API key.",
+  "zen.step2": "Open \"API Keys\" → \"Create API Key\", then copy the generated key.",
+  "zen.step3.start": "Back in the Omni settings, paste the key into API Key and set Base URL to:",
+  "zen.step4.start": "Test the connection, then pick a model marked ",
+  "zen.step4.end": " from the model list to start using Omni.",
+  "zen.note": "Note: availability, quotas, and terms of free models are subject to the OpenCode Zen page.",
   "hero.cta.install": "Install from Chrome Web Store",
   "hero.cta.download": "Direct Download ZIP",
   "hero.cta.docs": "View Setup Guide",
@@ -168,7 +190,29 @@
     "nav.donate": "打賞",
     "theme.toggle": "切換主題",
     "hero.title": "快速對話，保持專注！",
-    "hero.desc": "為你解決安裝多個 AI 應用，或每使用一個模型就要切換到對應網站的問題。讓各個模型對話無縫為你提供服務，同時也探索更多特色服務帶來便利。期待你的使用。",
+    "hero.desc": "RightAI 把常用 AI 都收進 Chrome 側邊欄，並內建一個真正能在瀏覽器裡替你「動手」的代理。",
+    "hero.desc.sub": "兩大能力，一打開就能用：",
+    "hero.cap.1.name": "Omni — 瀏覽器代理",
+    "hero.cap.1.desc": "：給 Omni 一個目標，它會讀網頁、點按鈕、填表單、切標籤，執行受限的頁面腳本，並把結果寫入你授權過的本地目錄。每一次有風險的操作都會先在側邊欄彈確認卡片，等你點頭才會執行。",
+    "hero.cap.2.name": "多模型並行問答",
+    "hero.cap.2.desc": "：把同一個問題同時發給 ChatGPT、Claude、Gemini、DeepSeek、Kimi，以及任何 OpenAI 相容介面。回答並排擺在一起，挑你最信任的那一個。",
+    "tabs.omni": "Omni 瀏覽器代理",
+    "panels.omni.title": "Omni — 瀏覽器代理：給它一個目標，替你「動手」",
+    "panels.omni.1": "讀寫檔案：read_file / write_file / diff_file。可授權整個目錄，也可只勾選若干檔案，每次存取都會寫入稽核日誌。",
+    "panels.omni.2": "驅動頁面：截圖、執行受限的頁面 JavaScript（無法存取 Chrome 擴充功能 API 與本地檔案）、開啟新標籤、切換標籤、列出標籤。",
+    "panels.omni.3": "複合任務：perform_task。一句話目標，端到端執行，串流進度即時顯示在側邊欄。",
+    "panels.omni.4": "一切本地優先：API Key、設定與稽核日誌只留在你的裝置上；所有有副作用的動作都會先在側邊欄列出要做什麼，等你確認後再執行。",
+    "panels.omni.note": "不想先付費申請 API？Omni 設定頁裡有一份一步步教你申請 OpenCode Zen 免費 key 的教學。",
+    "zen.kicker": "免費模型取得",
+    "zen.title": "OpenCode Zen 免費 API Key 取得指南",
+    "zen.lead": "註冊免費的 OpenCode 帳號並建立 API Key，即可讓 Omni 使用 Zen 的免費模型。",
+    "zen.step1.pre": "前往 ",
+    "zen.step1.post": "註冊 / 登入並建立 API Key。",
+    "zen.step2": "進入「API 金鑰」→「建立 API 金鑰」，然後複製產生的金鑰。",
+    "zen.step3.start": "回到 Omni 設定頁，在 API Key 中貼上金鑰，並將 Base URL 填為：",
+    "zen.step4.start": "測試連線，並在模型清單中選擇帶有 ",
+    "zen.step4.end": " 字樣的模型，即可開始使用 Omni。",
+    "zen.note": "提示：免費模型的可用性、額度與服務條款以 OpenCode Zen 目前頁面為準。",
     "hero.cta.install": "從 Chrome 線上應用程式商店安裝",
     "hero.cta.download": "直接下載 ZIP",
     "hero.cta.docs": "查看安裝指南",
@@ -316,7 +360,29 @@
     "nav.donate": "寄付",
     "theme.toggle": "テーマ切替",
     "hero.title": "素早く対話して、集中を保つ",
-    "hero.desc": "複数の AI アプリを入れたり、モデルごとに別サイトへ移動したりする手間を減らします。Right AI は複数モデルとの対話をシームレスにし、さらに便利な独自機能も広げていきます。",
+    "hero.desc": "RightAI はよく使う AI を Chrome のサイドバーに集約し、ブラウザ内で実際に「動いてくれる」エージェントを内蔵しています。",
+    "hero.desc.sub": "開けばすぐに使える 2 つの能力：",
+    "hero.cap.1.name": "Omni — ブラウザエージェント",
+    "hero.cap.1.desc": "：Omni に目標を与えると、ページの読み取り、ボタン操作、フォーム入力、タブ切り替え、制限付きページスクリプトの実行を行い、結果を許可したローカルフォルダに書き込みます。リスクのある操作は毎回サイドバーに確認カードを表示し、承認してから実行します。",
+    "hero.cap.2.name": "マルチモデル並列 QA",
+    "hero.cap.2.desc": "：同じ質問を ChatGPT、Claude、Gemini、DeepSeek、Kimi、その他任意の OpenAI 互換エンドポイントへ同時に送信します。回答は並べて表示され、最も信頼できるものを選べます。",
+    "tabs.omni": "Omni ブラウザエージェント",
+    "panels.omni.title": "Omni — 目標を与えると代わりに実行してくれるブラウザエージェント",
+    "panels.omni.1": "ファイル操作：read_file / write_file / diff_file。ディレクトリ全体を許可するか、ファイル単位で選択可能。アクセスのたびに監査ログへ記録されます。",
+    "panels.omni.2": "ページ操作：スクリーンショット、制限付きページ JavaScript（Chrome 拡張 API とローカルファイルにはアクセス不可）、新規タブを開く、タブ切り替え、タブ一覧。",
+    "panels.omni.3": "複合タスク：perform_task。一言の目標からエンドツーエンドで実行し、ストリーミング進捗をサイドバーにリアルタイム表示。",
+    "panels.omni.4": "ローカルファースト設計：API キー、設定、監査ログはすべて端末内に保持。副作用のある操作はサイドバーで内容を提示し、承認後にのみ実行します。",
+    "panels.omni.note": "先に有料 API を申請したくない方へ：Omni 設定ページに、OpenCode Zen の無料キーを申請する手順ガイドが用意されています。",
+    "zen.kicker": "無料モデルの取得",
+    "zen.title": "OpenCode Zen 無料 API キー取得ガイド",
+    "zen.lead": "無料の OpenCode アカウントを登録して API キーを作成すると、Omni で Zen の無料モデルが使えます。",
+    "zen.step1.pre": "以下のリンクから ",
+    "zen.step1.post": " にアクセスし、登録 / ログインして API キーを作成してください。",
+    "zen.step2": "「API キー」→「API キーの作成」を開き、生成されたキーをコピーします。",
+    "zen.step3.start": "Omni 設定に戻り、API Key にキーを貼り付け、Base URL を次のように設定します：",
+    "zen.step4.start": "接続をテストし、モデル一覧から ",
+    "zen.step4.end": " と表示されているモデルを選ぶと Omni を使い始められます。",
+    "zen.note": "注意：無料モデルの利用可否、上限、利用規約は OpenCode Zen の現在のページに準拠します。",
     "hero.cta.install": "Chrome ウェブストアからインストール",
     "hero.cta.download": "ZIP を直接ダウンロード",
     "hero.cta.docs": "セットアップガイドを見る",
@@ -464,7 +530,29 @@
     "nav.donate": "후원하기",
     "theme.toggle": "테마 전환",
     "hero.title": "빠르게 대화하고, 집중을 유지하세요!",
-    "hero.desc": "여러 AI 앱을 설치하거나 모델마다 다른 사이트로 이동해야 하는 문제를 줄여줍니다. Right AI는 여러 모델 대화를 끊김 없이 연결하고, 더 편리한 특화 기능도 계속 확장합니다.",
+    "hero.desc": "RightAI는 자주 쓰는 AI를 Chrome 사이드바에 모아 두고, 브라우저에서 실제로 '손을 움직이는' 에이전트를 내장합니다.",
+    "hero.desc.sub": "열자마자 바로 쓸 수 있는 두 가지 능력:",
+    "hero.cap.1.name": "Omni — 브라우저 에이전트",
+    "hero.cap.1.desc": ": Omni에게 목표를 주면 페이지를 읽고, 버튼을 누르고, 폼을 채우고, 탭을 전환하고, 제한된 페이지 스크립트를 실행하며, 결과를 승인한 로컬 폴더에 기록합니다. 위험한 동작은 항상 사이드바에서 확인 카드를 먼저 띄우고, 승인한 뒤에만 실행합니다.",
+    "hero.cap.2.name": "멀티모델 병렬 질문",
+    "hero.cap.2.desc": ": 같은 질문을 ChatGPT, Claude, Gemini, DeepSeek, Kimi 및 모든 OpenAI 호환 엔드포인트에 동시에 보냅니다. 답변이 나란히 표시되니 가장 신뢰하는 답을 고르면 됩니다.",
+    "tabs.omni": "Omni 브라우저 에이전트",
+    "panels.omni.title": "Omni — 목표를 주면 대신 실행해 주는 브라우저 에이전트",
+    "panels.omni.1": "파일 도구: read_file / write_file / diff_file. 폴더 전체를 승인하거나 파일 단위로 선택할 수 있으며, 모든 접근은 감사 로그에 기록됩니다.",
+    "panels.omni.2": "페이지 제어: 스크린샷, 제한된 페이지 JavaScript(Chrome 확장 API와 로컬 파일에는 접근 불가), 새 탭 열기, 탭 전환, 탭 목록.",
+    "panels.omni.3": "복합 작업: perform_task. 한 문장의 목표를 주면 끝까지 실행하고, 스트리밍 진행 상황이 사이드바에 실시간으로 표시됩니다.",
+    "panels.omni.4": "모든 것을 로컬 우선: API 키, 설정, 감사 로그는 기기 안에만 보관됩니다. 부작용이 있는 동작은 사이드바에서 무엇을 할지 보여 준 뒤 승인을 기다립니다.",
+    "panels.omni.note": "API를 먼저 유료로 신청하고 싶지 않다면? Omni 설정 페이지에 OpenCode Zen 무료 키 신청 방법을 단계별로 안내하는 튜토리얼이 있습니다.",
+    "zen.kicker": "무료 모델 받기",
+    "zen.title": "OpenCode Zen 무료 API 키 받는 방법",
+    "zen.lead": "무료 OpenCode 계정을 등록하고 API 키를 만들면 Omni에서 Zen의 무료 모델을 사용할 수 있습니다.",
+    "zen.step1.pre": "다음 링크에서 ",
+    "zen.step1.post": " 에 가입 / 로그인하고 API 키를 만들어 주세요.",
+    "zen.step2": "「API 키」→「API 키 만들기」로 이동한 뒤 생성된 키를 복사합니다.",
+    "zen.step3.start": "Omni 설정으로 돌아와 API Key에 키를 붙여 넣고 Base URL을 다음과 같이 입력합니다:",
+    "zen.step4.start": "연결을 테스트하고 모델 목록에서 ",
+    "zen.step4.end": " 표시가 있는 모델을 선택하면 Omni를 사용할 수 있습니다.",
+    "zen.note": "참고: 무료 모델의 이용 가능 여부, 한도 및 서비스 약관은 OpenCode Zen 현재 페이지를 기준으로 합니다.",
     "hero.cta.install": "Chrome 웹 스토어에서 설치",
     "hero.cta.download": "ZIP 직접 다운로드",
     "hero.cta.docs": "설정 가이드 보기",
@@ -612,7 +700,29 @@
     "nav.donate": "Поддержать",
     "theme.toggle": "Сменить тему",
     "hero.title": "Быстрый диалог, меньше отвлечений!",
-    "hero.desc": "Right AI решает проблему установки множества AI-приложений и постоянных переходов на отдельные сайты для каждой модели. Диалоги с разными моделями работают бесшовно, а дополнительные специальные функции делают работу удобнее.",
+    "hero.desc": "RightAI собирает ваши повседневные AI-инструменты в боковой панели Chrome и включает агента, который реально действует в браузере.",
+    "hero.desc.sub": "Две возможности — доступны сразу после установки:",
+    "hero.cap.1.name": "Omni — браузерный агент",
+    "hero.cap.1.desc": ": дайте Omni цель — он прочитает страницу, нажмёт кнопки, заполнит формы, переключит вкладки, выполнит ограниченные скрипты страницы и запишет результат в разрешённые вами локальные папки. Каждое рискованное действие сначала показывает карточку подтверждения в боковой панели и выполняется только после вашего согласия.",
+    "hero.cap.2.name": "Параллельный мульти-модельный диалог",
+    "hero.cap.2.desc": ": отправьте один и тот же вопрос одновременно в ChatGPT, Claude, Gemini, DeepSeek, Kimi и любой совместимый с OpenAI интерфейс. Ответы отображаются рядом — выбирайте тот, которому доверяете больше.",
+    "tabs.omni": "Агент Omni",
+    "panels.omni.title": "Omni — браузерный агент: дайте цель, и он сделает всё сам",
+    "panels.omni.1": "Работа с файлами: read_file / write_file / diff_file. Можно разрешить всю папку или отметить отдельные файлы; каждый доступ записывается в журнал аудита.",
+    "panels.omni.2": "Управление страницей: скриншоты, ограниченный JavaScript страницы (без доступа к API расширений Chrome и локальным файлам), открытие новой вкладки, переключение вкладок, список вкладок.",
+    "panels.omni.3": "Комплексные задачи: perform_task. Одна фраза-цель — и задача выполняется целиком, с потоковым прогрессом в боковой панели.",
+    "panels.omni.4": "Всё локально: API-ключи, настройки и журналы аудита остаются на вашем устройстве. Каждое действие с побочными эффектами сначала показывает, что будет сделано, и ждёт вашего подтверждения.",
+    "panels.omni.note": "Не хотите заранее платить за API? В настройках Omni есть пошаговая инструкция по получению бесплатного ключа OpenCode Zen.",
+    "zen.kicker": "Бесплатные модели",
+    "zen.title": "Как получить бесплатный API-ключ OpenCode Zen",
+    "zen.lead": "Зарегистрируйте бесплатный аккаунт OpenCode и создайте API-ключ, чтобы Omni мог использовать бесплатные модели Zen.",
+    "zen.step1.pre": "Перейдите на ",
+    "zen.step1.post": " — зарегистрируйтесь или войдите и создайте API-ключ.",
+    "zen.step2": "Откройте «API-ключи» → «Создать API-ключ» и скопируйте сгенерированный ключ.",
+    "zen.step3.start": "Вернитесь в настройки Omni, вставьте ключ в поле API Key и укажите Base URL:",
+    "zen.step4.start": "Проверьте подключение и выберите в списке моделей модель с пометкой ",
+    "zen.step4.end": " — и можно пользоваться Omni.",
+    "zen.note": "Подсказка: доступность, лимиты и условия бесплатных моделей зависят от текущей страницы OpenCode Zen.",
     "hero.cta.install": "Установить из Chrome Web Store",
     "hero.cta.download": "Скачать ZIP напрямую",
     "hero.cta.docs": "Открыть руководство по настройке",
@@ -1784,8 +1894,92 @@
     show(0);
     start();
 
+    // Lightbox: click the active slide to view it enlarged
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImage = document.querySelector("#lightbox-image");
+    const lightboxCaption = document.querySelector("#lightbox-caption");
+
     track.addEventListener("pointerenter", stop);
-    track.addEventListener("pointerleave", start);
+    track.addEventListener("pointerleave", () => {
+      if (!lightbox || lightbox.hidden) {
+        start();
+      }
+    });
+
+    if (!lightbox || !lightboxImage || !lightboxCaption) return;
+
+    let previousFocusedNode = null;
+
+    const renderLightbox = (index) => {
+      const img = images[index];
+      if (!img) return;
+      lightboxImage.src = img.getAttribute("src") || "";
+      lightboxImage.alt = img.getAttribute("alt") || "";
+      lightboxCaption.textContent = `${index + 1} / ${images.length}`;
+    };
+
+    const openLightbox = (index) => {
+      previousFocusedNode = document.activeElement;
+      show(index);
+      renderLightbox(index);
+      stop();
+      lightbox.hidden = false;
+      document.body.classList.add("modal-open");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+      if (closeButton) closeButton.focus();
+      document.addEventListener("keydown", onLightboxKeydown);
+    };
+
+    const closeLightbox = () => {
+      lightbox.hidden = true;
+      document.body.classList.remove("modal-open");
+      document.removeEventListener("keydown", onLightboxKeydown);
+      start();
+      if (previousFocusedNode && typeof previousFocusedNode.focus === "function") {
+        previousFocusedNode.focus();
+      }
+      previousFocusedNode = null;
+    };
+
+    const navigateLightbox = (step) => {
+      const next = (current + step + images.length) % images.length;
+      show(next);
+      renderLightbox(next);
+    };
+
+    function onLightboxKeydown(event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      } else if (event.key === "ArrowLeft") {
+        navigateLightbox(-1);
+      } else if (event.key === "ArrowRight") {
+        navigateLightbox(1);
+      }
+    }
+
+    images.forEach((img) => {
+      img.addEventListener("click", () => {
+        if (!img.classList.contains("is-active")) return;
+        openLightbox(current);
+      });
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target.closest("[data-lightbox-close]")) {
+        closeLightbox();
+        return;
+      }
+
+      const nav = event.target.closest(".lightbox-nav");
+      if (nav) {
+        navigateLightbox(nav.classList.contains("lightbox-prev") ? -1 : 1);
+        return;
+      }
+
+      if (!event.target.closest(".lightbox-dialog")) {
+        closeLightbox();
+      }
+    });
   }
 
   function setupHeroSticker() {
