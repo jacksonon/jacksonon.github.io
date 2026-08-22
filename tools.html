@@ -8,6 +8,18 @@
       name="description"
       content="站长工具列表：聚合 SEO、测速、索引与抓取分析工具，快速访问常用站长资源。"
     />
+    <meta name="theme-color" content="#060915" />
+    <link rel="canonical" href="https://rightai.cn/tools.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Right AI" />
+    <meta property="og:title" content="站长工具列表 | Right AI" />
+    <meta
+      property="og:description"
+      content="聚合 SEO、测速、索引与抓取分析工具，快速访问常用站长资源。"
+    />
+    <meta property="og:url" content="https://rightai.cn/tools.html" />
+    <meta property="og:image" content="https://rightai.cn/assets/rightai-icon.png" />
+    <meta name="twitter:card" content="summary" />
     <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
@@ -18,14 +30,35 @@
       crossorigin
     />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="tools.css" />
+    <script>
+      (function () {
+        var mode = "system";
+        try {
+          var saved = localStorage.getItem("rightai-theme");
+          if (saved === "light" || saved === "dark" || saved === "system") mode = saved;
+        } catch (e) {}
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.body.dataset.theme = mode === "system" ? (dark ? "dark" : "light") : mode;
+        document.body.dataset.themeMode = mode;
+      })();
+    </script>
     <script defer src="tools.js"></script>
   </head>
   <body data-theme="dark" data-language="zh">
+    <a class="skip-link" href="#tools-main" data-i18n="skip.link">跳至主要内容</a>
     <div class="ambient-bg" aria-hidden="true"></div>
     <div class="noise-layer" aria-hidden="true"></div>
     <div class="grid-layer" aria-hidden="true"></div>
@@ -68,7 +101,7 @@
       </div>
     </header>
 
-    <main class="tools-main">
+    <main class="tools-main" id="tools-main">
       <section class="section tools-section" aria-labelledby="tools-page-title">
         <header class="tools-intro">
           <p class="tools-kicker" data-i18n="intro.kicker">Webmaster Resources</p>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Redirect stubs (noindex); allow crawling for the JS redirect target
+Disallow: /docs.html
+Disallow: /web-resume/
+
+Sitemap: https://rightai.cn/sitemap.xml

@@ -174,7 +174,8 @@
   "footer.links.4": "Open-source AI coding agent",
   "footer.privacy": "Privacy Policy",
   "comments.kicker": "Community",
-  "comments.title": "Comments"
+  "comments.title": "Comments",
+  "skip.link": "Skip to main content"
 };
 
   const LOCALE_OVERRIDES = {
@@ -347,7 +348,8 @@
     "footer.links.4": "開源 AI 程式 Agent",
     "footer.privacy": "隱私政策",
     "comments.kicker": "社群互動",
-    "comments.title": "評論區"
+    "comments.title": "評論區",
+    "skip.link": "跳至主要內容"
   },
   "ja": {
     "meta.title": "Right AI - インテリジェント・ブラウザワークスペース",
@@ -518,7 +520,8 @@
     "footer.links.4": "オープンソースの AI コーディングエージェント",
     "footer.privacy": "プライバシーポリシー",
     "comments.kicker": "コミュニティ",
-    "comments.title": "コメント"
+    "comments.title": "コメント",
+    "skip.link": "メインコンテンツへスキップ"
   },
   "ko": {
     "meta.title": "Right AI - 브라우저용 지능형 워크스페이스",
@@ -689,7 +692,8 @@
     "footer.links.4": "오픈소스 AI 코딩 에이전트",
     "footer.privacy": "개인정보 처리방침",
     "comments.kicker": "커뮤니티",
-    "comments.title": "댓글"
+    "comments.title": "댓글",
+    "skip.link": "본문으로 건너뛰기"
   },
   "ru": {
     "meta.title": "Right AI — интеллектуальное рабочее пространство в браузере",
@@ -860,7 +864,8 @@
     "footer.links.4": "Открытый AI-агент для написания кода",
     "footer.privacy": "Политика конфиденциальности",
     "comments.kicker": "Сообщество",
-    "comments.title": "Комментарии"
+    "comments.title": "Комментарии",
+    "skip.link": "Перейти к содержимому"
   },
   "zh": {
     "meta.title": "Right AI - 智能浏览器工作空间",
@@ -884,7 +889,8 @@
     "hero.trust.3": "网页级 AI 交互 + 图文理解 + 深色适配",
     "hero.trust.4": "独立窗口对话/多模型对话/可附带网页上下文",
     "hero.trust.5": "同时给多网页发送消息",
-    "footer.privacy": "隐私政策"
+    "footer.privacy": "隐私政策",
+    "skip.link": "跳至主要内容"
   }
 };
 

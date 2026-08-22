@@ -8,8 +8,44 @@
       name="description"
       content="Right AI 让浏览器升级为 AI 工作台：快速对话、模型分屏、股票助手、Webpage Agent 与一键暗色适配，让你在当前网页中保持专注。"
     />
+    <meta name="theme-color" content="#060915" />
+    <link rel="canonical" href="https://rightai.cn/" />
     <link rel="icon" type="image/png" href="assets/rightai-icon.png" />
     <link rel="apple-touch-icon" href="assets/rightai-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Right AI" />
+    <meta property="og:title" content="Right AI - 智能浏览器工作台" />
+    <meta
+      property="og:description"
+      content="把常用 AI 收进 Chrome 侧边栏，内置能替你「动手」的 Omni 浏览器代理，支持多模型并行问答、股票助手与一键暗色适配。"
+    />
+    <meta property="og:url" content="https://rightai.cn/" />
+    <meta property="og:image" content="https://rightai.cn/assets/rightai-icon.png" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Right AI - 智能浏览器工作台" />
+    <meta
+      name="twitter:description"
+      content="Chrome 侧边栏 AI 工作台：Omni 浏览器代理、多模型并行问答、股票助手与一键暗色适配。"
+    />
+    <meta name="twitter:image" content="https://rightai.cn/assets/rightai-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Right AI - Sidebar AI Hub Workspace",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "url": "https://rightai.cn/",
+        "description": "Right AI turns your browser into an AI workspace with quick conversations, split-model chat, stock analysis, an Omni browser agent, and adaptive dark mode.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
     <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
@@ -20,10 +56,30 @@
       crossorigin
     />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link rel="stylesheet" href="home.css" />
+    <script>
+      (function () {
+        var mode = "system";
+        try {
+          var saved = localStorage.getItem("rightai-theme");
+          if (saved === "light" || saved === "dark" || saved === "system") mode = saved;
+        } catch (e) {}
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.body.dataset.theme = mode === "system" ? (dark ? "dark" : "light") : mode;
+        document.body.dataset.themeMode = mode;
+      })();
+    </script>
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4829247059582292"
@@ -33,6 +89,7 @@
     <script defer src="home.js"></script>
   </head>
   <body data-theme="dark" data-language="zh">
+    <a class="skip-link" href="#main-content" data-i18n="skip.link">跳至主要内容</a>
     <div id="scroll-progress" aria-hidden="true"></div>
     <div class="ambient-bg" aria-hidden="true"></div>
     <div class="noise-layer" aria-hidden="true"></div>
@@ -72,7 +129,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="section hero" id="top">
         <div class="hero-layout">
           <div class="hero-copy reveal">
@@ -118,11 +175,11 @@
           </div>
           <div class="hero-carousel">
             <div class="carousel-track">
-              <img src="assets/right01.png" alt="RightAI 4.0 功能预览 1" loading="lazy" />
-              <img src="assets/right02.png" alt="RightAI 4.0 功能预览 2" loading="lazy" />
-              <img src="assets/right03.png" alt="RightAI 4.0 功能预览 3" loading="lazy" />
-              <img src="assets/right04.png" alt="RightAI 4.0 功能预览 4" loading="lazy" />
-              <img src="assets/right05.png" alt="RightAI 4.0 功能预览 5" loading="lazy" />
+              <img src="assets/right01.webp" alt="RightAI 4.0 功能预览 1" fetchpriority="high" />
+              <img src="assets/right02.webp" alt="RightAI 4.0 功能预览 2" loading="lazy" />
+              <img src="assets/right03.webp" alt="RightAI 4.0 功能预览 3" loading="lazy" />
+              <img src="assets/right04.webp" alt="RightAI 4.0 功能预览 4" loading="lazy" />
+              <img src="assets/right05.webp" alt="RightAI 4.0 功能预览 5" loading="lazy" />
             </div>
             <div class="carousel-dots"></div>
           </div>
@@ -165,7 +222,7 @@
 
         <article class="feature-panel is-active reveal" data-panel="quick-input" id="quick-input">
           <div class="feature-panel-grid">
-            <img src="assets/shortcut-quick-send.png" alt="Right AI 快速输入" loading="lazy" />
+            <img src="assets/shortcut-quick-send.webp" alt="Right AI 快速输入" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.quick.title">用 Ctrl + R 直接把想法送进模型</h3>
               <ul>
@@ -179,7 +236,7 @@
 
         <article class="feature-panel reveal" data-panel="omni-agent" id="omni-agent" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/browser-agent.png" alt="Right AI Omni 浏览器代理" loading="lazy" />
+            <img src="assets/browser-agent.webp" alt="Right AI Omni 浏览器代理" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.omni.title">Omni — 浏览器代理：给它一个目标，替你「动手」</h3>
               <ul>
@@ -195,7 +252,7 @@
 
         <article class="feature-panel reveal" data-panel="quick-conversation" id="quick-conversation" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/quick_conversation.png" alt="Right AI 快速对话" loading="lazy" />
+            <img src="assets/quick_conversation.webp" alt="Right AI 快速对话" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.quickConversation.title">AI 快速对话：网页独立窗口对话</h3>
               <ul>
@@ -209,7 +266,7 @@
 
         <article class="feature-panel reveal" data-panel="multi-model" id="multi-model" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/Multi-Model-Support.png" alt="Multi model split" loading="lazy" />
+            <img src="assets/Multi-Model-Support.webp" alt="Multi model split" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.multi.title">多模型同屏协同，结果更稳更准</h3>
               <ul>
@@ -224,8 +281,8 @@
         <article class="feature-panel reveal" data-panel="multi-talk" id="multi-talk" hidden>
           <div class="feature-panel-grid">
             <div class="multi-talk-images">
-              <img src="assets/multi-model-talk.png" alt="Multi model simultaneous chat" loading="lazy" />
-              <img src="assets/multi-model-talk2.png" alt="Multi model response comparison" loading="lazy" />
+              <img src="assets/multi-model-talk.webp" alt="Multi model simultaneous chat" loading="lazy" />
+              <img src="assets/multi-model-talk2.webp" alt="Multi model response comparison" loading="lazy" />
             </div>
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.multiTalk.title">多模型同时对话</h3>
@@ -239,7 +296,7 @@
 
         <article class="feature-panel reveal" data-panel="stock-agent" id="stock-agent" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/Stock.png" alt="Right AI stock assistant" loading="lazy" />
+            <img src="assets/Stock.webp" alt="Right AI stock assistant" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.stock.title">股票助手：盯盘、资讯、AI 解读一体化</h3>
               <ul>
@@ -255,7 +312,7 @@
 
         <article class="feature-panel reveal" data-panel="adaptive-dark" id="webpage-tools" hidden>
           <div class="feature-panel-grid">
-            <img src="assets/night-adapt.png" alt="Adaptive dark mode" loading="lazy" />
+            <img src="assets/night-adapt.webp" alt="Adaptive dark mode" loading="lazy" />
             <div class="feature-panel-copy">
               <h3 data-i18n="panels.dark.title">任何网页，一键进入舒适暗色工作模式</h3>
               <ul>

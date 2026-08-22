@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <title>Jackson WANG · 交互式简历</title>
     <link rel="icon" href="data:," />
     <style>
@@ -135,6 +135,31 @@
         position: sticky;
         top: 10px;
         z-index: 90;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 200;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+        backdrop-filter: blur(14px);
+        color: var(--text-main);
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transform: translateY(-160%);
+        transition: transform 0.18s ease;
+      }
+
+      .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        text-decoration: none;
       }
 
       .brand {
@@ -1541,6 +1566,12 @@
     </style>
   </head>
   <body class="theme-dark lang-zh">
+    <a class="skip-link" href="#top">
+      <span class="inline-switch">
+        <span class="inline-lang lang-zh">跳至主要内容</span>
+        <span class="inline-lang lang-en">Skip to main content</span>
+      </span>
+    </a>
     <canvas id="universe" aria-hidden="true"></canvas>
     <div class="noise-overlay" aria-hidden="true"></div>
     <div class="scroll-progress" data-role="scroll-progress"></div>
@@ -1640,7 +1671,7 @@
 
                 <aside class="hero-side" data-role="hero-side">
                     <article class="avatar-card tilt-card">
-                      <img src="https://avatars.githubusercontent.com/u/14219702?s=160&v=4" alt="Jackson WANG avatar" />
+                      <img src="https://avatars.githubusercontent.com/u/14219702?s=160&amp;v=4" alt="Jackson WANG avatar" />
                       <p class="status-line lang-switch">
                         <span class="lang-copy lang-zh"><strong>可协作方向：</strong>iOS / macOS 客户端架构、跨平台 SDK（Unity / Unreal / PlayStation）、性能稳定性治理、AI Agent 工程化。</span>
                         <span class="lang-copy lang-en"><strong>Open to collaborate on:</strong> iOS / macOS architecture, cross-platform SDK (Unity / Unreal / PlayStation), reliability engineering, and AI Agent engineering.</span>
@@ -1711,7 +1742,7 @@
           <article class="bento-card tilt-card">
             <h3 class="lang-switch">
               <span class="lang-copy lang-zh">金融级性能与稳定性治理</span>
-              <span class="lang-copy lang-en">Fintech-grade performance & reliability</span>
+              <span class="lang-copy lang-en">Fintech-grade performance &amp; reliability</span>
             </h3>
             <p class="lang-switch">
               <span class="lang-copy lang-zh">玖富 App 冷启动 4.2s → 1.8s（−57%），崩溃率 0.8% → 0.12%；支付成功率 91% → 96.5%；端侧风控日均拦截 5000+ 次异常请求。25+ 模块组件化重构，编译耗时降低 67%。</span>
@@ -1722,7 +1753,7 @@
           <article class="bento-card tilt-card">
             <h3 class="lang-switch">
               <span class="lang-copy lang-zh">游戏引擎插件与工具链</span>
-              <span class="lang-copy lang-en">Game engine plugins & toolchain</span>
+              <span class="lang-copy lang-en">Game engine plugins &amp; toolchain</span>
             </h3>
             <p class="lang-switch">
               <span class="lang-copy lang-zh">Unity (C#) / Unreal Engine (C++) 多引擎插件开发，自建 UE 插件包管理系统。动态挂载/替换 SDK 方案将更新周期从 3 天缩至 2 小时。PlayStation 4/PS5 原生 SDK 适配，PS5 DualSense 特性集成。</span>
@@ -2039,7 +2070,7 @@
           <article class="project-card tilt-card" data-skills="swift objective-c uikit swiftui appkit combine c++ typescript dart react-native flutter">
             <h3 class="lang-switch">
               <span class="lang-copy lang-zh">游戏引擎与工程化</span>
-              <span class="lang-copy lang-en">Game Engines & Engineering</span>
+              <span class="lang-copy lang-en">Game Engines &amp; Engineering</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
@@ -2057,7 +2088,7 @@
             </ul>
             <h3 class="lang-switch" style="margin-top: 4px;">
               <span class="lang-copy lang-zh">架构与工程化</span>
-              <span class="lang-copy lang-en">Architecture & Engineering</span>
+              <span class="lang-copy lang-en">Architecture &amp; Engineering</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
@@ -2073,8 +2104,8 @@
 
           <article class="project-card tilt-card" data-skills="swift objective-c uikit swiftui appkit combine c++ typescript dart react-native flutter">
             <h3 class="lang-switch">
-              <span class="lang-copy lang-zh">AI Agent & LLM 工程化</span>
-              <span class="lang-copy lang-en">AI Agent & LLM Engineering</span>
+              <span class="lang-copy lang-zh">AI Agent &amp; LLM 工程化</span>
+              <span class="lang-copy lang-en">AI Agent &amp; LLM Engineering</span>
             </h3>
             <ul class="lang-switch-list">
               <li>
@@ -2119,7 +2150,7 @@
             <div style="flex: 1;">
               <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
                 <span class="lang-copy lang-zh">玖富金融 App — 核心架构升级与技术团队管理</span>
-                <span class="lang-copy lang-en">99F Group — Core Architecture Upgrade & Team Leadership</span>
+                <span class="lang-copy lang-en">99F Group — Core Architecture Upgrade &amp; Team Leadership</span>
               </h3>
               <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
                 <span class="lang-copy lang-zh">资深 iOS 开发 / 技术负责人 · 2017.07 – 2019.06 · 带领 8 人 iOS 团队</span>
@@ -2136,7 +2167,7 @@
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付网关与风控</span><span class="lang-copy lang-en">Payment Gateway & Risk Control</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付网关与风控</span><span class="lang-copy lang-en">Payment Gateway &amp; Risk Control</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">统一支付网关支持 6+ 种支付方式，成功率 91% → 96.5%</span><span class="lang-copy lang-en">Unified gateway for 6+ payment methods; success rate 91% → 96.5%</span></li>
                 <li><span class="lang-copy lang-zh">端侧风控引擎日均拦截 5000+ 次异常请求，RSA+AES 混合加密通过 PCI-DSS</span><span class="lang-copy lang-en">On-device risk engine blocks 5000+ daily; RSA+AES encryption passes PCI-DSS</span></li>
@@ -2146,11 +2177,11 @@
               <h4 class="lang-switch"><span class="lang-copy lang-zh">性能治理</span><span class="lang-copy lang-en">Performance Optimization</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">冷启动 4.2s → 1.8s（−57%），崩溃率 0.8% → 0.12%，内存 180MB → 110MB</span><span class="lang-copy lang-en">Cold start 4.2s → 1.8s (−57%); crash rate 0.8% → 0.12%; memory 180MB → 110MB</span></li>
-                <li><span class="lang-copy lang-zh">RunLoop 卡顿监控 >200ms 事件减少 70%</span><span class="lang-copy lang-en">RunLoop jank monitoring: >200ms events −70%</span></li>
+                <li><span class="lang-copy lang-zh">RunLoop 卡顿监控 &gt;200ms 事件减少 70%</span><span class="lang-copy lang-en">RunLoop jank monitoring: &gt;200ms events −70%</span></li>
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">CI/CD 与团队</span><span class="lang-copy lang-en">CI/CD & Team</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">CI/CD 与团队</span><span class="lang-copy lang-en">CI/CD &amp; Team</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">Jenkins + Fastlane 自动化流水线，发版周期 2 周 → 每周，热修复 30min</span><span class="lang-copy lang-en">Jenkins + Fastlane pipeline; release cycle 2wk → weekly; hotfix in 30min</span></li>
                 <li><span class="lang-copy lang-zh">Code Review 规范推行后代码缺陷率下降 40%，培养 2 名高级工程师</span><span class="lang-copy lang-en">CR adoption cut defect rate −40%; mentored 2 engineers to senior level</span></li>
@@ -2168,7 +2199,7 @@
             <div style="flex: 1;">
               <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
                 <span class="lang-copy lang-zh">转转 App — 首页改版与音视频通讯</span>
-                <span class="lang-copy lang-en">Zhuanzhuan — Homepage Redesign & VOIP</span>
+                <span class="lang-copy lang-en">Zhuanzhuan — Homepage Redesign &amp; VOIP</span>
               </h3>
               <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
                 <span class="lang-copy lang-zh">iOS 开发工程师 · 2019.07 – 2019.09 · DAU 百万级，App Store 生活榜 Top 10</span>
@@ -2206,7 +2237,7 @@
             <div style="flex: 1;">
               <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
                 <span class="lang-copy lang-zh">悟空理财 iOS 客户端 — 混合架构与性能治理</span>
-                <span class="lang-copy lang-en">Wukong Licai — Hybrid Architecture & Performance</span>
+                <span class="lang-copy lang-en">Wukong Licai — Hybrid Architecture &amp; Performance</span>
               </h3>
               <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
                 <span class="lang-copy lang-zh">主程 · 9F Group · 2018.05 – 2019.05 · Objective-C + React Native 混合应用</span>
@@ -2223,7 +2254,7 @@
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">APM 与稳定性</span><span class="lang-copy lang-en">APM & Reliability</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">APM 与稳定性</span><span class="lang-copy lang-en">APM &amp; Reliability</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">参与内部 APM 项目，从需求梳理到系统落地，支撑崩溃率与性能指标改进</span><span class="lang-copy lang-en">Built internal APM from requirements to delivery; enabled crash/performance observability</span></li>
                 <li><span class="lang-copy lang-zh">持续代码审查与技术指导，帮助初级开发者提升代码质量与架构意识</span><span class="lang-copy lang-en">Continuous code reviews and mentoring; improved team code quality and architecture awareness</span></li>
@@ -2276,7 +2307,7 @@
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付与广告</span><span class="lang-copy lang-en">Payment & Ads</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">支付与广告</span><span class="lang-copy lang-en">Payment &amp; Ads</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">IAP + Google Pay / PayPal / Stripe 统一抽象，月流水 $200 万+，成功率 99.2%</span><span class="lang-copy lang-en">IAP + Google Pay / PayPal / Stripe abstraction; $2M+/mo, 99.2% success</span></li>
                 <li><span class="lang-copy lang-zh">对接 10+ 海外广告平台（AdMob / Meta / Unity Ads / ironSource 等）</span><span class="lang-copy lang-en">Integrated 10+ ad platforms (AdMob / Meta / Unity Ads / ironSource etc.)</span></li>
@@ -2297,14 +2328,14 @@
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">工具链与自动化</span><span class="lang-copy lang-en">Toolchain & Automation</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">工具链与自动化</span><span class="lang-copy lang-en">Toolchain &amp; Automation</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">macOS 资源管理工具（AppKit + Swift），资源发布效率 +60%</span><span class="lang-copy lang-en">macOS resource tool (AppKit + Swift); publish efficiency +60%</span></li>
                 <li><span class="lang-copy lang-zh">App Store Connect API 自动化：全球上线 4h → 15min，TestFlight 1天 → 2h</span><span class="lang-copy lang-en">Store Connect API automation: global release 4h → 15min; TF 1d → 2h</span></li>
               </ul>
             </div>
             <div class="project-detail-card">
-              <h4 class="lang-switch"><span class="lang-copy lang-zh">SDK 质量与生态</span><span class="lang-copy lang-en">SDK Quality & Ecosystem</span></h4>
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">SDK 质量与生态</span><span class="lang-copy lang-en">SDK Quality &amp; Ecosystem</span></h4>
               <ul class="lang-switch-list">
                 <li><span class="lang-copy lang-zh">SDK 异常自愈（Crash 拦截 + 自动降级），接入文档站 + FAQ 知识库</span><span class="lang-copy lang-en">SDK self-healing (crash intercept + auto-degrade); docs site + FAQ</span></li>
                 <li><span class="lang-copy lang-zh">12 个月历史版本维护，客户响应时效 24h → 4h</span><span class="lang-copy lang-en">12-month legacy support; customer response 24h → 4h</span></li>
@@ -2315,7 +2346,7 @@
 
         <h3 class="lang-switch" style="margin: 18px 0 10px; color: var(--text-strong);">
           <span class="lang-copy lang-zh">个人与开源项目</span>
-          <span class="lang-copy lang-en">Personal & Open-source Projects</span>
+          <span class="lang-copy lang-en">Personal &amp; Open-source Projects</span>
         </h3>
         <div class="project-grid">
           <article class="project-card tilt-card" data-skills="llm swift uikit swiftui">
@@ -2345,7 +2376,7 @@
           <article class="project-card tilt-card" data-skills="swift appkit build">
             <h3 class="lang-switch">
               <span class="lang-copy lang-zh">macOS 状态栏应用与 GitHub Workflow 实践</span>
-              <span class="lang-copy lang-en">macOS status bar app & GitHub Workflow practice</span>
+              <span class="lang-copy lang-en">macOS status bar app &amp; GitHub Workflow practice</span>
             </h3>
             <p class="lang-switch">
               <span class="lang-copy lang-zh">结合 GitHub Actions 自动构建与发布，持续优化个人工具迭代效率。</span>
@@ -2376,7 +2407,7 @@
             </h3>
             <p class="lang-switch">
               <span class="lang-copy lang-zh">App Store Connect API 自动化助手：批量管理版本与审核信息、TestFlight 分发、快捷上架，缩短发版流程。</span>
-              <span class="lang-copy lang-en">App Store Connect API automation assistant: version & review metadata, TestFlight distribution and faster releases.</span>
+              <span class="lang-copy lang-en">App Store Connect API automation assistant: version &amp; review metadata, TestFlight distribution and faster releases.</span>
             </p>
             <a href="https://tooooools.cn" target="_blank" rel="noreferrer">tooooools.cn</a>
           </article>

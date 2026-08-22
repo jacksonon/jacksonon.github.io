@@ -1,5 +1,12 @@
+# macOS
+.DS_Store
+
+# Local build/site tooling
 _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# Local test screenshots (not part of the deployed site)
+output/

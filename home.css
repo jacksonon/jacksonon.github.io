@@ -154,6 +154,28 @@ summary:focus-visible {
   outline-offset: 2px;
 }
 
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-strong);
+  border: 1px solid color-mix(in srgb, var(--accent-1) 55%, var(--line-strong));
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transform: translateY(-140%);
+  transition: transform 180ms var(--ease-snappy);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid color-mix(in srgb, var(--accent-1) 78%, white 22%);
+  outline-offset: 2px;
+}
+
 #scroll-progress {
   position: fixed;
   top: 0;

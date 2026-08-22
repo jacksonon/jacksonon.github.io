@@ -36,7 +36,8 @@
       "status.loadError": "工具数据加载失败，请稍后重试。",
       "card.export": "export {{name}}",
       "card.open": "打开工具",
-      "card.openAria": "访问 {{name}}"
+      "card.openAria": "访问 {{name}}",
+      "skip.link": "跳至主要内容"
     },
     "zh-Hant": {
       "meta.title": "站長工具列表 | Right AI",
@@ -68,7 +69,8 @@
       "status.loadError": "工具資料載入失敗，請稍後重試。",
       "card.export": "export {{name}}",
       "card.open": "開啟工具",
-      "card.openAria": "造訪 {{name}}"
+      "card.openAria": "造訪 {{name}}",
+      "skip.link": "跳至主要內容"
     },
     en: {
       "meta.title": "Webmaster Tools Directory | Right AI",
@@ -100,7 +102,8 @@
       "status.loadError": "Failed to load tool data. Please try again later.",
       "card.export": "export {{name}}",
       "card.open": "Open Tool",
-      "card.openAria": "Open {{name}}"
+      "card.openAria": "Open {{name}}",
+      "skip.link": "Skip to main content"
     },
     ru: {
       "meta.title": "Каталог инструментов вебмастера | Right AI",
@@ -132,7 +135,8 @@
       "status.loadError": "Не удалось загрузить данные инструментов. Повторите позже.",
       "card.export": "export {{name}}",
       "card.open": "Открыть инструмент",
-      "card.openAria": "Открыть {{name}}"
+      "card.openAria": "Открыть {{name}}",
+      "skip.link": "Перейти к содержимому"
     },
     ja: {
       "meta.title": "ウェブマスターツール一覧 | Right AI",
@@ -164,7 +168,8 @@
       "status.loadError": "ツールデータの読み込みに失敗しました。しばらくしてから再試行してください。",
       "card.export": "export {{name}}",
       "card.open": "ツールを開く",
-      "card.openAria": "{{name}} を開く"
+      "card.openAria": "{{name}} を開く",
+      "skip.link": "メインコンテンツへスキップ"
     },
     ko: {
       "meta.title": "웹마스터 도구 목록 | Right AI",
@@ -196,7 +201,8 @@
       "status.loadError": "도구 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.",
       "card.export": "export {{name}}",
       "card.open": "도구 열기",
-      "card.openAria": "{{name}} 열기"
+      "card.openAria": "{{name}} 열기",
+      "skip.link": "본문으로 건너뛰기"
     }
   };
 
