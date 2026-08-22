@@ -1297,6 +1297,29 @@
     );
   }
 
+  function trapFocus(container, event) {
+    const focusable = Array.from(
+      container.querySelectorAll(
+        'a[href], button:not([disabled]), select, input, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => el.offsetParent !== null);
+
+    if (focusable.length === 0) {
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   function prefersReducedMotion() {
     if (typeof window.matchMedia !== "function") {
       return false;
@@ -1402,8 +1425,21 @@
 
     themeToggle.addEventListener("click", () => {
       const nextThemeMode = getNextThemeMode(currentThemeMode);
+      animateThemeTransition();
       applyThemeMode(nextThemeMode, true);
     });
+  }
+
+  let themeTransitionTimer = null;
+
+  function animateThemeTransition() {
+    document.documentElement.classList.add("theme-anim");
+    if (themeTransitionTimer) {
+      window.clearTimeout(themeTransitionTimer);
+    }
+    themeTransitionTimer = window.setTimeout(() => {
+      document.documentElement.classList.remove("theme-anim");
+    }, 400);
   }
 
   function setupScrollProgress() {
@@ -1533,6 +1569,29 @@
       });
     });
 
+    // Keyboard navigation: ARIA tabs pattern (Left/Right/Home/End)
+    const tablist = document.querySelector(".feature-tabs");
+    if (tablist) {
+      tablist.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+          return;
+        }
+
+        const currentIndex = tabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+        const lastIndex = tabs.length - 1;
+        let nextIndex = currentIndex;
+
+        if (event.key === "ArrowRight") nextIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
+        else if (event.key === "ArrowLeft") nextIndex = currentIndex <= 0 ? lastIndex : currentIndex - 1;
+        else if (event.key === "Home") nextIndex = 0;
+        else if (event.key === "End") nextIndex = lastIndex;
+
+        event.preventDefault();
+        tabs[nextIndex].focus();
+        activateTab(tabs[nextIndex].dataset.tab);
+      });
+    }
+
     const initialTab = tabs.find(
       (tab) => tab.classList.contains("is-active") || tab.getAttribute("aria-selected") === "true"
     ) || tabs[0];
@@ -1631,6 +1690,8 @@
     function onDonateKeydown(event) {
       if (event.key === "Escape") {
         closeDonateModal();
+      } else if (event.key === "Tab") {
+        trapFocus(donateDialog, event);
       }
     }
 
@@ -1721,6 +1782,11 @@
       anchor.addEventListener("mouseleave", hideTooltip);
       anchor.addEventListener("focus", () => showTooltip(anchor));
       anchor.addEventListener("blur", hideTooltip);
+      // Touch / tap: show the version briefly (download still proceeds)
+      anchor.addEventListener("click", () => {
+        showTooltip(anchor);
+        window.setTimeout(hideTooltip, 2500);
+      });
     });
 
     window.addEventListener("scroll", () => {
@@ -1860,13 +1926,17 @@
   function setupHeroCarousel() {
     const track = document.querySelector(".carousel-track");
     const dots = document.querySelector(".carousel-dots");
+    const controls = document.querySelector(".carousel-controls");
     if (!track || !dots) return;
 
     const images = Array.from(track.querySelectorAll("img"));
     if (images.length < 2) return;
 
+    const reduceMotion = prefersReducedMotion();
+
     let current = 0;
     let interval = null;
+    let touchStartX = 0;
 
     const show = (index) => {
       images.forEach((img, i) => {
@@ -1880,6 +1950,7 @@
 
     const start = () => {
       stop();
+      if (reduceMotion) return;
       interval = window.setInterval(() => {
         show((current + 1) % images.length);
       }, 3500);
@@ -1892,15 +1963,72 @@
       }
     };
 
+    const prev = () => {
+      show((current - 1 + images.length) % images.length);
+    };
+
+    const next = () => {
+      show((current + 1) % images.length);
+    };
+
     images.forEach((_, i) => {
       const dot = document.createElement("button");
       dot.setAttribute("type", "button");
-      dot.setAttribute("aria-label", `Slide ${i + 1}`);
+      dot.setAttribute("aria-label", `Slide ${i + 1} of ${images.length}`);
       dot.addEventListener("click", () => {
         show(i);
         start();
       });
       dots.appendChild(dot);
+    });
+
+    const prevButton = controls?.querySelector(".carousel-prev");
+    const nextButton = controls?.querySelector(".carousel-next");
+
+    prevButton?.addEventListener("click", () => {
+      prev();
+      start();
+    });
+    nextButton?.addEventListener("click", () => {
+      next();
+      start();
+    });
+
+    // Touch swipe support
+    track.addEventListener("pointerdown", (event) => {
+      touchStartX = event.clientX;
+    });
+    track.addEventListener("pointerup", (event) => {
+      if (touchStartX === 0) return;
+      const delta = event.clientX - touchStartX;
+      touchStartX = 0;
+      if (Math.abs(delta) < 40) return;
+      if (delta < 0) next();
+      else prev();
+      start();
+    });
+
+    // Pause autoplay while the tab is hidden
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    });
+
+    // Pause on hover/focus, resume on leave/blur
+    track.addEventListener("pointerenter", stop);
+    track.addEventListener("pointerleave", () => {
+      if (!lightbox || lightbox.hidden) {
+        start();
+      }
+    });
+    track.addEventListener("focusin", stop);
+    track.addEventListener("focusout", () => {
+      if (!lightbox || lightbox.hidden) {
+        start();
+      }
     });
 
     show(0);
@@ -1910,13 +2038,6 @@
     const lightbox = document.querySelector(".lightbox");
     const lightboxImage = document.querySelector("#lightbox-image");
     const lightboxCaption = document.querySelector("#lightbox-caption");
-
-    track.addEventListener("pointerenter", stop);
-    track.addEventListener("pointerleave", () => {
-      if (!lightbox || lightbox.hidden) {
-        start();
-      }
-    });
 
     if (!lightbox || !lightboxImage || !lightboxCaption) return;
 
@@ -1966,6 +2087,8 @@
         navigateLightbox(-1);
       } else if (event.key === "ArrowRight") {
         navigateLightbox(1);
+      } else if (event.key === "Tab") {
+        trapFocus(lightbox, event);
       }
     }
 
@@ -2128,12 +2251,58 @@
     document.addEventListener("rightai:theme-change", syncGiscusConfig);
   }
 
+  function setupScrollSpy() {
+    const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (navLinks.length === 0) return;
+
+    const sections = navLinks
+      .map((link) => {
+        const selector = link.getAttribute("href");
+        if (!selector || selector === "#") return null;
+        try {
+          return document.querySelector(selector);
+        } catch (_error) {
+          return null;
+        }
+      })
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const linkBySection = new Map();
+    sections.forEach((section, i) => linkBySection.set(section, navLinks[i]));
+
+    const setActive = (section) => {
+      navLinks.forEach((link) => link.classList.remove("is-active"));
+      linkBySection.get(section)?.classList.add("is-active");
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Only the last section entering the viewport top area wins
+        let latest = null;
+        for (const entry of entries) {
+          if (entry.isIntersecting) latest = entry.target;
+        }
+        if (latest) setActive(latest);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
   function initHomeInteractions() {
     setupNavScrollEffect();
     setupLanguageSwitcher();
     setupThemeToggle();
     setupGiscus();
     setupScrollProgress();
+    setupScrollSpy();
     setupHeroSticker();
     setupHeroCarousel();
     setupCursorGlow();

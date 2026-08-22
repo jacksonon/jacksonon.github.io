@@ -87,6 +87,7 @@ body[data-lang="zh"] .skip-link span[lang="zh"] {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {

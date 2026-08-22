@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#060915" />
     <link rel="canonical" href="https://rightai.cn/" />
     <link rel="icon" type="image/png" href="assets/rightai-icon.png" />
-    <link rel="apple-touch-icon" href="assets/rightai-icon.png" />
+    <link rel="apple-touch-icon" href="assets/rightai-icon-180.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Right AI" />
     <meta property="og:title" content="Right AI - 智能浏览器工作台" />
@@ -140,7 +140,7 @@
                 class="hero-sticker"
               ></sticker-forge>
             </div>
-            <span hidden data-i18n="hero.title">快速对话，保持专注！</span>
+            <h1 class="sr-only" data-i18n="hero.title">快速对话，保持专注！</h1>
             <p data-i18n="hero.desc">
               RightAI 把常用 AI 都收到 Chrome 侧边栏里，并内置一个真正能在浏览器里替你「动手」的代理。
             </p>
@@ -173,7 +173,7 @@
               <a class="cta cta-ghost" href="#docs" data-i18n="hero.cta.docs">查看安装指南</a>
             </div>
           </div>
-          <div class="hero-carousel">
+          <div class="hero-carousel" aria-roledescription="carousel" aria-label="RightAI 功能预览">
             <div class="carousel-track">
               <img src="assets/right01.webp" alt="RightAI 4.0 功能预览 1" fetchpriority="high" />
               <img src="assets/right02.webp" alt="RightAI 4.0 功能预览 2" loading="lazy" />
@@ -181,7 +181,11 @@
               <img src="assets/right04.webp" alt="RightAI 4.0 功能预览 4" loading="lazy" />
               <img src="assets/right05.webp" alt="RightAI 4.0 功能预览 5" loading="lazy" />
             </div>
-            <div class="carousel-dots"></div>
+            <div class="carousel-controls">
+              <button class="carousel-nav carousel-prev" type="button" aria-label="上一张">‹</button>
+              <div class="carousel-dots" aria-label="选择预览图"></div>
+              <button class="carousel-nav carousel-next" type="button" aria-label="下一张">›</button>
+            </div>
           </div>
         </div>
       </section>
@@ -196,31 +200,31 @@
         </div>
 
         <div class="feature-tabs reveal" role="tablist" aria-label="核心能力标签">
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="omni-agent" data-i18n="tabs.omni">
+          <button class="feature-tab" type="button" role="tab" id="tab-omni-agent" aria-controls="omni-agent" aria-selected="false" data-tab="omni-agent" data-i18n="tabs.omni">
             Omni 浏览器代理
           </button>
-          <button class="feature-tab is-active" type="button" role="tab" aria-selected="true" data-tab="quick-input" data-i18n="tabs.quick">
+          <button class="feature-tab is-active" type="button" role="tab" id="tab-quick-input" aria-controls="quick-input" aria-selected="true" data-tab="quick-input" data-i18n="tabs.quick">
             AI 快速输入
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="quick-conversation" data-i18n="tabs.quickConversation">
+          <button class="feature-tab" type="button" role="tab" id="tab-quick-conversation" aria-controls="quick-conversation" aria-selected="false" data-tab="quick-conversation" data-i18n="tabs.quickConversation">
             AI 快速对话
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-model" data-i18n="tabs.multi">
+          <button class="feature-tab" type="button" role="tab" id="tab-multi-model" aria-controls="multi-model" aria-selected="false" data-tab="multi-model" data-i18n="tabs.multi">
             多模型分屏
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="multi-talk" data-i18n="tabs.multiTalk">
+          <button class="feature-tab" type="button" role="tab" id="tab-multi-talk" aria-controls="multi-talk" aria-selected="false" data-tab="multi-talk" data-i18n="tabs.multiTalk">
             多模型同时对话
           </button>
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="stock-agent" data-i18n="tabs.stock">
+          <button class="feature-tab" type="button" role="tab" id="tab-stock-agent" aria-controls="stock-agent" aria-selected="false" data-tab="stock-agent" data-i18n="tabs.stock">
             股票助手
           </button>
 
-          <button class="feature-tab" type="button" role="tab" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
+          <button class="feature-tab" type="button" role="tab" id="tab-adaptive-dark" aria-controls="adaptive-dark" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
             自适应深色模式
           </button>
         </div>
 
-        <article class="feature-panel is-active reveal" data-panel="quick-input" id="quick-input">
+        <article class="feature-panel is-active reveal" role="tabpanel" aria-labelledby="tab-quick-input" data-panel="quick-input" id="quick-input">
           <div class="feature-panel-grid">
             <img src="assets/shortcut-quick-send.webp" alt="Right AI 快速输入" loading="lazy" />
             <div class="feature-panel-copy">
@@ -234,7 +238,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="omni-agent" id="omni-agent" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-omni-agent" data-panel="omni-agent" id="omni-agent" hidden>
           <div class="feature-panel-grid">
             <img src="assets/browser-agent.webp" alt="Right AI Omni 浏览器代理" loading="lazy" />
             <div class="feature-panel-copy">
@@ -250,7 +254,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="quick-conversation" id="quick-conversation" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-quick-conversation" data-panel="quick-conversation" id="quick-conversation" hidden>
           <div class="feature-panel-grid">
             <img src="assets/quick_conversation.webp" alt="Right AI 快速对话" loading="lazy" />
             <div class="feature-panel-copy">
@@ -264,7 +268,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="multi-model" id="multi-model" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-multi-model" data-panel="multi-model" id="multi-model" hidden>
           <div class="feature-panel-grid">
             <img src="assets/Multi-Model-Support.webp" alt="Multi model split" loading="lazy" />
             <div class="feature-panel-copy">
@@ -278,7 +282,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="multi-talk" id="multi-talk" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-multi-talk" data-panel="multi-talk" id="multi-talk" hidden>
           <div class="feature-panel-grid">
             <div class="multi-talk-images">
               <img src="assets/multi-model-talk.webp" alt="Multi model simultaneous chat" loading="lazy" />
@@ -294,7 +298,7 @@
           </div>
         </article>
 
-        <article class="feature-panel reveal" data-panel="stock-agent" id="stock-agent" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-stock-agent" data-panel="stock-agent" id="stock-agent" hidden>
           <div class="feature-panel-grid">
             <img src="assets/Stock.webp" alt="Right AI stock assistant" loading="lazy" />
             <div class="feature-panel-copy">
@@ -310,7 +314,7 @@
 
 
 
-        <article class="feature-panel reveal" data-panel="adaptive-dark" id="webpage-tools" hidden>
+        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-adaptive-dark" data-panel="adaptive-dark" id="webpage-tools" hidden>
           <div class="feature-panel-grid">
             <img src="assets/night-adapt.webp" alt="Adaptive dark mode" loading="lazy" />
             <div class="feature-panel-copy">

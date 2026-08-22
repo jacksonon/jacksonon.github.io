@@ -97,6 +97,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -508,6 +509,37 @@ summary:focus-visible {
 .carousel-dots {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.carousel-nav {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 180ms var(--ease-snappy), border-color 180ms var(--ease-standard), background-color 180ms var(--ease-standard);
+}
+
+.carousel-nav:hover,
+.carousel-nav:focus-visible {
+  border-color: color-mix(in srgb, var(--accent-1) 45%, var(--line-soft));
+  background: color-mix(in srgb, var(--accent-2) 12%, var(--bg-surface));
+  transform: translateY(-1px);
 }
 
 .carousel-dots button {
@@ -734,7 +766,7 @@ summary:focus-visible {
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .section-title {
     white-space: normal;
   }
@@ -796,7 +828,7 @@ summary:focus-visible {
   box-shadow: var(--shadow-sm);
   background: color-mix(in srgb, var(--bg-surface) 78%, transparent);
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .multi-talk-images {
@@ -1267,8 +1299,20 @@ summary:focus-visible {
 }
 
 .faq details > :not(summary) {
-  padding: 0 1.1rem 1rem;
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  padding-inline: 1.1rem;
+  padding-block: 0;
+  opacity: 0;
   color: var(--text-secondary);
+  transition: max-height 260ms var(--ease-standard), opacity 200ms var(--ease-standard), padding-block 260ms var(--ease-standard);
+}
+
+.faq details[open] > :not(summary) {
+  max-height: 600px;
+  opacity: 1;
+  padding-block-end: 1rem;
 }
 
 .faq-shortcuts-wrap {
@@ -1617,10 +1661,6 @@ body.modal-open {
     padding-top: 0.4rem;
   }
 
-  .hero-copy h1 {
-    font-size: clamp(1.75rem, 11vw, 2.45rem);
-  }
-
   .hero-copy p {
     margin-top: 0.95rem;
   }
@@ -1648,7 +1688,7 @@ body.modal-open {
   }
 
   .faq details > :not(summary) {
-    padding: 0 0.9rem 0.9rem;
+    padding-inline: 0.9rem;
   }
 
   .site-footer {
@@ -1661,6 +1701,49 @@ body.modal-open {
     height: 3.08rem;
     right: 0.9rem;
     bottom: 0.95rem;
+  }
+}
+
+/* Smooth theme transition (class toggled briefly by JS on theme change) */
+html.theme-anim,
+html.theme-anim body,
+html.theme-anim .site-header .nav-inner,
+html.theme-anim .section,
+html.theme-anim .feature-panel,
+html.theme-anim .feature-tab,
+html.theme-anim .tilt-card,
+html.theme-anim .docs-card,
+html.theme-anim .workflow-step,
+html.theme-anim .zen-steps,
+html.theme-anim .faq details,
+html.theme-anim .footer-link,
+html.theme-anim .search-panel {
+  transition: background-color 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Scroll-spy active nav link */
+.nav-links a.is-active {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--glass-bg) 72%, transparent);
+}
+
+.nav-links a.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Disable "sticky" hover lifts on touch devices */
+@media (hover: none) {
+  .nav-links a:hover,
+  .feature-tab:hover,
+  .workflow-step:hover,
+  .docs-card:hover,
+  .tilt-card:hover,
+  .footer-link:hover,
+  .faq details:hover,
+  .carousel-nav:hover,
+  .cta:hover,
+  .back-to-top:hover {
+    transform: none;
   }
 }
 
