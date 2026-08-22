@@ -104,6 +104,14 @@ body {
   font-weight: 800;
   color: #07101f;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }
 
 .nav-links {
