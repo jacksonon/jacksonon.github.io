@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +9,25 @@
       content="Privacy Policy for the Right AI Chrome extension: what data is stored locally, what is sent to third-party AI services, and how permissions are used."
     />
     <link rel="canonical" href="https://rightai.cn/privacy.html" />
+    <script>
+      // Resolve theme before first paint to avoid flashing. Shares the
+      // "rightai-theme" preference with the landing page.
+      (function () {
+        var mode = "system";
+        try {
+          var saved = localStorage.getItem("rightai-theme");
+          if (saved === "light" || saved === "dark" || saved === "system") {
+            mode = saved;
+          }
+        } catch (err) {
+          /* ignore */
+        }
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.themeMode = mode;
+        document.documentElement.dataset.theme =
+          mode === "system" ? (dark ? "dark" : "light") : mode;
+      })();
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
@@ -27,6 +46,11 @@
             <button type="button" data-lang-btn="en" class="is-active">English</button>
             <button type="button" data-lang-btn="zh">简体中文</button>
           </div>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+            <span class="theme-icon" data-theme-icon="system" aria-hidden="true">◐</span>
+            <span class="theme-icon" data-theme-icon="light" aria-hidden="true" hidden>☀</span>
+            <span class="theme-icon" data-theme-icon="dark" aria-hidden="true" hidden>☾</span>
+          </button>
         </div>
       </div>
     </header>
@@ -502,6 +526,7 @@
     <script>
       (function () {
         var body = document.body;
+        var root = document.documentElement;
         var buttons = document.querySelectorAll("[data-lang-btn]");
         function setLang(lang) {
           body.dataset.lang = lang;
@@ -509,6 +534,7 @@
           buttons.forEach(function (btn) {
             btn.classList.toggle("is-active", btn.dataset.langBtn === lang);
           });
+          applyTheme(readThemeMode());
           try {
             localStorage.setItem("rightai-policy-lang", lang);
           } catch (err) {
@@ -528,6 +554,73 @@
         }
         if (saved === "zh" || saved === "en") {
           setLang(saved);
+        }
+
+        // Theme: cycle system -> dark -> light, shared preference with landing page.
+        var themeToggle = document.getElementById("theme-toggle");
+        var THEME_ORDER = ["system", "dark", "light"];
+        var THEME_LABELS = {
+          en: { system: "Theme: follow system", dark: "Theme: dark", light: "Theme: light" },
+          zh: { system: "主题：跟随系统", dark: "主题：深色", light: "主题：浅色" }
+        };
+
+        function readThemeMode() {
+          var mode = root.dataset.themeMode;
+          return THEME_ORDER.indexOf(mode) >= 0 ? mode : "system";
+        }
+
+        function resolveTheme(mode) {
+          if (mode === "light" || mode === "dark") {
+            return mode;
+          }
+          var prefersDark =
+            window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          return prefersDark ? "dark" : "light";
+        }
+
+        function applyTheme(mode) {
+          var resolved = resolveTheme(mode);
+          root.dataset.themeMode = mode;
+          root.dataset.theme = resolved;
+          if (!themeToggle) {
+            return;
+          }
+          var pageLang = body.dataset.lang === "zh" ? "zh" : "en";
+          var label = (THEME_LABELS[pageLang] || THEME_LABELS.en)[mode];
+          themeToggle.setAttribute("aria-pressed", String(resolved === "dark"));
+          themeToggle.setAttribute("aria-label", label);
+          themeToggle.setAttribute("title", label);
+          themeToggle.querySelectorAll("[data-theme-icon]").forEach(function (el) {
+            el.hidden = el.getAttribute("data-theme-icon") !== mode;
+          });
+        }
+
+        applyTheme(readThemeMode());
+
+        if (window.matchMedia) {
+          var media = window.matchMedia("(prefers-color-scheme: dark)");
+          var onSystemChange = function () {
+            if (readThemeMode() === "system") {
+              applyTheme("system");
+            }
+          };
+          if (typeof media.addEventListener === "function") {
+            media.addEventListener("change", onSystemChange);
+          } else if (typeof media.addListener === "function") {
+            media.addListener(onSystemChange);
+          }
+        }
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", function () {
+            var next = THEME_ORDER[(THEME_ORDER.indexOf(readThemeMode()) + 1) % THEME_ORDER.length];
+            applyTheme(next);
+            try {
+              localStorage.setItem("rightai-theme", next);
+            } catch (err) {
+              /* ignore */
+            }
+          });
         }
       })();
     </script>

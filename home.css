@@ -999,6 +999,21 @@ summary:focus-visible {
   font-size: 0.95rem;
 }
 
+.footer-legal {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-standard);
+}
+
+.footer-legal a:hover {
+  color: var(--accent-1);
+}
+
 .footer-stats {
   margin-top: 0.45rem;
   font-size: 0.85rem;
