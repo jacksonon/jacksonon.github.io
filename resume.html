@@ -465,12 +465,12 @@
       .stat-link {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
         text-decoration: none;
         border-radius: 14px;
         border: 1px solid var(--border);
         background: var(--surface);
-        padding: 14px;
+        padding: 12px;
         position: relative;
         transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
@@ -485,10 +485,11 @@
         flex: 0 0 auto;
         display: grid;
         place-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 9px;
-        font-size: 0.95rem;
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        font-size: 0.78rem;
+        line-height: 1;
         background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.16));
         border: 1px solid rgba(139, 92, 246, 0.35);
       }
@@ -497,24 +498,17 @@
         display: block;
         margin: 0;
         color: var(--text-strong);
-        font-size: 0.8rem;
+        font-size: 0.72rem;
         font-weight: 700;
-      }
-
-      .stat-link-desc {
-        display: block;
-        margin: 0;
-        color: var(--text-muted);
-        font-size: 0.68rem;
-        line-height: 1.45;
+        line-height: 1.35;
       }
 
       .stat-link-arrow {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 8px;
+        right: 9px;
         color: var(--text-muted);
-        font-size: 0.72rem;
+        font-size: 0.65rem;
         transition: transform 0.25s ease, color 0.25s ease;
       }
 
@@ -1642,7 +1636,6 @@
 
         .stat-link,
         .stat-link-title,
-        .stat-link-desc,
         .stat-link-arrow {
           color: #0f172a !important;
         }
@@ -1810,10 +1803,6 @@
                           <span class="lang-copy lang-zh">Agent Harness</span>
                           <span class="lang-copy lang-en">Agent Harness</span>
                         </span>
-                        <span class="stat-link-desc lang-switch">
-                          <span class="lang-copy lang-zh">omni · 终端 AI Agent</span>
-                          <span class="lang-copy lang-en">omni · Terminal AI Agent</span>
-                        </span>
                         <span class="stat-link-arrow" aria-hidden="true">↗</span>
                       </a>
                       <a class="stat-link" href="https://chromewebstore.google.com/detail/right-aichatcopilot-toolk/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">
@@ -1821,10 +1810,6 @@
                         <span class="stat-link-title lang-switch">
                           <span class="lang-copy lang-zh">Agent 浏览器插件</span>
                           <span class="lang-copy lang-en">Agent Browser Plugin</span>
-                        </span>
-                        <span class="stat-link-desc lang-switch">
-                          <span class="lang-copy lang-zh">RightAI · Chrome Web Store</span>
-                          <span class="lang-copy lang-en">RightAI · Chrome Web Store</span>
                         </span>
                         <span class="stat-link-arrow" aria-hidden="true">↗</span>
                       </a>
