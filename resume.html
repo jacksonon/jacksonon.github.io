@@ -455,6 +455,75 @@
         line-height: 1.45;
       }
 
+      .stat-links {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .stat-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 14px;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .stat-link:hover {
+        transform: translateY(-3px);
+        border-color: rgba(139, 92, 246, 0.55);
+        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+      }
+
+      .stat-link-icon {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 1.15rem;
+        background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.16));
+        border: 1px solid rgba(139, 92, 246, 0.35);
+      }
+
+      .stat-link-body {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      .stat-link-title {
+        display: block;
+        margin: 0 0 3px;
+        color: var(--text-strong);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .stat-link-body .stat-link-desc {
+        display: block;
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+
+      .stat-link-arrow {
+        flex: 0 0 auto;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        transition: transform 0.25s ease, color 0.25s ease;
+      }
+
+      .stat-link:hover .stat-link-arrow {
+        color: var(--accent);
+        transform: translateX(3px);
+      }
+
       .scroll-hint {
         position: absolute;
         bottom: 18px;
@@ -1032,6 +1101,14 @@
         background: linear-gradient(135deg, #06b6d4, #0891b2);
       }
 
+      .img-rightai .project-img-placeholder {
+        background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      }
+
+      .img-omni .project-img-placeholder {
+        background: linear-gradient(135deg, #14b8a6, #0d9488);
+      }
+
       .project-detail-grid {
         display: grid;
         gap: 12px;
@@ -1498,6 +1575,7 @@
         .project-card,
         .bento-card,
         .stat,
+        .stat-link,
         .avatar-card,
         .station,
         .project-hero,
@@ -1556,6 +1634,18 @@
           -webkit-background-clip: initial !important;
           background-clip: initial !important;
           color: #0f172a !important;
+        }
+
+        .stat-link,
+        .stat-link-title,
+        .stat-link-desc,
+        .stat-link-arrow {
+          color: #0f172a !important;
+        }
+
+        .stat-link-icon {
+          background: #f1f5f9 !important;
+          border-color: rgba(100, 116, 139, 0.35) !important;
         }
 
         a {
@@ -1644,8 +1734,8 @@
           </p>
 
           <p class="lead lang-switch">
-            <span class="lang-copy lang-zh">10 年+ 客户端开发经验，深耕 iOS/macOS 原生开发，在 React Native 与 Flutter 跨平台方向有丰富的架构设计与落地经验。主导过玖富金融 App 核心架构升级与完美世界海外游戏 SDK 从零到一搭建。</span>
-            <span class="lang-copy lang-en">10+ years in client engineering, specializing in iOS/macOS native development with extensive RN/Flutter cross-platform architecture experience. Led 99F financial app architecture overhaul and Perfect World overseas game SDK from scratch.</span>
+            <span class="lang-copy lang-zh">10 年+ iOS/macOS 客户端全端经验，玖富集团、转转精神科技、完美世界集团任职，主导玖富金融 App 核心架构升级与完美世界海外游戏 SDK 从零到一搭建；横跨 React Native / Flutter 跨平台与 Unity / Unreal 引擎端侧业务流，近年聚焦 Agent 赋能业务与 AgentHarness 开发。</span>
+            <span class="lang-copy lang-en">10+ years of full-stack iOS/macOS client engineering across 99F Group, Zhuanzhuan, and Perfect World. Led the 99F financial app core architecture upgrade and built the Perfect World overseas game SDK from scratch. Experienced in React Native / Flutter cross-platform and Unity / Unreal engine-side business flows, with a recent focus on AI Agent-powered business and AgentHarness development.</span>
           </p>
 
           <div class="cta-row">
@@ -1708,6 +1798,37 @@
                         </p>
                       </article>
                     </div>
+
+                    <div class="stat-links">
+                      <a class="stat-link" href="https://github.com/jacksonon/omni" target="_blank" rel="noreferrer">
+                        <span class="stat-link-icon" aria-hidden="true">🤖</span>
+                        <span class="stat-link-body">
+                          <span class="stat-link-title lang-switch">
+                            <span class="lang-copy lang-zh">Agent Harness</span>
+                            <span class="lang-copy lang-en">Agent Harness</span>
+                          </span>
+                          <span class="stat-link-desc lang-switch">
+                            <span class="lang-copy lang-zh">终端 AI Agent：多模型对话、文件操作与任务编排，AgentHarness 工程化落地。</span>
+                            <span class="lang-copy lang-en">Terminal AI agent: multi-model chat, file operations and task automation — AgentHarness in practice.</span>
+                          </span>
+                        </span>
+                        <span class="stat-link-arrow" aria-hidden="true">↗</span>
+                      </a>
+                      <a class="stat-link" href="https://chromewebstore.google.com/detail/right-aichatcopilot-toolk/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">
+                        <span class="stat-link-icon" aria-hidden="true">🧩</span>
+                        <span class="stat-link-body">
+                          <span class="stat-link-title lang-switch">
+                            <span class="lang-copy lang-zh">Agent 浏览器插件</span>
+                            <span class="lang-copy lang-en">Agent Browser Plugin</span>
+                          </span>
+                          <span class="stat-link-desc lang-switch">
+                            <span class="lang-copy lang-zh">Chrome 插件：选中网页内容即调用 AI 总结、润色与生成，浏览器侧 Agent 工作流。</span>
+                            <span class="lang-copy lang-en">Chrome extension: AI summarize/refine/generate for selected web content — a browser-side agent workflow.</span>
+                          </span>
+                        </span>
+                        <span class="stat-link-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    </div>
                   </aside>
 
       <div class="scroll-hint" aria-hidden="true">
@@ -1769,6 +1890,17 @@
             <p class="lang-switch">
               <span class="lang-copy lang-zh">2023 年起将 AI Agent 能力融入客户端工程：端侧意图识别、智能对话系统（Streaming SSE）；LLM 驱动开发全链路（需求 → 编码 → 测试 → Review → 发布 → 运维），研发效率提升 35%，线上 Bug 密度降低 30%。</span>
               <span class="lang-copy lang-en">Since 2023, integrated AI Agents into client engineering: on-device intent recognition, streaming SSE chat systems; LLM-driven full dev loop (requirements → coding → testing → review → release → ops), +35% efficiency, −30% bug density.</span>
+            </p>
+          </article>
+
+          <article class="bento-card tilt-card">
+            <h3 class="lang-switch">
+              <span class="lang-copy lang-zh">Agent Harness 工程化</span>
+              <span class="lang-copy lang-en">Agent Harness engineering</span>
+            </h3>
+            <p class="lang-switch">
+              <span class="lang-copy lang-zh">自研 Agent 主循环与工具系统（文件工作区 / 代码搜索 / 命令执行 / 子代理），MCP 外部工具接入，权限分级 + OS 沙箱安全护栏，AGENTS.md 记忆与会话持久化。TypeScript + Electron + TUI（SolidJS）终端 Agent（omni）、Chrome MV3 浏览器侧 Agent（RightAI）与 iOS 端多模态应用（ai-pic）多宿主落地。</span>
+              <span class="lang-copy lang-en">Self-built agent main loop with a toolchain (file workspace / code search / command execution / subagents), MCP external tool integration, permission tiers + OS sandboxing, AGENTS.md memory and session persistence. Shipped across multiple hosts: terminal agent in TypeScript + Electron + TUI (SolidJS) — omni, browser-side agent as a Chrome MV3 extension — RightAI, and iOS multimodal apps — ai-pic.</span>
             </p>
           </article>
         </div>
@@ -2014,13 +2146,13 @@
           <span class="skill-chip" data-skill="unity">Unity</span>
           <span class="skill-chip" data-skill="unreal">Unreal Engine</span>
           <span class="skill-chip" data-skill="playstation">PlayStation SDK</span>
-          <span class="skill-chip" data-skill="llm">LangGraph</span>
-          <span class="skill-chip" data-skill="llm">CrewAI</span>
-          <span class="skill-chip" data-skill="llm">RAG</span>
-          <span class="skill-chip" data-skill="llm">LangChain</span>
+          <span class="skill-chip" data-skill="llm">Electron</span>
+          <span class="skill-chip" data-skill="llm">TUI</span>
+          <span class="skill-chip" data-skill="llm">Agent Harness</span>
+          <span class="skill-chip" data-skill="llm">MCP</span>
           <span class="skill-chip" data-skill="llm">OpenAI API</span>
-          <span class="skill-chip" data-skill="llm">Core ML</span>
-          <span class="skill-chip" data-skill="llm">Prompt Engineering</span>
+          <span class="skill-chip" data-skill="llm">Streaming SSE</span>
+          <span class="skill-chip" data-skill="llm">Multimodal</span>
           <span class="skill-chip" data-skill="build">CocoaPods</span>
           <span class="skill-chip" data-skill="build">SPM</span>
           <span class="skill-chip" data-skill="build">Tuist</span>
@@ -2109,20 +2241,20 @@
             </h3>
             <ul class="lang-switch-list">
               <li>
-                <span class="lang-copy lang-zh">LangGraph 状态机编排 / CrewAI 多智能体 / RAG（Embedding + 向量数据库 + Reranker）。</span>
-                <span class="lang-copy lang-en">LangGraph state machine orchestration / CrewAI multi-agent / RAG (Embedding + vector DB + Reranker).</span>
+                <span class="lang-copy lang-zh">自研 Agent 主循环（流式 LLM → 并行工具执行 → 结果回喂自纠错），零框架依赖；工具系统覆盖文件读写、ripgrep 代码搜索、命令执行、子代理委派、Web 检索。</span>
+                <span class="lang-copy lang-en">Self-built agent main loop (streaming LLM → parallel tool calls → self-correcting feedback) with zero framework dependencies; toolchain covering file I/O, ripgrep code search, command execution, subagent delegation, and web search.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">OpenAI GPT-4 / Claude / Gemini 集成，Prompt Engineering（CoT / ToT / ReAct）。</span>
-                <span class="lang-copy lang-en">OpenAI GPT-4 / Claude / Gemini integration, Prompt Engineering (CoT / ToT / ReAct).</span>
+                <span class="lang-copy lang-zh">AgentHarness 工程化：offscreen 会话宿主 + 本地文件工作区（list/read/diff/write）；Chrome MV3 插件（侧栏 / 内容脚本 / 页面级 Browser Agent）与 Electron 桌面端 + Web UI（REST + SSE）多宿主部署。</span>
+                <span class="lang-copy lang-en">AgentHarness engineering: offscreen session host with a local file workspace (list/read/diff/write); Chrome MV3 extension (side panel / content script / in-page Browser Agent) and Electron desktop + web UI (REST + SSE) across multiple hosts.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">端侧推理：Core ML / MLX / TensorFlow Lite / ONNX Runtime Mobile。</span>
-                <span class="lang-copy lang-en">On-device inference: Core ML / MLX / TensorFlow Lite / ONNX Runtime Mobile.</span>
+                <span class="lang-copy lang-zh">上下文管理（截断 / 相关文件预载 / 长对话压缩）、AGENTS.md 持久化记忆与渐进披露；权限分级、危险命令拦截、OS 沙箱（sandbox-exec / bwrap）与网络白名单，MCP 外部工具接入。</span>
+                <span class="lang-copy lang-en">Context management (truncation / relevant-file preloading / long-conversation compaction), AGENTS.md persistent memory with progressive disclosure; permission tiers, dangerous-command interception, OS sandboxing (sandbox-exec / bwrap), network allowlist, and MCP external tool integration.</span>
               </li>
               <li>
-                <span class="lang-copy lang-zh">LLM 驱动全链路：需求解析 → 编码 → 测试 → Review → 发布 → 运维，效率 +35%。</span>
-                <span class="lang-copy lang-en">LLM-driven full loop: requirements → coding → testing → review → release → ops, +35% efficiency.</span>
+                <span class="lang-copy lang-zh">iOS 端多模态应用落地（图片理解 / 系统分享扩展，Swift）；多模型接入（OpenAI 协议：GPT / Claude / 智谱 / DeepSeek），Streaming SSE 流式输出与成本度量。</span>
+                <span class="lang-copy lang-en">iOS multimodal app delivery (image understanding / share extension, Swift); multi-provider LLM access via OpenAI protocol (GPT / Claude / Zhipu / DeepSeek) with streaming SSE and cost telemetry.</span>
               </li>
             </ul>
           </article>
@@ -2139,6 +2271,103 @@
             <span class="lang-copy lang-zh">涵盖金融、二手交易、游戏 SDK 等领域的核心架构与交付成果。</span>
             <span class="lang-copy lang-en">Core architecture and delivery across fintech, marketplace, and gaming SDK domains.</span>
           </p>
+        </div>
+
+        <!-- RightAI -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-rightai">
+              <div class="project-img-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/><path d="M12.5 9l2 2-2 2"/><path d="M16.5 14.5h1"/></svg>
+                <span>RightAI</span>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">RightAI — Chrome AI 浏览器助手（内嵌自研 AgentHarness 引擎）</span>
+                <span class="lang-copy lang-en">RightAI — AI Browser Assistant with a Self-built AgentHarness Engine</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">个人项目 / 开源 · Chrome MV3 扩展 · 2023 – 至今 · Chrome Web Store 上架，覆盖 50 语言市场</span>
+                <span class="lang-copy lang-en">Personal / Open-source · Chrome MV3 · 2023 – Present · Published on Chrome Web Store, 50 locales</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">AgentHarness 引擎</span><span class="lang-copy lang-en">AgentHarness Engine</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">Offscreen 文档内运行 Agent 主循环（loop + tools + workspace），本地文件工作区 list/read/diff/write 工具</span><span class="lang-copy lang-en">Agent main loop (loop + tools + workspace) running in an offscreen document; file workspace tools: list/read/diff/write</span></li>
+                <li><span class="lang-copy lang-zh">工作区授权 + 会话归档（IndexedDB），无页面降级模式与页面外工具白名单</span><span class="lang-copy lang-en">Workspace authorization + session archive (IndexedDB); pageless fallback mode with a whitelisted tool set</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">浏览器智能</span><span class="lang-copy lang-en">Browser Intelligence</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">页面问答（Right 对话）+ 网页内容抓取与联网检索，Browser Agent 页面级自动化操作</span><span class="lang-copy lang-en">Page Q&amp;A (Right chat) with page extraction and web fetch; Browser Agent for in-page automation</span></li>
+                <li><span class="lang-copy lang-zh">划词翻译、图片 OCR 浮层、Quick Input 快捷输入与快捷对话窗口，多模态理解能力</span><span class="lang-copy lang-en">Selection translation, image OCR overlay, Quick Input with a standalone chat window — multimodal understanding</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">工程形态</span><span class="lang-copy lang-en">Engineering Form</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">原生 ES Modules（无框架、无打包），Service Worker + Offscreen + Side Panel + Content Script 多宿主消息架构</span><span class="lang-copy lang-en">Native ES Modules (no framework, no bundler); messaging across Service Worker / Offscreen / Side Panel / Content Script</span></li>
+                <li><span class="lang-copy lang-zh">动态 DNR 规则、BigModel 代理、模型归一化与设置持久化，50 语言 i18n 语言包</span><span class="lang-copy lang-en">Dynamic DNR rules, BigModel proxy, model normalization and settings persistence; i18n packs for 50 locales</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- omni -->
+        <div class="project-hero tilt-card" style="margin-bottom: 14px; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface);">
+          <div class="project-hero-row">
+            <div class="project-img-wrap img-omni">
+              <div class="project-img-placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 9l3 3-3 3"/><path d="M11 15h7"/></svg>
+                <span>omni</span>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <h3 class="lang-switch" style="margin: 0 0 4px; color: var(--text-strong); font-size: 1rem;">
+                <span class="lang-copy lang-zh">omni — 终端 AI 编程助手（Agent Harness 工程化）</span>
+                <span class="lang-copy lang-en">omni — Terminal AI Coding Assistant (Agent Harness Engineering)</span>
+              </h3>
+              <p class="lang-switch" style="margin: 0 0 10px; color: var(--text-muted); font-size: 0.82rem;">
+                <span class="lang-copy lang-zh">个人开源项目 · TypeScript · 零框架依赖 Agent 主循环 · 终端 TUI + Electron 桌面 + Web UI 三形态</span>
+                <span class="lang-copy lang-en">Personal open-source · TypeScript · framework-free agent loop · TUI + Electron desktop + Web UI</span>
+              </p>
+            </div>
+          </div>
+          <div class="project-detail-grid">
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">Agent 内核</span><span class="lang-copy lang-en">Agent Core</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">自研主循环：流式 LLM → 并行工具执行 → 结果回喂自纠错，零框架依赖（原生 OpenAI SDK）</span><span class="lang-copy lang-en">Self-built loop: streaming LLM → parallel tool calls → self-correcting feedback; zero framework deps (bare OpenAI SDK)</span></li>
+                <li><span class="lang-copy lang-zh">工具系统：文件读写 / ripgrep 代码搜索 / 命令执行 / 子代理委派 / Web 搜索 / 任务清单</span><span class="lang-copy lang-en">Toolchain: file I/O / ripgrep search / command exec / subagent delegation / web search / task board</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">安全与信任</span><span class="lang-copy lang-en">Safety &amp; Trust</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">权限分级（full/safe/ask/read）+ 危险命令拦截 + 审计日志，工作区信任机制</span><span class="lang-copy lang-en">Permission tiers (full/safe/ask/read) + dangerous-command interception + audit log; workspace trust</span></li>
+                <li><span class="lang-copy lang-zh">OS 沙箱（sandbox-exec / bwrap）+ 网络白名单代理，保障多工具执行安全</span><span class="lang-copy lang-en">OS sandboxing (sandbox-exec / bwrap) + network allowlist proxy for safe multi-tool execution</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">记忆与上下文</span><span class="lang-copy lang-en">Memory &amp; Context</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">AGENTS.md / MEMORY.md 记忆系统（渐进披露 + 定时归档），工具结果截断 + 相关文件预载 + 长对话压缩</span><span class="lang-copy lang-en">AGENTS.md / MEMORY.md memory with progressive disclosure and TTL archival; result truncation + file preloading + compaction</span></li>
+                <li><span class="lang-copy lang-zh">会话持久化（JSONL）与 fork / resume / send，Hooks 生命周期自动化（JSON 协议）</span><span class="lang-copy lang-en">Session persistence (JSONL) with fork / resume / send; lifecycle hooks over a JSON protocol</span></li>
+              </ul>
+            </div>
+            <div class="project-detail-card">
+              <h4 class="lang-switch"><span class="lang-copy lang-zh">生态与分发</span><span class="lang-copy lang-en">Ecosystem &amp; Distribution</span></h4>
+              <ul class="lang-switch-list">
+                <li><span class="lang-copy lang-zh">MCP 外部工具（Resources / Prompts / OAuth PKCE）、Skills（SKILL.md 自动发现）、多模型接入（OpenAI 协议）</span><span class="lang-copy lang-en">MCP external tools (Resources / Prompts / OAuth PKCE), Skills (SKILL.md auto-discovery), multi-provider LLM (OpenAI protocol)</span></li>
+                <li><span class="lang-copy lang-zh">全屏 TUI（SolidJS）+ Electron 桌面端 + Web UI（REST + SSE），npm / TUI 包与 GitHub Actions 自动发布</span><span class="lang-copy lang-en">Full-screen TUI (SolidJS) + Electron desktop + Web UI (REST + SSE); npm / TUI packages with GitHub Actions auto-release</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <!-- 玖富金融 -->
@@ -2357,13 +2586,13 @@
             </p>
             <a href="https://github.com/jacksonon/ai-pic-app" target="_blank" rel="noreferrer">github.com/jacksonon/ai-pic-app</a>
           </article>
-          <article class="project-card tilt-card" data-skills="llm typescript">
-            <h3>AI Sidebar / Quick Send</h3>
+          <article class="project-card tilt-card" data-skills="llm">
+            <h3>RightAI</h3>
             <p class="lang-switch">
-              <span class="lang-copy lang-zh">Chrome 插件：支持选中网页内容后调用 AI 总结、润色与生成，提高阅读与开发效率。</span>
-              <span class="lang-copy lang-en">Chrome extension enabling AI summarize/refine/generate workflows for selected web content.</span>
+              <span class="lang-copy lang-zh">Chrome AI 浏览器助手：侧栏 AI 对话、网页内容理解、Browser Agent 页面自动化、翻译与 OCR，内嵌自研 AgentHarness 引擎。</span>
+              <span class="lang-copy lang-en">AI browser assistant: side-panel chat, page understanding, Browser Agent page automation, translation and OCR — powered by a self-built AgentHarness engine.</span>
             </p>
-            <a href="https://chromewebstore.google.com/detail/ai-sidebar-quick-send-rig/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/right-aichatcopilot-toolk/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">Chrome Web Store</a>
           </article>
           <article class="project-card tilt-card" data-skills="llm swift uikit swiftui appkit">
             <h3>ChatGLM Multi-platform Client</h3>
