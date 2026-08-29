@@ -459,17 +459,19 @@
         display: grid;
         gap: 12px;
         margin-top: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .stat-link {
         display: flex;
-        align-items: center;
-        gap: 12px;
+        flex-direction: column;
+        gap: 6px;
         text-decoration: none;
         border-radius: 14px;
         border: 1px solid var(--border);
         background: var(--surface);
         padding: 14px;
+        position: relative;
         transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
 
@@ -483,45 +485,42 @@
         flex: 0 0 auto;
         display: grid;
         place-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        font-size: 1.15rem;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        font-size: 0.95rem;
         background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.16));
         border: 1px solid rgba(139, 92, 246, 0.35);
       }
 
-      .stat-link-body {
-        min-width: 0;
-        flex: 1 1 auto;
-      }
-
       .stat-link-title {
         display: block;
-        margin: 0 0 3px;
+        margin: 0;
         color: var(--text-strong);
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         font-weight: 700;
       }
 
-      .stat-link-body .stat-link-desc {
+      .stat-link-desc {
         display: block;
         margin: 0;
         color: var(--text-muted);
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         line-height: 1.45;
       }
 
       .stat-link-arrow {
-        flex: 0 0 auto;
+        position: absolute;
+        top: 10px;
+        right: 10px;
         color: var(--text-muted);
-        font-size: 0.9rem;
+        font-size: 0.72rem;
         transition: transform 0.25s ease, color 0.25s ease;
       }
 
       .stat-link:hover .stat-link-arrow {
         color: var(--accent);
-        transform: translateX(3px);
+        transform: translate(2px, -2px);
       }
 
       .scroll-hint {
@@ -660,6 +659,10 @@
       .bento-card:nth-child(2),
       .bento-card:nth-child(3) {
         grid-column: span 5;
+      }
+
+      .bento-card:nth-child(5) {
+        grid-column: span 12;
       }
 
       .bento-card h3 {
@@ -1450,7 +1453,8 @@
         .bento-card:nth-child(1),
         .bento-card:nth-child(2),
         .bento-card:nth-child(3),
-        .bento-card:nth-child(4) {
+        .bento-card:nth-child(4),
+        .bento-card:nth-child(5) {
           grid-column: span 12;
         }
 
@@ -1802,29 +1806,25 @@
                     <div class="stat-links">
                       <a class="stat-link" href="https://github.com/jacksonon/omni" target="_blank" rel="noreferrer">
                         <span class="stat-link-icon" aria-hidden="true">🤖</span>
-                        <span class="stat-link-body">
-                          <span class="stat-link-title lang-switch">
-                            <span class="lang-copy lang-zh">Agent Harness</span>
-                            <span class="lang-copy lang-en">Agent Harness</span>
-                          </span>
-                          <span class="stat-link-desc lang-switch">
-                            <span class="lang-copy lang-zh">终端 AI Agent：多模型对话、文件操作与任务编排，AgentHarness 工程化落地。</span>
-                            <span class="lang-copy lang-en">Terminal AI agent: multi-model chat, file operations and task automation — AgentHarness in practice.</span>
-                          </span>
+                        <span class="stat-link-title lang-switch">
+                          <span class="lang-copy lang-zh">Agent Harness</span>
+                          <span class="lang-copy lang-en">Agent Harness</span>
+                        </span>
+                        <span class="stat-link-desc lang-switch">
+                          <span class="lang-copy lang-zh">omni · 终端 AI Agent</span>
+                          <span class="lang-copy lang-en">omni · Terminal AI Agent</span>
                         </span>
                         <span class="stat-link-arrow" aria-hidden="true">↗</span>
                       </a>
                       <a class="stat-link" href="https://chromewebstore.google.com/detail/right-aichatcopilot-toolk/heemhlopcggnlgghlgpllhnlmomlfkfm" target="_blank" rel="noreferrer">
                         <span class="stat-link-icon" aria-hidden="true">🧩</span>
-                        <span class="stat-link-body">
-                          <span class="stat-link-title lang-switch">
-                            <span class="lang-copy lang-zh">Agent 浏览器插件</span>
-                            <span class="lang-copy lang-en">Agent Browser Plugin</span>
-                          </span>
-                          <span class="stat-link-desc lang-switch">
-                            <span class="lang-copy lang-zh">Chrome 插件：选中网页内容即调用 AI 总结、润色与生成，浏览器侧 Agent 工作流。</span>
-                            <span class="lang-copy lang-en">Chrome extension: AI summarize/refine/generate for selected web content — a browser-side agent workflow.</span>
-                          </span>
+                        <span class="stat-link-title lang-switch">
+                          <span class="lang-copy lang-zh">Agent 浏览器插件</span>
+                          <span class="lang-copy lang-en">Agent Browser Plugin</span>
+                        </span>
+                        <span class="stat-link-desc lang-switch">
+                          <span class="lang-copy lang-zh">RightAI · Chrome Web Store</span>
+                          <span class="lang-copy lang-en">RightAI · Chrome Web Store</span>
                         </span>
                         <span class="stat-link-arrow" aria-hidden="true">↗</span>
                       </a>
@@ -1917,8 +1917,8 @@
             <span class="lang-copy lang-en">Complete experience from fintech to gaming, spanning client architecture, cross-platform SDK delivery, reliability, and engineering efficiency.</span>
           </p>
           <p class="journey-meta lang-switch">
-            <span class="lang-copy lang-zh">路线：2016 教育 → 2017 玖富金融 → 2019 转转 / 完美世界 → 2023 AI Agent 工程化</span>
-            <span class="lang-copy lang-en">Route: 2016 Education → 2017 Fintech → 2019 Marketplace / Gaming → 2023 AI Agents</span>
+            <span class="lang-copy lang-zh">路线：2016 教育 → 2017 玖富金融 → 2019 转转 / 完美世界 → 2023 AI Agent 工程化 → 2025 Agent Harness &amp; Browser</span>
+            <span class="lang-copy lang-en">Route: 2016 Education → 2017 Fintech → 2019 Marketplace / Gaming → 2023 AI Agents → 2025 Agent Harness &amp; Browser</span>
           </p>
         </div>
 
@@ -1990,6 +1990,33 @@
           </div>
         </article>
 
+        <article class="station" data-year="2019" data-accent="#00b578" data-skills="swift uikit ios architecture perf" style="--station-accent:#00b578;">
+          <div class="station-head">
+            <span class="station-year" aria-hidden="true">2019</span>
+            <div class="station-body">
+<h3>Zhuanzhuan · iOS Developer</h3>
+            <p class="meta lang-switch">
+              <span class="lang-copy lang-zh">2019.07 – 2019.09 · 北京，中国 · DAU 百万级，App Store 生活榜 Top 10</span>
+              <span class="lang-copy lang-en">2019.07 – 2019.09 · Beijing, China · 1M+ DAU, App Store Top 10 Lifestyle</span>
+            </p>
+            <ul class="lang-switch-list">
+              <li>
+                <span class="lang-copy lang-zh">首页 UI 架构重构：设计楼层化组件架构，CellBuilder 协议支持 15+ 种 Cell 动态混排；UICollectionViewCompositionalLayout + DiffableDataSource，帧率提升 30%。</span>
+                <span class="lang-copy lang-en">Homepage UI architecture: floor-based component design with CellBuilder protocol for 15+ cell types; CompositionalLayout + DiffableDataSource; frame rate +30%.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">VOIP 音视频通讯：基于 WebRTC 实现实时音视频通话，WebSocket 信令层对接，弱网环境自适应码率调整。</span>
+                <span class="lang-copy lang-en">VOIP audio/video: WebRTC real-time calls with WebSocket signaling; adaptive bitrate for weak networks.</span>
+              </li>
+              <li>
+                <span class="lang-copy lang-zh">首屏加载优化：预加载（Prefetching）+ 分页缓存 + 离屏 Cell 回收，首屏速度提升 20%。</span>
+                <span class="lang-copy lang-en">First-screen optimization: prefetching + pagination cache + off-screen cell reuse; first-screen speed +20%.</span>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </article>
+
         <article class="station" data-year="2019" data-accent="#ff6b35" data-skills="c++ csharp unity unreal playstation swift objective-c uikit swiftui appkit typescript dart react-native flutter build perf automation llm" style="--station-accent:#ff6b35;">
           <div class="station-head">
             <span class="station-year" aria-hidden="true">2019</span>
@@ -2033,33 +2060,6 @@
           </div>
         </article>
 
-        <article class="station" data-year="2019" data-accent="#00b578" data-skills="swift uikit ios architecture perf" style="--station-accent:#00b578;">
-          <div class="station-head">
-            <span class="station-year" aria-hidden="true">2019</span>
-            <div class="station-body">
-<h3>Zhuanzhuan · iOS Developer</h3>
-            <p class="meta lang-switch">
-              <span class="lang-copy lang-zh">2019.07 – 2019.09 · 北京，中国 · DAU 百万级，App Store 生活榜 Top 10</span>
-              <span class="lang-copy lang-en">2019.07 – 2019.09 · Beijing, China · 1M+ DAU, App Store Top 10 Lifestyle</span>
-            </p>
-            <ul class="lang-switch-list">
-              <li>
-                <span class="lang-copy lang-zh">首页 UI 架构重构：设计楼层化组件架构，CellBuilder 协议支持 15+ 种 Cell 动态混排；UICollectionViewCompositionalLayout + DiffableDataSource，帧率提升 30%。</span>
-                <span class="lang-copy lang-en">Homepage UI architecture: floor-based component design with CellBuilder protocol for 15+ cell types; CompositionalLayout + DiffableDataSource; frame rate +30%.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">VOIP 音视频通讯：基于 WebRTC 实现实时音视频通话，WebSocket 信令层对接，弱网环境自适应码率调整。</span>
-                <span class="lang-copy lang-en">VOIP audio/video: WebRTC real-time calls with WebSocket signaling; adaptive bitrate for weak networks.</span>
-              </li>
-              <li>
-                <span class="lang-copy lang-zh">首屏加载优化：预加载（Prefetching）+ 分页缓存 + 离屏 Cell 回收，首屏速度提升 20%。</span>
-                <span class="lang-copy lang-en">First-screen optimization: prefetching + pagination cache + off-screen cell reuse; first-screen speed +20%.</span>
-              </li>
-            </ul>
-            </div>
-          </div>
-        </article>
-
         <article class="station" data-year="2023" data-accent="#8b5cf6" data-skills="llm swift uikit swiftui coreml" style="--station-accent:#8b5cf6;">
           <div class="station-head">
             <span class="station-year" aria-hidden="true">2023</span>
@@ -2080,6 +2080,32 @@
                 <li>
                   <span class="lang-copy lang-zh">端侧 AI 能力集成：意图识别、Streaming SSE 智能对话、Core ML 端侧推理，随产品规模化上线。</span>
                   <span class="lang-copy lang-en">On-device AI: intent recognition, streaming SSE chat, Core ML inference — shipped at scale.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="station" data-year="2025" data-accent="#22d3ee" data-skills="llm typescript electron agent" style="--station-accent:#22d3ee;">
+          <div class="station-head">
+            <span class="station-year" aria-hidden="true">2025</span>
+            <div class="station-body">
+              <h3 class="lang-switch">
+                <span class="lang-copy lang-zh">Agent Harness &amp; Agent Browser</span>
+                <span class="lang-copy lang-en">Agent Harness &amp; Agent Browser</span>
+              </h3>
+              <p class="meta lang-switch">
+                <span class="lang-copy lang-zh">2025 – 至今 · 自研 Agent 引擎与多宿主落地</span>
+                <span class="lang-copy lang-en">2025 – Present · Self-built agent engines across multiple hosts</span>
+              </p>
+              <ul class="lang-switch-list">
+                <li>
+                  <span class="lang-copy lang-zh">omni — 终端 AI 编程助手：TypeScript + Electron + TUI（SolidJS），零框架依赖 Agent 主循环、文件/代码搜索/子代理工具系统、权限分级 + OS 沙箱 + MCP 接入，开源并自动发布。</span>
+                  <span class="lang-copy lang-en">omni — terminal AI coding assistant: TypeScript + Electron + TUI (SolidJS); framework-free agent loop, file/search/subagent toolchain, permission tiers + OS sandboxing + MCP; open-source with auto-release.</span>
+                </li>
+                <li>
+                  <span class="lang-copy lang-zh">RightAI — Chrome AI 浏览器插件：offscreen AgentHarness 宿主 + 本地文件工作区 + Browser Agent 页面自动化，上架 Chrome Web Store，覆盖 50 语言市场。</span>
+                  <span class="lang-copy lang-en">RightAI — Chrome AI extension: offscreen AgentHarness host + local file workspace + Browser Agent page automation; published on Chrome Web Store, 50 locales.</span>
                 </li>
               </ul>
             </div>
