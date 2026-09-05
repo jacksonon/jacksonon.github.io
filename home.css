@@ -293,6 +293,11 @@ code, pre {
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.08), 0 0 32px rgba(255, 255, 255, 0.04);
 }
 
+.ds-gradient-badge[hidden],
+[hidden] {
+  display: none !important;
+}
+
 .ds-gradient-badge span {
   display: inline-block;
   padding: 5px 10px 4px;

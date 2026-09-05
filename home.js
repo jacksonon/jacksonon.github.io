@@ -19,7 +19,7 @@
       "nav.discuss": "社区讨论",
       "nav.links": "友情链接",
       "nav.donate": "打赏支持",
-      "hero.badge": "v0.7.13",
+      "hero.badge": "",
       "hero.label": "Agent 工程 · 终端型 AI 编程助手",
       "hero.title": "极简、透明、无依赖的 Agent 工程",
       "hero.desc1": "基于裸 OpenAI SDK 与自研执行主循环，无臃肿框架包装。每一行代码均可审查，每一次工具调用与思考推理皆有迹可循。",
@@ -113,7 +113,7 @@
       "nav.discuss": "Discuss",
       "nav.links": "Links",
       "nav.donate": "Donate",
-      "hero.badge": "v0.7.13",
+      "hero.badge": "",
       "hero.label": "Agent Engineering · Terminal AI Assistant",
       "hero.title": "Minimal, Transparent, Framework-Free Agent Engineering",
       "hero.desc1": "Built on bare OpenAI SDK and custom main loop with zero framework dependencies. Every tool call and reasoning step is observable and self-correcting.",
@@ -1683,6 +1683,7 @@ void main(){
      ========================================================================== */
   function initReleaseTag() {
     const badge = document.getElementById("header-release-badge");
+    const container = document.getElementById("header-release-container");
 
     fetch("https://api.github.com/repos/jacksonon/omni/releases/latest")
       .then((res) => {
@@ -1693,8 +1694,11 @@ void main(){
         if (data && data.tag_name) {
           const tag = data.tag_name;
           if (badge) badge.textContent = tag;
+          if (container) container.removeAttribute("hidden");
           TRANSLATIONS.zh["hero.badge"] = tag;
           TRANSLATIONS.en["hero.badge"] = tag;
+        } else {
+          if (container) container.setAttribute("hidden", "");
         }
         if (data && data.html_url) {
           document.querySelectorAll('a[href*="github.com/jacksonon/omni/releases"]').forEach((btn) => {
@@ -1703,7 +1707,8 @@ void main(){
         }
       })
       .catch(() => {
-        // Fallback to static tag and releases/latest
+        // When release tag cannot be fetched, do not display any default badge
+        if (container) container.setAttribute("hidden", "");
       });
   }
 
