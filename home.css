@@ -294,16 +294,9 @@ code, pre {
 }
 
 .ds-gradient-badge[hidden],
+#header-release-container[hidden],
 [hidden] {
   display: none !important;
-}
-
-#header-release-container {
-  display: none !important;
-}
-
-#header-release-container.is-visible {
-  display: inline-flex !important;
 }
 
 #header-release-badge:empty,
@@ -486,8 +479,7 @@ code, pre {
 
 @media (max-width: 560px) {
   .ds-gradient-badge,
-  #header-release-container,
-  #header-release-container.is-visible {
+  #header-release-container {
     display: none !important;
   }
 }

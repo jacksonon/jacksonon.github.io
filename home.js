@@ -1684,13 +1684,7 @@ void main(){
   function initReleaseTag() {
     const badge = document.getElementById("header-release-badge");
     const container = document.getElementById("header-release-container");
-    if (!container) return;
-
-    // Ensure hidden by default on initialization
-    container.setAttribute("hidden", "");
-    container.style.display = "none";
-    container.classList.remove("is-visible");
-    if (badge) badge.textContent = "";
+    if (!container || !badge) return;
 
     fetch("https://api.github.com/repos/jacksonon/omni/releases/latest")
       .then((res) => {
@@ -1700,17 +1694,14 @@ void main(){
       .then((data) => {
         const tag = data && data.tag_name ? String(data.tag_name).trim() : "";
         if (tag) {
-          if (badge) badge.textContent = tag;
+          badge.textContent = tag;
           container.removeAttribute("hidden");
-          container.style.display = "inline-flex";
-          container.classList.add("is-visible");
+          container.style.removeProperty("display");
           TRANSLATIONS.zh["hero.badge"] = tag;
           TRANSLATIONS.en["hero.badge"] = tag;
         } else {
+          badge.textContent = "";
           container.setAttribute("hidden", "");
-          container.style.display = "none";
-          container.classList.remove("is-visible");
-          if (badge) badge.textContent = "";
         }
         if (data && data.html_url) {
           document.querySelectorAll('a[href*="github.com/jacksonon/omni/releases"]').forEach((btn) => {
@@ -1719,11 +1710,13 @@ void main(){
         }
       })
       .catch(() => {
-        // When release tag cannot be fetched, do not display any default badge or background
-        container.setAttribute("hidden", "");
-        container.style.display = "none";
-        container.classList.remove("is-visible");
-        if (badge) badge.textContent = "";
+        // Fallback to static tag if API is unreachable so version is not permanently lost
+        const fallbackTag = "v0.7.18";
+        badge.textContent = fallbackTag;
+        container.removeAttribute("hidden");
+        container.style.removeProperty("display");
+        TRANSLATIONS.zh["hero.badge"] = fallbackTag;
+        TRANSLATIONS.en["hero.badge"] = fallbackTag;
       });
   }
 
