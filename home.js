@@ -20,10 +20,10 @@
       "nav.links": "友情链接",
       "nav.donate": "打赏支持",
       "hero.badge": "",
-      "hero.label": "Agent 工程 · 终端型 AI 编程助手",
-      "hero.title": "极简、透明、无依赖的 Agent 工程",
-      "hero.desc1": "基于裸 OpenAI SDK 与自研执行主循环，无臃肿框架包装。每一行代码均可审查，每一次工具调用与思考推理皆有迹可循。",
-      "hero.desc2": "单 Agent 循环 + 8 工具系统（6 基础 + 2 注入）· OS 级进程沙箱与安全护栏 · 级联记忆与技能生态 · 全屏终端 TUI 与 Web/Electron 桌面应用。",
+      "hero.label": "Right AI Omni Agent Harness",
+      "hero.title": "极简透明高效",
+      "hero.desc1": "Right AI Omni Agent Harness 面向全球 Harness 开发者开放测试，并同步开放源代码。",
+      "hero.desc2": "模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。",
       "hero.btn.github": "查看 GitHub",
       "hero.btn.docs": "系统架构",
       "hero.btn.dist": "桌面端下载",
@@ -114,10 +114,10 @@
       "nav.links": "Links",
       "nav.donate": "Donate",
       "hero.badge": "",
-      "hero.label": "Agent Engineering · Terminal AI Assistant",
-      "hero.title": "Minimal, Transparent, Framework-Free Agent Engineering",
-      "hero.desc1": "Built on bare OpenAI SDK and custom main loop with zero framework dependencies. Every tool call and reasoning step is observable and self-correcting.",
-      "hero.desc2": "Single-agent loop + 8-tool suite (6 base + 2 injected) · OS-level sandboxing & safety tiers · Cascade memory & skills · Full-screen TUI & Web/Electron apps.",
+      "hero.label": "Right AI Omni Agent Harness",
+      "hero.title": "Minimal, Transparent & High-Efficiency",
+      "hero.desc1": "Right AI Omni Agent Harness is now open for testing to Harness developers worldwide and open-sourced in parallel.",
+      "hero.desc2": "Models, providers, skills, sessions, sandboxing, storage, loop, scheduling, UI, Web, Local Server, instantaneous and session average token calculations — all agent capabilities built-in for a complete Agent Harness experience.",
       "hero.btn.github": "View on GitHub",
       "hero.btn.docs": "Architecture",
       "hero.btn.dist": "Download Desktop",
@@ -1540,16 +1540,21 @@ void main(){
       link.addEventListener("click", () => mobileDrawer?.classList.remove("is-open"));
     });
 
-    // Header background blur on scroll
+    // Header background blur on scroll (DeepSeek Harness style)
     const header = document.querySelector(".ds-header-wrapper");
+    const headerBar = document.querySelector(".ds-header-bar");
     const updateHeaderScroll = () => {
-      if (window.scrollY > 30) {
+      const isScrolled = window.scrollY > 40;
+      if (isScrolled) {
         header?.classList.add("is-scrolled");
+        headerBar?.classList.add("is-scrolled");
       } else {
         header?.classList.remove("is-scrolled");
+        headerBar?.classList.remove("is-scrolled");
       }
     };
     window.addEventListener("scroll", updateHeaderScroll, { passive: true });
+    window.addEventListener("resize", updateHeaderScroll, { passive: true });
     updateHeaderScroll();
 
     // Back to top button
@@ -1711,7 +1716,7 @@ void main(){
       })
       .catch(() => {
         // Fallback to static tag if API is unreachable so version is not permanently lost
-        const fallbackTag = "v0.7.18";
+        const fallbackTag = "v0.7.20";
         badge.textContent = fallbackTag;
         container.removeAttribute("hidden");
         container.style.removeProperty("display");

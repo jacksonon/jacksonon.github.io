@@ -322,35 +322,102 @@ code, pre {
   text-transform: none;
 }
 
+/* Header Animation */
+@keyframes dsHeaderItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ==========================================================================
-   Header Navigation Bar
+   Header Navigation Bar (DeepSeek Harness Inspired)
    ========================================================================== */
 
 .ds-header-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  margin: 0 auto;
   z-index: 1000;
-  padding: 14px 0;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+  width: min(100% - 48px, 1140px);
+  padding: 8px 0 0;
+  pointer-events: none;
 }
 
-.ds-header-wrapper.is-scrolled {
-  background: rgba(10, 10, 10, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+@media (min-width: 768px) {
+  .ds-header-wrapper {
+    width: min(100% - 144px, 1140px);
+    padding: 8px 0 0;
+  }
+}
+
+@media (min-width: 1560px) {
+  .ds-header-wrapper {
+    width: min(100% - 160px, 1280px);
+  }
 }
 
 .ds-header-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  margin: 0 auto;
+  padding: 4px 0;
+  border-radius: var(--ds-radius-pill);
+  overflow: visible;
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+  pointer-events: auto;
   width: 100%;
+  max-width: 1280px;
+  transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ds-header-bar:before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: hsla(0, 0%, 100%, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsla(0, 0%, 100%, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0s 0.4s;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Scrolled state: floating semi-transparent capsule window */
+.ds-header-bar.is-scrolled,
+.ds-header-wrapper.is-scrolled .ds-header-bar {
+  max-width: 980px;
+  padding-left: 16px;
+  padding-right: 6px;
+}
+
+@media (min-width: 1560px) {
+  .ds-header-bar.is-scrolled,
+  .ds-header-wrapper.is-scrolled .ds-header-bar {
+    max-width: 1180px;
+  }
+}
+
+.ds-header-bar.is-scrolled:before,
+.ds-header-wrapper.is-scrolled .ds-header-bar:before {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease-in-out, visibility 0s;
 }
 
 .ds-brand {
@@ -385,6 +452,17 @@ code, pre {
   letter-spacing: -0.01em;
   color: #ffffff;
   white-space: nowrap;
+}
+
+/* Brand Harness Badge (shown on scroll next to version tag like Fig 5) */
+.ds-brand-harness-badge {
+  display: none;
+}
+
+.ds-header-bar.is-scrolled .ds-brand-harness-badge,
+.ds-header-wrapper.is-scrolled .ds-brand-harness-badge {
+  display: inline-flex;
+  animation: dsHeaderItemFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .ds-header-actions {
@@ -422,9 +500,9 @@ code, pre {
   font-weight: 600;
 }
 
-/* GitHub Header Button */
+/* GitHub Header Button (hidden at initial top state, revealed on scroll) */
 .ds-header-github {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 6px;
   padding: 5px 14px;
@@ -445,8 +523,16 @@ code, pre {
   color: #ffffff;
 }
 
+.ds-header-bar.is-scrolled .ds-header-github,
+.ds-header-wrapper.is-scrolled .ds-header-github {
+  display: inline-flex;
+  animation: dsHeaderItemFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @media (max-width: 859px) {
-  .ds-header-github {
+  .ds-header-github,
+  .ds-header-bar.is-scrolled .ds-header-github,
+  .ds-header-wrapper.is-scrolled .ds-header-github {
     display: none !important;
   }
 }
@@ -479,7 +565,9 @@ code, pre {
 
 @media (max-width: 560px) {
   .ds-gradient-badge,
-  #header-release-container {
+  #header-release-container,
+  .ds-brand-harness-badge,
+  .ds-header-wrapper.is-scrolled .ds-brand-harness-badge {
     display: none !important;
   }
 }
@@ -501,6 +589,7 @@ code, pre {
   transform: translateY(-120%);
   transition: transform 0.35s var(--ds-ease-smooth);
   z-index: 999;
+  pointer-events: auto;
 }
 
 @media (max-width: 859px) {

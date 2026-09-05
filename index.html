@@ -6,7 +6,7 @@
     <title>Right AI - Agent Harness</title>
     <meta
       name="description"
-      content="Omni 处于 Beta 阶段（功能完备）：单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖（裸 OpenAI SDK + 主循环），并带全屏 TUI 界面与 Web/Electron 桌面应用。"
+      content="Right AI Omni Agent Harness 面向全球 Harness 开发者开放测试，并同步开放源代码。模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。"
     />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://rightai.cn/" />
@@ -19,7 +19,7 @@
     <meta property="og:title" content="Right AI - Agent Harness" />
     <meta
       property="og:description"
-      content="Omni 处于 Beta 阶段（功能完备）：单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖，带全屏 TUI 界面与 Web/Electron 桌面应用。"
+      content="Right AI Omni Agent Harness 面向全球 Harness 开发者开放测试，并同步开放源代码。模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。"
     />
     <meta property="og:url" content="https://rightai.cn/" />
     <meta property="og:image" content="https://rightai.cn/assets/rightai-icon.png" />
@@ -29,7 +29,7 @@
     <meta name="twitter:title" content="Right AI - Agent Harness" />
     <meta
       name="twitter:description"
-      content="单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖，带全屏 TUI 界面与 Web/Electron 桌面应用。"
+      content="Right AI Omni Agent Harness 面向全球 Harness 开发者开放测试，并同步开放源代码。模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。"
     />
     <meta name="twitter:image" content="https://rightai.cn/assets/rightai-icon.png" />
 
@@ -78,14 +78,17 @@
 
     <!-- Header Navigation Bar -->
     <header class="ds-header-wrapper">
-      <div class="ds-container ds-header-bar">
+      <div class="ds-header-bar">
         <a class="ds-brand" href="#top" aria-label="Right AI Omni">
           <div class="ds-brand-logo">
             <img src="assets/rightai-icon.png" alt="Right AI Omni" width="30" height="30" />
           </div>
           <span class="ds-brand-title">Right AI Omni</span>
-          <span class="ds-gradient-badge" id="header-release-container" hidden>
-            <span id="header-release-badge"></span>
+          <span class="ds-gradient-badge" id="header-release-container">
+            <span id="header-release-badge">v0.7.20</span>
+          </span>
+          <span class="ds-gradient-badge ds-brand-harness-badge" id="header-harness-badge">
+            <span>Harness</span>
           </span>
         </a>
 
@@ -158,19 +161,19 @@
           <div class="ds-hero-left">
             <div class="ds-hero-enter" style="--enter-y: 24px; --enter-delay: 0.05s">
               <p class="font-medium text-[16px] text-white/90 pl-[2px] tracking-[-0.01em]" data-i18n="hero.label">
-                Agent 工程 · 终端型 AI 编程助手
+                Right AI Omni Agent Harness
               </p>
               <h1 class="ds-text-hero mt-3 text-ds-primary" style="letter-spacing: -0.02em" data-i18n="hero.title">
-                极简、透明、无依赖的 Agent 工程
+                极简透明高效
               </h1>
             </div>
 
             <div class="ds-hero-enter flex flex-col gap-3 max-w-[580px]" style="--enter-y: 20px; --enter-delay: 0.15s">
               <p class="ds-text-body text-ds-description" data-i18n="hero.desc1">
-                基于裸 OpenAI SDK 与自研执行主循环，无臃肿框架包装。每一行代码均可审查，每一次工具调用与思考推理皆有迹可循。
+                Right AI Omni Agent Harness 面向全球 Harness 开发者开放测试，并同步开放源代码。
               </p>
               <p class="ds-text-body text-ds-description" data-i18n="hero.desc2">
-                单 Agent 循环 + 8 工具系统（6 基础 + 2 注入）· OS 级进程沙箱与安全护栏 · 级联记忆与技能生态 · 全屏终端 TUI 与 Web/Electron 桌面应用。
+                模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。
               </p>
             </div>
 
