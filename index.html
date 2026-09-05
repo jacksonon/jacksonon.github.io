@@ -1,523 +1,888 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Right AI - 智能浏览器工作台</title>
+    <title>Right AI - Agent Harness</title>
     <meta
       name="description"
-      content="Right AI 让浏览器升级为 AI 工作台：快速对话、模型分屏、股票助手、Webpage Agent 与一键暗色适配，让你在当前网页中保持专注。"
+      content="Omni 处于 Beta 阶段（功能完备）：单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖（裸 OpenAI SDK + 主循环），并带全屏 TUI 界面与 Web/Electron 桌面应用。"
     />
-    <meta name="theme-color" content="#060915" />
+    <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://rightai.cn/" />
     <link rel="icon" type="image/png" href="assets/rightai-icon.png" />
     <link rel="apple-touch-icon" href="assets/rightai-icon-180.png" />
+    
+    <!-- Open Graph & Twitter -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Right AI" />
-    <meta property="og:title" content="Right AI - 智能浏览器工作台" />
+    <meta property="og:site_name" content="Right AI Omni" />
+    <meta property="og:title" content="Right AI - Agent Harness" />
     <meta
       property="og:description"
-      content="把常用 AI 收进 Chrome 侧边栏，内置能替你「动手」的 Omni 浏览器代理，支持多模型并行问答、股票助手与一键暗色适配。"
+      content="Omni 处于 Beta 阶段（功能完备）：单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖，带全屏 TUI 界面与 Web/Electron 桌面应用。"
     />
     <meta property="og:url" content="https://rightai.cn/" />
     <meta property="og:image" content="https://rightai.cn/assets/rightai-icon.png" />
     <meta property="og:locale" content="zh_CN" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Right AI - 智能浏览器工作台" />
+    <meta name="twitter:title" content="Right AI - Agent Harness" />
     <meta
       name="twitter:description"
-      content="Chrome 侧边栏 AI 工作台：Omni 浏览器代理、多模型并行问答、股票助手与一键暗色适配。"
+      content="单 Agent 循环 + 8 工具系统 + OS 级沙箱安全护栏 + 记忆系统/会话持久化/技能生态，无框架依赖，带全屏 TUI 界面与 Web/Electron 桌面应用。"
     />
     <meta name="twitter:image" content="https://rightai.cn/assets/rightai-icon.png" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Right AI - Sidebar AI Hub Workspace",
-        "applicationCategory": "BrowserApplication",
-        "operatingSystem": "Chrome",
-        "url": "https://rightai.cn/",
-        "description": "Right AI turns your browser into an AI workspace with quick conversations, split-model chat, stock analysis, an Omni browser agent, and adaptive dark mode.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }
-    </script>
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Host+Grotesk:wght@400..800&family=JetBrains+Mono:wght@400;600;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Host+Grotesk:wght@400..800&family=JetBrains+Mono:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>
+
     <link rel="stylesheet" href="home.css" />
+
     <script>
       (function () {
-        var mode = "system";
         try {
-          var saved = localStorage.getItem("rightai-theme");
-          if (saved === "light" || saved === "dark" || saved === "system") mode = saved;
+          localStorage.removeItem("rightai-theme");
         } catch (e) {}
-        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.body.dataset.theme = mode === "system" ? (dark ? "dark" : "light") : mode;
-        document.body.dataset.themeMode = mode;
+        document.documentElement.setAttribute("data-theme", "dark");
+        if (document.body) document.body.setAttribute("data-theme", "dark");
       })();
     </script>
+
+    <!-- Google AdSense -->
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4829247059582292"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="/embed/sticker-forge.es.js"></script>
+
     <script defer src="home.js"></script>
   </head>
   <body data-theme="dark" data-language="zh">
     <a class="skip-link" href="#main-content" data-i18n="skip.link">跳至主要内容</a>
-    <div id="scroll-progress" aria-hidden="true"></div>
-    <div class="ambient-bg" aria-hidden="true"></div>
-    <div class="noise-layer" aria-hidden="true"></div>
-    <div class="grid-layer" aria-hidden="true"></div>
-    <div class="cursor-glow" aria-hidden="true"></div>
 
-    <header class="site-header">
-      <div class="nav-inner">
-        <a class="brand" href="#top" aria-label="Right AI Home">
-          <span class="brand-mark"><img src="assets/rightai-icon.png" alt="" /></span>
-          <span class="brand-text">Right AI</span>
+    <!-- Custom Cursor Blend Ring -->
+    <div class="ds-cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Header Navigation Bar -->
+    <header class="ds-header-wrapper">
+      <div class="ds-container ds-header-bar">
+        <a class="ds-brand" href="#top" aria-label="Right AI Omni">
+          <div class="ds-brand-logo">
+            <img src="assets/rightai-icon.png" alt="Right AI Omni" width="30" height="30" />
+          </div>
+          <span class="ds-brand-title">Right AI Omni</span>
+          <span class="ds-gradient-badge">
+            <span id="header-release-badge" data-i18n="hero.badge">v0.7.13</span>
+          </span>
         </a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#top" data-i18n="nav.home">首页</a>
-          <a href="#features" data-i18n="nav.features">能力矩阵</a>
-          <a href="#workflow" data-i18n="nav.workflow">工作流</a>
-          <a href="#docs" data-i18n="nav.docs">文档</a>
-          <a href="#faq" data-i18n="nav.faq">常见问题</a>
-          <a href="#" class="donate-trigger" data-i18n="nav.donate">打赏</a>
-        </nav>
-        <div class="nav-actions">
-          <label class="sr-only" for="language-toggle" data-i18n="nav.language">Language</label>
-          <select id="language-toggle" class="language-toggle" aria-label="Language switcher">
-            <option value="en">English</option>
-            <option value="ru">Русский</option>
-            <option value="zh">简体中文</option>
-            <option value="zh-Hant">繁體中文</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-          </select>
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="true">
-            <span class="theme-icon" data-theme-icon="system" aria-hidden="true">◐</span>
-            <span class="theme-icon" data-theme-icon="light" aria-hidden="true">☀</span>
-            <span class="theme-icon" data-theme-icon="dark" aria-hidden="true">☾</span>
+
+        <div class="ds-header-actions">
+          <div class="ds-locale-toggle" role="group" aria-label="Language Selector">
+            <button type="button" class="ds-locale-toggle-item is-active" data-lang-btn="zh">中文</button>
+            <button type="button" class="ds-locale-toggle-item" data-lang-btn="en">EN</button>
+          </div>
+
+          <a
+            class="ds-header-github"
+            href="https://github.com/jacksonon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <button class="ds-mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
           </button>
         </div>
+      </div>
+
+      <!-- Mobile Dropdown Drawer -->
+      <div class="ds-mobile-drawer" id="mobile-drawer">
+        <a href="#top" data-i18n="nav.home">首页</a>
+        <a href="#philosophy" data-i18n="nav.philosophy">工程理念</a>
+        <a href="#architecture" data-i18n="nav.features">架构与工具</a>
+        <a href="#demo" data-i18n="nav.demo">终端与界面</a>
+        <a href="#quickstart" data-i18n="nav.quickstart">快速开始</a>
+        <a href="#discuss" data-i18n="nav.discuss">社区讨论</a>
+        <a href="#links" data-i18n="nav.links">友情链接</a>
+        <a href="https://github.com/jacksonon" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#" class="donate-trigger" data-i18n="nav.donate">打赏支持</a>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="section hero" id="top">
-        <div class="hero-layout">
-          <div class="hero-copy reveal">
-            <div class="hero-sticker-layer">
-              <span class="sticker-back-text" data-i18n="hero.sticker.back">再来一次！</span>
-              <sticker-forge
-                id="hero-sticker"
-                class="hero-sticker"
-              ></sticker-forge>
-            </div>
-            <h1 class="sr-only" data-i18n="hero.title">快速对话，保持专注！</h1>
-            <p data-i18n="hero.desc">
-              RightAI 把常用 AI 都收到 Chrome 侧边栏里，并内置一个真正能在浏览器里替你「动手」的代理。
-            </p>
-            <div class="hero-desc-detail">
-              <p class="hero-desc-sub" data-i18n="hero.desc.sub">两大能力，一打开就用：</p>
-              <ul class="hero-desc-list">
-                <li>
-                  <span class="hero-desc-name" data-i18n="hero.cap.1.name">Omni — 浏览器代理</span>
-                  <span data-i18n="hero.cap.1.desc">：给 Omni 一个目标，它会读网页、点按钮、填表单、切标签，运行受限的页面脚本，并把结果写入你授权过的本地目录。每一次有风险的操作都会先在侧边栏弹确认卡片，等你点头才会执行。</span>
-                </li>
-                <li>
-                  <span class="hero-desc-name" data-i18n="hero.cap.2.name">多模型并行问答</span>
-                  <span data-i18n="hero.cap.2.desc">：把同一个问题同时发给 ChatGPT、Claude、Gemini、DeepSeek、Kimi，以及任何 OpenAI 兼容接口。回答并排摆在一起，挑你最信任的那一个。</span>
-                </li>
-              </ul>
-            </div>
-            <div class="hero-actions" id="download">
-              <a
-                class="cta cta-primary"
-                href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
-                target="_blank"
-                rel="noopener"
-                data-i18n="hero.cta.install"
-              >
-                立即安装 Chrome 扩展
-              </a>
-              <a class="cta cta-secondary direct-download" href="files/dist.zip" download data-i18n="hero.cta.download">
-                直接下载 ZIP
-              </a>
-              <a class="cta cta-ghost" href="#docs" data-i18n="hero.cta.docs">查看安装指南</a>
-            </div>
-          </div>
-          <div class="hero-carousel" aria-roledescription="carousel" aria-label="RightAI 功能预览">
-            <div class="carousel-track">
-              <img src="assets/right01.webp" alt="RightAI 4.0 功能预览 1" fetchpriority="high" />
-              <img src="assets/right02.webp" alt="RightAI 4.0 功能预览 2" loading="lazy" />
-              <img src="assets/right03.webp" alt="RightAI 4.0 功能预览 3" loading="lazy" />
-              <img src="assets/right04.webp" alt="RightAI 4.0 功能预览 4" loading="lazy" />
-              <img src="assets/right05.webp" alt="RightAI 4.0 功能预览 5" loading="lazy" />
-            </div>
-            <div class="carousel-controls">
-              <button class="carousel-nav carousel-prev" type="button" aria-label="上一张">‹</button>
-              <div class="carousel-dots" aria-label="选择预览图"></div>
-              <button class="carousel-nav carousel-next" type="button" aria-label="下一张">›</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section features" id="features">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="features.kicker">功能系统</p>
-          <h2 class="section-title" data-i18n="features.title">一个界面，覆盖输入、理解、推理、执行全链路</h2>
-          <p class="section-lead" data-i18n="features.lead">
-            不再在插件、标签页、工具站点之间跳转。Right AI 把最常用的智能操作与股票分析能力整合为可视化可交互模块。
-          </p>
+      <!-- Hero Section -->
+      <section class="ds-hero-section" id="top">
+        <!-- Interactive WebGL2 Fluid Shader Background -->
+        <div class="ds-hero-shader-bg">
+          <canvas id="hero-shader-canvas"></canvas>
         </div>
 
-        <div class="feature-tabs reveal" role="tablist" aria-label="核心能力标签">
-          <button class="feature-tab" type="button" role="tab" id="tab-omni-agent" aria-controls="omni-agent" aria-selected="false" data-tab="omni-agent" data-i18n="tabs.omni">
-            Omni 浏览器代理
-          </button>
-          <button class="feature-tab is-active" type="button" role="tab" id="tab-quick-input" aria-controls="quick-input" aria-selected="true" data-tab="quick-input" data-i18n="tabs.quick">
-            AI 快速输入
-          </button>
-          <button class="feature-tab" type="button" role="tab" id="tab-quick-conversation" aria-controls="quick-conversation" aria-selected="false" data-tab="quick-conversation" data-i18n="tabs.quickConversation">
-            AI 快速对话
-          </button>
-          <button class="feature-tab" type="button" role="tab" id="tab-multi-model" aria-controls="multi-model" aria-selected="false" data-tab="multi-model" data-i18n="tabs.multi">
-            多模型分屏
-          </button>
-          <button class="feature-tab" type="button" role="tab" id="tab-multi-talk" aria-controls="multi-talk" aria-selected="false" data-tab="multi-talk" data-i18n="tabs.multiTalk">
-            多模型同时对话
-          </button>
-          <button class="feature-tab" type="button" role="tab" id="tab-stock-agent" aria-controls="stock-agent" aria-selected="false" data-tab="stock-agent" data-i18n="tabs.stock">
-            股票助手
-          </button>
-
-          <button class="feature-tab" type="button" role="tab" id="tab-adaptive-dark" aria-controls="adaptive-dark" aria-selected="false" data-tab="adaptive-dark" data-i18n="tabs.dark">
-            自适应深色模式
-          </button>
+        <!-- Interactive 2D Particle Grid Mesh Canvas -->
+        <div class="ds-hero-particle-mesh-wrap">
+          <canvas id="hero-particle-canvas"></canvas>
         </div>
 
-        <article class="feature-panel is-active reveal" role="tabpanel" aria-labelledby="tab-quick-input" data-panel="quick-input" id="quick-input">
-          <div class="feature-panel-grid">
-            <img src="assets/shortcut-quick-send.webp" alt="Right AI 快速输入" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.quick.title">用 Ctrl + R 直接把想法送进模型</h3>
-              <ul>
-                <li data-i18n="panels.quick.1">任意页面即时唤起，保持思维连续性。</li>
-                <li data-i18n="panels.quick.2">支持在当前页面直接打开模型对话窗口（右下角），并携带网页上下文继续对话，无需额外跳转。</li>
-                <li data-i18n="panels.quick.3">设置新增：对话页直开、唤起切回 Chrome、再次按快捷键一键关闭。</li>
-              </ul>
-            </div>
+        <!-- Interactive 3D Right AI Particle Logo (Disperse & Reform) -->
+        <div class="ds-hero-particle-logo-wrap" aria-hidden="true">
+          <div class="ds-hero-particle-logo-box">
+            <canvas id="hero-logo-particle-canvas" width="800" height="800"></canvas>
           </div>
-        </article>
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-omni-agent" data-panel="omni-agent" id="omni-agent" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/browser-agent.webp" alt="Right AI Omni 浏览器代理" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.omni.title">Omni — 浏览器代理：给它一个目标，替你「动手」</h3>
-              <ul>
-                <li data-i18n="panels.omni.1">读写文件：read_file / write_file / diff_file。可授权整个目录，也可只勾选若干文件，每次访问都会写入审计日志。</li>
-                <li data-i18n="panels.omni.2">驱动页面：截图、运行受限页面 JavaScript（无法访问 Chrome 扩展 API 与本地文件）、打开新标签、切换标签、罗列标签。</li>
-                <li data-i18n="panels.omni.3">复合任务：perform_task。一句话目标，端到端执行，流式进度实时显示在侧边栏。</li>
-                <li data-i18n="panels.omni.4">一切本地优先：API Key、设置与审计日志只留在你的设备上；所有有副作用的动作都会先在侧边栏列出要做什么，等你确认后再执行。</li>
-              </ul>
-              <p class="feature-panel-note" data-i18n="panels.omni.note">不想先付费申请 API？Omni 设置页里有一份一步步教你申请 OpenCode Zen 免费 key 的教程。</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-quick-conversation" data-panel="quick-conversation" id="quick-conversation" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/quick_conversation.webp" alt="Right AI 快速对话" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.quickConversation.title">AI 快速对话：网页独立窗口对话</h3>
-              <ul>
-                <li data-i18n="panels.quickConversation.1">可快速唤起网页上的独立对话窗口，并携带当前网页上下文直接开始模型对话。</li>
-                <li data-i18n="panels.quickConversation.2">对话窗可悬浮在当前页面，减少频繁切换标签页与侧栏的成本。</li>
-                <li data-i18n="panels.quickConversation.3">与 AI 快速输入共同打造便捷使用方案：一个负责“快启动”，一个负责“沉浸对话”。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-multi-model" data-panel="multi-model" id="multi-model" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/Multi-Model-Support.webp" alt="Multi model split" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.multi.title">多模型同屏协同，结果更稳更准</h3>
-              <ul>
-                <li data-i18n="panels.multi.1">ChatGPT、Gemini、Claude 与自定义模型并行输出。</li>
-                <li data-i18n="panels.multi.2">同一任务多答案并列，秒级完成交叉验证。</li>
-                <li data-i18n="panels.multi.3">复杂任务自动拆解并路由到最适合的模型。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-multi-talk" data-panel="multi-talk" id="multi-talk" hidden>
-          <div class="feature-panel-grid">
-            <div class="multi-talk-images">
-              <img src="assets/multi-model-talk.webp" alt="Multi model simultaneous chat" loading="lazy" />
-              <img src="assets/multi-model-talk2.webp" alt="Multi model response comparison" loading="lazy" />
-            </div>
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.multiTalk.title">多模型同时对话</h3>
-              <ul>
-                <li data-i18n="panels.multiTalk.1">同时发送消息给多个模型，无需付费。</li>
-                <li data-i18n="panels.multiTalk.2">可滚动对比多个对话返回的消息，择优进行继续对话。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-stock-agent" data-panel="stock-agent" id="stock-agent" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/Stock.webp" alt="Right AI stock assistant" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.stock.title">股票助手：盯盘、资讯、AI 解读一体化</h3>
-              <ul>
-                <li data-i18n="panels.stock.1">在侧栏实时查看自选股、涨跌幅、分时与关键价位。</li>
-                <li data-i18n="panels.stock.2">结合当前网页资讯、财报、公告，快速生成个股解读与风险提示。</li>
-                <li data-i18n="panels.stock.3">可把股票问题直接发给指定模型，在研究和盯盘之间保持连续。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-
-
-        <article class="feature-panel reveal" role="tabpanel" aria-labelledby="tab-adaptive-dark" data-panel="adaptive-dark" id="webpage-tools" hidden>
-          <div class="feature-panel-grid">
-            <img src="assets/night-adapt.webp" alt="Adaptive dark mode" loading="lazy" />
-            <div class="feature-panel-copy">
-              <h3 data-i18n="panels.dark.title">任何网页，一键进入舒适暗色工作模式</h3>
-              <ul>
-                <li data-i18n="panels.dark.1">即使网站没有原生 Dark Mode，也可稳定适配。</li>
-                <li data-i18n="panels.dark.2">配合系统主题与扩展主题联动，夜间阅读更护眼。</li>
-                <li data-i18n="panels.dark.3">保持层级清晰与文本对比，兼顾美观与可读性。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="section workflow" id="workflow">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="workflow.kicker">工作流引擎</p>
-          <h2 class="section-title" data-i18n="workflow.title">四步完成高密度信息任务</h2>
-        </div>
-        <div class="workflow-track">
-          <article class="workflow-step reveal" id="shortcut">
-            <h3 data-i18n="workflow.1.title">01 · 捕获</h3>
-            <p data-i18n="workflow.1.body">在任何网页按下 Ctrl + R，输入发给模型内容，Right AI 可以快速发给指定模型，如果您配置了智谱AI，可以为您分析基于当前网页内容的输入意图。</p>
-          </article>
-          <article class="workflow-step reveal">
-            <h3 data-i18n="workflow.2.title">02 · 分屏</h3>
-            <p data-i18n="workflow.2.body">模型分屏，可以同时跟两个模型进行对话。</p>
-          </article>
-          <article class="workflow-step reveal">
-            <h3 data-i18n="workflow.3.title">03 · 生成</h3>
-            <p data-i18n="workflow.3.body">在侧栏实时生成摘要、行动清单、改写版本与下一步建议。</p>
-          </article>
-          <article class="workflow-step reveal">
-            <h3 data-i18n="workflow.4.title">04 · 执行</h3>
-            <p data-i18n="workflow.4.body">直接把结论用于写作、调研、协作，形成可持续的闭环流程。</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section showcase" id="showcase">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="showcase.kicker">交互场景</p>
-          <h2 class="section-title" data-i18n="showcase.title">面向真实工作场景的交互设计</h2>
-        </div>
-        <div class="showcase-grid">
-          <article class="tilt-card showcase-card reveal">
-            <h3 data-i18n="showcase.1.title">市场研究</h3>
-            <p data-i18n="showcase.1.body">在行业报道页面直接提炼关键信号，自动生成结构化洞察与风险提示。</p>
-            <span data-i18n="showcase.1.tag">网页总结 · 对比分析</span>
-          </article>
-          <article class="tilt-card showcase-card reveal">
-            <h3 data-i18n="showcase.2.title">产品与运营</h3>
-            <p data-i18n="showcase.2.body">把用户反馈、竞品信息、文案素材即时拼接成可执行运营策略。</p>
-            <span data-i18n="showcase.2.tag">多模型协同 · 快速迭代</span>
-          </article>
-          <article class="tilt-card showcase-card reveal">
-            <h3 data-i18n="showcase.3.title">知识学习</h3>
-            <p data-i18n="showcase.3.body">复杂概念自动转译为可理解步骤，结合翻译与问答持续追问直到吃透。</p>
-            <span data-i18n="showcase.3.tag">深度阅读 · 智能追问</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="section docs" id="docs">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="docs.kicker">快速开始</p>
-          <h2 class="section-title" data-i18n="docs.title">3 分钟内完成安装并启动第一条命令</h2>
         </div>
 
-        <div class="docs-grid">
-          <article class="docs-card reveal" id="manual-install">
-            <h3 data-i18n="docs.install.title">快速安装</h3>
-            <ol class="install-steps">
-              <li>
-                <span data-i18n="docs.install.step1.start">从 Chrome Web Store 安装</span>
+        <!-- Ambient Glow Orb -->
+        <div class="ds-hero-glow-orb" aria-hidden="true"></div>
+
+        <div class="ds-container ds-hero-grid">
+          <div class="ds-hero-left">
+            <div class="ds-hero-enter" style="--enter-y: 24px; --enter-delay: 0.05s">
+              <p class="font-medium text-[16px] text-white/90 pl-[2px] tracking-[-0.01em]" data-i18n="hero.label">
+                Agent 工程 · 终端型 AI 编程助手
+              </p>
+              <h1 class="ds-text-hero mt-3 text-ds-primary" style="letter-spacing: -0.02em" data-i18n="hero.title">
+                极简、透明、无依赖的 Agent 工程
+              </h1>
+            </div>
+
+            <div class="ds-hero-enter flex flex-col gap-3 max-w-[580px]" style="--enter-y: 20px; --enter-delay: 0.15s">
+              <p class="ds-text-body text-ds-description" data-i18n="hero.desc1">
+                基于裸 OpenAI SDK 与自研执行主循环，无臃肿框架包装。每一行代码均可审查，每一次工具调用与思考推理皆有迹可循。
+              </p>
+              <p class="ds-text-body text-ds-description" data-i18n="hero.desc2">
+                单 Agent 循环 + 8 工具系统（6 基础 + 2 注入）· OS 级进程沙箱与安全护栏 · 级联记忆与技能生态 · 全屏终端 TUI 与 Web/Electron 桌面应用。
+              </p>
+            </div>
+
+            <div class="ds-hero-enter ds-hero-button-stack" style="--enter-y: 16px; --enter-delay: 0.25s">
+              <!-- Primary Actions Row -->
+              <div class="ds-hero-buttons">
                 <a
-                  href="https://chromewebstore.google.com/detail/right-ai-sidebar-ai-hub-w/heemhlopcggnlgghlgpllhnlmomlfkfm"
+                  class="ds-btn-primary ds-btn-m"
+                  href="https://github.com/jacksonon/omni"
                   target="_blank"
-                  rel="noopener"
-                >Right AI</a>
-                <span data-i18n="docs.install.step1.middle">，或下载</span>
-                <a class="direct-download" href="files/dist.zip" download data-i18n="docs.install.step1.offline">离线包</a>
-                <span data-i18n="docs.install.step1.end">进行手动安装。</span>
-              </li>
-              <li data-i18n="docs.install.step2">打开扩展页面，固定 Right AI 到工具栏。</li>
-              <li data-i18n="docs.install.step3">进入任意网页，按 Ctrl + R 立即唤起 Quick Input。</li>
-            </ol>
-            <p class="shortcut-note" data-i18n="docs.install.note">手动安装路径：chrome://extensions → Developer mode → Load unpacked</p>
-          </article>
+                  rel="noopener noreferrer"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                  </svg>
+                  <span data-i18n="hero.btn.github">查看 GitHub</span>
+                </a>
 
-          <article class="docs-card reveal" id="version-updates">
-            <h3 data-i18n="docs.update.title">版本更新节奏</h3>
-            <ul class="update-list">
-              <li data-i18n="docs.update.1">月更：跟进最新 AI 资讯，持续提供符合当前场景的 AI 服务。</li>
-            </ul>
-            <p data-i18n="docs.update.note">建议开启自动更新，让 Right AI 持续贴合最新模型能力与使用场景。</p>
-          </article>
+                <a class="ds-btn-secondary ds-btn-m" href="#architecture">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+                    <path d="M2.5 3.5h11v9h-11zM2.5 6.5h11M6.5 6.5v6" />
+                  </svg>
+                  <span data-i18n="hero.btn.docs">系统架构</span>
+                </a>
 
-          <article class="docs-card reveal" id="quick-chat-updates">
-            <h3 data-i18n="docs.quickchat.title">AI 快速输入对话页（新）</h3>
-            <ul class="update-list">
-              <li data-i18n="docs.quickchat.1">唤起后可在网页右下角直接进入模型对话界面。</li>
-              <li data-i18n="docs.quickchat.2">设置新增「快捷弹窗显示模型对话页」与「唤起时切回 Chrome 前台」。</li>
-              <li data-i18n="docs.quickchat.3">可开启「再次按快捷键关闭快捷对话窗口」实现快速开关。</li>
-            </ul>
-            <p data-i18n="docs.quickchat.note">建议在扩展设置中按你的使用习惯组合上述选项。</p>
-          </article>
+                <a class="ds-btn-secondary ds-btn-m" href="https://github.com/jacksonon/omni/releases/latest" target="_blank" rel="noopener noreferrer">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+                    <path d="M8 2v8m-3-3l3 3 3-3M2 13h12" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span data-i18n="hero.btn.dist">桌面端下载</span>
+                </a>
+
+                <button class="ds-btn-secondary ds-btn-m donate-trigger" type="button">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+                    <path d="M8 14s-5-3-5-7a3.5 3.5 0 0 1 7-1 3.5 3.5 0 0 1 7 1c0 4-5 7-5 7z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span data-i18n="hero.btn.donate">打赏支持</span>
+                </button>
+              </div>
+
+              <!-- Companion Extension (Right AI with built-in Omni) -->
+              <div class="ds-hero-ext-card">
+                <div class="ds-hero-ext-header">
+                  <span class="ds-hero-ext-tag">
+                    <span class="ds-hero-ext-tag-dot"></span>
+                    <span data-i18n="hero.ext.tag">内置 Omni 内核</span>
+                  </span>
+                  <span class="ds-hero-ext-desc" data-i18n="hero.ext.note">Chrome 浏览器插件：</span>
+                </div>
+                <div class="ds-hero-ext-actions">
+                  <a
+                    class="ds-btn-ext"
+                    href="https://chromewebstore.google.com/detail/right-ai/heemhlopcggnlgghlgpllhnlmomlfkfm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <circle cx="12" cy="12" r="4"></circle>
+                      <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                      <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                      <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                    </svg>
+                    <span data-i18n="hero.btn.chrome">RightAI 商店扩展</span>
+                  </a>
+
+                  <a
+                    class="ds-btn-ext direct-download"
+                    href="files/dist.zip"
+                    download="dist.zip"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span data-i18n="hero.btn.download">Right AI 离线插件 (ZIP)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Terminal Card (Right Column) -->
+          <div class="ds-terminal-container ds-hero-enter" style="--enter-y: 20px; --enter-delay: 0.35s">
+            <div class="ds-terminal-tabs" role="tablist">
+              <button class="ds-terminal-tab is-active" type="button" role="tab" data-term-tab="npx" aria-selected="true" data-i18n="term.tab.npx">
+                npx Web 启动
+              </button>
+              <button class="ds-terminal-tab" type="button" role="tab" data-term-tab="npm" aria-selected="false" data-i18n="term.tab.npm">
+                npm / bun 全局安装
+              </button>
+              <button class="ds-terminal-tab" type="button" role="tab" data-term-tab="curl" aria-selected="false" data-i18n="term.tab.curl">
+                curl 一键安装
+              </button>
+            </div>
+
+            <div class="ds-terminal-window">
+              <div class="ds-terminal-header">
+                <div class="ds-window-dots" aria-hidden="true">
+                  <span class="ds-dot ds-dot-red"></span>
+                  <span class="ds-dot ds-dot-yellow"></span>
+                  <span class="ds-dot ds-dot-green"></span>
+                </div>
+                <button class="ds-copy-btn" id="hero-copy-btn" type="button" aria-label="Copy command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-text" data-i18n="term.copy">复制</span>
+                </button>
+              </div>
+
+              <div class="ds-terminal-body">
+                <pre class="ds-code-snippet" id="hero-code-snippet"><span class="ds-code-prompt">$ </span>npx @right-ai/omni web</pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section zen" id="zen">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="zen.kicker">免费模型获取</p>
-          <h2 class="section-title" data-i18n="zen.title">OpenCode Zen 免费 API Key 获取指南</h2>
-          <p class="section-lead" data-i18n="zen.lead">
-            注册免费的 OpenCode 账号并创建 API Key，即可让 Omni 使用 Zen 的免费模型。
+      <!-- Section 1: Philosophy / Three Pillars Grid -->
+      <section class="ds-section ds-container" id="philosophy">
+        <div class="ds-section-header-center reveal">
+          <span class="ds-gradient-badge">
+            <span data-i18n="philo.formula">AGENT = LLM STREAM + 8 TOOLS + OS SANDBOX + CASCADE MEMORY</span>
+          </span>
+          <h2 class="ds-text-heading1 text-ds-primary">
+            <span class="text-ds-brand">Omni</span> <span data-i18n="philo.title">从裸 SDK 循环到生产级自主执行回路</span>
+          </h2>
+          <div class="flex flex-col gap-1 max-w-[760px]">
+            <p class="ds-text-body text-ds-description" data-i18n="philo.desc1">大语言模型是 Agent 的大脑，但真实工程需要坚不可摧的执行回路与安全护栏。</p>
+            <p class="ds-text-body text-ds-description" data-i18n="philo.desc2">
+              Omni 摒弃黑盒框架抽象，回归流式调用、并行工具执行与自我纠错最本真的形态，让 Agent 稳定落地复杂编程场景。
+            </p>
+          </div>
+        </div>
+
+        <div class="ds-pillar-grid reveal">
+          <!-- Pillar Card 1 -->
+          <div class="ds-pillar-card">
+            <div class="ds-spotlight-layer"></div>
+            <div class="ds-card-icon" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="36" r="4" stroke="currentColor" stroke-width="1.2"></circle>
+                <circle cx="36" cy="36" r="1.5" fill="currentColor"></circle>
+                <ellipse cx="36" cy="36" rx="25" ry="11" stroke="currentColor" stroke-width="1" opacity="0.7" transform="rotate(90 36 36)"></ellipse>
+                <ellipse cx="36" cy="36" rx="25" ry="11" stroke="currentColor" stroke-width="1" opacity="0.7" transform="rotate(30 36 36)"></ellipse>
+                <ellipse cx="36" cy="36" rx="25" ry="11" stroke="currentColor" stroke-width="1" opacity="0.7" transform="rotate(150 36 36)"></ellipse>
+              </svg>
+            </div>
+            <h3 class="ds-card-title" data-i18n="pillar1.title">裸 SDK 主循环与自纠错</h3>
+            <span class="ds-card-kicker">BARE SDK LOOP &amp; SELF-CORRECTION</span>
+            <p class="ds-card-desc" data-i18n="pillar1.desc">
+              流式调用 LLM → 并行执行工具调用 → 执行结果回传自纠错闭环。工具执行失败信息原样回传模型，由模型自行理解并自愈代码缺陷，杜绝框架吞错。
+            </p>
+          </div>
+
+          <!-- Pillar Card 2 -->
+          <div class="ds-pillar-card">
+            <div class="ds-spotlight-layer"></div>
+            <div class="ds-card-icon" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 72 72" fill="none">
+                <circle cx="36" cy="36" r="17" stroke="currentColor" stroke-width="0.9" stroke-dasharray="2 2.5" opacity="0.5"></circle>
+                <circle cx="36" cy="36" r="26" stroke="currentColor" stroke-width="0.9" opacity="0.7"></circle>
+                <circle cx="36" cy="36" r="4.5" stroke="currentColor" stroke-width="1.2"></circle>
+                <circle cx="36" cy="10" r="2.6" fill="currentColor"></circle>
+                <circle cx="58.5" cy="23" r="2.6" fill="currentColor"></circle>
+                <circle cx="58.5" cy="49" r="2.6" fill="currentColor"></circle>
+                <circle cx="36" cy="62" r="2.6" fill="currentColor"></circle>
+                <circle cx="13.5" cy="49" r="2.6" fill="currentColor"></circle>
+                <circle cx="13.5" cy="23" r="2.6" fill="currentColor"></circle>
+              </svg>
+            </div>
+            <h3 class="ds-card-title" data-i18n="pillar2.title">权限分级与 OS 级进程沙箱</h3>
+            <span class="ds-card-kicker">PERMISSIONS &amp; OS-LEVEL SANDBOX</span>
+            <p class="ds-card-desc" data-i18n="pillar2.desc">
+              内置 full / safe / ask / read 四级权限，危险命令正则拦截与审批卡片；底层集成 macOS sandbox-exec 与 Linux bwrap 进程隔离，网络白名单过滤代理出网（TLS 不解密）。
+            </p>
+          </div>
+
+          <!-- Pillar Card 3 -->
+          <div class="ds-pillar-card">
+            <div class="ds-spotlight-layer"></div>
+            <div class="ds-card-icon" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 72 72" fill="none">
+                <rect x="18" y="22" width="15" height="15" rx="3" stroke="currentColor" stroke-width="1.1" opacity="0.85"></rect>
+                <rect x="18" y="41" width="15" height="15" rx="3" stroke="currentColor" stroke-width="1.1" opacity="0.85"></rect>
+                <rect x="37" y="41" width="15" height="15" rx="3" stroke="currentColor" stroke-width="1.1" opacity="0.85"></rect>
+                <rect x="37" y="22" width="15" height="15" rx="3" stroke="currentColor" stroke-width="0.9" stroke-dasharray="2.5 2.5" opacity="0.45"></rect>
+                <rect x="47" y="12" width="15" height="15" rx="3" stroke="currentColor" stroke-width="1.2"></rect>
+                <circle cx="54.5" cy="19.5" r="1.4" fill="currentColor"></circle>
+              </svg>
+            </div>
+            <h3 class="ds-card-title" data-i18n="pillar3.title">级联记忆与动态技能生态</h3>
+            <span class="ds-card-kicker">CASCADE MEMORY &amp; AGENT SKILLS</span>
+            <p class="ds-card-desc" data-i18n="pillar3.desc">
+              项目级与全局级 AGENTS.md 级联加载，首轮自动注入；自动扫描 .opencode/skills 与 .claude/skills 下的 SKILL.md 并按需渐进披露；支持会话 JSONL 持久化与长对话摘要压缩。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Sticky Interactive Showcase ("系统架构：8 工具链路、生命周期 Hooks 与多端协同") -->
+      <section class="ds-section ds-container" id="architecture">
+        <div class="reveal">
+          <span class="ds-gradient-badge">
+            <span data-i18n="feat.eyebrow">系统架构</span>
+          </span>
+          <h2 class="ds-text-heading1 text-ds-primary mt-4 mb-2" data-i18n="feat.title">
+            分层设计、全屏 TUI 与 Web 多端协同
+          </h2>
+        </div>
+
+        <div class="ds-showcase-layout reveal">
+          <!-- Left Column: Interactive Steps -->
+          <div class="ds-showcase-steps" id="showcase-steps">
+            <!-- Step 1: OpenTUI -->
+            <div class="ds-step-item is-active" data-step="1">
+              <div class="ds-step-header">
+                <div class="ds-step-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="4 17 10 11 4 5"></polyline>
+                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                  </svg>
+                </div>
+                <h3 class="ds-step-title" data-i18n="feat.1.title">全屏终端 TUI（OpenTUI 交互模式）</h3>
+              </div>
+              <p class="ds-step-desc" data-i18n="feat.1.desc">
+                思考模块流式实时呈现、Bash 工具卡片点击展开、Markdown 表格与代码块排版、左右并排 diff 对比；输入框支持 @ 文件层级逐层浏览与插入，31 个 / 斜杠快捷命令采用圆角浮层悬停，带来纯粹极速的键盘流体验。
+              </p>
+            </div>
+
+            <!-- Step 2: Web / Desktop -->
+            <div class="ds-step-item" data-step="2">
+              <div class="ds-step-header">
+                <div class="ds-step-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3 class="ds-step-title" data-i18n="feat.2.title">Web 工作台与多会话并发（Electron 跨平台）</h3>
+              </div>
+              <p class="ds-step-desc" data-i18n="feat.2.desc">
+                按工作区分组的多会话侧栏并行调度、实时 Markdown 回答、左右并排 diff 与审批交互卡片；跨平台 Electron 桌面应用（macOS / Windows / Linux 内置 Node 运行时，免环境配置）开箱即用。
+              </p>
+            </div>
+
+            <!-- Step 3: Layered Core -->
+            <div class="ds-step-item" data-step="3">
+              <div class="ds-step-header">
+                <div class="ds-step-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h3 class="ds-step-title" data-i18n="feat.3.title">分层内核、8 执行工具与安全沙箱</h3>
+              </div>
+              <p class="ds-step-desc" data-i18n="feat.3.desc">
+                入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Sticky Frame with Cross-Fading Slides -->
+          <div class="ds-showcase-sticky-wrap">
+            <div class="ds-showcase-frame">
+              <!-- Slide 1: Full-Screen Terminal TUI -->
+              <div class="ds-showcase-slide is-active" id="slide-1">
+                <img src="assets/omni/tui.png" alt="Omni OpenTUI 全屏终端模式（实时思考、语法高亮与并排 Diff）" loading="lazy" />
+              </div>
+
+              <!-- Slide 2: Web Workbench & Electron Desktop -->
+              <div class="ds-showcase-slide" id="slide-2">
+                <img src="assets/omni/web.png" alt="Omni Web 工作台与多会话并发界面（按工作区分组与实时 Diff）" loading="lazy" />
+              </div>
+
+              <!-- Slide 3: Layered Architecture Blueprint -->
+              <div class="ds-showcase-slide" id="slide-3">
+                <div class="ds-simulated-ui">
+                  <div class="ds-arch-blueprint">
+                    <div class="ds-arch-header">
+                      <div class="ds-arch-title-wrap">
+                        <div class="ds-window-dots">
+                          <span class="ds-dot ds-dot-red"></span>
+                          <span class="ds-dot ds-dot-yellow"></span>
+                          <span class="ds-dot ds-dot-green"></span>
+                        </div>
+                        <span class="text-xs font-semibold text-white/90">Omni Layered Kernel Blueprint</span>
+                      </div>
+                      <span class="ds-arch-tag">v0.7 · TypeScript</span>
+                    </div>
+                    <div class="ds-arch-tree">
+                      <div class="ds-arch-row">
+                        <span class="ds-arch-layer">入口层</span>
+                        <span>CLI · OpenTUI Terminal · Web Workbench · Electron Desktop · Headless Exec</span>
+                      </div>
+                      <div class="ds-arch-row">
+                        <span class="ds-arch-layer">循环层</span>
+                        <span>Agent 主循环 (loop.ts) · 并行工具执行 · 自我纠错闭环 · 8000 字符动态截断</span>
+                      </div>
+                      <div class="ds-arch-row">
+                        <span class="ds-arch-layer">工具层</span>
+                        <span>6 基础 (read/write/list/search/run/skill) + delegate (git worktree) + mcp_*</span>
+                      </div>
+                      <div class="ds-arch-row">
+                        <span class="ds-arch-layer">安全层</span>
+                        <span>macOS sandbox-exec · Linux bwrap 进程沙箱 · 12 个生命周期 Hooks</span>
+                      </div>
+                      <div class="ds-arch-row">
+                        <span class="ds-arch-layer">记忆层</span>
+                        <span>项目/全局 AGENTS.md 级联加载 · 按需载入 SKILL.md · JSONL 会话持久化</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ds-sim-mode-menu">
+                    <div class="ds-sim-mode-item is-selected">
+                      <div>
+                        <div class="ds-sim-mode-name" data-i18n="sim.create.name">子代理隔离 (Delegate)</div>
+                        <div class="ds-sim-mode-desc" data-i18n="sim.create.desc">自动 git worktree 临时分支隔离运行，生成变更报告与合并建议。</div>
+                      </div>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6799fe" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Video / Feature Demo Player -->
+      <section class="ds-section ds-container" id="demo">
+        <div class="ds-section-header-center reveal">
+          <h2 class="ds-text-heading1 text-ds-primary" data-i18n="demo.title">
+            沉浸式终端 TUI、Web 工作台与跨平台桌面端
+          </h2>
+          <p class="ds-text-body text-ds-description max-w-[640px]" data-i18n="demo.desc">
+            双端无缝协作：终端基于 OpenTUI 提供流畅的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件、28 个 / 命令），浏览器或独立桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。
           </p>
         </div>
-        <div class="zen-steps reveal">
-          <ol>
-            <li>
-              <span data-i18n="zen.step1.pre">前往 </span>
-              <a href="https://opencode.ai/go?ref=WBJ8HDW7QJ" target="_blank" rel="noopener nofollow">OpenCode</a>
-              <span data-i18n="zen.step1.post">注册 / 登录并创建 API Key。</span>
-            </li>
-            <li data-i18n="zen.step2">进入「API 密钥」→「创建 API 密钥」，然后复制生成的密钥。</li>
-            <li>
-              <span data-i18n="zen.step3.start">回到 Omni 设置页，在 API Key 中粘贴密钥，并将 Base URL 填为：</span>
-              <code>https://opencode.ai/zen/v1</code>
-            </li>
-            <li>
-              <span data-i18n="zen.step4.start">测试连接，并在模型列表中选择带有 </span>
-              <code>free</code>
-              <span data-i18n="zen.step4.end"> 字样的模型，即可开始使用 Omni。</span>
-            </li>
-          </ol>
-          <p class="zen-note" data-i18n="zen.note">提示：免费模型的可用性、限额和服务条款以 OpenCode Zen 当前页面为准。</p>
+
+        <div class="ds-demo-frame reveal">
+          <iframe
+            class="ds-demo-video"
+            id="demo-video-el"
+            src="https://player.bilibili.com/player.html?isOutside=true&amp;aid=117218733984521&amp;bvid=BV1zRbL6QEsg&amp;cid=41613658814&amp;p=1&amp;autoplay=0&amp;t=2.2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            title="Right AI Agent Harness 演示视频"
+          ></iframe>
+        </div>
+
+        <div class="ds-demo-action">
+          <a
+            class="ds-demo-bilibili-link"
+            href="https://www.bilibili.com/video/BV1zRbL6QEsg?t=2.2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.813 4.653h.854c1.51 0 2.769.878 3.333 2.193.314.734.457 1.543.457 2.375v8.474c0 .832-.143 1.641-.457 2.375-.564 1.315-1.823 2.193-3.333 2.193H5.333c-1.51 0-2.769-.878-3.333-2.193A5.568 5.568 0 0 1 1.543 17.695V9.221c0-.832.143-1.641.457-2.375C2.564 5.531 3.823 4.653 5.333 4.653h.854l-1.84-2.164a.8.8 0 0 1 .094-1.127.8.8 0 0 1 1.127.094l2.76 3.245h7.344l2.76-3.245a.8.8 0 0 1 1.127-.094.8.8 0 0 1 .094 1.127l-1.84 2.164zM5.333 6.253c-.933 0-1.707.56-2.053 1.365-.187.44-.28.92-.28 1.603v8.474c0 .683.093 1.163.28 1.603.346.805 1.12 1.365 2.053 1.365h13.334c.933 0 1.707-.56 2.053-1.365.187-.44.28-.92.28-1.603V9.221c0-.683-.093-1.163-.28-1.603-.346-.805-1.12-1.365-2.053-1.365H5.333zM8 10.253a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm8 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
+            </svg>
+            <span data-i18n="demo.bilibili">前往哔哩哔哩观看高清完整视频（支持 1080P / 高帧率）</span>
+            <span class="ds-demo-arrow">↗</span>
+          </a>
         </div>
       </section>
 
-      <section class="section faq" id="faq">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="faq.kicker">常见问题</p>
-          <h2 class="section-title" data-i18n="faq.title">你可能关心的问题</h2>
+      <!-- Section 4: Quick Start / Installation Cards -->
+      <section class="ds-section ds-container" id="quickstart">
+        <div class="reveal">
+          <span class="ds-gradient-badge">
+            <span data-i18n="use.eyebrow">开始使用</span>
+          </span>
+          <h2 class="ds-text-heading1 text-ds-primary mt-4 mb-2" data-i18n="use.title">
+            多元化安装与运行方案
+          </h2>
         </div>
 
-        <details class="reveal">
-          <summary data-i18n="faq.1.q">Right AI 支持哪些浏览器？</summary>
-          <p data-i18n="faq.1.a">推荐最新版 Chrome。基于 Chromium 的 Edge 等浏览器通常也可正常运行。</p>
-        </details>
-        <details class="reveal">
-          <summary data-i18n="faq.2.q">我必须登录账号才能用吗？</summary>
-          <p data-i18n="faq.2.a">安装后即可使用核心能力。部分模型服务可能需要你在扩展内配置自己的 API 信息。</p>
-        </details>
-        <details class="reveal">
-          <summary data-i18n="faq.3.q">如何快速调起输入面板？</summary>
-          <p data-i18n="faq.3.a">默认推荐快捷键是 Ctrl + R，用于唤起右侧面板。你也可以在 Right AI 设置中自定义快捷键。</p>
-        </details>
-        <details class="reveal">
-          <summary data-i18n="faq.4.q">离线包应该怎么安装？</summary>
-          <p data-i18n="faq.4.a">下载 files/dist.zip，解压后在 chrome://extensions 开启开发者模式并选择"加载已解压的扩展程序"。</p>
-        </details>
-        <details class="reveal">
-          <summary data-i18n="faq.5.q">快捷键怎么设置更顺手？</summary>
-          <p data-i18n="faq.5.intro">推荐按下面的方式配置：</p>
-          <div class="faq-shortcuts-wrap">
-            <table class="faq-shortcuts-table">
-              <thead>
-                <tr>
-                  <th scope="col" data-i18n="faq.5.head.shortcut">快捷键</th>
-                  <th scope="col" data-i18n="faq.5.head.action">对应功能</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>Control + R</code></td>
-                  <td data-i18n="faq.5.r">唤起右侧面板。</td>
-                </tr>
-                <tr>
-                  <td><code>Control + Q</code></td>
-                  <td data-i18n="faq.5.qk">快速发消息或唤起 AI 浮层窗口。</td>
-                </tr>
-                <tr>
-                  <td><code>Control + L</code></td>
-                  <td data-i18n="faq.5.l">网页亮度适配。</td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="ds-start-grid reveal">
+          <!-- Card 1: Fast Start npx -->
+          <div class="ds-start-card">
+            <h3 class="ds-text-subtitle text-ds-primary" data-i18n="use.1.title">npx Web 免安装体验</h3>
+            <p class="ds-text-body text-ds-description" data-i18n="use.1.desc">
+              无需全局安装，一行命令即刻拉起本地服务并唤起浏览器 Web 工作台，体验完整多会话 Agent 交互。
+            </p>
+            <div class="ds-code-bar">
+              <code><span class="ds-code-prompt">$ </span>npx @right-ai/omni web</code>
+              <button class="ds-copy-btn" type="button" data-copy-val="npx @right-ai/omni web">
+                <span class="copy-text" data-i18n="term.copy">复制</span>
+              </button>
+            </div>
           </div>
-          <p class="faq-shortcut-note" data-i18n="faq.5.note">这些设置需要在 Right AI 面板内点击"设置"，并在对应条目里完成配置。</p>
-        </details>
+
+          <!-- Card 2: npm global -->
+          <div class="ds-start-card">
+            <h3 class="ds-text-subtitle text-ds-primary" data-i18n="use.2.title">npm / bun 全局安装</h3>
+            <p class="ds-text-body text-ds-description" data-i18n="use.2.desc">
+              支持 npm 或 bun 全局安装 @right-ai/omni，随时随地在终端调度 Agent。
+            </p>
+            <div class="ds-code-bar">
+              <code><span class="ds-code-prompt">$ </span>npm install -g @right-ai/omni</code>
+              <button class="ds-copy-btn" type="button" data-copy-val="npm install -g @right-ai/omni">
+                <span class="copy-text" data-i18n="term.copy">复制</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: curl install -->
+          <div class="ds-start-card">
+            <h3 class="ds-text-subtitle text-ds-primary" data-i18n="use.3.title">curl 一键安装（原生二进制）</h3>
+            <p class="ds-text-body text-ds-description" data-i18n="use.3.desc">
+              零依赖原生二进制文件，自动识别平台架构，自带完整全屏 OpenTUI 沉浸交互体验。
+            </p>
+            <div class="ds-code-bar">
+              <code><span class="ds-code-prompt">$ </span>curl -fsSL https://raw.githubusercontent.com/jacksonon/omni/main/scripts/install.sh | sh</code>
+              <button class="ds-copy-btn" type="button" data-copy-val="curl -fsSL https://raw.githubusercontent.com/jacksonon/omni/main/scripts/install.sh | sh">
+                <span class="copy-text" data-i18n="term.copy">复制</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Electron Desktop -->
+          <div class="ds-start-card">
+            <h3 class="ds-text-subtitle text-ds-primary" data-i18n="use.4.title">Electron 桌面端（免环境依赖）</h3>
+            <p class="ds-text-body text-ds-description" data-i18n="use.4.desc">
+              macOS (Apple Silicon / Intel)、Windows (.exe)、Linux (.AppImage) 独立安装包，内置运行环境开箱即用。
+            </p>
+            <div class="ds-code-bar">
+              <code><span class="ds-code-prompt">$ </span>open https://github.com/jacksonon/omni/releases/latest</code>
+              <a class="ds-copy-btn" href="https://github.com/jacksonon/omni/releases/latest" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-flex; align-items:center;">
+                <span class="copy-text" data-i18n="use.4.btn">前往 Releases</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="section comments" id="comments" aria-labelledby="comments-title">
-        <div class="section-heading reveal">
-          <p class="kicker" data-i18n="comments.kicker">社区互动</p>
-          <h2 class="section-title" id="comments-title" data-i18n="comments.title">评论区</h2>
+      <!-- Section 5: Ecosystem CTA -->
+      <section class="ds-cta-section" id="ecosystem">
+        <div class="ds-cta-glow-bg" aria-hidden="true"></div>
+        <div class="ds-cta-content reveal">
+          <h2 class="ds-text-heading1 text-ds-primary" data-i18n="cta.title">
+            探索透明自主的 Agent 编程工程
+          </h2>
+          <p class="ds-text-body text-ds-description" data-i18n="cta.desc">
+            Omni 是面向开发者的开源 Agent 工程实践。无论是扩展自定义 MCP 服务、编写 SKILL.md 技能，还是挂载生命周期 Hooks，一切均由你掌控。欢迎加入社区并参与贡献！
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4 mt-4">
+            <a
+              class="ds-btn-primary ds-btn-m"
+              href="https://github.com/jacksonon/omni"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+              </svg>
+              <span data-i18n="hero.btn.github">查看 GitHub</span>
+            </a>
+            <a class="ds-btn-secondary ds-btn-m" href="#architecture" data-i18n="hero.btn.docs">
+              系统架构
+            </a>
+            <a class="ds-btn-secondary ds-btn-m" href="https://github.com/jacksonon/omni/releases/latest" target="_blank" rel="noopener noreferrer" data-i18n="hero.btn.dist">
+              桌面端下载
+            </a>
+          </div>
         </div>
-        <div class="giscus"></div>
+      </section>
+
+      <!-- MANDATORY SECTION 1: Discuss (评论区 / Giscus) -->
+      <section class="ds-section ds-container" id="discuss" aria-labelledby="discuss-title">
+        <div class="reveal">
+          <span class="ds-gradient-badge">
+            <span data-i18n="comments.kicker">社区互动 · DISCUSS</span>
+          </span>
+          <h2 class="ds-text-heading1 text-ds-primary mt-4 mb-2" id="discuss-title" data-i18n="comments.title">
+            评论与讨论区
+          </h2>
+          <p class="ds-text-body text-ds-description max-w-[640px]" data-i18n="comments.lead">
+            基于 GitHub Discussions 驱动的实时评论区。欢迎在此分享你的使用心得、插件灵感或反馈问题。
+          </p>
+        </div>
+
+        <div class="ds-discuss-card reveal">
+          <div class="giscus"></div>
+        </div>
+      </section>
+
+      <!-- MANDATORY SECTION 2: Links (友情链接) -->
+      <section class="ds-section ds-container" id="links" aria-labelledby="links-title">
+        <div class="reveal">
+          <span class="ds-gradient-badge">
+            <span data-i18n="footer.links.title">友情链接 · FRIENDLY LINKS</span>
+          </span>
+          <h2 class="ds-text-heading1 text-ds-primary mt-4 mb-2" id="links-title" data-i18n="links.heading">
+            推荐生态与合作伙伴
+          </h2>
+          <p class="ds-text-body text-ds-description max-w-[640px]" data-i18n="links.lead">
+            精选优质开发者工具、AI Agent 资源与开源项目。
+          </p>
+        </div>
+
+        <div class="ds-links-grid reveal">
+          <!-- Link 0: Right AI Chrome Extension -->
+          <a
+            class="footer-link is-featured"
+            href="https://chromewebstore.google.com/detail/right-ai/heemhlopcggnlgghlgpllhnlmomlfkfm"
+            target="_blank"
+            rel="noopener"
+            title="Right AI 浏览器插件 - Chrome Web Store"
+          >
+            <span class="footer-link-icon" aria-hidden="true">
+              <img
+                src="assets/rightai-icon.png"
+                alt="Right AI"
+                width="32"
+                height="32"
+                loading="lazy"
+              />
+            </span>
+            <span class="footer-link-body">
+              <span class="footer-link-name" data-i18n="footer.links.0.name">Right AI 浏览器插件</span>
+              <span class="footer-link-desc" data-i18n="footer.links.0.desc">Chrome 商店官方扩展 · 网页 AI 助手与效率工具箱</span>
+            </span>
+            <span class="footer-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- Link 1 -->
+          <a
+            class="footer-link"
+            href="https://tooooools.cn/apps"
+            target="_blank"
+            rel="noopener nofollow"
+            title="tooooools.cn/apps"
+          >
+            <span class="footer-link-icon" aria-hidden="true">
+              <span class="footer-link-fallback">t</span>
+              <img
+                src="https://www.google.com/s2/favicons?domain=tooooools.cn&amp;sz=64"
+                alt=""
+                width="32"
+                height="32"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
+            </span>
+            <span class="footer-link-body">
+              <span class="footer-link-name">tooooools.cn/apps</span>
+              <span class="footer-link-desc" data-i18n="footer.links.1">基于 Apple Store Connect API 的应用在线管理服务</span>
+            </span>
+            <span class="footer-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- Link 2 -->
+          <a
+            class="footer-link"
+            href="https://predictor-app-store-language.pages.dev/"
+            target="_blank"
+            rel="noopener nofollow"
+            title="predictor-app-store-language.pages.dev"
+          >
+            <span class="footer-link-icon" aria-hidden="true">
+              <span class="footer-link-fallback">p</span>
+              <img
+                src="https://www.google.com/s2/favicons?domain=predictor-app-store-language.pages.dev&amp;sz=64"
+                alt=""
+                width="32"
+                height="32"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
+            </span>
+            <span class="footer-link-body">
+              <span class="footer-link-name">predictor-app-store</span>
+              <span class="footer-link-desc" data-i18n="footer.links.2">一个基于语言配置，推测及讲解商店商品页语言顺序</span>
+            </span>
+            <span class="footer-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- Link 3 -->
+          <a
+            class="footer-link"
+            href="https://freebuff.com/?ref=ref-9d5aa373-f2b8-462e-adb1-08237f0d5730"
+            target="_blank"
+            rel="noopener nofollow"
+            title="freebuff.com"
+          >
+            <span class="footer-link-icon" aria-hidden="true">
+              <span class="footer-link-fallback">f</span>
+              <img
+                src="https://www.google.com/s2/favicons?domain=freebuff.com&amp;sz=64"
+                alt=""
+                width="32"
+                height="32"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
+            </span>
+            <span class="footer-link-body">
+              <span class="footer-link-name">freebuff.com</span>
+              <span class="footer-link-desc" data-i18n="footer.links.3">免费 Agent 资源站点</span>
+            </span>
+            <span class="footer-link-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <!-- Link 4 -->
+          <a
+            class="footer-link"
+            href="https://opencode.ai/go?ref=WBJ8HDW7QJ"
+            target="_blank"
+            rel="noopener nofollow"
+            title="opencode.ai/go"
+          >
+            <span class="footer-link-icon" aria-hidden="true">
+              <span class="footer-link-fallback">o</span>
+              <img
+                src="https://www.google.com/s2/favicons?domain=opencode.ai&amp;sz=64"
+                alt=""
+                width="32"
+                height="32"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
+            </span>
+            <span class="footer-link-body">
+              <span class="footer-link-name">opencode.ai/go</span>
+              <span class="footer-link-desc" data-i18n="footer.links.4">开源 AI 编程 Agent</span>
+            </span>
+            <span class="footer-link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
       </section>
     </main>
 
-    <div class="donate-modal" hidden>
+    <!-- Footer -->
+    <footer class="ds-footer ds-container">
+      <div class="ds-footer-divider"></div>
+      <div class="ds-footer-inner">
+        <!-- Left: WeChat Popover -->
+        <div class="ds-footer-left">
+          <div class="ds-qr-trigger">
+            <span class="flex items-center gap-2 text-ds-secondary hover:text-ds-primary transition-colors cursor-pointer text-xs">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 1.6C2.69 1.6 0 3.75 0 6.4c0 1.51.86 2.85 2.22 3.73L1.6 12l2-.8c.71.25 1.5.4 2.33.4-.21-.51-.33-1.05-.33-1.6 0-2.65 2.5-4.8 5.6-4.8.15 0 .3 0 .45.02C10.83 2.95 8.62 1.6 6 1.6zm-2.4 2a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zm4 0a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zM11.2 5.6c-2.65 0-4.8 1.79-4.8 4 0 2.21 2.15 4 4.8 4 .54 0 1.05-.06 1.53-.2L14.4 14.4l-.5-1.5c1.26-.73 2.1-1.94 2.1-3.3 0-2.21-2.15-4-4.8-4zm-1.6 2a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zm3.2 0a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6z"/>
+              </svg>
+              <span data-i18n="footer.wechat">微信公众号</span>
+            </span>
+            <div class="ds-qr-menu">
+              <div class="ds-qr-panel">
+                <img src="assets/harness/qr-wechat.png" alt="WeChat QR Code" width="156" height="156" />
+                <span class="ds-text-xs text-center" data-i18n="footer.wechat.scan">扫码关注获取动态</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: License & Copyright -->
+        <p class="ds-text-caption text-ds-description">
+          <span data-i18n="footer.license">开源 · MIT 协议</span> · <span data-i18n="footer.copyright">© 2026 Omni 版权所有</span>
+        </p>
+
+        <!-- Right: Chrome Extension + Privacy Policy + Stats -->
+        <div class="ds-footer-right">
+          <a
+            class="ds-text-caption text-ds-primary hover:opacity-75 transition-opacity"
+            href="https://chromewebstore.google.com/detail/right-ai/heemhlopcggnlgghlgpllhnlmomlfkfm"
+            target="_blank"
+            rel="noopener"
+          >
+            <span data-i18n="footer.chrome">Right AI 浏览器插件</span> ↗
+          </a>
+          <span class="ds-text-caption text-ds-description" aria-hidden="true">·</span>
+          <a class="ds-text-caption text-ds-primary hover:opacity-75 transition-opacity" href="privacy.html" data-i18n="footer.privacy">
+            隐私政策
+          </a>
+          <span class="ds-text-caption text-ds-description" aria-hidden="true">·</span>
+          <span class="footer-stats">
+            <span id="busuanzi_container_site_pv">
+              PV: <span id="busuanzi_value_site_pv" class="footer-stat-value"></span>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span id="busuanzi_container_site_uv">
+              UV: <span id="busuanzi_value_site_uv" class="footer-stat-value"></span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      type="button"
+      aria-label="回到顶部"
+      title="回到顶部"
+    >
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <!-- Donate Modal -->
+    <div class="donate-modal" id="donate-modal" hidden>
       <div class="donate-modal-backdrop" data-close></div>
       <div
         class="donate-modal-dialog"
@@ -530,8 +895,10 @@
         <button class="donate-modal-close" type="button" data-close aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 id="donate-title" data-i18n="donate.title">感谢支持 Right AI！</h2>
-        <p id="donate-description" data-i18n="donate.message">扫描任意二维码完成打赏，感谢你的支持！</p>
+        <h2 id="donate-title" class="ds-text-title" data-i18n="donate.title">感谢支持 Omni！</h2>
+        <p id="donate-description" class="ds-text-body mt-2 text-ds-description" data-i18n="donate.message">
+          扫描二维码完成打赏，支持开源与持续迭代！
+        </p>
         <div class="donate-qr-grid">
           <figure>
             <img src="assets/Ali-Pay.JPG" alt="支付宝打赏二维码" loading="lazy" />
@@ -539,12 +906,13 @@
           </figure>
           <figure>
             <img src="assets/Wechat-Pay.jpg" alt="微信打赏二维码" loading="lazy" />
-            <figcaption data-i18n="donate.wechat">微信</figcaption>
+            <figcaption data-i18n="donate.wechat">微信支付</figcaption>
           </figure>
         </div>
       </div>
     </div>
 
+    <!-- Lightbox Dialog (for previews) -->
     <div class="lightbox" id="lightbox" hidden>
       <div class="lightbox-backdrop" data-lightbox-close></div>
       <figure class="lightbox-dialog">
@@ -554,159 +922,9 @@
       <button class="lightbox-close" type="button" data-lightbox-close aria-label="关闭预览">
         <span aria-hidden="true">&times;</span>
       </button>
-      <button class="lightbox-nav lightbox-prev" type="button" aria-label="上一张">
-        <span aria-hidden="true">‹</span>
-      </button>
-      <button class="lightbox-nav lightbox-next" type="button" aria-label="下一张">
-        <span aria-hidden="true">›</span>
-      </button>
     </div>
 
-    <footer class="site-footer">
-      <section class="footer-links" aria-labelledby="footer-links-title">
-        <h2 class="footer-links-title" id="footer-links-title" data-i18n="footer.links.title">友情链接</h2>
-        <ul class="footer-links-list">
-          <li>
-            <a
-              class="footer-link"
-              href="https://tooooools.cn/apps"
-              target="_blank"
-              rel="noopener nofollow"
-              title="tooooools.cn/apps"
-            >
-              <span class="footer-link-icon" aria-hidden="true">
-                <span class="footer-link-fallback">t</span>
-                <img
-                  src="https://www.google.com/s2/favicons?domain=tooooools.cn&amp;sz=64"
-                  alt=""
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
-              </span>
-              <span class="footer-link-body">
-                <span class="footer-link-name">tooooools.cn/apps</span>
-                <span class="footer-link-desc" data-i18n="footer.links.1">基于 Apple Store Connect API 的应用在线管理服务</span>
-              </span>
-              <span class="footer-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="footer-link"
-              href="https://predictor-app-store-language.pages.dev/"
-              target="_blank"
-              rel="noopener nofollow"
-              title="predictor-app-store-language.pages.dev"
-            >
-              <span class="footer-link-icon" aria-hidden="true">
-                <span class="footer-link-fallback">p</span>
-                <img
-                  src="https://www.google.com/s2/favicons?domain=predictor-app-store-language.pages.dev&amp;sz=64"
-                  alt=""
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
-              </span>
-              <span class="footer-link-body">
-                <span class="footer-link-name">predictor-app-store-language.pages.dev</span>
-                <span class="footer-link-desc" data-i18n="footer.links.2">一个基于语言配置，推测及讲解商店商品页语言顺序</span>
-              </span>
-              <span class="footer-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="footer-link"
-              href="https://freebuff.com/?ref=ref-9d5aa373-f2b8-462e-adb1-08237f0d5730"
-              target="_blank"
-              rel="noopener nofollow"
-              title="freebuff.com"
-            >
-              <span class="footer-link-icon" aria-hidden="true">
-                <span class="footer-link-fallback">f</span>
-                <img
-                  src="https://www.google.com/s2/favicons?domain=freebuff.com&amp;sz=64"
-                  alt=""
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
-              </span>
-              <span class="footer-link-body">
-                <span class="footer-link-name">freebuff.com</span>
-                <span class="footer-link-desc" data-i18n="footer.links.3">免费 Agent 资源站点</span>
-              </span>
-              <span class="footer-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="footer-link"
-              href="https://opencode.ai/go?ref=WBJ8HDW7QJ"
-              target="_blank"
-              rel="noopener nofollow"
-              title="opencode.ai/go"
-            >
-              <span class="footer-link-icon" aria-hidden="true">
-                <span class="footer-link-fallback">o</span>
-                <img
-                  src="https://www.google.com/s2/favicons?domain=opencode.ai&amp;sz=64"
-                  alt=""
-                  width="32"
-                  height="32"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
-              </span>
-              <span class="footer-link-body">
-                <span class="footer-link-name">opencode.ai/go</span>
-                <span class="footer-link-desc" data-i18n="footer.links.4">开源 AI 编程 Agent</span>
-              </span>
-              <span class="footer-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-      <nav class="footer-legal" aria-label="Legal">
-        <a href="privacy.html">
-          <svg class="footer-legal-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path>
-            <path d="M9 12l2 2 4-4"></path>
-          </svg>
-          <span data-i18n="footer.privacy">隐私政策</span>
-        </a>
-      </nav>
-      <p data-i18n="footer.copyright">© 2026 RightAI。保留所有权利。</p>
-      <p class="footer-stats">
-        <span id="busuanzi_container_site_pv" class="footer-stat">
-          <span data-i18n="footer.pv">本站总访问量</span>
-          <span id="busuanzi_value_site_pv" class="footer-stat-value"></span>
-        </span>
-        <span class="footer-stat-sep" aria-hidden="true">·</span>
-        <span id="busuanzi_container_site_uv" class="footer-stat">
-          <span data-i18n="footer.uv">访客数</span>
-          <span id="busuanzi_value_site_uv" class="footer-stat-value"></span>
-        </span>
-      </p>
-    </footer>
-
-    <button
-      class="back-to-top"
-      id="back-to-top"
-      type="button"
-      data-i18n-aria-label="footer.back"
-      data-i18n-title="footer.back"
-      aria-label="回到顶部"
-      title="回到顶部"
-    >
-      <span aria-hidden="true">↑</span>
-    </button>
-
+    <!-- Busuanzi Analytics -->
     <script
       async
       src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"

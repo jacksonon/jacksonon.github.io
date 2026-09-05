@@ -1,2213 +1,1616 @@
 (() => {
+  "use strict";
+
   const THEME_STORAGE_KEY = "rightai-theme";
   const LANGUAGE_STORAGE_KEY = "rightai-language";
   const DEFAULT_LANGUAGE = "zh";
-  const SUPPORTED_LANGUAGES = ["en", "ru", "zh", "zh-Hant", "ja", "ko"];
 
-  const EN_TEXT = {
-  "meta.title": "Right AI - Intelligent Browser Workspace",
-  "meta.description": "Right AI turns your browser into an AI workspace with quick conversations, split-model chat, stock analysis, webpage agent tools, and adaptive dark mode.",
-  "nav.home": "Home",
-  "nav.features": "Features",
-  "nav.workflow": "Workflow",
-  "nav.docs": "Docs",
-  "nav.faq": "FAQ",
-  "nav.language": "Language",
-  "nav.chrome": "Add to Chrome",
-  "nav.donate": "Donate",
-  "theme.toggle": "Toggle Theme",
-  "hero.title": "Quick conversations, stay focused!",
-  "hero.desc": "RightAI gathers the AI tools you use every day into a Chrome sidebar, and ships with an agent that can actually take action in your browser.",
-  "hero.desc.sub": "Two capabilities, ready to use the moment you open it:",
-  "hero.cap.1.name": "Omni — Browser Agent",
-  "hero.cap.1.desc": ": Give Omni a goal and it reads pages, clicks buttons, fills forms, switches tabs, runs sandboxed page scripts, and writes results to local folders you authorize. Every risky action first asks for your confirmation in the sidebar before it runs.",
-  "hero.cap.2.name": "Multi-model Parallel Q&A",
-  "hero.cap.2.desc": ": Send the same question to ChatGPT, Claude, Gemini, DeepSeek, Kimi, and any OpenAI-compatible endpoint at the same time. Answers sit side by side — pick the one you trust most.",
-  "tabs.omni": "Omni Browser Agent",
-  "panels.omni.title": "Omni — the browser agent that gets things done for you",
-  "panels.omni.1": "File tools: read_file / write_file / diff_file. Authorize a whole folder or pick individual files; every access is written to the audit log.",
-  "panels.omni.2": "Page control: screenshots, sandboxed page JavaScript (no access to Chrome extension APIs or local files), open a new tab, switch tabs, list tabs.",
-  "panels.omni.3": "Composite tasks: perform_task. Give a one-sentence goal and it runs end to end, with live streaming progress in the sidebar.",
-  "panels.omni.4": "Local-first by design: API keys, settings, and audit logs stay on your device. Every action with side effects first lists what it will do in the sidebar and waits for your approval.",
-  "panels.omni.note": "Don't want to pay for an API up front? The Omni settings page includes a step-by-step tutorial for getting a free OpenCode Zen key.",
-  "zen.kicker": "Free Model Access",
-  "zen.title": "Get a free API key from OpenCode Zen",
-  "zen.lead": "Register a free OpenCode account and create an API key so Omni can use Zen's free models.",
-  "zen.step1.pre": "Go to ",
-  "zen.step1.post": " to register or sign in, then create an API key.",
-  "zen.step2": "Open \"API Keys\" → \"Create API Key\", then copy the generated key.",
-  "zen.step3.start": "Back in the Omni settings, paste the key into API Key and set Base URL to:",
-  "zen.step4.start": "Test the connection, then pick a model marked ",
-  "zen.step4.end": " from the model list to start using Omni.",
-  "zen.note": "Note: availability, quotas, and terms of free models are subject to the OpenCode Zen page.",
-  "hero.cta.install": "Install from Chrome Web Store",
-  "hero.cta.download": "Direct Download ZIP",
-  "hero.cta.docs": "View Setup Guide",
-  "hero.trust.1": "Press Ctrl + R to launch Quick Input anywhere",
-  "hero.trust.2": "Parallel model conversations with less context switching",
-  "hero.trust.3": "Web-native AI interaction, OCR, translation, and dark adaptation",
-  "hero.trust.4": "Independent window chat / multi-model chat / with webpage context",
-  "hero.trust.5": "Send messages to multiple web pages simultaneously",
-  "shell.init.command1": "$ initialize sidebar assistant and bind shortcut",
-  "shell.init.response1": "Right AI ready. Press Ctrl + R to open the input panel on any page.",
-  "shell.init.command2": "$ summarize this page and suggest next actions",
-  "shell.init.response2": "Summary generated with 3 actionable next steps.",
-  "shell.input.label": "Command Input",
-  "shell.input.placeholder": "Try: enable quick input / multi model / webpage mode",
-  "shell.input.run": "Run",
-  "chips.quick": "Quick Input",
-  "chips.multi": "Multi Model",
-  "chips.webpage": "Webpage Agent",
-  "chips.dark": "Dark Mode",
-  "stats.one": "Average reduction in task switching time",
-  "stats.two": "Higher multi-model validation efficiency",
-  "stats.three": "High-frequency web scenarios ready out of the box",
-  "features.title": "One interface for input, understanding, reasoning, and execution",
-  "features.lead": "No more jumping between tabs and tools. Right AI combines core AI actions and stock analysis into one interactive workflow.",
-  "panels.quick.title": "Use Ctrl + R to send ideas directly to models",
-  "panels.quick.1": "Launch instantly on any page and keep your flow.",
-  "panels.quick.2": "Open a model conversation window on the current page (bottom-right) and keep webpage context attached for follow-up chat.",
-  "panels.quick.3": "New settings: open chat page directly, bring Chrome to foreground, and press shortcut again to close.",
-  "panels.quickConversation.title": "AI Quick Conversation: independent web chat window",
-  "panels.quickConversation.1": "Quickly summon an independent chat window on any webpage and start model conversations with current-page context attached.",
-  "panels.quickConversation.2": "Keep the chat floating on the current page to avoid frequent context switching.",
-  "panels.quickConversation.3": "Together with AI Quick Input, it forms a convenient workflow: fast launch plus immersive chat.",
-  "panels.multi.title": "Collaborate with multiple models on one screen",
-  "panels.multi.1": "Run ChatGPT, Gemini, Claude, and custom models side by side.",
-  "panels.multi.2": "Cross-check answers instantly for higher confidence.",
-  "panels.multi.3": "Route subtasks to the best model automatically.",
-  "panels.multiTalk.title": "Multi-Model Simultaneous Chat",
-  "panels.multiTalk.1": "Send messages to multiple models at once, free of charge.",
-  "panels.multiTalk.2": "Scroll to compare responses from multiple models, then pick the best to continue.",
-  "panels.stock.title": "Stock tools: watchlists, news, and AI analysis together",
-  "panels.stock.1": "Track watchlists, price moves, intraday action, and key levels directly in the sidebar.",
-  "panels.stock.2": "Turn current-page news, filings, and reports into stock analysis and risk cues.",
-  "panels.stock.3": "Send stock questions directly to a selected model and stay in the same research flow.",
-  "panels.dark.title": "One-click comfortable dark mode for any website",
-  "panels.dark.1": "Works even when websites do not provide native dark mode.",
-  "panels.dark.2": "Sync with system and extension theme preferences.",
-  "panels.dark.3": "Keeps contrast readable while preserving visual hierarchy.",
-  "workflow.title": "Four steps to complete dense information tasks",
-  "workflow.1.body": "Press Ctrl + R on any webpage and enter what you want to send. Right AI can send it to a selected model, and if you configure Zhipu AI it can infer intent from the current page context.",
-  "workflow.2.body": "Use split view to chat with two models at the same time.",
-  "workflow.3.body": "Generate summaries, action lists, rewrites, and recommendations in the sidebar.",
-  "workflow.4.body": "Use outputs directly for writing, research, and collaboration.",
-  "showcase.title": "Interaction design built for real work",
-  "showcase.1.title": "Market Research",
-  "showcase.1.body": "Extract signals from industry pages and generate structured insights with risk cues.",
-  "showcase.1.tag": "Summaries · Comparative Analysis",
-  "showcase.2.title": "Product & Operations",
-  "showcase.2.body": "Merge user feedback, competitor info, and copy ideas into executable plans.",
-  "showcase.2.tag": "Model Collaboration · Fast Iteration",
-  "showcase.3.title": "Learning & Knowledge",
-  "showcase.3.body": "Break down complex concepts into guided steps with interactive follow-up Q&A.",
-  "showcase.3.tag": "Deep Reading · Guided Questions",
-  "docs.title": "Install and run your first command in 3 minutes",
-  "docs.install.title": "Quick Installation",
-  "docs.install.step1.start": "Install from Chrome Web Store",
-  "docs.install.step1.middle": "or download",
-  "docs.install.step1.offline": "the offline package",
-  "docs.install.step1.end": "for manual installation.",
-  "docs.install.step2": "Open extension management and pin Right AI to your toolbar.",
-  "docs.install.step3": "Open any webpage and press Ctrl + R to trigger Quick Input.",
-  "docs.install.note": "Manual path: chrome://extensions -> Developer mode -> Load unpacked",
-  "docs.update.title": "Release Rhythm",
-  "docs.update.1": "Monthly: we follow the latest AI news and keep Right AI aligned with current usage scenarios.",
-  "docs.update.2": "Bi-weekly: model routing improvements and stability updates.",
-  "docs.update.3": "Monthly: new scenario agents and performance upgrades.",
-  "docs.update.note": "Enable auto update so Right AI stays aligned with the latest model capabilities and usage trends.",
-  "docs.quickchat.title": "AI Quick Input chat mode (new)",
-  "docs.quickchat.1": "After launching, open the model chat page directly at the bottom-right of the current webpage.",
-  "docs.quickchat.2": "New settings include \"Show model chat page in quick popup\" and \"Switch Chrome to front when triggered\".",
-  "docs.quickchat.3": "Enable \"Press shortcut again to close quick chat window\" for fast open/close control.",
-  "docs.quickchat.note": "Mix these options in extension settings based on your workflow preference.",
-  "faq.title": "Common Questions",
-  "faq.1.q": "Which browsers are supported?",
-  "faq.1.a": "Latest Chrome is recommended. Most Chromium-based browsers are also compatible.",
-  "faq.2.q": "Do I need an account to start?",
-  "faq.2.a": "Core features work right after installation. Some model endpoints may require your own API key.",
-  "faq.3.q": "How do I quickly open the input panel?",
-  "faq.3.a": "The default recommended shortcut is Ctrl + R for opening the right sidebar. You can also customize shortcuts in Right AI settings.",
-  "faq.4.q": "How do I install the offline package?",
-  "faq.4.a": "Download files/dist.zip, unzip it, open chrome://extensions, enable developer mode, and load unpacked.",
-  "faq.5.q": "What shortcut setup is recommended?",
-  "faq.5.intro": "Recommended shortcut mappings:",
-  "faq.5.head.shortcut": "Shortcut",
-  "faq.5.head.action": "Action",
-  "faq.5.r": "Open the right sidebar.",
-  "faq.5.w": "Open browser chat.",
-  "faq.5.qk": "Quick send a message or open the AI floating window.",
-  "faq.5.l": "Adapt webpage brightness.",
-  "faq.5.note": "Configure these inside the Right AI panel by opening Settings and editing the matching entries.",
-  "footer.back": "Back to top",
-  "hero.kicker": "Right AI · Browser Intelligence Hub",
-  "features.kicker": "Feature System",
-  "tabs.quick": "AI Quick Input",
-  "tabs.quickConversation": "AI Quick Conversation",
-  "tabs.multi": "Multi Model Split",
-  "tabs.multiTalk": "Multi-Model Chat",
-  "tabs.stock": "Stock Assistant",
-  "tabs.dark": "Adaptive Dark Mode",
-  "workflow.kicker": "Workflow Engine",
-  "workflow.1.title": "01 · Capture",
-  "workflow.2.title": "02 · Split View",
-  "workflow.3.title": "03 · Generate",
-  "workflow.4.title": "04 · Execute",
-  "showcase.kicker": "Interactive Scenarios",
-  "docs.kicker": "Get Started",
-  "faq.kicker": "FAQ",
-  "donate.title": "Thanks for supporting Right AI!",
-  "donate.message": "Scan either QR code to leave a tip. Your support keeps Right AI moving.",
-  "hero.sticker.back": "One more try!",
-  "donate.alipay": "Alipay",
-  "donate.wechat": "WeChat",
-  "download.tooltip.loading": "Loading version…",
-  "download.tooltip.unavailable": "Version unavailable",
-  "download.tooltip.prefix": "Version ",
-  "footer.copyright": "© 2026 RightAI. All rights reserved.",
-  "footer.pv": "Total visits",
-  "footer.uv": "Unique visitors",
-  "footer.links.title": "Friendly Links",
-  "footer.links.1": "Online app management service built on the Apple Store Connect API",
-  "footer.links.2": "Predicts and explains the language order of store product pages based on language configuration",
-  "footer.links.3": "Resource site offering free AI agents",
-  "footer.links.4": "Open-source AI coding agent",
-  "footer.privacy": "Privacy Policy",
-  "comments.kicker": "Community",
-  "comments.title": "Comments",
-  "skip.link": "Skip to main content"
-};
-
-  const LOCALE_OVERRIDES = {
-  "zh-Hant": {
-    "meta.title": "Right AI - 智慧瀏覽器工作空間",
-    "meta.description": "Right AI 將你的瀏覽器轉化為 AI 工作空間，提供快速對話、模型分屏、股票助手、網頁代理工具與自適應深色模式。",
-    "nav.home": "首頁",
-    "nav.features": "功能",
-    "nav.workflow": "工作流程",
-    "nav.docs": "文件",
-    "nav.faq": "常見問題",
-    "nav.language": "語言",
-    "nav.chrome": "加入 Chrome",
-    "nav.donate": "打賞",
-    "theme.toggle": "切換主題",
-    "hero.title": "快速對話，保持專注！",
-    "hero.desc": "RightAI 把常用 AI 都收進 Chrome 側邊欄，並內建一個真正能在瀏覽器裡替你「動手」的代理。",
-    "hero.desc.sub": "兩大能力，一打開就能用：",
-    "hero.cap.1.name": "Omni — 瀏覽器代理",
-    "hero.cap.1.desc": "：給 Omni 一個目標，它會讀網頁、點按鈕、填表單、切標籤，執行受限的頁面腳本，並把結果寫入你授權過的本地目錄。每一次有風險的操作都會先在側邊欄彈確認卡片，等你點頭才會執行。",
-    "hero.cap.2.name": "多模型並行問答",
-    "hero.cap.2.desc": "：把同一個問題同時發給 ChatGPT、Claude、Gemini、DeepSeek、Kimi，以及任何 OpenAI 相容介面。回答並排擺在一起，挑你最信任的那一個。",
-    "tabs.omni": "Omni 瀏覽器代理",
-    "panels.omni.title": "Omni — 瀏覽器代理：給它一個目標，替你「動手」",
-    "panels.omni.1": "讀寫檔案：read_file / write_file / diff_file。可授權整個目錄，也可只勾選若干檔案，每次存取都會寫入稽核日誌。",
-    "panels.omni.2": "驅動頁面：截圖、執行受限的頁面 JavaScript（無法存取 Chrome 擴充功能 API 與本地檔案）、開啟新標籤、切換標籤、列出標籤。",
-    "panels.omni.3": "複合任務：perform_task。一句話目標，端到端執行，串流進度即時顯示在側邊欄。",
-    "panels.omni.4": "一切本地優先：API Key、設定與稽核日誌只留在你的裝置上；所有有副作用的動作都會先在側邊欄列出要做什麼，等你確認後再執行。",
-    "panels.omni.note": "不想先付費申請 API？Omni 設定頁裡有一份一步步教你申請 OpenCode Zen 免費 key 的教學。",
-    "zen.kicker": "免費模型取得",
-    "zen.title": "OpenCode Zen 免費 API Key 取得指南",
-    "zen.lead": "註冊免費的 OpenCode 帳號並建立 API Key，即可讓 Omni 使用 Zen 的免費模型。",
-    "zen.step1.pre": "前往 ",
-    "zen.step1.post": "註冊 / 登入並建立 API Key。",
-    "zen.step2": "進入「API 金鑰」→「建立 API 金鑰」，然後複製產生的金鑰。",
-    "zen.step3.start": "回到 Omni 設定頁，在 API Key 中貼上金鑰，並將 Base URL 填為：",
-    "zen.step4.start": "測試連線，並在模型清單中選擇帶有 ",
-    "zen.step4.end": " 字樣的模型，即可開始使用 Omni。",
-    "zen.note": "提示：免費模型的可用性、額度與服務條款以 OpenCode Zen 目前頁面為準。",
-    "hero.cta.install": "從 Chrome 線上應用程式商店安裝",
-    "hero.cta.download": "直接下載 ZIP",
-    "hero.cta.docs": "查看安裝指南",
-    "hero.trust.1": "按 Ctrl + R，隨時喚起快速輸入",
-    "hero.trust.2": "模型並行對話，減少來回切換",
-    "hero.trust.3": "原生網頁 AI 互動、OCR、翻譯與深色自適應",
-    "hero.trust.4": "獨立視窗對話/多模型對話/可附帶網頁上下文",
-    "hero.trust.5": "同時給多網頁發送消息",
-    "shell.init.command1": "$ 初始化側邊欄助手並綁定快捷鍵",
-    "shell.init.response1": "Right AI 已就緒。按 Ctrl + R 可在任何頁面開啟輸入面板。",
-    "shell.init.command2": "$ 摘要此頁內容並建議下一步行動",
-    "shell.init.response2": "摘要已生成，並附上 3 個可執行的下一步。",
-    "shell.input.label": "指令輸入",
-    "shell.input.placeholder": "試試看：啟用快速輸入 / 多模型 / 網頁模式",
-    "shell.input.run": "執行",
-    "chips.quick": "快速輸入",
-    "chips.multi": "多模型",
-    "chips.webpage": "網頁代理",
-    "chips.dark": "深色模式",
-    "stats.one": "平均可減少任務切換時間",
-    "stats.two": "多模型驗證效率更高",
-    "stats.three": "高頻網頁場景開箱即用",
-    "features.title": "一個介面完成輸入、理解、推理與執行",
-    "features.lead": "不用再在分頁與工具間跳轉。Right AI 將核心 AI 動作與股票分析能力整合為互動式工作流程。",
-    "panels.quick.title": "按 Ctrl + R，想法可直接送往模型",
-    "panels.quick.1": "任意頁面即開即用，不中斷你的節奏。",
-    "panels.quick.2": "支援在當前頁面直接開啟對話視窗，並攜帶網頁上下文持續對話。",
-    "panels.quick.3": "更少打斷，把意圖直接轉成執行。",
-    "panels.quickConversation.title": "AI 快速對話：網頁獨立視窗對話",
-    "panels.quickConversation.1": "可快速喚起網頁上的獨立對話視窗，並攜帶目前網頁上下文直接開始模型對話。",
-    "panels.quickConversation.2": "對話窗可懸浮於當前頁面，降低頻繁切換分頁與側欄的成本。",
-    "panels.quickConversation.3": "與 AI 快速輸入搭配：一個負責快速啟動，一個負責沉浸對話。",
-    "panels.multi.title": "同一畫面協作多個模型",
-    "panels.multi.1": "可並排運行 ChatGPT、Gemini、Claude 與自訂模型。",
-    "panels.multi.2": "即時交叉比對答案，決策更有把握。",
-    "panels.multi.3": "可自動把子任務分派給最合適的模型。",
-    "panels.multiTalk.title": "多模型同時對話",
-    "panels.multiTalk.1": "同時發送訊息給多個模型，無需付費。",
-    "panels.multiTalk.2": "可滾動對比多個對話回覆的訊息，擇優繼續對話。",
-    "panels.stock.title": "股票助手：盯盤、資訊、AI 解讀一體化",
-    "panels.stock.1": "可在側欄即時查看自選股、漲跌幅、分時與關鍵價位。",
-    "panels.stock.2": "結合目前網頁資訊、財報與公告，快速產出個股解讀與風險提示。",
-    "panels.stock.3": "可把股票問題直接送到指定模型，在研究與盯盤之間保持連續。",
-
-    "panels.dark.title": "一鍵為任意網站套用舒適深色模式",
-    "panels.dark.1": "即使網站沒有原生深色模式也能正常運作。",
-    "panels.dark.2": "可與系統與擴充功能的主題偏好同步。",
-    "panels.dark.3": "在保留視覺層級的同時維持可讀對比。",
-    "workflow.title": "四步驟完成高密度資訊任務",
-    "workflow.1.body": "在任何網頁按下 Ctrl + R，輸入要發給模型的內容。Right AI 可快速發送到指定模型；若你已配置智譜 AI，還能基於當前頁面內容分析輸入意圖。",
-    "workflow.2.body": "模型分屏，可同時和兩個模型對話。",
-    "workflow.3.body": "在側邊欄生成摘要、行動清單、改寫版本與建議。",
-    "workflow.4.body": "將輸出直接用於寫作、研究與協作。",
-    "showcase.title": "為真實工作打造的互動設計",
-    "showcase.1.title": "市場研究",
-    "showcase.1.body": "從產業頁面擷取訊號，生成含風險提示的結構化洞察。",
-    "showcase.1.tag": "摘要 · 比較分析",
-    "showcase.2.title": "產品與營運",
-    "showcase.2.body": "整合使用者回饋、競品資訊與文案想法，轉成可執行計畫。",
-    "showcase.2.tag": "模型協作 · 快速迭代",
-    "showcase.3.title": "學習與知識",
-    "showcase.3.body": "把複雜概念拆成引導式步驟，並支援互動追問。",
-    "showcase.3.tag": "深度閱讀 · 引導提問",
-    "docs.title": "3 分鐘完成安裝並執行第一條指令",
-    "docs.install.title": "快速安裝",
-    "docs.install.step1.start": "從 Chrome 線上應用程式商店安裝",
-    "docs.install.step1.middle": "或下載",
-    "docs.install.step1.offline": "離線安裝包",
-    "docs.install.step1.end": "進行手動安裝。",
-    "docs.install.step2": "開啟擴充功能管理頁，將 Right AI 釘選到工具列。",
-    "docs.install.step3": "開啟任一網頁後按 Ctrl + R，即可觸發快速輸入。",
-    "docs.install.note": "手動路徑：chrome://extensions -> 開發人員模式 -> 載入未封裝項目",
-    "docs.update.title": "更新節奏",
-    "docs.update.1": "每月：跟進最新 AI 資訊，持續提供符合當前場景的 AI 服務。",
-    "docs.update.2": "雙週：模型路由優化與穩定性更新。",
-    "docs.update.3": "每月：新增場景代理與效能升級。",
-    "docs.update.note": "建議啟用自動更新，讓 Right AI 持續貼合最新模型能力與使用場景。",
-    "docs.quickchat.title": "AI 快速輸入對話頁（新）",
-    "docs.quickchat.1": "喚起後可在網頁右下角直接進入模型對話頁。",
-    "docs.quickchat.2": "新增「快捷彈窗顯示模型對話頁」與「喚起時切回 Chrome 前景」設定。",
-    "docs.quickchat.3": "可啟用「再次按快捷鍵關閉快捷對話視窗」來快速開關。",
-    "docs.quickchat.note": "建議依你的使用習慣，在擴充功能設定中組合上述選項。",
-    "faq.title": "常見問題",
-    "faq.1.q": "支援哪些瀏覽器？",
-    "faq.1.a": "建議使用最新版 Chrome，多數 Chromium 核心瀏覽器也相容。",
-    "faq.2.q": "開始使用需要帳號嗎？",
-    "faq.2.a": "核心功能安裝後即可使用；部分模型端點可能需要你自行提供 API 金鑰。",
-    "faq.3.q": "如何快速開啟輸入面板？",
-    "faq.3.a": "預設建議快捷鍵是 Ctrl + R，用於喚起右側面板。你也可以在 Right AI 設定中自訂快捷鍵。",
-    "faq.4.q": "如何安裝離線安裝包？",
-    "faq.4.a": "下載 files/dist.zip 並解壓，開啟 chrome://extensions，啟用開發人員模式後點選「載入未封裝項目」。",
-    "faq.5.q": "快捷鍵怎麼設定更順手？",
-    "faq.5.intro": "建議可依下列方式配置：",
-    "faq.5.head.shortcut": "快捷鍵",
-    "faq.5.head.action": "對應功能",
-    "faq.5.r": "喚起右側面板。",
-    "faq.5.w": "喚起瀏覽器對話。",
-    "faq.5.qk": "快速傳送訊息或喚起 AI 浮層視窗。",
-    "faq.5.l": "網頁亮度適配。",
-    "faq.5.note": "這些設定需要在 Right AI 面板中點擊「設定」，並在對應項目內完成配置。",
-    "footer.back": "回到頂部",
-    "hero.kicker": "Right AI · 瀏覽器智慧中樞",
-    "features.kicker": "功能系統",
-    "tabs.quick": "AI 快速輸入",
-    "tabs.quickConversation": "AI 快速對話",
-    "tabs.multi": "多模型分割",
-    "tabs.multiTalk": "多模型同時對話",
-    "tabs.stock": "股票助手",
-
-    "tabs.dark": "自適應深色模式",
-    "workflow.kicker": "工作流引擎",
-    "workflow.1.title": "01 · 擷取",
-    "workflow.2.title": "02 · 分屏",
-    "workflow.3.title": "03 · 生成",
-    "workflow.4.title": "04 · 執行",
-    "showcase.kicker": "互動場景",
-    "docs.kicker": "快速開始",
-    "faq.kicker": "常見問題",
-    "donate.title": "感謝支持 Right AI！",
-    "donate.message": "掃描任一付款碼即可完成打賞，感謝你的支持！",
-    "donate.alipay": "支付寶",
-    "donate.wechat": "微信",
-    "hero.sticker.back": "再來一次！",
-    "footer.copyright": "© 2026 RightAI。保留所有權利。",
-    "footer.pv": "本站總訪問量",
-    "footer.uv": "訪客數",
-    "footer.links.title": "友情連結",
-    "footer.links.1": "基於 Apple Store Connect API 的應用線上管理服務",
-    "footer.links.2": "一個基於語言配置，推測及講解商店商品頁語言順序",
-    "footer.links.3": "提供免費 Agent 工具的資源站點",
-    "footer.links.4": "開源 AI 程式 Agent",
-    "footer.privacy": "隱私政策",
-    "comments.kicker": "社群互動",
-    "comments.title": "評論區",
-    "skip.link": "跳至主要內容"
-  },
-  "ja": {
-    "meta.title": "Right AI - インテリジェント・ブラウザワークスペース",
-    "meta.description": "Right AI はブラウザを、クイック対話、モデル分割表示、株式アシスタント、Webページエージェント、適応型ダークモードを備えた AI ワークスペースへ変えます。",
-    "nav.home": "ホーム",
-    "nav.features": "機能",
-    "nav.workflow": "ワークフロー",
-    "nav.docs": "ドキュメント",
-    "nav.faq": "よくある質問",
-    "nav.language": "言語",
-    "nav.chrome": "Chrome に追加",
-    "nav.donate": "寄付",
-    "theme.toggle": "テーマ切替",
-    "hero.title": "素早く対話して、集中を保つ",
-    "hero.desc": "RightAI はよく使う AI を Chrome のサイドバーに集約し、ブラウザ内で実際に「動いてくれる」エージェントを内蔵しています。",
-    "hero.desc.sub": "開けばすぐに使える 2 つの能力：",
-    "hero.cap.1.name": "Omni — ブラウザエージェント",
-    "hero.cap.1.desc": "：Omni に目標を与えると、ページの読み取り、ボタン操作、フォーム入力、タブ切り替え、制限付きページスクリプトの実行を行い、結果を許可したローカルフォルダに書き込みます。リスクのある操作は毎回サイドバーに確認カードを表示し、承認してから実行します。",
-    "hero.cap.2.name": "マルチモデル並列 QA",
-    "hero.cap.2.desc": "：同じ質問を ChatGPT、Claude、Gemini、DeepSeek、Kimi、その他任意の OpenAI 互換エンドポイントへ同時に送信します。回答は並べて表示され、最も信頼できるものを選べます。",
-    "tabs.omni": "Omni ブラウザエージェント",
-    "panels.omni.title": "Omni — 目標を与えると代わりに実行してくれるブラウザエージェント",
-    "panels.omni.1": "ファイル操作：read_file / write_file / diff_file。ディレクトリ全体を許可するか、ファイル単位で選択可能。アクセスのたびに監査ログへ記録されます。",
-    "panels.omni.2": "ページ操作：スクリーンショット、制限付きページ JavaScript（Chrome 拡張 API とローカルファイルにはアクセス不可）、新規タブを開く、タブ切り替え、タブ一覧。",
-    "panels.omni.3": "複合タスク：perform_task。一言の目標からエンドツーエンドで実行し、ストリーミング進捗をサイドバーにリアルタイム表示。",
-    "panels.omni.4": "ローカルファースト設計：API キー、設定、監査ログはすべて端末内に保持。副作用のある操作はサイドバーで内容を提示し、承認後にのみ実行します。",
-    "panels.omni.note": "先に有料 API を申請したくない方へ：Omni 設定ページに、OpenCode Zen の無料キーを申請する手順ガイドが用意されています。",
-    "zen.kicker": "無料モデルの取得",
-    "zen.title": "OpenCode Zen 無料 API キー取得ガイド",
-    "zen.lead": "無料の OpenCode アカウントを登録して API キーを作成すると、Omni で Zen の無料モデルが使えます。",
-    "zen.step1.pre": "以下のリンクから ",
-    "zen.step1.post": " にアクセスし、登録 / ログインして API キーを作成してください。",
-    "zen.step2": "「API キー」→「API キーの作成」を開き、生成されたキーをコピーします。",
-    "zen.step3.start": "Omni 設定に戻り、API Key にキーを貼り付け、Base URL を次のように設定します：",
-    "zen.step4.start": "接続をテストし、モデル一覧から ",
-    "zen.step4.end": " と表示されているモデルを選ぶと Omni を使い始められます。",
-    "zen.note": "注意：無料モデルの利用可否、上限、利用規約は OpenCode Zen の現在のページに準拠します。",
-    "hero.cta.install": "Chrome ウェブストアからインストール",
-    "hero.cta.download": "ZIP を直接ダウンロード",
-    "hero.cta.docs": "セットアップガイドを見る",
-    "hero.trust.1": "どこでも Ctrl + R でクイック入力を起動",
-    "hero.trust.2": "コンテキスト切り替えを減らした並列モデル会話",
-    "hero.trust.3": "Web ネイティブな AI 操作、OCR、翻訳、ダーク適応",
-    "hero.trust.4": "独立ウィンドウチャット/マルチモデルチャット/Webページコンテキスト対応",
-    "hero.trust.5": "複数Webページに同時にメッセージ送信",
-    "shell.init.command1": "$ サイドバーアシスタントを初期化してショートカットを割り当てる",
-    "shell.init.response1": "Right AI の準備ができました。任意のページで Ctrl + R を押すと入力パネルが開きます。",
-    "shell.init.command2": "$ このページを要約して次のアクションを提案する",
-    "shell.init.response2": "3 つの実行可能な次のステップを含む要約を生成しました。",
-    "shell.input.label": "コマンド入力",
-    "shell.input.placeholder": "例: quick input / multi model / webpage mode を有効化",
-    "shell.input.run": "実行",
-    "chips.quick": "クイック入力",
-    "chips.multi": "マルチモデル",
-    "chips.webpage": "Webページエージェント",
-    "chips.dark": "ダークモード",
-    "stats.one": "タスク切り替え時間の平均削減",
-    "stats.two": "マルチモデル検証効率の向上",
-    "stats.three": "高頻度の Web シナリオに標準対応",
-    "features.title": "入力・理解・推論・実行を 1 つのインターフェースに",
-    "features.lead": "タブやツールを行き来する必要はありません。Right AI は主要な AI 操作と株式分析機能を 1 つのインタラクティブなワークフローに集約します。",
-    "panels.quick.title": "Ctrl + R でアイデアを直接モデルへ送信",
-    "panels.quick.1": "任意のページで即時起動し、作業フローを維持。",
-    "panels.quick.2": "現在のページ上で対話ウィンドウを開き、ページ文脈を引き継いで会話を続けられます。",
-    "panels.quick.3": "中断を減らし、意図を実行へ変換。",
-    "panels.quickConversation.title": "AI クイック対話：Webページ独立ウィンドウ",
-    "panels.quickConversation.1": "Webページ上で独立した対話ウィンドウを素早く呼び出し、現在ページの文脈付きでモデル対話を開始できます。",
-    "panels.quickConversation.2": "対話ウィンドウを現在ページにフロート表示し、タブやサイドバーの切り替えを減らせます。",
-    "panels.quickConversation.3": "AI クイック入力と組み合わせることで、素早い起動と没入型対話を両立します。",
-    "panels.multi.title": "1 画面で複数モデルと協働",
-    "panels.multi.1": "ChatGPT、Gemini、Claude、カスタムモデルを並べて実行。",
-    "panels.multi.2": "回答を即時に照合し、確信度を向上。",
-    "panels.multi.3": "サブタスクを最適なモデルへ自動ルーティング。",
-    "panels.multiTalk.title": "マルチモデル同時チャット",
-    "panels.multiTalk.1": "複数モデルに同時にメッセージを送信、無料。",
-    "panels.multiTalk.2": "スクロールして複数の応答を比較し、最適なものを選んで続行。",
-    "panels.stock.title": "株式アシスタント: 監視、ニュース、AI 分析を一体化",
-    "panels.stock.1": "サイドバーでウォッチリスト、値動き、場中の動き、重要価格帯をリアルタイム確認。",
-    "panels.stock.2": "現在のページ上のニュース、決算、開示から銘柄分析とリスク示唆をすばやく生成。",
-    "panels.stock.3": "株式関連の質問を指定モデルへ直接送り、調査フローを途切れさせません。",
-
-    "panels.dark.title": "どのサイトでもワンクリックで快適なダークモード",
-    "panels.dark.1": "サイト側に標準ダークモードがなくても動作。",
-    "panels.dark.2": "システムと拡張機能のテーマ設定を同期。",
-    "panels.dark.3": "視覚階層を保ちながら読みやすいコントラストを維持。",
-    "workflow.title": "情報密度の高い作業を完了する 4 ステップ",
-    "workflow.1.body": "任意の Web ページで Ctrl + R を押し、モデルへ送る内容を入力します。Right AI は指定モデルへすぐ送信でき、智譜 AI を設定していれば現在ページ文脈から入力意図も分析できます。",
-    "workflow.2.body": "分割表示で 2 つのモデルと同時に対話できます。",
-    "workflow.3.body": "サイドバーで要約、アクションリスト、リライト、推奨を生成。",
-    "workflow.4.body": "出力をそのまま執筆・調査・コラボレーションに活用。",
-    "showcase.title": "実務のために設計されたインタラクション",
-    "showcase.1.title": "市場調査",
-    "showcase.1.body": "業界ページからシグナルを抽出し、リスク示唆付きの構造化インサイトを生成。",
-    "showcase.1.tag": "要約 · 比較分析",
-    "showcase.2.title": "プロダクトと運用",
-    "showcase.2.body": "ユーザーフィードバック、競合情報、コピー案を実行可能な計画に統合。",
-    "showcase.2.tag": "モデル協働 · 高速イテレーション",
-    "showcase.3.title": "学習と知識",
-    "showcase.3.body": "複雑な概念をガイド付きステップに分解し、対話型の追質問答を提供。",
-    "showcase.3.tag": "深い読解 · ガイド質問",
-    "docs.title": "3 分でインストールして最初のコマンドを実行",
-    "docs.install.title": "クイックインストール",
-    "docs.install.step1.start": "Chrome ウェブストアからインストール",
-    "docs.install.step1.middle": "または",
-    "docs.install.step1.offline": "オフラインパッケージ",
-    "docs.install.step1.end": "をダウンロードして手動インストール。",
-    "docs.install.step2": "拡張機能管理を開き、Right AI をツールバーにピン留めします。",
-    "docs.install.step3": "任意の Web ページを開き、Ctrl + R を押してクイック入力を起動。",
-    "docs.install.note": "手動手順: chrome://extensions -> デベロッパーモード -> パッケージ化されていない拡張機能を読み込む",
-    "docs.update.title": "リリースサイクル",
-    "docs.update.1": "毎月: 最新の AI ニュースを追い、現在の利用シーンに合う AI サービスへ更新します。",
-    "docs.update.2": "隔週: モデルルーティングの改善と安定性アップデート。",
-    "docs.update.3": "毎月: 新しいシナリオエージェントと性能向上。",
-    "docs.update.note": "自動更新を有効にして、最新のモデル能力と利用トレンドに合わせてください。",
-    "docs.quickchat.title": "AI クイック入力の対話ページ（新）",
-    "docs.quickchat.1": "起動後、現在のWebページ右下からモデル対話ページへ直接入れます。",
-    "docs.quickchat.2": "「クイックポップアップでモデル対話ページを表示」と「起動時に Chrome を前面表示」の設定を追加。",
-    "docs.quickchat.3": "「ショートカット再押下でクイック対話ウィンドウを閉じる」を有効にすると素早く開閉できます。",
-    "docs.quickchat.note": "拡張機能設定で、利用スタイルに合わせて上記オプションを組み合わせてください。",
-    "faq.title": "よくある質問",
-    "faq.1.q": "どのブラウザに対応していますか？",
-    "faq.1.a": "最新の Chrome を推奨します。多くの Chromium 系ブラウザでも利用可能です。",
-    "faq.2.q": "開始にアカウントは必要ですか？",
-    "faq.2.a": "コア機能はインストール直後に利用できます。一部のモデルエンドポイントでは独自の API キーが必要な場合があります。",
-    "faq.3.q": "入力パネルを素早く開くには？",
-    "faq.3.a": "既定の推奨ショートカットは Ctrl + R で、右サイドバーを開きます。Right AI の設定で変更することもできます。",
-    "faq.4.q": "オフラインパッケージはどうインストールしますか？",
-    "faq.4.a": "files/dist.zip をダウンロードして解凍し、chrome://extensions を開いてデベロッパーモードを有効化し、パッケージ化されていない拡張機能を読み込みます。",
-    "faq.5.q": "おすすめのショートカット設定は？",
-    "faq.5.intro": "おすすめの割り当て例:",
-    "faq.5.head.shortcut": "ショートカット",
-    "faq.5.head.action": "機能",
-    "faq.5.r": "右サイドバーを開く。",
-    "faq.5.w": "ブラウザ対話を開く。",
-    "faq.5.qk": "メッセージを素早く送る、または AI フローティングウィンドウを開く。",
-    "faq.5.l": "Web ページの明るさを調整する。",
-    "faq.5.note": "これらは Right AI パネル内の設定を開き、対応する項目で設定してください。",
-    "footer.back": "トップへ",
-    "hero.kicker": "Right AI · ブラウザインテリジェンスハブ",
-    "features.kicker": "機能システム",
-    "tabs.quick": "AI クイック入力",
-    "tabs.quickConversation": "AI クイック対話",
-    "tabs.multi": "マルチモデル分割",
-    "tabs.multiTalk": "マルチモデル同時チャット",
-    "tabs.stock": "株式アシスタント",
-
-    "tabs.dark": "適応型ダークモード",
-    "workflow.kicker": "ワークフローエンジン",
-    "workflow.1.title": "01 · 収集",
-    "workflow.2.title": "02 · 分割表示",
-    "workflow.3.title": "03 · 生成",
-    "workflow.4.title": "04 · 実行",
-    "showcase.kicker": "インタラクティブシナリオ",
-    "docs.kicker": "スタートガイド",
-    "faq.kicker": "よくある質問",
-    "donate.title": "Right AI を応援していただきありがとうございます！",
-    "donate.message": "いずれかの QR コードを読み取って応援できます。ご支援ありがとうございます！",
-    "hero.sticker.back": "もう一度！",
-    "donate.alipay": "Alipay",
-    "donate.wechat": "WeChat",
-    "footer.copyright": "© 2026 RightAI. All rights reserved.",
-    "footer.pv": "総訪問数",
-    "footer.uv": "訪問者数",
-    "footer.links.title": "リンク集",
-    "footer.links.1": "Apple Store Connect API を利用したアプリのオンライン管理サービス",
-    "footer.links.2": "言語設定に基づいて、ストア商品ページの言語順序を推測・解説するサービス",
-    "footer.links.3": "無料の AI エージェントを提供するリソースサイト",
-    "footer.links.4": "オープンソースの AI コーディングエージェント",
-    "footer.privacy": "プライバシーポリシー",
-    "comments.kicker": "コミュニティ",
-    "comments.title": "コメント",
-    "skip.link": "メインコンテンツへスキップ"
-  },
-  "ko": {
-    "meta.title": "Right AI - 브라우저용 지능형 워크스페이스",
-    "meta.description": "Right AI는 브라우저를 빠른 대화, 모델 분할 대화, 주식 도구, 웹페이지 에이전트, 적응형 다크 모드를 갖춘 AI 워크스페이스로 바꿔줍니다.",
-    "nav.home": "홈",
-    "nav.features": "기능",
-    "nav.workflow": "워크플로",
-    "nav.docs": "문서",
-    "nav.faq": "자주 묻는 질문",
-    "nav.language": "언어",
-    "nav.chrome": "Chrome에 추가",
-    "nav.donate": "후원하기",
-    "theme.toggle": "테마 전환",
-    "hero.title": "빠르게 대화하고, 집중을 유지하세요!",
-    "hero.desc": "RightAI는 자주 쓰는 AI를 Chrome 사이드바에 모아 두고, 브라우저에서 실제로 '손을 움직이는' 에이전트를 내장합니다.",
-    "hero.desc.sub": "열자마자 바로 쓸 수 있는 두 가지 능력:",
-    "hero.cap.1.name": "Omni — 브라우저 에이전트",
-    "hero.cap.1.desc": ": Omni에게 목표를 주면 페이지를 읽고, 버튼을 누르고, 폼을 채우고, 탭을 전환하고, 제한된 페이지 스크립트를 실행하며, 결과를 승인한 로컬 폴더에 기록합니다. 위험한 동작은 항상 사이드바에서 확인 카드를 먼저 띄우고, 승인한 뒤에만 실행합니다.",
-    "hero.cap.2.name": "멀티모델 병렬 질문",
-    "hero.cap.2.desc": ": 같은 질문을 ChatGPT, Claude, Gemini, DeepSeek, Kimi 및 모든 OpenAI 호환 엔드포인트에 동시에 보냅니다. 답변이 나란히 표시되니 가장 신뢰하는 답을 고르면 됩니다.",
-    "tabs.omni": "Omni 브라우저 에이전트",
-    "panels.omni.title": "Omni — 목표를 주면 대신 실행해 주는 브라우저 에이전트",
-    "panels.omni.1": "파일 도구: read_file / write_file / diff_file. 폴더 전체를 승인하거나 파일 단위로 선택할 수 있으며, 모든 접근은 감사 로그에 기록됩니다.",
-    "panels.omni.2": "페이지 제어: 스크린샷, 제한된 페이지 JavaScript(Chrome 확장 API와 로컬 파일에는 접근 불가), 새 탭 열기, 탭 전환, 탭 목록.",
-    "panels.omni.3": "복합 작업: perform_task. 한 문장의 목표를 주면 끝까지 실행하고, 스트리밍 진행 상황이 사이드바에 실시간으로 표시됩니다.",
-    "panels.omni.4": "모든 것을 로컬 우선: API 키, 설정, 감사 로그는 기기 안에만 보관됩니다. 부작용이 있는 동작은 사이드바에서 무엇을 할지 보여 준 뒤 승인을 기다립니다.",
-    "panels.omni.note": "API를 먼저 유료로 신청하고 싶지 않다면? Omni 설정 페이지에 OpenCode Zen 무료 키 신청 방법을 단계별로 안내하는 튜토리얼이 있습니다.",
-    "zen.kicker": "무료 모델 받기",
-    "zen.title": "OpenCode Zen 무료 API 키 받는 방법",
-    "zen.lead": "무료 OpenCode 계정을 등록하고 API 키를 만들면 Omni에서 Zen의 무료 모델을 사용할 수 있습니다.",
-    "zen.step1.pre": "다음 링크에서 ",
-    "zen.step1.post": " 에 가입 / 로그인하고 API 키를 만들어 주세요.",
-    "zen.step2": "「API 키」→「API 키 만들기」로 이동한 뒤 생성된 키를 복사합니다.",
-    "zen.step3.start": "Omni 설정으로 돌아와 API Key에 키를 붙여 넣고 Base URL을 다음과 같이 입력합니다:",
-    "zen.step4.start": "연결을 테스트하고 모델 목록에서 ",
-    "zen.step4.end": " 표시가 있는 모델을 선택하면 Omni를 사용할 수 있습니다.",
-    "zen.note": "참고: 무료 모델의 이용 가능 여부, 한도 및 서비스 약관은 OpenCode Zen 현재 페이지를 기준으로 합니다.",
-    "hero.cta.install": "Chrome 웹 스토어에서 설치",
-    "hero.cta.download": "ZIP 직접 다운로드",
-    "hero.cta.docs": "설정 가이드 보기",
-    "hero.trust.1": "어디서나 Ctrl + R로 Quick Input 실행",
-    "hero.trust.2": "컨텍스트 전환을 줄인 병렬 모델 대화",
-    "hero.trust.3": "웹 네이티브 AI 상호작용, OCR, 번역, 다크 모드 적응",
-    "hero.trust.4": "독립 창 채팅/멀티모델 채팅/웹페이지 컨텍스트 포함",
-    "hero.trust.5": "여러 웹페이지에 동시에 메시지 전송",
-    "shell.init.command1": "$ 사이드바 어시스턴트를 초기화하고 단축키를 바인딩",
-    "shell.init.response1": "Right AI 준비 완료. 아무 페이지에서 Ctrl + R을 눌러 입력 패널을 여세요.",
-    "shell.init.command2": "$ 이 페이지를 요약하고 다음 실행 작업을 제안해줘",
-    "shell.init.response2": "요약이 생성되었습니다. 실행 가능한 다음 단계 3개를 제안했습니다.",
-    "shell.input.label": "명령 입력",
-    "shell.input.placeholder": "시도: quick input / multi model / webpage mode 활성화",
-    "shell.input.run": "실행",
-    "chips.quick": "빠른 입력",
-    "chips.multi": "멀티 모델",
-    "chips.webpage": "웹페이지 에이전트",
-    "chips.dark": "다크 모드",
-    "stats.one": "작업 전환 시간 평균 감소",
-    "stats.two": "멀티 모델 검증 효율 향상",
-    "stats.three": "고빈도 웹 시나리오를 즉시 사용 가능",
-    "features.title": "입력, 이해, 추론, 실행을 하나로 묶은 인터페이스",
-    "features.lead": "탭과 도구 사이를 오갈 필요가 없습니다. Right AI가 핵심 AI 작업과 주식 분석 기능을 하나의 인터랙티브 워크플로로 통합합니다.",
-    "panels.quick.title": "Ctrl + R로 아이디어를 모델에 바로 보내기",
-    "panels.quick.1": "어느 페이지에서나 즉시 실행해 흐름을 유지하세요.",
-    "panels.quick.2": "현재 페이지에서 대화 창을 열고 웹페이지 컨텍스트를 함께 붙여 후속 대화를 이어갈 수 있습니다.",
-    "panels.quick.3": "더 적은 끊김으로 의도를 실행으로 전환합니다.",
-    "panels.quickConversation.title": "AI 빠른 대화: 웹페이지 독립 창 대화",
-    "panels.quickConversation.1": "웹페이지 위 독립 대화 창을 빠르게 띄우고 현재 페이지 컨텍스트를 포함해 즉시 모델 대화를 시작합니다.",
-    "panels.quickConversation.2": "대화 창을 현재 페이지에 띄워 두어 탭과 사이드바 전환 비용을 줄입니다.",
-    "panels.quickConversation.3": "AI 빠른 입력과 함께 쓰면 하나는 빠른 시작, 하나는 몰입형 대화를 담당합니다.",
-    "panels.multi.title": "한 화면에서 여러 모델과 협업",
-    "panels.multi.1": "ChatGPT, Gemini, Claude 및 커스텀 모델을 나란히 실행하세요.",
-    "panels.multi.2": "답변을 즉시 교차 검증해 신뢰도를 높이세요.",
-    "panels.multi.3": "하위 작업을 가장 적합한 모델로 자동 라우팅합니다.",
-    "panels.multiTalk.title": "멀티모델 동시 채팅",
-    "panels.multiTalk.1": "여러 모델에 동시에 메시지 전송, 무료.",
-    "panels.multiTalk.2": "스크롤하여 여러 응답을 비교하고 최적의 답변으로 계속 대화.",
-    "panels.stock.title": "주식 도우미: 시세, 뉴스, AI 해석 통합",
-    "panels.stock.1": "사이드바에서 관심 종목, 등락률, 장중 흐름, 핵심 가격대를 실시간으로 확인합니다.",
-    "panels.stock.2": "현재 페이지의 뉴스, 재무제표, 공시를 종목 분석과 리스크 힌트로 빠르게 바꿉니다.",
-    "panels.stock.3": "주식 질문을 지정한 모델에 바로 보내며 같은 리서치 흐름을 유지할 수 있습니다.",
-
-    "panels.dark.title": "어떤 웹사이트든 원클릭으로 편안한 다크 모드",
-    "panels.dark.1": "웹사이트가 기본 다크 모드를 제공하지 않아도 작동합니다.",
-    "panels.dark.2": "시스템 및 확장 프로그램의 테마 설정과 동기화합니다.",
-    "panels.dark.3": "시각적 위계를 유지하면서도 가독성 높은 대비를 제공합니다.",
-    "workflow.title": "고밀도 정보 작업을 끝내는 4단계",
-    "workflow.1.body": "아무 웹페이지에서 Ctrl + R을 누르고 모델에 보낼 내용을 입력하세요. Right AI가 지정 모델로 빠르게 보내며, 지푸 AI를 설정했다면 현재 페이지 컨텍스트 기반으로 입력 의도도 분석합니다.",
-    "workflow.2.body": "분할 화면으로 두 모델과 동시에 대화할 수 있습니다.",
-    "workflow.3.body": "사이드바에서 요약, 실행 목록, 재작성, 추천을 생성합니다.",
-    "workflow.4.body": "결과물을 글쓰기, 리서치, 협업에 바로 활용하세요.",
-    "showcase.title": "실제 업무를 위해 설계된 인터랙션 디자인",
-    "showcase.1.title": "시장 조사",
-    "showcase.1.body": "업계 페이지에서 신호를 추출하고 리스크 단서를 포함한 구조화 인사이트를 생성합니다.",
-    "showcase.1.tag": "요약 · 비교 분석",
-    "showcase.2.title": "제품 & 운영",
-    "showcase.2.body": "사용자 피드백, 경쟁사 정보, 카피 아이디어를 실행 가능한 계획으로 통합합니다.",
-    "showcase.2.tag": "모델 협업 · 빠른 반복",
-    "showcase.3.title": "학습 & 지식",
-    "showcase.3.body": "복잡한 개념을 인터랙티브 후속 Q&A가 포함된 단계형 가이드로 분해합니다.",
-    "showcase.3.tag": "딥 리딩 · 가이드 질문",
-    "docs.title": "3분 만에 설치하고 첫 명령 실행하기",
-    "docs.install.title": "빠른 설치",
-    "docs.install.step1.start": "Chrome 웹 스토어에서 설치하거나",
-    "docs.install.step1.middle": "또는",
-    "docs.install.step1.offline": "오프라인 패키지",
-    "docs.install.step1.end": "를 다운로드해 수동으로 설치하세요.",
-    "docs.install.step2": "확장 프로그램 관리 페이지를 열고 Right AI를 툴바에 고정하세요.",
-    "docs.install.step3": "아무 웹페이지를 열고 Ctrl + R을 눌러 Quick Input을 실행하세요.",
-    "docs.install.note": "수동 경로: chrome://extensions -> 개발자 모드 -> 압축해제된 확장 프로그램 로드",
-    "docs.update.title": "릴리스 주기",
-    "docs.update.1": "매월: 최신 AI 뉴스를 따라가며 현재 시나리오에 맞는 AI 서비스를 계속 제공합니다.",
-    "docs.update.2": "격주: 모델 라우팅 개선 및 안정성 업데이트.",
-    "docs.update.3": "매월: 새로운 시나리오 에이전트와 성능 업그레이드.",
-    "docs.update.note": "최신 모델 기능과 사용 흐름에 맞추려면 자동 업데이트를 켜 두세요.",
-    "docs.quickchat.title": "AI 빠른 입력 대화 페이지 (신규)",
-    "docs.quickchat.1": "실행 후 현재 웹페이지 오른쪽 아래에서 모델 대화 페이지를 바로 열 수 있습니다.",
-    "docs.quickchat.2": "\"퀵 팝업에 모델 대화 페이지 표시\" 및 \"실행 시 Chrome을 전면으로 전환\" 설정이 추가되었습니다.",
-    "docs.quickchat.3": "\"단축키를 다시 눌러 퀵 대화 창 닫기\"를 켜면 빠른 열기/닫기가 가능합니다.",
-    "docs.quickchat.note": "확장 프로그램 설정에서 사용 습관에 맞게 위 옵션을 조합해 보세요.",
-    "faq.title": "자주 묻는 질문",
-    "faq.1.q": "어떤 브라우저를 지원하나요?",
-    "faq.1.a": "최신 Chrome을 권장합니다. 대부분의 Chromium 기반 브라우저도 호환됩니다.",
-    "faq.2.q": "시작하려면 계정이 필요한가요?",
-    "faq.2.a": "핵심 기능은 설치 직후 바로 사용할 수 있습니다. 일부 모델 엔드포인트는 개인 API 키가 필요할 수 있습니다.",
-    "faq.3.q": "입력 패널을 빠르게 여는 방법은?",
-    "faq.3.a": "기본 권장 단축키는 Ctrl + R이며 오른쪽 사이드바를 엽니다. Right AI 설정에서 직접 변경할 수도 있습니다.",
-    "faq.4.q": "오프라인 패키지는 어떻게 설치하나요?",
-    "faq.4.a": "files/dist.zip을 다운로드해 압축을 풀고 chrome://extensions를 연 뒤 개발자 모드를 켜고 압축해제된 확장 프로그램을 로드하세요.",
-    "faq.5.q": "추천 단축키 구성은 무엇인가요?",
-    "faq.5.intro": "권장 매핑은 다음과 같습니다:",
-    "faq.5.head.shortcut": "단축키",
-    "faq.5.head.action": "기능",
-    "faq.5.r": "오른쪽 사이드바 열기.",
-    "faq.5.w": "브라우저 대화 열기.",
-    "faq.5.qk": "메시지 빠르게 보내기 또는 AI 플로팅 창 열기.",
-    "faq.5.l": "웹페이지 밝기 적응.",
-    "faq.5.note": "이 설정은 Right AI 패널에서 설정을 열고 해당 항목에서 구성해야 합니다.",
-    "footer.back": "맨 위로",
-    "hero.kicker": "Right AI · 브라우저 인텔리전스 허브",
-    "features.kicker": "기능 시스템",
-    "tabs.quick": "AI 빠른 입력",
-    "tabs.quickConversation": "AI 빠른 대화",
-    "tabs.multi": "멀티 모델 분할",
-    "tabs.multiTalk": "멀티모델 동시 채팅",
-    "tabs.stock": "주식 도우미",
-
-    "tabs.dark": "적응형 다크 모드",
-    "workflow.kicker": "워크플로 엔진",
-    "workflow.1.title": "01 · 수집",
-    "workflow.2.title": "02 · 분할",
-    "workflow.3.title": "03 · 생성",
-    "workflow.4.title": "04 · 실행",
-    "showcase.kicker": "인터랙티브 시나리오",
-    "docs.kicker": "시작하기",
-    "faq.kicker": "자주 묻는 질문",
-    "donate.title": "Right AI를 후원해 주셔서 감사합니다!",
-    "donate.message": "원하는 QR 코드를 스캔해 후원할 수 있습니다. 소중한 지원에 감사드립니다!",
-    "donate.alipay": "알리페이",
-    "donate.wechat": "위챗페이",
-    "hero.sticker.back": "한 번 더!",
-    "footer.copyright": "© 2026 RightAI. All rights reserved.",
-    "footer.pv": "총 방문수",
-    "footer.uv": "방문자 수",
-    "footer.links.title": "링크 모음",
-    "footer.links.1": "Apple Store Connect API 기반 앱 온라인 관리 서비스",
-    "footer.links.2": "언어 설정을 바탕으로 스토어 상품 페이지의 언어 순서를 추측하고 설명하는 서비스",
-    "footer.links.3": "무료 AI 에이전트를 제공하는 리소스 사이트",
-    "footer.links.4": "오픈소스 AI 코딩 에이전트",
-    "footer.privacy": "개인정보 처리방침",
-    "comments.kicker": "커뮤니티",
-    "comments.title": "댓글",
-    "skip.link": "본문으로 건너뛰기"
-  },
-  "ru": {
-    "meta.title": "Right AI — интеллектуальное рабочее пространство в браузере",
-    "meta.description": "Right AI превращает браузер в AI-пространство с быстрыми диалогами, разделением моделей, биржевым помощником, агентом веб-страницы и адаптивной тёмной темой.",
-    "nav.home": "Главная",
-    "nav.features": "Возможности",
-    "nav.workflow": "Процесс",
-    "nav.docs": "Документация",
-    "nav.faq": "Частые вопросы",
-    "nav.language": "Язык",
-    "nav.chrome": "Добавить в Chrome",
-    "nav.donate": "Поддержать",
-    "theme.toggle": "Сменить тему",
-    "hero.title": "Быстрый диалог, меньше отвлечений!",
-    "hero.desc": "RightAI собирает ваши повседневные AI-инструменты в боковой панели Chrome и включает агента, который реально действует в браузере.",
-    "hero.desc.sub": "Две возможности — доступны сразу после установки:",
-    "hero.cap.1.name": "Omni — браузерный агент",
-    "hero.cap.1.desc": ": дайте Omni цель — он прочитает страницу, нажмёт кнопки, заполнит формы, переключит вкладки, выполнит ограниченные скрипты страницы и запишет результат в разрешённые вами локальные папки. Каждое рискованное действие сначала показывает карточку подтверждения в боковой панели и выполняется только после вашего согласия.",
-    "hero.cap.2.name": "Параллельный мульти-модельный диалог",
-    "hero.cap.2.desc": ": отправьте один и тот же вопрос одновременно в ChatGPT, Claude, Gemini, DeepSeek, Kimi и любой совместимый с OpenAI интерфейс. Ответы отображаются рядом — выбирайте тот, которому доверяете больше.",
-    "tabs.omni": "Агент Omni",
-    "panels.omni.title": "Omni — браузерный агент: дайте цель, и он сделает всё сам",
-    "panels.omni.1": "Работа с файлами: read_file / write_file / diff_file. Можно разрешить всю папку или отметить отдельные файлы; каждый доступ записывается в журнал аудита.",
-    "panels.omni.2": "Управление страницей: скриншоты, ограниченный JavaScript страницы (без доступа к API расширений Chrome и локальным файлам), открытие новой вкладки, переключение вкладок, список вкладок.",
-    "panels.omni.3": "Комплексные задачи: perform_task. Одна фраза-цель — и задача выполняется целиком, с потоковым прогрессом в боковой панели.",
-    "panels.omni.4": "Всё локально: API-ключи, настройки и журналы аудита остаются на вашем устройстве. Каждое действие с побочными эффектами сначала показывает, что будет сделано, и ждёт вашего подтверждения.",
-    "panels.omni.note": "Не хотите заранее платить за API? В настройках Omni есть пошаговая инструкция по получению бесплатного ключа OpenCode Zen.",
-    "zen.kicker": "Бесплатные модели",
-    "zen.title": "Как получить бесплатный API-ключ OpenCode Zen",
-    "zen.lead": "Зарегистрируйте бесплатный аккаунт OpenCode и создайте API-ключ, чтобы Omni мог использовать бесплатные модели Zen.",
-    "zen.step1.pre": "Перейдите на ",
-    "zen.step1.post": " — зарегистрируйтесь или войдите и создайте API-ключ.",
-    "zen.step2": "Откройте «API-ключи» → «Создать API-ключ» и скопируйте сгенерированный ключ.",
-    "zen.step3.start": "Вернитесь в настройки Omni, вставьте ключ в поле API Key и укажите Base URL:",
-    "zen.step4.start": "Проверьте подключение и выберите в списке моделей модель с пометкой ",
-    "zen.step4.end": " — и можно пользоваться Omni.",
-    "zen.note": "Подсказка: доступность, лимиты и условия бесплатных моделей зависят от текущей страницы OpenCode Zen.",
-    "hero.cta.install": "Установить из Chrome Web Store",
-    "hero.cta.download": "Скачать ZIP напрямую",
-    "hero.cta.docs": "Открыть руководство по настройке",
-    "hero.trust.1": "Нажмите Ctrl + R, чтобы запускать Quick Input где угодно",
-    "hero.trust.2": "Параллельные диалоги с моделями с меньшим переключением контекста",
-    "hero.trust.3": "Нативное AI-взаимодействие в вебе, OCR, перевод и адаптация к темной теме",
-    "hero.trust.4": "Диалог в отдельном окне / мульти-модельный диалог / с контекстом веб-страницы",
-    "hero.trust.5": "Отправка сообщений на несколько веб-страниц одновременно",
-    "shell.init.command1": "$ инициализировать бокового ассистента и назначить горячую клавишу",
-    "shell.init.response1": "Right AI готов. Нажмите Ctrl + R, чтобы открыть панель ввода на любой странице.",
-    "shell.init.command2": "$ суммируй эту страницу и предложи следующие действия",
-    "shell.init.response2": "Сводка готова: добавлены 3 практических следующих шага.",
-    "shell.input.label": "Ввод команды",
-    "shell.input.placeholder": "Попробуйте: включить quick input / multi model / режим webpage",
-    "shell.input.run": "Запуск",
-    "chips.quick": "Быстрый ввод",
-    "chips.multi": "Мульти-модель",
-    "chips.webpage": "Агент страницы",
-    "chips.dark": "Темная тема",
-    "stats.one": "Среднее сокращение времени на переключение задач",
-    "stats.two": "Более высокая эффективность проверки в мульти-модельном режиме",
-    "stats.three": "Высокочастотные веб-сценарии готовы из коробки",
-    "features.title": "Единый интерфейс для ввода, понимания, рассуждения и выполнения",
-    "features.lead": "Больше не нужно прыгать между вкладками и инструментами. Right AI объединяет ключевые AI-действия и биржевые сценарии в один интерактивный процесс.",
-    "panels.quick.title": "Используйте Ctrl + R, чтобы отправлять идеи моделям напрямую",
-    "panels.quick.1": "Мгновенный запуск на любой странице без потери потока.",
-    "panels.quick.2": "Открывает окно диалога на текущей странице и сохраняет контекст веб-страницы для продолжения разговора.",
-    "panels.quick.3": "Преобразуйте намерение в действие с меньшим количеством прерываний.",
-    "panels.quickConversation.title": "AI быстрый диалог: отдельное диалоговое окно на веб-странице",
-    "panels.quickConversation.1": "Быстро вызывайте отдельное окно диалога на странице и сразу начинайте общение с моделью с контекстом текущей страницы.",
-    "panels.quickConversation.2": "Окно чата может плавать поверх текущей страницы, уменьшая переключения между вкладками и сайдбаром.",
-    "panels.quickConversation.3": "В паре с AI быстрым вводом это дает удобную схему: быстрый запуск плюс глубокий диалог.",
-    "panels.multi.title": "Работайте с несколькими моделями на одном экране",
-    "panels.multi.1": "Запускайте ChatGPT, Gemini, Claude и пользовательские модели бок о бок.",
-    "panels.multi.2": "Мгновенно сверяйте ответы для большей уверенности.",
-    "panels.multi.3": "Автоматически направляйте подзадачи к лучшей модели.",
-    "panels.multiTalk.title": "Мульти-модельный одновременный чат",
-    "panels.multiTalk.1": "Отправляйте сообщения нескольким моделям одновременно, бесплатно.",
-    "panels.multiTalk.2": "Прокручивайте и сравнивайте ответы, выбирайте лучший для продолжения.",
-    "panels.stock.title": "Биржевой помощник: котировки, новости и AI-анализ вместе",
-    "panels.stock.1": "Следите за списком акций, движением цены, внутридневной динамикой и ключевыми уровнями прямо в сайдбаре.",
-    "panels.stock.2": "Преобразуйте новости, отчеты и раскрытия с текущей страницы в анализ акции и сигналы риска.",
-    "panels.stock.3": "Отправляйте вопросы по акциям прямо выбранной модели и не выпадaйте из исследования.",
-
-    "panels.dark.title": "Комфортная темная тема в один клик для любого сайта",
-    "panels.dark.1": "Работает, даже если сайт не поддерживает темную тему нативно.",
-    "panels.dark.2": "Синхронизируется с системной темой и настройками расширения.",
-    "panels.dark.3": "Сохраняет читаемую контрастность и визуальную иерархию.",
-    "workflow.title": "Четыре шага для задач с плотной информацией",
-    "workflow.1.body": "Нажмите Ctrl + R на любой странице и введите текст для модели. Right AI быстро отправит его выбранной модели, а при настройке Zhipu AI сможет определить намерение по контексту текущей страницы.",
-    "workflow.2.body": "Режим разделения позволяет одновременно общаться с двумя моделями.",
-    "workflow.3.body": "Генерируйте сводки, списки действий, переписывания и рекомендации в боковой панели.",
-    "workflow.4.body": "Используйте результаты сразу для письма, исследований и совместной работы.",
-    "showcase.title": "Дизайн взаимодействия, созданный для реальной работы",
-    "showcase.1.title": "Маркетинговые исследования",
-    "showcase.1.body": "Извлекайте сигналы из отраслевых страниц и создавайте структурированные инсайты с маркерами рисков.",
-    "showcase.1.tag": "Сводки · Сравнительный анализ",
-    "showcase.2.title": "Продукт и операции",
-    "showcase.2.body": "Объединяйте обратную связь пользователей, данные о конкурентах и идеи для текста в исполнимые планы.",
-    "showcase.2.tag": "Совместная работа моделей · Быстрая итерация",
-    "showcase.3.title": "Обучение и знания",
-    "showcase.3.body": "Разбивайте сложные концепции на понятные шаги с интерактивными уточняющими вопросами.",
-    "showcase.3.tag": "Глубокое чтение · Наводящие вопросы",
-    "docs.title": "Установите и запустите первую команду за 3 минуты",
-    "docs.install.title": "Быстрая установка",
-    "docs.install.step1.start": "Установите из Chrome Web Store",
-    "docs.install.step1.middle": "или скачайте",
-    "docs.install.step1.offline": "офлайн-пакет",
-    "docs.install.step1.end": "для ручной установки.",
-    "docs.install.step2": "Откройте управление расширениями и закрепите Right AI на панели инструментов.",
-    "docs.install.step3": "Откройте любую веб-страницу и нажмите Ctrl + R, чтобы запустить Quick Input.",
-    "docs.install.note": "Ручной путь: chrome://extensions -> Режим разработчика -> Загрузить распакованное расширение",
-    "docs.update.title": "Ритм релизов",
-    "docs.update.1": "Ежемесячно: следим за новостями AI и обновляем Right AI под актуальные сценарии использования.",
-    "docs.update.2": "Раз в две недели: улучшение маршрутизации моделей и обновления стабильности.",
-    "docs.update.3": "Ежемесячно: новые сценарные агенты и апгрейды производительности.",
-    "docs.update.note": "Включите автообновление, чтобы Right AI оставался актуальным под новые модели и сценарии.",
-    "docs.quickchat.title": "Страница диалога AI быстрого ввода (новое)",
-    "docs.quickchat.1": "После запуска можно сразу открыть страницу диалога модели в правом нижнем углу текущей веб-страницы.",
-    "docs.quickchat.2": "Добавлены настройки \"Показывать страницу диалога модели в быстром окне\" и \"Переключать Chrome на передний план при запуске\".",
-    "docs.quickchat.3": "Включите \"Нажать горячую клавишу снова, чтобы закрыть быстрое окно диалога\" для быстрого открытия/закрытия.",
-    "docs.quickchat.note": "Комбинируйте эти параметры в настройках расширения под ваш рабочий сценарий.",
-    "faq.title": "Частые вопросы",
-    "faq.1.q": "Какие браузеры поддерживаются?",
-    "faq.1.a": "Рекомендуется последняя версия Chrome. Большинство браузеров на Chromium также совместимы.",
-    "faq.2.q": "Нужна ли учетная запись для начала?",
-    "faq.2.a": "Базовые функции работают сразу после установки. Для некоторых модельных endpointов может понадобиться ваш собственный API-ключ.",
-    "faq.3.q": "Как быстро открыть панель ввода?",
-    "faq.3.a": "Рекомендуемая клавиша по умолчанию — Ctrl + R для открытия правой панели. Ее можно изменить в настройках Right AI.",
-    "faq.4.q": "Как установить офлайн-пакет?",
-    "faq.4.a": "Скачайте files/dist.zip, распакуйте архив, откройте chrome://extensions, включите режим разработчика и загрузите распакованное расширение.",
-    "faq.5.q": "Какая схема горячих клавиш рекомендуется?",
-    "faq.5.intro": "Рекомендуемая настройка:",
-    "faq.5.head.shortcut": "Горячая клавиша",
-    "faq.5.head.action": "Действие",
-    "faq.5.r": "Открыть правую панель.",
-    "faq.5.w": "Открыть браузерный диалог.",
-    "faq.5.qk": "Быстро отправить сообщение или открыть плавающее AI-окно.",
-    "faq.5.l": "Адаптация яркости веб-страницы.",
-    "faq.5.note": "Эти параметры задаются внутри панели Right AI: откройте Settings и настройте соответствующие пункты.",
-    "footer.back": "Наверх",
-    "hero.kicker": "Right AI · Интеллектуальный хаб в браузере",
-    "features.kicker": "Система возможностей",
-    "tabs.quick": "Быстрый ввод AI",
-    "tabs.quickConversation": "AI быстрый диалог",
-    "tabs.multi": "Разделение по моделям",
-    "tabs.multiTalk": "Мульти-модельный чат",
-    "tabs.stock": "Биржевой ассистент",
-
-    "tabs.dark": "Адаптивная темная тема",
-    "workflow.kicker": "Движок процесса",
-    "workflow.1.title": "01 · Сбор",
-    "workflow.2.title": "02 · Разделение",
-    "workflow.3.title": "03 · Генерация",
-    "workflow.4.title": "04 · Выполнение",
-    "showcase.kicker": "Интерактивные сценарии",
-    "docs.kicker": "Быстрый старт",
-    "faq.kicker": "Частые вопросы",
-    "donate.title": "Спасибо за поддержку Right AI!",
-    "donate.message": "Отсканируйте любой QR-код, чтобы оставить донат. Спасибо за вашу поддержку!",
-    "hero.sticker.back": "Попробуйте снова!",
-    "donate.alipay": "Alipay",
-    "donate.wechat": "WeChat",
-    "footer.copyright": "© 2026 RightAI. Все права защищены.",
-    "footer.pv": "Всего посещений",
-    "footer.uv": "Посетителей",
-    "footer.links.title": "Дружественные ссылки",
-    "footer.links.1": "Онлайн-сервис управления приложениями на основе Apple Store Connect API",
-    "footer.links.2": "Сервис, который на основе языковых настроек предсказывает и объясняет порядок языков на страницах магазина",
-    "footer.links.3": "Сайт с бесплатными AI-агентами",
-    "footer.links.4": "Открытый AI-агент для написания кода",
-    "footer.privacy": "Политика конфиденциальности",
-    "comments.kicker": "Сообщество",
-    "comments.title": "Комментарии",
-    "skip.link": "Перейти к содержимому"
-  },
-  "zh": {
-    "meta.title": "Right AI - 智能浏览器工作空间",
-    "meta.description": "Right AI 将你的浏览器转化为 AI 工作空间，提供快速对话、模型分屏、股票助手、网页代理工具与自适应深色模式。",
-    "nav.home": "首页",
-    "nav.features": "功能",
-    "nav.workflow": "工作流程",
-    "nav.docs": "文档",
-    "nav.faq": "常见问题",
-    "nav.language": "语言",
-    "nav.chrome": "加入 Chrome",
-    "nav.donate": "打赏",
-    "theme.toggle": "切换主题",
-    "hero.title": "快速对话，保持专注！",
-    "hero.desc": "为您解决安装多个AI应用或每使用一个模型就要切换到对应网站的问题。让各个模型对话无缝为您提供服务。同时还探索更多特色服务为您提供便利性。期待您的使用",
-    "hero.cta.install": "立即安装 Chrome 扩展",
-    "hero.cta.download": "直接下载 ZIP",
-    "hero.cta.docs": "查看安装指南",
-    "hero.trust.1": "Ctrl + R 随时唤起 Quick Input",
-    "hero.trust.2": "多模型并行对话，减少上下文切换",
-    "hero.trust.3": "网页级 AI 交互 + 图文理解 + 深色适配",
-    "hero.trust.4": "独立窗口对话/多模型对话/可附带网页上下文",
-    "hero.trust.5": "同时给多网页发送消息",
-    "footer.privacy": "隐私政策",
-    "skip.link": "跳至主要内容"
-  }
-};
-
-  const PROMPT_TEXT = {
-  "zh": {
-    "prompts.quick": "开启 quick input 并设置 Ctrl + R 快捷键",
-    "prompts.multi": "使用 multi model 对比回答质量",
-    "prompts.webpage": "在当前 webpage 上提取重点并总结",
-    "prompts.dark": "切换 dark mode 并同步到所有页面"
-  },
-  "en": {
-    "prompts.quick": "Enable quick input and assign Ctrl + R shortcut",
-    "prompts.multi": "Use multi model mode to compare answer quality",
-    "prompts.webpage": "Extract key points and summarize this webpage",
-    "prompts.dark": "Switch to dark mode and sync across pages"
-  },
-  "zh-Hant": {
-    "prompts.quick": "啟用快速輸入並設定 Ctrl + R 快捷鍵",
-    "prompts.multi": "使用多模型模式比較回答品質",
-    "prompts.webpage": "擷取目前網頁重點並整理摘要",
-    "prompts.dark": "切換為深色模式並同步到所有頁面"
-  },
-  "ja": {
-    "prompts.quick": "quick input を有効化し、Ctrl + R ショートカットを設定",
-    "prompts.multi": "multi model モードで回答品質を比較",
-    "prompts.webpage": "この webpage の要点を抽出して要約",
-    "prompts.dark": "dark mode に切り替えて全ページに同期"
-  },
-  "ko": {
-    "prompts.quick": "Quick Input을 활성화하고 Ctrl + R 단축키를 지정해줘",
-    "prompts.multi": "multi model 모드로 답변 품질을 비교해줘",
-    "prompts.webpage": "현재 webpage의 핵심을 추출해 요약해줘",
-    "prompts.dark": "dark mode로 전환하고 모든 페이지에 동기화해줘"
-  },
-  "ru": {
-    "prompts.quick": "Включи quick input и назначь горячую клавишу Ctrl + R",
-    "prompts.multi": "Используй multi model для сравнения качества ответов",
-    "prompts.webpage": "Выдели ключевые моменты на этой webpage и сделай сводку",
-    "prompts.dark": "Переключи dark mode и синхронизируй его на всех страницах"
-  }
-};
-
-  const RESPONSE_TEXT = {
-  "zh": {
-    "quick": "已启用 Quick Input。按 Ctrl + R 可立即唤起。",
-    "multi": "已开启多模型路由。Right AI 可按任务自动切换模型。",
-    "webpage": "已附加当前网页上下文。继续提问即可基于页面内容作答。",
-    "dark": "主题偏好已保存，下次访问会保持一致。",
-    "default": "命令已加入队列。Right AI 已准备好执行下一条指令。"
-  },
-  "en": {
-    "quick": "Quick Input enabled. Press Ctrl + R to open the launcher instantly.",
-    "multi": "Multi-model routing is on. Right AI can switch models per task automatically.",
-    "webpage": "Webpage context attached. Ask a follow-up and Right AI will use the current page.",
-    "dark": "Theme preference saved. Your visual mode will stay consistent next visit.",
-    "default": "Command queued. Right AI is ready for the next instruction."
-  },
-  "zh-Hant": {
-    "quick": "已啟用快速輸入。按 Ctrl + R 即可立即喚起。",
-    "multi": "已開啟多模型路由。Right AI 可依任務自動切換模型。",
-    "webpage": "已附加目前網頁上下文。繼續提問即可依頁面內容作答。",
-    "dark": "主題偏好已儲存，下次造訪會維持一致。",
-    "default": "指令已加入佇列。Right AI 已準備好執行下一條指令。"
-  },
-  "ja": {
-    "quick": "Quick Input を有効化しました。Ctrl + R で即座に起動できます。",
-    "multi": "マルチモデルルーティングを有効化しました。Right AI がタスクごとに自動でモデルを切り替えます。",
-    "webpage": "現在の Web ページ文脈を追加しました。続けて質問するとページ内容に基づいて回答します。",
-    "dark": "テーマ設定を保存しました。次回アクセス時も表示モードを維持します。",
-    "default": "コマンドをキューに追加しました。Right AI は次の指示を実行する準備ができています。"
-  },
-  "ko": {
-    "quick": "Quick Input이 활성화되었습니다. Ctrl + R을 눌러 즉시 실행하세요.",
-    "multi": "멀티 모델 라우팅이 켜졌습니다. Right AI가 작업별로 모델을 자동 전환할 수 있습니다.",
-    "webpage": "웹페이지 컨텍스트가 연결되었습니다. 후속 질문을 하면 현재 페이지를 기반으로 답변합니다.",
-    "dark": "테마 설정이 저장되었습니다. 다음 방문에도 동일한 모드가 유지됩니다.",
-    "default": "명령이 대기열에 추가되었습니다. Right AI가 다음 지시를 실행할 준비를 마쳤습니다."
-  },
-  "ru": {
-    "quick": "Quick Input включен. Нажмите Ctrl + R, чтобы мгновенно открыть лаунчер.",
-    "multi": "Включена мульти-модельная маршрутизация. Right AI может автоматически выбирать модель под задачу.",
-    "webpage": "Контекст веб-страницы добавлен. Задайте уточняющий запрос, и Right AI использует текущую страницу.",
-    "dark": "Предпочтение темы сохранено. При следующем посещении визуальный режим останется тем же.",
-    "default": "Команда поставлена в очередь. Right AI готов к следующей инструкции."
-  }
-};
-
-  const themeLabelByLanguage = {
-  "zh": {
-    "system": "跟随系统",
-    "dark": "切换深色",
-    "light": "切换浅色"
-  },
-  "zh-Hant": {
-    "system": "跟隨系統",
-    "dark": "切換深色",
-    "light": "切換淺色"
-  },
-  "ja": {
-    "system": "システム追従",
-    "dark": "ダークへ切替",
-    "light": "ライトへ切替"
-  },
-  "ko": {
-    "system": "시스템 따라가기",
-    "dark": "다크로 전환",
-    "light": "라이트로 전환"
-  },
-  "ru": {
-    "system": "Системная тема",
-    "dark": "В тёмную тему",
-    "light": "В светлую тему"
-  },
-  "en": {
-    "system": "Follow System",
-    "dark": "Switch Dark",
-    "light": "Switch Light"
-  }
-};
-
-  const DOWNLOAD_TOOLTIP_TEXT = {
-  "zh": {
-    "loading": "版本加载中…",
-    "unavailable": "版本信息不可用",
-    "prefix": "版本 "
-  },
-  "zh-Hant": {
-    "loading": "版本載入中…",
-    "unavailable": "版本資訊不可用",
-    "prefix": "版本 "
-  },
-  "ja": {
-    "loading": "バージョンを読み込み中…",
-    "unavailable": "バージョン情報を取得できません",
-    "prefix": "バージョン "
-  },
-  "ko": {
-    "loading": "버전 정보를 불러오는 중…",
-    "unavailable": "버전 정보를 불러올 수 없습니다",
-    "prefix": "버전 "
-  },
-  "ru": {
-    "loading": "Загрузка версии…",
-    "unavailable": "Версия недоступна",
-    "prefix": "Версия "
-  },
-  "en": {
-    "loading": "Loading version…",
-    "unavailable": "Version unavailable",
-    "prefix": "Version "
-  }
-};
-
-  const defaultTextByKey = Object.create(null);
-  const defaultPlaceholderByKey = Object.create(null);
-  let initialTitle = "";
-  let initialDescription = "";
-
-  function onReady(callback) {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", callback, { once: true });
-      return;
+  /* ==========================================================================
+     i18n Translations
+     ========================================================================== */
+  const TRANSLATIONS = {
+    zh: {
+      "skip.link": "跳至主要内容",
+      "nav.home": "首页",
+      "nav.philosophy": "工程理念",
+      "nav.features": "架构与工具",
+      "nav.demo": "终端与界面",
+      "nav.quickstart": "快速开始",
+      "nav.discuss": "社区讨论",
+      "nav.links": "友情链接",
+      "nav.donate": "打赏支持",
+      "hero.badge": "v0.7.13",
+      "hero.label": "Agent 工程 · 终端型 AI 编程助手",
+      "hero.title": "极简、透明、无依赖的 Agent 工程",
+      "hero.desc1": "基于裸 OpenAI SDK 与自研执行主循环，无臃肿框架包装。每一行代码均可审查，每一次工具调用与思考推理皆有迹可循。",
+      "hero.desc2": "单 Agent 循环 + 8 工具系统（6 基础 + 2 注入）· OS 级进程沙箱与安全护栏 · 级联记忆与技能生态 · 全屏终端 TUI 与 Web/Electron 桌面应用。",
+      "hero.btn.github": "查看 GitHub",
+      "hero.btn.docs": "系统架构",
+      "hero.btn.dist": "桌面端下载",
+      "hero.btn.donate": "打赏支持",
+      "hero.ext.tag": "内置 Omni 内核",
+      "hero.ext.note": "Chrome 浏览器插件：",
+      "hero.btn.chrome": "RightAI 商店扩展",
+      "hero.btn.download": "Right AI 离线插件 (ZIP)",
+      "term.tab.npx": "npx Web 启动",
+      "term.tab.npm": "npm / bun 全局安装",
+      "term.tab.curl": "curl 一键安装",
+      "term.copy": "复制",
+      "term.copied": "已复制",
+      "philo.formula": "AGENT = LLM STREAM + 8 TOOLS + OS SANDBOX + CASCADE MEMORY",
+      "philo.title": "从裸 SDK 循环到生产级自主执行回路",
+      "philo.desc1": "大语言模型是 Agent 的大脑，但真实工程需要坚不可摧的执行回路与安全护栏。",
+      "philo.desc2": "Omni 摒弃黑盒框架抽象，回归流式调用、并行工具执行与自我纠错最本真的形态，让 Agent 稳定落地复杂编程场景。",
+      "pillar1.title": "裸 SDK 主循环与自纠错",
+      "pillar1.desc": "流式调用 LLM → 并行执行工具调用 → 执行结果回传自纠错闭环。工具执行失败信息原样回传模型，由模型自行理解并自愈代码缺陷，杜绝框架吞错。",
+      "pillar2.title": "权限分级与 OS 级进程沙箱",
+      "pillar2.desc": "内置 full / safe / ask / read 四级权限，危险命令正则拦截与审批卡片；底层集成 macOS sandbox-exec 与 Linux bwrap 进程隔离，网络白名单过滤代理出网（TLS 不解密）。",
+      "pillar3.title": "级联记忆与动态技能生态",
+      "pillar3.desc": "项目级与全局级 AGENTS.md 级联加载，首轮自动注入；自动扫描 .opencode/skills 与 .claude/skills 下的 SKILL.md 并按需渐进披露；支持会话 JSONL 持久化与长对话摘要压缩。",
+      "feat.eyebrow": "系统架构",
+      "feat.title": "分层设计、全屏 TUI 与 Web 多端协同",
+      "feat.1.title": "全屏终端 TUI（OpenTUI 交互模式）",
+      "feat.1.desc": "思考模块流式实时呈现、Bash 工具卡片点击展开、Markdown 表格与代码块排版、左右并排 diff 对比；输入框支持 @ 文件层级逐层浏览与插入，31 个 / 斜杠快捷命令采用圆角浮层悬停，带来纯粹极速的键盘流体验。",
+      "feat.2.title": "Web 工作台与多会话并发（Electron 跨平台）",
+      "feat.2.desc": "按工作区分组的多会话侧栏并行调度、实时 Markdown 回答、左右并排 diff 与审批交互卡片；跨平台 Electron 桌面应用（macOS / Windows / Linux 内置 Node 运行时，免环境配置）开箱即用。",
+      "feat.3.title": "分层内核、8 执行工具与安全沙箱",
+      "feat.3.desc": "入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。",
+      "sim.placeholder": "输入编程任务，或让 Omni 探索代码库...",
+      "sim.std.name": "标准模式 (Standard)",
+      "sim.std.desc": "功能完备的编码与操作 Agent，支持终端命令、代码读写与自我纠错。",
+      "sim.ptc.name": "架构规划 (Architect)",
+      "sim.ptc.desc": "调度推理强模型进行方案分析与 EARS 规格设计，同步任务清单。",
+      "sim.min.name": "快速执行 (Editor)",
+      "sim.min.desc": "调度高吞吐轻模型执行具体的代码落地与编辑，极致降低延迟与开销。",
+      "sim.create.name": "子代理隔离 (Delegate)",
+      "sim.create.desc": "自动 git worktree 临时分支隔离运行，生成变更报告与合并建议。",
+      "demo.title": "沉浸式终端 TUI、Web 工作台与跨平台桌面端",
+      "demo.desc": "双端无缝协作：终端基于 OpenTUI 提供流畅的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件、28 个 / 命令），浏览器或独立桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。",
+      "demo.bilibili": "前往哔哩哔哩观看高清完整视频（支持 1080P / 高帧率）",
+      "use.eyebrow": "开始使用",
+      "use.title": "多元化安装与运行方案",
+      "use.1.title": "npx Web 免安装体验",
+      "use.1.desc": "无需全局安装，一行命令即刻拉起本地服务并唤起浏览器 Web 工作台，体验完整多会话 Agent 交互。",
+      "use.2.title": "npm / bun 全局安装",
+      "use.2.desc": "支持 npm 或 bun 全局安装 @right-ai/omni，随时随地在终端调度 Agent。",
+      "use.3.title": "curl 一键安装（原生二进制）",
+      "use.3.desc": "零依赖原生二进制文件，自动识别平台架构，自带完整全屏 OpenTUI 沉浸交互体验。",
+      "use.4.title": "Electron 桌面端（免环境依赖）",
+      "use.4.desc": "macOS (Apple Silicon / Intel)、Windows (.exe)、Linux (.AppImage) 独立安装包，内置运行环境开箱即用。",
+      "use.4.btn": "前往 Releases",
+      "cta.title": "探索透明自主的 Agent 编程工程",
+      "cta.desc": "Omni 是面向开发者的开源 Agent 工程实践。无论是扩展自定义 MCP 服务、编写 SKILL.md 技能，还是挂载生命周期 Hooks，一切均由你掌控。欢迎加入社区并参与贡献！",
+      "comments.kicker": "社区互动 · DISCUSS",
+      "comments.title": "评论与讨论区",
+      "comments.lead": "基于 GitHub Discussions 驱动的实时评论区。欢迎在此分享你的使用心得、插件灵感或反馈问题。",
+      "footer.links.title": "友情链接 · FRIENDLY LINKS",
+      "links.heading": "推荐生态与合作伙伴",
+      "links.lead": "精选优质开发者工具、AI Agent 资源与开源项目。",
+      "footer.links.0.name": "Right AI 浏览器插件",
+      "footer.links.0.desc": "Chrome 商店官方扩展 · 网页 AI 助手与效率工具箱",
+      "footer.links.1": "基于 Apple Store Connect API 的应用在线管理服务",
+      "footer.links.2": "一个基于语言配置，推测及讲解商店商品页语言顺序",
+      "footer.links.3": "免费 Agent 资源站点",
+      "footer.links.4": "开源 AI 编程 Agent",
+      "footer.chrome": "Right AI 浏览器插件",
+      "footer.wechat": "微信公众号",
+      "footer.wechat.scan": "扫码关注获取动态",
+      "footer.license": "开源 · MIT 协议",
+      "footer.copyright": "© 2026 Omni 版权所有",
+      "footer.privacy": "隐私政策",
+      "donate.title": "感谢支持 Omni！",
+      "donate.message": "扫描二维码完成打赏，支持开源与持续迭代！",
+      "donate.alipay": "支付宝",
+      "donate.wechat": "微信支付"
+    },
+    en: {
+      "skip.link": "Skip to main content",
+      "nav.home": "Home",
+      "nav.philosophy": "Philosophy",
+      "nav.features": "Architecture",
+      "nav.demo": "Interfaces",
+      "nav.quickstart": "Quick Start",
+      "nav.discuss": "Discuss",
+      "nav.links": "Links",
+      "nav.donate": "Donate",
+      "hero.badge": "v0.7.13",
+      "hero.label": "Agent Engineering · Terminal AI Assistant",
+      "hero.title": "Minimal, Transparent, Framework-Free Agent Engineering",
+      "hero.desc1": "Built on bare OpenAI SDK and custom main loop with zero framework dependencies. Every tool call and reasoning step is observable and self-correcting.",
+      "hero.desc2": "Single-agent loop + 8-tool suite (6 base + 2 injected) · OS-level sandboxing & safety tiers · Cascade memory & skills · Full-screen TUI & Web/Electron apps.",
+      "hero.btn.github": "View on GitHub",
+      "hero.btn.docs": "Architecture",
+      "hero.btn.dist": "Download Desktop",
+      "hero.btn.donate": "Donate",
+      "hero.ext.tag": "Built-in Omni Core",
+      "hero.ext.note": "Chrome Extension:",
+      "hero.btn.chrome": "RightAI Web Store",
+      "hero.btn.download": "Right AI Offline Package (ZIP)",
+      "term.tab.npx": "npx Web Run",
+      "term.tab.npm": "npm / bun Install",
+      "term.tab.curl": "curl Install",
+      "term.copy": "Copy",
+      "term.copied": "Copied!",
+      "philo.formula": "AGENT = LLM STREAM + 8 TOOLS + OS SANDBOX + CASCADE MEMORY",
+      "philo.title": "From Bare SDK Loop to Production-Grade Autonomous Execution",
+      "philo.desc1": "LLMs are the mind of an Agent, but engineering requires solid runtime loops and guardrails.",
+      "philo.desc2": "Omni removes framework bloat, returning to streaming calls, parallel tool execution, and self-correction to solve real-world coding tasks.",
+      "pillar1.title": "Bare SDK Loop & Self-Correction",
+      "pillar1.desc": "Streams LLM calls → executes tool calls (parallel) → feeds results back. Tool error messages are returned to the model so it can diagnose and fix its own code.",
+      "pillar2.title": "Permission Tiers & OS Sandbox",
+      "pillar2.desc": "Provides full / safe / ask / read tiers, dangerous command interception, and macOS sandbox-exec / Linux bwrap isolation with network proxy allowlists.",
+      "pillar3.title": "Cascade Memory & Skill Ecosystem",
+      "pillar3.desc": "Cascades project & global AGENTS.md, auto-extracts preferences, discovers SKILL.md specs with progressive disclosure, and persists sessions as JSONL.",
+      "feat.eyebrow": "SYSTEM ARCHITECTURE",
+      "feat.title": "Layered Architecture, OpenTUI & Multi-Surface Delivery",
+      "feat.1.title": "Full-Screen Terminal TUI (OpenTUI Mode)",
+      "feat.1.desc": "Live thinking module streams reasoning, clickable Bash tool cards expand on demand, Markdown tables and syntax-highlighted code blocks, and side-by-side diff. Floating @ file mentions and 31 / slash command popovers provide an uninterrupted keyboard-first flow.",
+      "feat.2.title": "Web Workbench & Electron Desktop App",
+      "feat.2.desc": "Multi-session concurrency grouped by workspaces, live Markdown rendering, side-by-side diff inspection, and interactive permission approvals. Built-in Node runtime enables zero-dependency standalone desktop apps across macOS, Windows, and Linux.",
+      "feat.3.title": "Layered Core, 8 Execution Tools & OS Sandboxing",
+      "feat.3.desc": "Unified entry points drive a bare SDK autonomous loop with self-correction. 6 base tools + delegate subagents (isolated in temporary git worktrees) + mcp_* external tools, guarded by macOS sandbox-exec / Linux bwrap OS sandboxing and lifecycle hooks.",
+      "sim.placeholder": "Enter a coding task or ask Omni to inspect this repo...",
+      "sim.std.name": "Standard Mode",
+      "sim.std.desc": "Complete coding suite with terminal execution, file edits, and self-correction.",
+      "sim.ptc.name": "Architect Mode",
+      "sim.ptc.desc": "Routes to reasoning-heavy models for architectural planning and spec drafting.",
+      "sim.min.name": "Editor Mode",
+      "sim.min.desc": "Routes to fast, cost-efficient models for concrete code editing and testing.",
+      "sim.create.name": "Delegate Mode",
+      "sim.create.desc": "Automates isolated git worktree execution on temp branches with diff reports.",
+      "demo.title": "Full-Screen Terminal TUI, Web UI & Desktop Apps",
+      "demo.desc": "Seamless duality: Enjoy lightning-fast keyboard-first workflows in the OpenTUI terminal, or leverage visual multi-session concurrency in Web & Electron desktop apps.",
+      "demo.bilibili": "Watch Full HD Video on Bilibili (1080P)",
+      "use.eyebrow": "GETTING STARTED",
+      "use.title": "Multiple Ways to Install and Run Omni",
+      "use.1.title": "npx Web Instant Start",
+      "use.1.desc": "Zero global setup. Launch the local backend and browser Web UI immediately to explore multi-session agentic coding.",
+      "use.2.title": "npm / bun Global Install",
+      "use.2.desc": "Supports npm install -g @right-ai/omni or bun install -g @right-ai/omni for CLI execution.",
+      "use.3.title": "curl One-Liner (Native Binary)",
+      "use.3.desc": "Zero-dependency native binary with auto-detected platform architecture and full OpenTUI experience.",
+      "use.4.title": "Electron Desktop App (No Node Needed)",
+      "use.4.desc": "Standalone desktop bundle for macOS (ARM/Intel), Windows, and Linux. No Node or Bun setup required.",
+      "use.4.btn": "Releases",
+      "cta.title": "Build the Future of Agentic Coding with Omni",
+      "cta.desc": "Omni champions open-source transparency and zero black-box magic. From custom MCP servers to domain skills and lifecycle hooks, everything is in your hands.",
+      "comments.kicker": "COMMUNITY DISCUSS",
+      "comments.title": "Comments & Discussions",
+      "comments.lead": "Real-time discussions powered by GitHub Discussions. Share your feedback, ideas, and creations.",
+      "footer.links.title": "FRIENDLY LINKS",
+      "links.heading": "Ecosystem & Friendly Links",
+      "links.lead": "Curated developer utilities, AI agent directories, and open-source tools.",
+      "footer.links.0.name": "Right AI Chrome Extension",
+      "footer.links.0.desc": "Chrome Web Store Official Extension · AI Sidebar & Web Productivity Toolkit",
+      "footer.links.1": "Online app management service built on Apple Store Connect API",
+      "footer.links.2": "Predicts and explains store product page language order",
+      "footer.links.3": "Resource site offering free AI agents",
+      "footer.links.4": "Open-source AI coding agent",
+      "footer.chrome": "Right AI Chrome Extension",
+      "footer.wechat": "WeChat Official",
+      "footer.wechat.scan": "Scan to follow updates",
+      "footer.license": "Open Source · MIT License",
+      "footer.copyright": "© 2026 Omni. All rights reserved.",
+      "footer.privacy": "Privacy Policy",
+      "donate.title": "Support Omni",
+      "donate.message": "Scan to donate and support open-source development!",
+      "donate.alipay": "Alipay",
+      "donate.wechat": "WeChat Pay"
     }
+  };
 
-    callback();
-  }
-
-  function readStorage(key) {
-    try {
-      return window.localStorage.getItem(key);
-    } catch (_error) {
-      return null;
-    }
-  }
-
-  function writeStorage(key, value) {
-    try {
-      window.localStorage.setItem(key, value);
-    } catch (_error) {
-      // Ignore storage failures (private mode, sandbox restrictions).
-    }
-  }
-
-  function normalizeLanguage(language) {
-    const raw = String(language || "").trim();
-    if (!raw) {
-      return DEFAULT_LANGUAGE;
-    }
-
-    if (SUPPORTED_LANGUAGES.includes(raw)) {
-      return raw;
-    }
-
-    const lower = raw.toLowerCase();
-    if (lower.startsWith("zh-tw") || lower.startsWith("zh-hk")) {
-      return "zh-Hant";
-    }
-    if (lower.startsWith("zh")) {
-      return "zh";
-    }
-    if (lower.startsWith("ja")) {
-      return "ja";
-    }
-    if (lower.startsWith("ko")) {
-      return "ko";
-    }
-    if (lower.startsWith("ru")) {
-      return "ru";
-    }
-    if (lower.startsWith("en")) {
-      return "en";
-    }
-
-    return DEFAULT_LANGUAGE;
-  }
-
+  /* ==========================================================================
+     Language & i18n
+     ========================================================================== */
   function getCurrentLanguage() {
-    const bodyLanguage = document.body?.getAttribute("data-language") || DEFAULT_LANGUAGE;
-    return normalizeLanguage(bodyLanguage);
+    try {
+      const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      if (saved && TRANSLATIONS[saved]) return saved;
+    } catch (e) {}
+    const nav = (navigator.language || "").toLowerCase();
+    if (nav.startsWith("zh")) return "zh";
+    return "en";
   }
 
-  function getLocalePack(language) {
-    const normalized = normalizeLanguage(language);
-    if (normalized === "zh") {
-      return defaultTextByKey;
-    }
+  function setLanguage(lang) {
+    if (!TRANSLATIONS[lang]) lang = DEFAULT_LANGUAGE;
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    } catch (e) {}
+    document.documentElement.setAttribute("data-language", lang);
+    document.body.setAttribute("data-language", lang);
 
-    return {
-      ...EN_TEXT,
-      ...(LOCALE_OVERRIDES[normalized] || {}),
-    };
-  }
-
-  function translateKey(key, language) {
-    if (!key) {
-      return "";
-    }
-
-    const normalized = normalizeLanguage(language);
-    const localePack = getLocalePack(normalized);
-    const translated = localePack[key];
-
-    if (translated !== undefined) {
-      return translated;
-    }
-
-    return EN_TEXT[key] ?? defaultTextByKey[key] ?? "";
-  }
-
-  function translatePrompt(key, language) {
-    const normalized = normalizeLanguage(language);
-    const prompts = PROMPT_TEXT[normalized] || PROMPT_TEXT.en;
-    return prompts?.[key] ?? PROMPT_TEXT.en[key] ?? PROMPT_TEXT.zh[key] ?? "";
-  }
-
-  function commandResponse(type, language) {
-    const normalized = normalizeLanguage(language);
-    const responses = RESPONSE_TEXT[normalized] || RESPONSE_TEXT.en;
-    return responses?.[type] ?? RESPONSE_TEXT.en[type] ?? RESPONSE_TEXT.zh[type] ?? "";
-  }
-
-  function getDownloadTooltipCopy(language) {
-    const normalized = normalizeLanguage(language);
-    return DOWNLOAD_TOOLTIP_TEXT[normalized] || DOWNLOAD_TOOLTIP_TEXT.en;
-  }
-
-  function cacheDefaultCopy() {
-    if (Object.keys(defaultTextByKey).length > 0) {
-      return;
-    }
-
-    initialTitle = document.title;
-    initialDescription = document.querySelector('meta[name="description"]')?.getAttribute("content") || "";
-
-    document.querySelectorAll("[data-i18n]").forEach((node) => {
-      const key = node.getAttribute("data-i18n");
-      if (!key || defaultTextByKey[key] !== undefined) {
-        return;
-      }
-
-      defaultTextByKey[key] = node.textContent || "";
-    });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
-      const key = node.getAttribute("data-i18n-placeholder");
-      if (!key || defaultPlaceholderByKey[key] !== undefined) {
-        return;
-      }
-
-      defaultPlaceholderByKey[key] = node.getAttribute("placeholder") || "";
-    });
-  }
-
-  function applyLanguage(language, persist) {
-    const body = document.body;
-    if (!body) {
-      return;
-    }
-
-    const finalLanguage = normalizeLanguage(language);
-    body.setAttribute("data-language", finalLanguage);
-    document.documentElement.lang = finalLanguage === "zh" ? "zh-CN" : finalLanguage;
-
-    document.querySelectorAll("[data-i18n]").forEach((node) => {
-      const key = node.getAttribute("data-i18n");
-      const translated = translateKey(key, finalLanguage);
-      if (translated) {
-        node.textContent = translated;
+    const dict = TRANSLATIONS[lang] || TRANSLATIONS.zh;
+    document.title = "Right AI - Agent Harness";
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        el.textContent = dict[key];
       }
     });
 
-    document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
-      const key = node.getAttribute("data-i18n-aria-label");
-      const translated = translateKey(key, finalLanguage);
-      if (translated) {
-        node.setAttribute("aria-label", translated);
+    // Update toggle buttons
+    document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+      const bLang = btn.getAttribute("data-lang-btn");
+      if (bLang === lang) {
+        btn.classList.add("is-active");
+      } else {
+        btn.classList.remove("is-active");
       }
     });
 
-    document.querySelectorAll("[data-i18n-title]").forEach((node) => {
-      const key = node.getAttribute("data-i18n-title");
-      const translated = translateKey(key, finalLanguage);
-      if (translated) {
-        node.setAttribute("title", translated);
-      }
-    });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
-      const key = node.getAttribute("data-i18n-placeholder");
-      if (!key) {
-        return;
-      }
-
-      const translated = finalLanguage === "zh"
-        ? (defaultPlaceholderByKey[key] || "")
-        : (translateKey(key, finalLanguage) || defaultPlaceholderByKey[key] || "");
-
-      if (translated) {
-        node.setAttribute("placeholder", translated);
-      }
-    });
-
-    document.querySelectorAll(".prompt-chip[data-prompt-key]").forEach((chip) => {
-      const key = chip.getAttribute("data-prompt-key");
-      const translated = translatePrompt(key, finalLanguage);
-      if (translated) {
-        chip.dataset.prompt = translated;
-      }
-    });
-
-    const languageToggle = document.querySelector("#language-toggle");
-    if (languageToggle) {
-      languageToggle.value = finalLanguage;
-      languageToggle.setAttribute("aria-label", translateKey("nav.language", finalLanguage) || "Language");
-    }
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      const description = finalLanguage === "zh"
-        ? initialDescription
-        : (translateKey("meta.description", finalLanguage) || initialDescription);
-      metaDescription.setAttribute("content", description);
-    }
-
-    document.title = finalLanguage === "zh"
-      ? initialTitle
-      : (translateKey("meta.title", finalLanguage) || initialTitle);
-
-    if (persist) {
-      writeStorage(LANGUAGE_STORAGE_KEY, finalLanguage);
-    }
-
-    document.dispatchEvent(new CustomEvent("rightai:language-change", { detail: { language: finalLanguage } }));
+    document.dispatchEvent(new CustomEvent("rightai:language-change", { detail: { language: lang } }));
   }
 
-  function setupLanguageSwitcher() {
-    cacheDefaultCopy();
+  function initI18n() {
+    const current = getCurrentLanguage();
+    setLanguage(current);
 
-    const storedLanguage = readStorage(LANGUAGE_STORAGE_KEY);
-    const bodyLanguage = document.body?.getAttribute("data-language");
-    const browserLanguage = window.navigator?.language;
-    const initialLanguage = normalizeLanguage(storedLanguage || bodyLanguage || browserLanguage);
-
-    applyLanguage(initialLanguage, false);
-
-    const languageToggle = document.querySelector("#language-toggle");
-    if (!languageToggle) {
-      return;
-    }
-
-    languageToggle.addEventListener("change", (event) => {
-      applyLanguage(event.target.value, true);
-    });
-  }
-
-  function isCoarsePointer() {
-    if (typeof window.matchMedia !== "function") {
-      return false;
-    }
-
-    return (
-      window.matchMedia("(pointer: coarse)").matches
-      || window.matchMedia("(hover: none)").matches
-    );
-  }
-
-  function trapFocus(container, event) {
-    const focusable = Array.from(
-      container.querySelectorAll(
-        'a[href], button:not([disabled]), select, input, textarea, [tabindex]:not([tabindex="-1"])'
-      )
-    ).filter((el) => el.offsetParent !== null);
-
-    if (focusable.length === 0) {
-      return;
-    }
-
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  }
-
-  function prefersReducedMotion() {
-    if (typeof window.matchMedia !== "function") {
-      return false;
-    }
-
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }
-
-  function setupThemeToggle() {
-    const themeToggle = document.querySelector("#theme-toggle");
-    const body = document.body;
-
-    if (!body) {
-      return;
-    }
-
-    const systemPreference = typeof window.matchMedia === "function"
-      ? window.matchMedia("(prefers-color-scheme: dark)")
-      : null;
-
-    const normalizeThemeMode = (mode) => {
-      if (mode === "light" || mode === "dark" || mode === "system") {
-        return mode;
-      }
-      return "system";
-    };
-
-    const resolveThemeFromMode = (mode) => {
-      if (mode === "light" || mode === "dark") {
-        return mode;
-      }
-      return systemPreference?.matches ? "dark" : "light";
-    };
-
-    const getNextThemeMode = (mode) => {
-      if (mode === "system") {
-        return "dark";
-      }
-      if (mode === "dark") {
-        return "light";
-      }
-      return "system";
-    };
-
-    let currentThemeMode = normalizeThemeMode(readStorage(THEME_STORAGE_KEY));
-
-    const applyThemeMode = (mode, persist) => {
-      currentThemeMode = normalizeThemeMode(mode);
-      const resolvedTheme = resolveThemeFromMode(currentThemeMode);
-      body.setAttribute("data-theme-mode", currentThemeMode);
-      body.setAttribute("data-theme", resolvedTheme);
-
-      if (themeToggle) {
-        const language = getCurrentLanguage();
-        const labels = themeLabelByLanguage[language] || themeLabelByLanguage.en;
-        const nextThemeMode = getNextThemeMode(currentThemeMode);
-        const toggleLabel = labels[nextThemeMode] || themeLabelByLanguage.en[nextThemeMode];
-
-        themeToggle.setAttribute("aria-pressed", String(resolvedTheme === "dark"));
-        themeToggle.setAttribute("aria-label", toggleLabel);
-
-        themeToggle.querySelectorAll("[data-theme-icon]").forEach((el) => {
-          const iconTheme = el.getAttribute("data-theme-icon");
-          el.hidden = iconTheme !== currentThemeMode;
-        });
-      }
-
-      if (persist) {
-        writeStorage(THEME_STORAGE_KEY, currentThemeMode);
-      }
-
-      document.dispatchEvent(
-        new CustomEvent("rightai:theme-change", {
-          detail: { mode: currentThemeMode, theme: resolvedTheme },
-        })
-      );
-    };
-
-    applyThemeMode(currentThemeMode, false);
-
-    document.addEventListener("rightai:language-change", () => {
-      applyThemeMode(currentThemeMode, false);
-    });
-
-    const onSystemThemeChange = () => {
-      if (currentThemeMode !== "system") {
-        return;
-      }
-      applyThemeMode("system", false);
-    };
-
-    if (systemPreference) {
-      if (typeof systemPreference.addEventListener === "function") {
-        systemPreference.addEventListener("change", onSystemThemeChange);
-      } else if (typeof systemPreference.addListener === "function") {
-        systemPreference.addListener(onSystemThemeChange);
-      }
-    }
-
-    if (!themeToggle) {
-      return;
-    }
-
-    themeToggle.addEventListener("click", () => {
-      const nextThemeMode = getNextThemeMode(currentThemeMode);
-      animateThemeTransition();
-      applyThemeMode(nextThemeMode, true);
-    });
-  }
-
-  let themeTransitionTimer = null;
-
-  function animateThemeTransition() {
-    document.documentElement.classList.add("theme-anim");
-    if (themeTransitionTimer) {
-      window.clearTimeout(themeTransitionTimer);
-    }
-    themeTransitionTimer = window.setTimeout(() => {
-      document.documentElement.classList.remove("theme-anim");
-    }, 400);
-  }
-
-  function setupScrollProgress() {
-    const progressBar = document.querySelector("#scroll-progress");
-
-    if (!progressBar) {
-      return;
-    }
-
-    let rafId = null;
-
-    const updateProgress = () => {
-      rafId = null;
-
-      const doc = document.documentElement;
-      const scrollTop = window.scrollY || doc.scrollTop || 0;
-      const scrollableHeight = Math.max(doc.scrollHeight - window.innerHeight, 0);
-      const ratio = scrollableHeight > 0 ? scrollTop / scrollableHeight : 0;
-      const percent = Math.min(Math.max(ratio * 100, 0), 100);
-
-      progressBar.style.width = `${percent}%`;
-    };
-
-    const requestUpdate = () => {
-      if (rafId !== null) {
-        return;
-      }
-
-      rafId = window.requestAnimationFrame(updateProgress);
-    };
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    requestUpdate();
-  }
-
-  function setupCursorGlow() {
-    const cursorGlow = document.querySelector(".cursor-glow");
-
-    if (!cursorGlow) {
-      return;
-    }
-
-    if (isCoarsePointer()) {
-      cursorGlow.style.display = "none";
-      return;
-    }
-
-    const handlePointerMove = (event) => {
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
-      cursorGlow.classList.add("is-visible");
-    };
-
-    const handlePointerLeave = () => {
-      cursorGlow.classList.remove("is-visible");
-    };
-
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    document.documentElement.addEventListener("mouseleave", handlePointerLeave);
-  }
-
-  function setupRevealOnScroll() {
-    const revealItems = Array.from(document.querySelectorAll(".reveal"));
-
-    if (revealItems.length === 0) {
-      return;
-    }
-
-    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
-      revealItems.forEach((item) => item.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -10% 0px",
-      }
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-  }
-
-  function setupFeatureTabs() {
-    const tabs = Array.from(document.querySelectorAll(".feature-tab[data-tab]"));
-    const panels = Array.from(document.querySelectorAll(".feature-panel[data-panel]"));
-
-    if (tabs.length === 0 || panels.length === 0) {
-      return;
-    }
-
-    const activateTab = (tabName) => {
-      if (!tabName) {
-        return;
-      }
-
-      tabs.forEach((tab) => {
-        const isActive = tab.dataset.tab === tabName;
-
-        tab.classList.toggle("is-active", isActive);
-        tab.setAttribute("aria-selected", String(isActive));
-        tab.setAttribute("tabindex", isActive ? "0" : "-1");
-      });
-
-      panels.forEach((panel) => {
-        const isActive = panel.dataset.panel === tabName;
-
-        panel.classList.toggle("is-active", isActive);
-        panel.hidden = !isActive;
-      });
-    };
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        activateTab(tab.dataset.tab);
+    document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-lang-btn");
+        setLanguage(target);
       });
     });
+  }
 
-    // Keyboard navigation: ARIA tabs pattern (Left/Right/Home/End)
-    const tablist = document.querySelector(".feature-tabs");
-    if (tablist) {
-      tablist.addEventListener("keydown", (event) => {
-        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-          return;
+  /* ==========================================================================
+     WebGL2 Hero Fluid Shader with Ping-Pong Flowmap Simulation (DeepSeek Exact)
+     ========================================================================== */
+  const HERO_FLOW_FS = `#version 300 es
+precision mediump float;
+in vec2 vUv;
+uniform sampler2D u_prev;
+uniform vec2 u_mouse;
+uniform vec2 u_velocity;
+uniform float u_brushRadius;
+uniform float u_brushStrength;
+uniform float u_decay;
+out vec4 fragColor;
+
+void main() {
+  vec4 prev = texture(u_prev, vUv);
+
+  prev.r *= u_decay;
+  prev.gb = mix(vec2(0.5), prev.gb, u_decay);
+
+  float dist = distance(vUv, u_mouse);
+
+  float influence = exp(-dist * dist / (u_brushRadius * u_brushRadius * 0.5));
+  influence = max(0.0, influence - 0.01);
+
+  float speed = length(u_velocity);
+  float presenceStrength = u_brushStrength * 0.3;
+  float velBonus = min(speed * 3.0, 0.7) * u_brushStrength;
+  float totalStrength = presenceStrength + velBonus;
+
+  prev.r = max(prev.r, influence * totalStrength);
+  float blendAmt = influence * min(totalStrength, 0.4) * 0.3;
+  prev.g = mix(prev.g, clamp(u_velocity.x * 2.0 + 0.5, 0.0, 1.0), blendAmt);
+  prev.b = mix(prev.b, clamp(u_velocity.y * 2.0 + 0.5, 0.0, 1.0), blendAmt);
+
+  fragColor = prev;
+}
+`;
+
+  const HERO_VS_SOURCE = `#version 300 es
+in vec4 a_position;
+out vec2 vUv;
+void main() {
+  vUv = a_position.xy * 0.5 + 0.5;
+  gl_Position = a_position;
+}
+`;
+
+  const HERO_FLUID_FS = `#version 300 es
+precision mediump float;
+in vec2 vUv;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec3 u_c1, u_c2, u_c3, u_c4, u_c5;
+uniform float u_scale;
+uniform vec2 u_offset;
+uniform float u_grain;
+uniform float u_speed;
+uniform sampler2D u_flowmap;
+uniform float u_distortBoost;
+uniform float u_swirlBoost;
+uniform float u_glowIntensity;
+uniform vec3 u_glowColor1;
+uniform vec3 u_glowColor2;
+uniform vec3 u_glowColor3;
+uniform vec2 u_lightPos;
+uniform float u_lightCore;
+uniform float u_lightHalo;
+uniform float u_vignette;
+uniform float u_bloomThreshold;
+uniform float u_bloomRange;
+uniform float u_bloomStrength;
+out vec4 fragColor;
+
+vec3 mod289v3(vec3 x){return x-floor(x*(1./289.))*289.;}
+vec4 mod289v4(vec4 x){return x-floor(x*(1./289.))*289.;}
+vec4 permute(vec4 x){return mod289v4(((x*34.)+1.)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-.85373472095314*r;}
+
+float snoise(vec3 v){
+  const vec2 C=vec2(1./6.,1./3.);
+  const vec4 D=vec4(0.,.5,1.,2.);
+  vec3 i=floor(v+dot(v,C.yyy));
+  vec3 x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz);
+  vec3 l=1.-g;
+  vec3 i1=min(g.xyz,l.zxy);
+  vec3 i2=max(g.xyz,l.zxy);
+  vec3 x1=x0-i1+C.xxx;
+  vec3 x2=x0-i2+C.yyy;
+  vec3 x3=x0-D.yyy;
+  i=mod289v3(i);
+  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
+  float n_=.142857142857;
+  vec3 ns=n_*D.wyz-D.xzx;
+  vec4 j=p-49.*floor(p*ns.z*ns.z);
+  vec4 x_=floor(j*ns.z);
+  vec4 y_=floor(j-7.*x_);
+  vec4 x=x_*ns.x+ns.yyyy;
+  vec4 y=y_*ns.x+ns.yyyy;
+  vec4 h=1.-abs(x)-abs(y);
+  vec4 b0=vec4(x.xy,y.xy);
+  vec4 b1=vec4(x.zw,y.zw);
+  vec4 s0=floor(b0)*2.+1.;
+  vec4 s1=floor(b1)*2.+1.;
+  vec4 sh=-step(h,vec4(0.));
+  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;
+  vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+  vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);
+  vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+  p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);
+  m=m*m;
+  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+}
+
+float hash(vec2 p){
+  vec3 p3=fract(vec3(p.xyx)*.1031);
+  p3+=dot(p3,p3.yzx+33.33);
+  return fract((p3.x+p3.y)*p3.z);
+}
+
+float fbm(vec3 p){
+  float v=0.,amp=.6;vec3 shift=vec3(100.);
+  for(int i=0;i<1;i++){v+=amp*snoise(p);p=p*2.+shift;amp*=.4;}
+  return v;
+}
+
+float fluidNoise(vec2 uv,float t){
+  float n1=fbm(vec3(uv*.6,t*.06));
+  float n2=fbm(vec3(uv*.6+5.2,t*.06+1.3));
+  vec2 w1=vec2(n1,n2)*.6;
+  float n3=fbm(vec3((uv+w1)*.7+1.7,t*.05+3.1));
+  float n4=fbm(vec3((uv+w1)*.7+9.2,t*.05+5.7));
+  vec2 w2=vec2(n3,n4)*.5;
+  return fbm(vec3((uv+w1+w2)*.5,t*.04));
+}
+
+vec2 curlish(vec2 uv,float t){
+  float eps=.02;
+  float n=snoise(vec3(uv*.8,t));
+  float nx=snoise(vec3((uv+vec2(eps,0.))*.8,t));
+  float ny=snoise(vec3((uv+vec2(0.,eps))*.8,t));
+  return vec2(-(ny-n)/eps,(nx-n)/eps)*.003;
+}
+
+void main(){
+  float aspect=u_resolution.x/u_resolution.y;
+  vec2 uv=gl_FragCoord.xy/u_resolution;
+  vec2 suv=vec2(uv.x*aspect, uv.y) * u_scale + u_offset;
+  float t=u_time;
+
+  // Mouse interaction via flowmap
+  vec4 flow = texture(u_flowmap, uv);
+  float influence = flow.r;
+  vec2 flowDir = (flow.gb - 0.5) * 2.0;
+
+  // Apply mouse distortion to UV
+  suv += flowDir * influence * u_distortBoost * 0.8;
+  // Apply mouse swirl
+  float swirlAngle = influence * u_swirlBoost * 2.5;
+  float cs = cos(swirlAngle), sn = sin(swirlAngle);
+  vec2 delta = suv - vec2(uv.x * aspect, uv.y) * u_scale;
+  suv += (mat2(cs, sn, -sn, cs) * delta - delta) * influence;
+
+  vec2 curl=curlish(suv,t*.04);
+  vec2 uvD=suv+curl*12.;
+  float f=fluidNoise(uvD,t);
+  float swirl=snoise(vec3(uvD*.8+f*1.5,t*.035))*.5+.5;
+  float n=f*.5+.5;
+  vec3 col=mix(u_c1,u_c2,smoothstep(.2,.5,n));
+  col=mix(col,u_c3,smoothstep(.35,.65,n+swirl*.25));
+  col=mix(col,u_c4,smoothstep(.6,.85,swirl)*.55);
+  col=mix(col,u_c5,smoothstep(.5,.8,n*swirl)*.35);
+
+  // Mouse proximity color shift: 3-color glow blended by distance + noise
+  float glow = smoothstep(0.0, 0.8, influence);
+  float glowNoise = snoise(vec3(uvD * 1.5, t * 0.08)) * 0.5 + 0.5;
+  float glowDist = smoothstep(0.0, 1.0, influence);
+  vec3 glowMix = mix(u_glowColor3, u_glowColor2, glowDist);
+  glowMix = mix(glowMix, u_glowColor1, glowDist * glowNoise);
+  col = mix(col, glowMix, glow * u_glowIntensity);
+
+  if(u_grain>0.0){
+    vec2 flowOffset = (uvD - suv) * u_resolution.y;
+    vec2 gp = floor((gl_FragCoord.xy + flowOffset) / 5.0);
+    float gr=hash(gp)*2.-1.;
+    col+=gr*u_grain;
+  }
+
+  // Self-luminance bloom: bright fluid regions become their own light spots
+  float luma=dot(col,vec3(.299,.587,.114));
+  float bloom=smoothstep(u_bloomThreshold-u_bloomRange,u_bloomThreshold+u_bloomRange,luma);
+  col+=(col*.85+vec3(.15,.145,.13))*bloom*u_bloomStrength;
+
+  // Virtual light source
+  float ld=length((uv-u_lightPos)*vec2(aspect,1.));
+  float core=exp(-ld*ld*4.5);
+  float halo=exp(-ld*1.8);
+  col+=vec3(1.,.97,.9)*core*u_lightCore+vec3(.72,.8,1.)*halo*u_lightHalo;
+
+  float vig=1.-smoothstep(.35,.75,length(uv-.5));
+  col=mix(col*(1.-u_vignette),col,vig);
+  fragColor=vec4(col,1.);
+}
+`;
+
+  const HERO_FLUID_PARAMS = {
+    mouseRadius: 0.09,
+    mouseStrength: 1.8,
+    mouseSmoothing: 0.1,
+    mouseVelocity: 0.2,
+    decay: 0.925,
+    distortBoost: 2.2,
+    noiseBoost: 0.3,
+    swirlBoost: 0.8,
+    glowIntensity: 0.13,
+    glowColors: ["#fff7d1", "#538dca", "#2d448b"],
+    speed: 28,
+    scale: 1.77,
+    offsetX: -124,
+    offsetY: -48,
+    grain: 0.005,
+    colors: ["#000000", "#1A3870", "#204a7e", "#eed8aa", "#000000"],
+    lightX: 0.89,
+    lightY: 0.46,
+    lightCore: 0.14,
+    lightHalo: 0.2,
+    vignette: 0.38,
+    lightFollow: 0.63,
+    bloomThreshold: 0.61,
+    bloomRange: 0.18,
+    bloomStrength: 0.4
+  };
+
+  function hexToRgb(hex) {
+    const clean = hex.replace("#", "");
+    return [
+      parseInt(clean.slice(0, 2), 16) / 255,
+      parseInt(clean.slice(2, 4), 16) / 255,
+      parseInt(clean.slice(4, 6), 16) / 255
+    ];
+  }
+
+  function initHeroShader() {
+    const canvas = document.getElementById("hero-shader-canvas");
+    if (!canvas) return;
+
+    let gl = null;
+    try {
+      gl = canvas.getContext("webgl2", { alpha: true, premultipliedAlpha: false, powerPreference: "low-power" });
+    } catch (e) {}
+
+    if (!gl) {
+      if (canvas.parentElement) {
+        canvas.parentElement.style.background = "radial-gradient(ellipse 80% 60% at 50% 20%, #173872 0%, #0a1329 45%, #0a0a0a 100%)";
+      }
+      return;
+    }
+
+    function createShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.warn("Shader error:", gl.getShaderInfoLog(s));
+        return null;
+      }
+      return s;
+    }
+
+    function createProg(fsSrc) {
+      const vs = createShader(gl.VERTEX_SHADER, HERO_VS_SOURCE);
+      const fs = createShader(gl.FRAGMENT_SHADER, fsSrc);
+      if (!vs || !fs) return null;
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.warn("Link error:", gl.getProgramInfoLog(prog));
+        return null;
+      }
+      return prog;
+    }
+
+    const flowProg = createProg(HERO_FLOW_FS);
+    const fluidProg = createProg(HERO_FLUID_FS);
+    if (!flowProg || !fluidProg) return;
+
+    const flowUniforms = {
+      prev: gl.getUniformLocation(flowProg, "u_prev"),
+      mouse: gl.getUniformLocation(flowProg, "u_mouse"),
+      velocity: gl.getUniformLocation(flowProg, "u_velocity"),
+      brushRadius: gl.getUniformLocation(flowProg, "u_brushRadius"),
+      brushStrength: gl.getUniformLocation(flowProg, "u_brushStrength"),
+      decay: gl.getUniformLocation(flowProg, "u_decay")
+    };
+
+    const fluidUniforms = {
+      time: gl.getUniformLocation(fluidProg, "u_time"),
+      resolution: gl.getUniformLocation(fluidProg, "u_resolution"),
+      scale: gl.getUniformLocation(fluidProg, "u_scale"),
+      offset: gl.getUniformLocation(fluidProg, "u_offset"),
+      grain: gl.getUniformLocation(fluidProg, "u_grain"),
+      speed: gl.getUniformLocation(fluidProg, "u_speed"),
+      flowmap: gl.getUniformLocation(fluidProg, "u_flowmap"),
+      distortBoost: gl.getUniformLocation(fluidProg, "u_distortBoost"),
+      swirlBoost: gl.getUniformLocation(fluidProg, "u_swirlBoost"),
+      glowIntensity: gl.getUniformLocation(fluidProg, "u_glowIntensity"),
+      glowColor1: gl.getUniformLocation(fluidProg, "u_glowColor1"),
+      glowColor2: gl.getUniformLocation(fluidProg, "u_glowColor2"),
+      glowColor3: gl.getUniformLocation(fluidProg, "u_glowColor3"),
+      c1: gl.getUniformLocation(fluidProg, "u_c1"),
+      c2: gl.getUniformLocation(fluidProg, "u_c2"),
+      c3: gl.getUniformLocation(fluidProg, "u_c3"),
+      c4: gl.getUniformLocation(fluidProg, "u_c4"),
+      c5: gl.getUniformLocation(fluidProg, "u_c5"),
+      lightPos: gl.getUniformLocation(fluidProg, "u_lightPos"),
+      lightCore: gl.getUniformLocation(fluidProg, "u_lightCore"),
+      lightHalo: gl.getUniformLocation(fluidProg, "u_lightHalo"),
+      vignette: gl.getUniformLocation(fluidProg, "u_vignette"),
+      bloomThreshold: gl.getUniformLocation(fluidProg, "u_bloomThreshold"),
+      bloomRange: gl.getUniformLocation(fluidProg, "u_bloomRange"),
+      bloomStrength: gl.getUniformLocation(fluidProg, "u_bloomStrength")
+    };
+
+    // Quad buffer
+    const quadBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+
+    function bindQuad(prog) {
+      const loc = gl.getAttribLocation(prog, "a_position");
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    }
+
+    function createFBO(w, h, data) {
+      const tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      if (data) {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+      } else {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      }
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+      const fbo = gl.createFramebuffer();
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      return { fbo, tex };
+    }
+
+    let canvasW = 0, canvasH = 0;
+    let flowW = 0, flowH = 0;
+    let ping = false;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    canvasW = Math.round(canvas.clientWidth * dpr) || 1440;
+    canvasH = Math.round(canvas.clientHeight * dpr) || 900;
+    canvas.width = canvasW;
+    canvas.height = canvasH;
+    flowW = Math.max(1, Math.round(canvasW / 4));
+    flowH = Math.max(1, Math.round(canvasH / 4));
+
+    const initData = new Uint8Array(flowW * flowH * 4);
+    for (let i = 0; i < flowW * flowH; i++) {
+      initData[4 * i] = 0;
+      initData[4 * i + 1] = 128;
+      initData[4 * i + 2] = 128;
+      initData[4 * i + 3] = 255;
+    }
+
+    let fboA = createFBO(flowW, flowH, initData);
+    let fboB = createFBO(flowW, flowH, initData);
+
+    const mouseState = {
+      x: 0.5, y: 0.5,
+      smoothX: 0.5, smoothY: 0.5,
+      vx: 0, vy: 0,
+      svx: 0, svy: 0
+    };
+
+    const isCoarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    if (!isCoarse) {
+      window.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseState.x = (e.clientX - rect.left) / rect.width;
+        mouseState.y = 1 - (e.clientY - rect.top) / rect.height;
+      }, { passive: true });
+    }
+
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    observer.observe(canvas.parentElement || canvas);
+
+    const startTime = performance.now();
+    let lastRenderTime = 0;
+    const FRAME_MS = 1000 / 30;
+
+    function render(now) {
+      requestAnimationFrame(render);
+      if (!isVisible || now - lastRenderTime < FRAME_MS) return;
+      lastRenderTime = now - (now - lastRenderTime) % FRAME_MS;
+
+      const curW = Math.round(canvas.clientWidth * dpr);
+      const curH = Math.round(canvas.clientHeight * dpr);
+      if (curW !== canvasW || curH !== canvasH) {
+        canvasW = curW;
+        canvasH = curH;
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+      }
+
+      const p = HERO_FLUID_PARAMS;
+      mouseState.smoothX += (mouseState.x - mouseState.smoothX) * p.mouseSmoothing;
+      mouseState.smoothY += (mouseState.y - mouseState.smoothY) * p.mouseSmoothing;
+      mouseState.svx += ((mouseState.x - mouseState.smoothX) * 0.5 - mouseState.svx) * p.mouseVelocity;
+      mouseState.svy += ((mouseState.y - mouseState.smoothY) * 0.5 - mouseState.svy) * p.mouseVelocity;
+
+      // Ping-pong flowmap step
+      const readFBO = ping ? fboA : fboB;
+      const writeFBO = ping ? fboB : fboA;
+      ping = !ping;
+
+      gl.bindFramebuffer(gl.FRAMEBUFFER, writeFBO.fbo);
+      gl.viewport(0, 0, flowW, flowH);
+      gl.useProgram(flowProg);
+      bindQuad(flowProg);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, readFBO.tex);
+      gl.uniform1i(flowUniforms.prev, 0);
+      gl.uniform2f(flowUniforms.mouse, mouseState.smoothX, mouseState.smoothY);
+      gl.uniform2f(flowUniforms.velocity, mouseState.svx, mouseState.svy);
+      gl.uniform1f(flowUniforms.brushRadius, p.mouseRadius);
+      gl.uniform1f(flowUniforms.brushStrength, isCoarse ? 0 : p.mouseStrength);
+      gl.uniform1f(flowUniforms.decay, p.decay);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+      // Render main fluid pass
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+      gl.viewport(0, 0, canvasW, canvasH);
+      gl.useProgram(fluidProg);
+      bindQuad(fluidProg);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, writeFBO.tex);
+      gl.uniform1i(fluidUniforms.flowmap, 0);
+
+      const elapsedTime = (performance.now() - startTime) * 0.001 * (p.speed / 100);
+      gl.uniform1f(fluidUniforms.time, elapsedTime);
+      gl.uniform2f(fluidUniforms.resolution, canvasW, canvasH);
+      gl.uniform1f(fluidUniforms.scale, p.scale);
+      gl.uniform2f(fluidUniforms.offset, p.offsetX / 100, p.offsetY / 100);
+      gl.uniform1f(fluidUniforms.grain, p.grain);
+      gl.uniform1f(fluidUniforms.distortBoost, p.distortBoost);
+      gl.uniform1f(fluidUniforms.swirlBoost, p.swirlBoost);
+
+      const followX = isCoarse ? p.lightX : p.lightX + (mouseState.smoothX - p.lightX) * p.lightFollow;
+      gl.uniform2f(fluidUniforms.lightPos, followX, p.lightY);
+      gl.uniform1f(fluidUniforms.lightCore, isCoarse ? 0 : p.lightCore);
+      gl.uniform1f(fluidUniforms.lightHalo, isCoarse ? 0 : p.lightHalo);
+      gl.uniform1f(fluidUniforms.vignette, p.vignette);
+      gl.uniform1f(fluidUniforms.bloomThreshold, p.bloomThreshold);
+      gl.uniform1f(fluidUniforms.bloomRange, p.bloomRange);
+      gl.uniform1f(fluidUniforms.bloomStrength, p.bloomStrength);
+      gl.uniform1f(fluidUniforms.glowIntensity, p.glowIntensity);
+
+      const g1 = hexToRgb(p.glowColors[0]);
+      const g2 = hexToRgb(p.glowColors[1]);
+      const g3 = hexToRgb(p.glowColors[2]);
+      gl.uniform3f(fluidUniforms.glowColor1, g1[0], g1[1], g1[2]);
+      gl.uniform3f(fluidUniforms.glowColor2, g2[0], g2[1], g2[2]);
+      gl.uniform3f(fluidUniforms.glowColor3, g3[0], g3[1], g3[2]);
+
+      const c1 = hexToRgb(p.colors[0]);
+      const c2 = hexToRgb(p.colors[1]);
+      const c3 = hexToRgb(p.colors[2]);
+      const c4 = hexToRgb(p.colors[3]);
+      const c5 = hexToRgb(p.colors[4]);
+      gl.uniform3f(fluidUniforms.c1, c1[0], c1[1], c1[2]);
+      gl.uniform3f(fluidUniforms.c2, c2[0], c2[1], c2[2]);
+      gl.uniform3f(fluidUniforms.c3, c3[0], c3[1], c3[2]);
+      gl.uniform3f(fluidUniforms.c4, c4[0], c4[1], c4[2]);
+      gl.uniform3f(fluidUniforms.c5, c5[0], c5[1], c5[2]);
+
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+
+    render(performance.now());
+  }
+
+  /* ==========================================================================
+     Interactive 2D Particle Grid Mesh Canvas (DeepSeek Exact)
+     ========================================================================== */
+  function initHeroParticleMesh() {
+    const canvas = document.getElementById("hero-particle-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const isCoarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    if (isCoarse) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let points = [];
+    let cols = 0, rows = 0;
+    let clientW = 0, clientH = 0;
+    let isDormant = false;
+    let animId = 0;
+    const mouse = { x: NaN, y: NaN };
+    let isIntersecting = true;
+
+    const GRID_SIZE = 90;
+
+    function buildGrid() {
+      cols = Math.ceil(clientW / GRID_SIZE) + 1;
+      rows = Math.ceil(clientH / GRID_SIZE) + 1;
+      const startX = (clientW - (cols - 1) * GRID_SIZE) / 2;
+      const startY = (clientH - (rows - 1) * GRID_SIZE) / 2;
+      points = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = startX + c * GRID_SIZE;
+          const y = startY + r * GRID_SIZE;
+          points.push({
+            restX: x, restY: y,
+            x: x, y: y,
+            vx: 0, vy: 0
+          });
         }
-
-        const currentIndex = tabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
-        const lastIndex = tabs.length - 1;
-        let nextIndex = currentIndex;
-
-        if (event.key === "ArrowRight") nextIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
-        else if (event.key === "ArrowLeft") nextIndex = currentIndex <= 0 ? lastIndex : currentIndex - 1;
-        else if (event.key === "Home") nextIndex = 0;
-        else if (event.key === "End") nextIndex = lastIndex;
-
-        event.preventDefault();
-        tabs[nextIndex].focus();
-        activateTab(tabs[nextIndex].dataset.tab);
-      });
-    }
-
-    const initialTab = tabs.find(
-      (tab) => tab.classList.contains("is-active") || tab.getAttribute("aria-selected") === "true"
-    ) || tabs[0];
-
-    activateTab(initialTab?.dataset.tab);
-  }
-
-  function setupTiltCards() {
-    const cards = Array.from(document.querySelectorAll(".tilt-card"));
-
-    if (cards.length === 0) {
-      return;
-    }
-
-    if (isCoarsePointer() || prefersReducedMotion()) {
-      cards.forEach((card) => {
-        card.style.transform = "";
-      });
-      return;
-    }
-
-    const maxTilt = 5;
-
-    cards.forEach((card) => {
-      let frameId = null;
-      let rotateX = 0;
-      let rotateY = 0;
-
-      card.style.willChange = "transform";
-
-      const applyTilt = () => {
-        frameId = null;
-        card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
-      };
-
-      const onPointerMove = (event) => {
-        const rect = card.getBoundingClientRect();
-        const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
-        const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
-
-        rotateX = -relativeY * maxTilt;
-        rotateY = relativeX * maxTilt;
-
-        if (frameId !== null) {
-          return;
-        }
-
-        frameId = window.requestAnimationFrame(applyTilt);
-      };
-
-      const resetTilt = () => {
-        if (frameId !== null) {
-          window.cancelAnimationFrame(frameId);
-          frameId = null;
-        }
-
-        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
-      };
-
-      card.addEventListener("pointermove", onPointerMove);
-      card.addEventListener("pointerleave", resetTilt);
-      card.addEventListener("pointercancel", resetTilt);
-    });
-  }
-
-  function setupDonateModal() {
-    const donateModal = document.querySelector(".donate-modal");
-    const donateDialog = donateModal?.querySelector(".donate-modal-dialog") || null;
-    const donateTriggers = Array.from(document.querySelectorAll(".donate-trigger"));
-
-    if (!donateModal || !donateDialog || donateTriggers.length === 0) {
-      return;
-    }
-
-    let previousFocusedNode = null;
-
-    const closeDonateModal = () => {
-      donateModal.hidden = true;
-      document.body.classList.remove("modal-open");
-      document.removeEventListener("keydown", onDonateKeydown);
-
-      if (previousFocusedNode && typeof previousFocusedNode.focus === "function") {
-        previousFocusedNode.focus();
-      }
-      previousFocusedNode = null;
-    };
-
-    const openDonateModal = () => {
-      previousFocusedNode = document.activeElement;
-      donateModal.hidden = false;
-      document.body.classList.add("modal-open");
-      donateDialog.focus();
-      document.addEventListener("keydown", onDonateKeydown);
-    };
-
-    function onDonateKeydown(event) {
-      if (event.key === "Escape") {
-        closeDonateModal();
-      } else if (event.key === "Tab") {
-        trapFocus(donateDialog, event);
       }
     }
 
-    donateTriggers.forEach((trigger) => {
-      trigger.addEventListener("click", (event) => {
-        event.preventDefault();
-        openDonateModal();
-      });
-    });
-
-    donateModal.addEventListener("click", (event) => {
-      if (event.target.closest("[data-close]")) {
-        event.preventDefault();
-        closeDonateModal();
-        return;
-      }
-
-      if (!event.target.closest(".donate-modal-dialog")) {
-        closeDonateModal();
-      }
-    });
-  }
-
-  function setupDownloadVersionTooltip() {
-    const downloadAnchors = Array.from(document.querySelectorAll(".direct-download"));
-
-    if (downloadAnchors.length === 0) {
-      return;
+    let resizeTimer = null;
+    function resize() {
+      clientW = canvas.clientWidth;
+      clientH = canvas.clientHeight;
+      canvas.width = clientW * dpr;
+      canvas.height = clientH * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildGrid();
     }
-
-    const tooltip = document.createElement("div");
-    tooltip.className = "download-tooltip";
-    tooltip.setAttribute("role", "status");
-    document.body.appendChild(tooltip);
-
-    let versionLabel = "";
-    let versionLoadFailed = false;
-    let activeAnchor = null;
-
-    const getTooltipText = () => {
-      const copy = getDownloadTooltipCopy(getCurrentLanguage());
-      if (versionLabel) {
-        return `${copy.prefix}${versionLabel}`;
-      }
-
-      if (versionLoadFailed) {
-        return copy.unavailable;
-      }
-
-      return copy.loading;
-    };
-
-    const positionTooltip = (targetNode) => {
-      const rect = targetNode.getBoundingClientRect();
-      const scrollY = window.scrollY || window.pageYOffset;
-      const scrollX = window.scrollX || window.pageXOffset;
-      const tooltipHeight = tooltip.offsetHeight;
-      const tooltipWidth = tooltip.offsetWidth;
-
-      let top = rect.top + scrollY - tooltipHeight - 12;
-      if (top < scrollY + 8) {
-        top = rect.bottom + scrollY + 12;
-      }
-
-      let left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
-      const minLeft = scrollX + 8;
-      const maxLeft = scrollX + window.innerWidth - tooltipWidth - 8;
-      left = Math.max(minLeft, Math.min(left, maxLeft));
-
-      tooltip.style.top = `${top}px`;
-      tooltip.style.left = `${left}px`;
-    };
-
-    const showTooltip = (targetNode) => {
-      activeAnchor = targetNode;
-      tooltip.textContent = getTooltipText();
-      tooltip.classList.add("is-visible");
-      positionTooltip(targetNode);
-    };
-
-    const hideTooltip = () => {
-      activeAnchor = null;
-      tooltip.classList.remove("is-visible");
-    };
-
-    downloadAnchors.forEach((anchor) => {
-      anchor.addEventListener("mouseenter", () => showTooltip(anchor));
-      anchor.addEventListener("mouseleave", hideTooltip);
-      anchor.addEventListener("focus", () => showTooltip(anchor));
-      anchor.addEventListener("blur", hideTooltip);
-      // Touch / tap: show the version briefly (download still proceeds)
-      anchor.addEventListener("click", () => {
-        showTooltip(anchor);
-        window.setTimeout(hideTooltip, 2500);
-      });
-    });
-
-    window.addEventListener("scroll", () => {
-      if (activeAnchor) {
-        positionTooltip(activeAnchor);
-      }
-    });
 
     window.addEventListener("resize", () => {
-      if (activeAnchor) {
-        positionTooltip(activeAnchor);
+      clientW = canvas.clientWidth;
+      clientH = canvas.clientHeight;
+      canvas.width = clientW * dpr;
+      canvas.height = clientH * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(buildGrid, 150);
+    }, { passive: true });
+
+    resize();
+
+    function wake() {
+      if (isDormant) {
+        isDormant = false;
+        animId = requestAnimationFrame(render);
       }
-    });
-
-    document.addEventListener("rightai:language-change", () => {
-      if (activeAnchor) {
-        showTooltip(activeAnchor);
-      }
-    });
-
-    fetch("files/version.txt")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load version");
-        }
-
-        return response.text();
-      })
-      .then((text) => {
-        const trimmed = text.trim();
-        versionLabel = trimmed;
-        versionLoadFailed = !trimmed;
-
-        if (activeAnchor) {
-          showTooltip(activeAnchor);
-        }
-      })
-      .catch(() => {
-        versionLoadFailed = true;
-
-        if (activeAnchor) {
-          showTooltip(activeAnchor);
-        }
-      });
-  }
-
-  function setupBackToTopButton() {
-    const backToTopButton = document.querySelector("#back-to-top");
-    const arrow = backToTopButton?.querySelector("span") || null;
-
-    if (!backToTopButton || !arrow) {
-      return;
     }
 
-    let rafId = null;
-    let isVisible = false;
+    window.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      wake();
+    }, { passive: true });
 
-    const setArrowAngle = (degrees) => {
-      arrow.style.transform = `rotate(${degrees}deg)`;
-    };
+    let lastTime = 0;
+    const FRAME_INTERVAL = 1000 / 30;
 
-    const resetArrow = () => {
-      setArrowAngle(0);
-    };
-
-    const updateVisibility = () => {
-      rafId = null;
-      const shouldShow = (window.scrollY || window.pageYOffset || 0) > window.innerHeight;
-      backToTopButton.classList.toggle("is-visible", shouldShow);
-      isVisible = shouldShow;
-
-      if (!shouldShow) {
-        resetArrow();
-      }
-    };
-
-    const requestUpdate = () => {
-      if (rafId !== null) {
+    function render(time) {
+      if (!isIntersecting || time - lastTime < FRAME_INTERVAL) {
+        animId = requestAnimationFrame(render);
         return;
       }
+      lastTime = time - (time - lastTime) % FRAME_INTERVAL;
 
-      rafId = window.requestAnimationFrame(updateVisibility);
-    };
+      ctx.clearRect(0, 0, clientW, clientH);
 
-    backToTopButton.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: prefersReducedMotion() ? "auto" : "smooth",
-      });
-    });
+      const mx = mouse.x;
+      const my = mouse.y;
+      let maxVel = 0;
 
-    if (!prefersReducedMotion()) {
-      window.addEventListener("mousemove", (event) => {
-        if (!isVisible) {
-          return;
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 140 && dist > 0.1) {
+          const force = (1 - dist / 140) * 30;
+          p.vx += (dx / dist) * force * 0.1;
+          p.vy += (dy / dist) * force * 0.1;
         }
+        const rx = p.restX - p.x;
+        const ry = p.restY - p.y;
+        p.vx += 0.05 * rx;
+        p.vy += 0.05 * ry;
+        p.vx *= 0.85;
+        p.vy *= 0.85;
+        p.x += p.vx;
+        p.y += p.vy;
 
-        const rect = backToTopButton.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const deltaX = event.clientX - centerX;
-        const deltaY = event.clientY - centerY;
-        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI) + 90;
-
-        setArrowAngle(angle);
-      }, { passive: true });
-
-      document.documentElement.addEventListener("mouseleave", resetArrow);
-      window.addEventListener("blur", resetArrow);
-    }
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    requestUpdate();
-  }
-
-  function setupNavScrollEffect() {
-    const header = document.querySelector(".site-header");
-    if (!header) return;
-
-    let rafId = null;
-
-    const updateNav = () => {
-      rafId = null;
-      header.classList.toggle("is-scrolled", (window.scrollY || window.pageYOffset || 0) > 20);
-    };
-
-    const requestUpdate = () => {
-      if (rafId !== null) return;
-      rafId = window.requestAnimationFrame(updateNav);
-    };
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    requestUpdate();
-  }
-
-  function setupHeroCarousel() {
-    const track = document.querySelector(".carousel-track");
-    const dots = document.querySelector(".carousel-dots");
-    const controls = document.querySelector(".carousel-controls");
-    if (!track || !dots) return;
-
-    const images = Array.from(track.querySelectorAll("img"));
-    if (images.length < 2) return;
-
-    const reduceMotion = prefersReducedMotion();
-
-    let current = 0;
-    let interval = null;
-    let touchStartX = 0;
-
-    const show = (index) => {
-      images.forEach((img, i) => {
-        img.classList.toggle("is-active", i === index);
-      });
-      Array.from(dots.children).forEach((dot, i) => {
-        dot.classList.toggle("is-active", i === index);
-      });
-      current = index;
-    };
-
-    const start = () => {
-      stop();
-      if (reduceMotion) return;
-      interval = window.setInterval(() => {
-        show((current + 1) % images.length);
-      }, 3500);
-    };
-
-    const stop = () => {
-      if (interval) {
-        window.clearInterval(interval);
-        interval = null;
+        const vel = Math.abs(p.vx) + Math.abs(p.vy);
+        if (vel > maxVel) maxVel = vel;
       }
-    };
 
-    const prev = () => {
-      show((current - 1 + images.length) % images.length);
-    };
+      // Draw horizontal lines
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.lineWidth = 0.5;
 
-    const next = () => {
-      show((current + 1) % images.length);
-    };
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols - 1; c++) {
+          const p1 = points[r * cols + c];
+          const p2 = points[r * cols + c + 1];
+          const dx = p2.x - p1.x;
+          const dy = p2.y - p1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 20) continue;
+          const nx = dx / dist, ny = dy / dist;
+          ctx.beginPath();
+          ctx.moveTo(p1.x + 10 * nx, p1.y + 10 * ny);
+          ctx.lineTo(p2.x - 10 * nx, p2.y - 10 * ny);
+          ctx.stroke();
+        }
+      }
 
-    images.forEach((_, i) => {
-      const dot = document.createElement("button");
-      dot.setAttribute("type", "button");
-      dot.setAttribute("aria-label", `Slide ${i + 1} of ${images.length}`);
-      dot.addEventListener("click", () => {
-        show(i);
-        start();
-      });
-      dots.appendChild(dot);
-    });
+      // Draw vertical lines
+      for (let c = 0; c < cols; c++) {
+        for (let r = 0; r < rows - 1; r++) {
+          const p1 = points[r * cols + c];
+          const p2 = points[(r + 1) * cols + c];
+          const dx = p2.x - p1.x;
+          const dy = p2.y - p1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 20) continue;
+          const nx = dx / dist, ny = dy / dist;
+          ctx.beginPath();
+          ctx.moveTo(p1.x + 10 * nx, p1.y + 10 * ny);
+          ctx.lineTo(p2.x - 10 * nx, p2.y - 10 * ny);
+          ctx.stroke();
+        }
+      }
 
-    const prevButton = controls?.querySelector(".carousel-prev");
-    const nextButton = controls?.querySelector(".carousel-next");
+      // Draw square dots
+      ctx.fillStyle = "rgba(255, 255, 255, 0.16)";
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        let sz = 1.8;
+        let alpha = 0.16;
+        if (!isNaN(mx) && !isNaN(my)) {
+          const dx = p.x - mx;
+          const dy = p.y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const prox = Math.max(0, 1 - dist / 140);
+          sz = 1.8 + 2 * prox;
+          alpha = 0.16 + 0.4 * prox;
+        }
+        ctx.globalAlpha = alpha;
+        ctx.fillRect(p.x - sz, p.y - sz, sz * 2, sz * 2);
+      }
+      ctx.globalAlpha = 1;
 
-    prevButton?.addEventListener("click", () => {
-      prev();
-      start();
-    });
-    nextButton?.addEventListener("click", () => {
-      next();
-      start();
-    });
-
-    // Touch swipe support
-    track.addEventListener("pointerdown", (event) => {
-      touchStartX = event.clientX;
-    });
-    track.addEventListener("pointerup", (event) => {
-      if (touchStartX === 0) return;
-      const delta = event.clientX - touchStartX;
-      touchStartX = 0;
-      if (Math.abs(delta) < 40) return;
-      if (delta < 0) next();
-      else prev();
-      start();
-    });
-
-    // Pause autoplay while the tab is hidden
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stop();
+      if (maxVel < 0.01) {
+        isDormant = true;
       } else {
-        start();
-      }
-    });
-
-    // Pause on hover/focus, resume on leave/blur
-    track.addEventListener("pointerenter", stop);
-    track.addEventListener("pointerleave", () => {
-      if (!lightbox || lightbox.hidden) {
-        start();
-      }
-    });
-    track.addEventListener("focusin", stop);
-    track.addEventListener("focusout", () => {
-      if (!lightbox || lightbox.hidden) {
-        start();
-      }
-    });
-
-    show(0);
-    start();
-
-    // Lightbox: click the active slide to view it enlarged
-    const lightbox = document.querySelector(".lightbox");
-    const lightboxImage = document.querySelector("#lightbox-image");
-    const lightboxCaption = document.querySelector("#lightbox-caption");
-
-    if (!lightbox || !lightboxImage || !lightboxCaption) return;
-
-    let previousFocusedNode = null;
-
-    const renderLightbox = (index) => {
-      const img = images[index];
-      if (!img) return;
-      lightboxImage.src = img.getAttribute("src") || "";
-      lightboxImage.alt = img.getAttribute("alt") || "";
-      lightboxCaption.textContent = `${index + 1} / ${images.length}`;
-    };
-
-    const openLightbox = (index) => {
-      previousFocusedNode = document.activeElement;
-      show(index);
-      renderLightbox(index);
-      stop();
-      lightbox.hidden = false;
-      document.body.classList.add("modal-open");
-      const closeButton = lightbox.querySelector(".lightbox-close");
-      if (closeButton) closeButton.focus();
-      document.addEventListener("keydown", onLightboxKeydown);
-    };
-
-    const closeLightbox = () => {
-      lightbox.hidden = true;
-      document.body.classList.remove("modal-open");
-      document.removeEventListener("keydown", onLightboxKeydown);
-      start();
-      if (previousFocusedNode && typeof previousFocusedNode.focus === "function") {
-        previousFocusedNode.focus();
-      }
-      previousFocusedNode = null;
-    };
-
-    const navigateLightbox = (step) => {
-      const next = (current + step + images.length) % images.length;
-      show(next);
-      renderLightbox(next);
-    };
-
-    function onLightboxKeydown(event) {
-      if (event.key === "Escape") {
-        closeLightbox();
-      } else if (event.key === "ArrowLeft") {
-        navigateLightbox(-1);
-      } else if (event.key === "ArrowRight") {
-        navigateLightbox(1);
-      } else if (event.key === "Tab") {
-        trapFocus(lightbox, event);
+        animId = requestAnimationFrame(render);
       }
     }
 
-    images.forEach((img) => {
-      img.addEventListener("click", () => {
-        if (!img.classList.contains("is-active")) return;
-        openLightbox(current);
-      });
-    });
+    animId = requestAnimationFrame(render);
 
-    lightbox.addEventListener("click", (event) => {
-      if (event.target.closest("[data-lightbox-close]")) {
-        closeLightbox();
-        return;
-      }
-
-      const nav = event.target.closest(".lightbox-nav");
-      if (nav) {
-        navigateLightbox(nav.classList.contains("lightbox-prev") ? -1 : 1);
-        return;
-      }
-
-      if (!event.target.closest(".lightbox-dialog")) {
-        closeLightbox();
-      }
-    });
+    const observer = new IntersectionObserver((entries) => {
+      isIntersecting = entries[0].isIntersecting;
+      if (isIntersecting) wake();
+    }, { threshold: 0 });
+    observer.observe(canvas);
   }
 
-  function setupHeroSticker() {
-    const sticker = document.querySelector("#hero-sticker");
-    if (!sticker) return;
+  /* ==========================================================================
+     Interactive 3D Right AI Particle Logo (Disperse & Reform on Mouse)
+     ========================================================================== */
+  function initRightAiParticleLogo(THREE) {
+    const canvas = document.getElementById("hero-logo-particle-canvas");
+    if (!canvas) return;
 
-    customElements.whenDefined("sticker-forge").then(() => {
-      const sheet = new CSSStyleSheet();
-      sheet.replaceSync(":host, :host * { outline: none !important; }");
-      sticker.shadowRoot?.adoptedStyleSheets.push(sheet);
-      sticker.setOptions({
-        outline: { width: 18, color: "#ffffff" },
-        shadow: { opacity: 0.22, blur: 22, distance: 16, angle: 42 },
-        peel: { radius: 0.12, stiffness: 0.72, maxAngle: 3.55, release: "snap" },
-        sound: { enabled: true, volume: 0.68 },
-        back: { color: "#f7f5f2", gloss: 0.7, roughness: 0.3 },
-        tilt: -3,
-        wind: 0.25,
-      });
+    if (window.innerWidth < 768) return;
 
-      const updateText = () => {
-        const lang = getCurrentLanguage();
-        const title = translateKey("hero.title", lang).replace(/[！!]$/, "");
-        sticker.setSource({
-          type: "text",
-          richText: {
-            blocks: [
-              {
-                align: "center",
-                runs: [
-                  { text: title, fontSize: 96, fontWeight: 900, color: "#19191d" },
-                ],
-              },
-              {
-                align: "center",
-                runs: [
-                  { text: " @Right AI", fontSize: 40, fontWeight: 700, color: "#19191d" },
-                ],
-              },
-            ],
-          },
-          fontFamily: "Arial Rounded MT Bold, Arial Black, sans-serif",
-        });
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = "assets/rightai-icon.png";
+
+    img.onload = () => {
+      const targetSize = 60;
+      const offCanvas = document.createElement("canvas");
+      offCanvas.width = targetSize;
+      offCanvas.height = targetSize;
+      const offCtx = offCanvas.getContext("2d");
+      offCtx.clearRect(0, 0, targetSize, targetSize);
+
+      const r = Math.min(targetSize / img.width, targetSize / img.height);
+      const w = img.width * r;
+      const h = img.height * r;
+      offCtx.drawImage(img, (targetSize - w) / 2, (targetSize - h) / 2, w, h);
+
+      const imgData = offCtx.getImageData(0, 0, targetSize, targetSize);
+      const luma = new Float32Array(targetSize * targetSize);
+      for (let i = 0; i < targetSize * targetSize; i++) {
+        const p = 4 * i;
+        const alpha = imgData.data[p + 3] / 255;
+        luma[i] = alpha > 0.2 ? alpha : 0;
+      }
+
+      const isIsolated = (x, y) => {
+        for (let dy = -2; dy <= 2; dy++) {
+          for (let dx = -2; dx <= 2; dx++) {
+            if (dx === 0 && dy === 0) continue;
+            const nx = x + dx, ny = y + dy;
+            if (nx >= 0 && ny >= 0 && nx < targetSize && ny < targetSize && luma[ny * targetSize + nx] > 0.2) {
+              return false;
+            }
+          }
+        }
+        return true;
       };
 
-      updateText();
-      document.addEventListener("rightai:language-change", updateText);
+      const positions = [];
+      const scatteredPositions = [];
+      const opacities = [];
+      const edges = [];
+      const half = targetSize / 2;
 
-      sticker.addEventListener("peelend", () => {
-        setTimeout(() => sticker.reset(), 1500);
+      for (let y = 0; y < targetSize; y++) {
+        for (let x = 0; x < targetSize; x++) {
+          const val = luma[y * targetSize + x];
+          if (val > 0.2 && !isIsolated(x, y)) {
+            const posX = (x - half) * 0.18;
+            const posY = (half - y) * 0.18;
+            positions.push(posX, posY, 0);
+            opacities.push(val);
+
+            let edgeCount = 0;
+            for (let dy = -1; dy <= 1; dy++) {
+              for (let dx = -1; dx <= 1; dx++) {
+                if (dx === 0 && dy === 0) continue;
+                const nx = x + dx, ny = y + dy;
+                if (nx < 0 || ny < 0 || nx >= targetSize || ny >= targetSize || luma[ny * targetSize + nx] <= 0.2) {
+                  edgeCount++;
+                }
+              }
+            }
+            edges.push(edgeCount / 8);
+
+            const phi = Math.random() * Math.PI * 2;
+            const theta = Math.acos(2 * Math.random() - 1);
+            const dist = 3.5 * (0.4 + 0.6 * Math.random());
+            scatteredPositions.push(
+              Math.sin(theta) * Math.cos(phi) * dist,
+              Math.sin(theta) * Math.sin(phi) * dist,
+              Math.cos(theta) * dist * 0.5
+            );
+          }
+        }
+      }
+
+      const count = positions.length / 3;
+      if (count === 0) return;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: "low-power"
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      renderer.setSize(800, 800);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+      camera.position.set(0, 0, 18);
+
+      const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.018);
+      const indexArray = new Float32Array(count);
+      for (let i = 0; i < count; i++) indexArray[i] = i;
+
+      geometry.setAttribute("aOpacity", new THREE.InstancedBufferAttribute(new Float32Array(opacities), 1));
+      geometry.setAttribute("aIndex", new THREE.InstancedBufferAttribute(indexArray, 1));
+      geometry.setAttribute("aScattered", new THREE.InstancedBufferAttribute(new Float32Array(scatteredPositions), 3));
+      geometry.setAttribute("aEdge", new THREE.InstancedBufferAttribute(new Float32Array(edges), 1));
+
+      const material = new THREE.ShaderMaterial({
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        vertexShader: `
+          attribute float aOpacity;
+          attribute float aIndex;
+          attribute float aEdge;
+          attribute vec3 aScattered;
+
+          uniform float uTime;
+          uniform float uWaveSpeed;
+          uniform float uWaveAmount;
+          uniform vec2 uMouse;
+          uniform float uMouseRadius;
+          uniform float uMouseStrength;
+          uniform float uMouseDistort;
+          uniform float uAssembly;
+          uniform float uLoose;
+          uniform float uScatter;
+          uniform vec3 uLightPos;
+          uniform float uLightRange;
+          uniform float uShadeMin;
+          uniform float uShadeMax;
+
+          varying float vOpacity;
+          varying vec3 vWorldPos;
+          varying float vAssembly;
+          varying float vLight;
+
+          void main() {
+            vOpacity = aOpacity;
+            vAssembly = uAssembly;
+
+            vec3 targetCenter = (instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+            vec3 localOffset = (instanceMatrix * vec4(position, 1.0)).xyz - targetCenter;
+            vec3 scatteredCenter = aScattered;
+
+            float assembly = smoothstep(0.0, 1.0, uAssembly);
+            vec3 center = mix(scatteredCenter, targetCenter, assembly);
+            vec3 pos = center + localOffset;
+            vWorldPos = center;
+
+            // Idle looseness
+            float loose = uLoose * mix(0.25, 1.0, aEdge) * assembly;
+            if (loose > 0.001) {
+              vec3 jitter = vec3(
+                fract(sin(aIndex * 12.9898) * 43758.5453) - 0.5,
+                fract(sin(aIndex * 78.2330) * 12543.1230) - 0.5,
+                fract(sin(aIndex * 39.4250) * 26711.7700) - 0.5
+              );
+              pos += jitter * 0.05 * loose;
+              pos.x += sin(uTime * 0.50 + aIndex * 0.53) * 0.06 * loose;
+              pos.y += cos(uTime * 0.42 + aIndex * 0.71) * 0.06 * loose;
+              pos.z += sin(uTime * 0.36 + aIndex * 0.91) * 0.08 * loose;
+            }
+
+            // Scroll dispersion
+            if (uScatter > 0.001) {
+              float disperse = uScatter * mix(0.5, 1.0, aEdge);
+              pos += (scatteredCenter - center) * disperse;
+              pos.z += sin(uTime * 0.6 + aIndex * 0.3) * disperse * 0.6;
+            }
+
+            // Wave ripple from center
+            if (assembly > 0.95) {
+              float effectStrength = (assembly - 0.95) * 20.0;
+              float dist = length(center.xy);
+              float waveFade = smoothstep(0.0, 3.0, dist);
+              float wave = sin(dist * 3.0 - uTime * uWaveSpeed) * uWaveAmount * effectStrength * waveFade;
+              pos.z += wave;
+            }
+
+            // Mouse scatter
+            if (assembly > 0.8) {
+              float mouseEffect = (assembly - 0.8) * 5.0;
+              vec2 toMouse = center.xy - uMouse;
+              float mouseDist = length(toMouse);
+
+              if (mouseDist < uMouseRadius && mouseDist > 0.001) {
+                float t = 1.0 - mouseDist / uMouseRadius;
+                float force = t * t * t * mouseEffect * uMouseStrength;
+
+                vec2 radialDir = toMouse / mouseDist;
+                float noiseAngle = sin(aIndex * 0.37 + uTime * 0.5) * uMouseDistort;
+                float ca = cos(noiseAngle);
+                float sa = sin(noiseAngle);
+                vec2 pushDir = vec2(radialDir.x * ca - radialDir.y * sa, radialDir.x * sa + radialDir.y * ca);
+
+                pos.xy += pushDir * force * 2.0;
+                pos.z += sin(aIndex * 1.7 + uTime) * force * 0.8;
+              }
+            }
+
+            // Scatter floating
+            if (assembly < 0.9) {
+              float scatter = smoothstep(0.9, 0.0, assembly);
+              pos.x += sin(uTime * 0.5 + aIndex * 0.1) * 0.2 * scatter;
+              pos.y += cos(uTime * 0.4 + aIndex * 0.07) * 0.2 * scatter;
+              pos.z += sin(uTime * 0.3 + aIndex * 0.13) * 0.15 * scatter;
+            }
+
+            vec4 worldPos = modelMatrix * vec4(pos, 1.0);
+            float lightDist = distance(worldPos.xyz, uLightPos);
+            float lit = clamp(1.0 - lightDist / uLightRange, 0.0, 1.0);
+            vLight = mix(uShadeMin, uShadeMax, lit * lit);
+
+            vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+            gl_Position = projectionMatrix * mvPosition;
+          }
+        `,
+        fragmentShader: `
+          varying float vOpacity;
+          varying vec3 vWorldPos;
+          varying float vAssembly;
+          varying float vLight;
+
+          uniform float uTime;
+          uniform vec3 uColor;
+
+          void main() {
+            float dist = length(vWorldPos.xy);
+            float glow = smoothstep(8.0, 0.0, dist) * 0.3 * vAssembly;
+
+            float baseAlpha = mix(0.45, 0.75, vAssembly);
+            float alpha = vOpacity * (baseAlpha + glow);
+            float shimmer = sin(uTime * 1.5 + vWorldPos.x * 5.0 + vWorldPos.y * 3.0) * 0.1 + 0.9;
+            alpha *= shimmer * min(vLight, 1.0);
+
+            vec3 color = (uColor + glow * vec3(0.2, 0.3, 0.5)) * vLight;
+            color = mix(color, color * vec3(1.07, 1.02, 0.94), clamp(vLight - 1.0, 0.0, 1.0));
+            gl_FragColor = vec4(color, alpha);
+          }
+        `,
+        uniforms: {
+          uTime: { value: 0 },
+          uWaveSpeed: { value: 1.5 },
+          uWaveAmount: { value: 0.06 },
+          uLightPos: { value: new THREE.Vector3(4.5, 5.5, 3.0) },
+          uLightRange: { value: 14.0 },
+          uShadeMin: { value: 0.28 },
+          uShadeMax: { value: 2.79 },
+          uColor: { value: new THREE.Color(0.75, 0.8, 0.9) },
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uMouseRadius: { value: 4.9 },
+          uMouseStrength: { value: 0.8 },
+          uMouseDistort: { value: 5.0 },
+          uAssembly: { value: 0 },
+          uLoose: { value: 1.0 },
+          uScatter: { value: 0 }
+        }
+      });
+
+      const mesh = new THREE.InstancedMesh(geometry, material, count);
+      mesh.frustumCulled = false;
+
+      const dummy = new THREE.Object3D();
+      for (let i = 0; i < count; i++) {
+        dummy.position.set(positions[3 * i], positions[3 * i + 1], positions[3 * i + 2]);
+        const s = 0.5 + Math.random();
+        dummy.scale.set(s, s, s);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+
+      const group = new THREE.Group();
+      group.add(mesh);
+      scene.add(group);
+
+      let mouseActive = false;
+      const targetMouse = new THREE.Vector2(0, 0);
+      const smoothMouse = new THREE.Vector2(0, 0);
+      const invMatrix = new THREE.Matrix4();
+      const projectedMouse = new THREE.Vector3();
+
+      const vFOV = (camera.fov * Math.PI) / 180;
+      const vHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
+      const vWidth = vHeight * camera.aspect;
+
+      window.addEventListener("mousemove", (e) => {
+        mouseActive = true;
+        const rect = canvas.getBoundingClientRect();
+        const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+        targetMouse.x = (nx * vWidth) * 0.5;
+        targetMouse.y = (ny * vHeight) * 0.5;
+      }, { passive: true });
+
+      window.addEventListener("mouseleave", () => {
+        mouseActive = false;
+      });
+
+      let scrollFactor = 0;
+      window.addEventListener("scroll", () => {
+        scrollFactor = Math.min(1, window.scrollY / window.innerHeight);
+      }, { passive: true });
+
+      let isVisible = true;
+      const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      observer.observe(canvas);
+
+      const clock = new THREE.Clock();
+      let animTime = 0;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isVisible) return;
+
+        const delta = clock.getDelta();
+        animTime += delta;
+
+        const I = animTime - 0.3;
+        const L = Math.max(0, Math.min(1, I / 2.5));
+        const D = 1 - Math.pow(1 - L, 3);
+
+        material.uniforms.uTime.value = animTime;
+        material.uniforms.uAssembly.value = D;
+        material.uniforms.uLoose.value = 1.0;
+        material.uniforms.uScatter.value = 1.6 * Math.min(1, 1.5 * scrollFactor);
+
+        const targetStrength = mouseActive ? 0.8 : 0.0;
+        let currStrength = material.uniforms.uMouseStrength.value;
+        material.uniforms.uMouseStrength.value += (targetStrength - currStrength) * (1 - Math.pow(0.05, delta));
+
+        smoothMouse.x += (targetMouse.x - smoothMouse.x) * 0.2;
+        smoothMouse.y += (targetMouse.y - smoothMouse.y) * 0.2;
+
+        invMatrix.copy(group.matrixWorld).invert();
+        projectedMouse.set(smoothMouse.x, smoothMouse.y, 0);
+        projectedMouse.applyMatrix4(invMatrix);
+        material.uniforms.uMouse.value.set(projectedMouse.x, projectedMouse.y);
+
+        const P = D * Math.max(0, 1 - 1.5 * scrollFactor);
+        material.uniforms.uColor.value.setRGB(0.75 * P, 0.8 * P, 0.9 * P);
+
+        group.rotation.z = animTime * ((1 - D) * 0.3) + 0.04 * Math.sin(0.25 * animTime);
+        group.rotation.x = 0.05 * Math.sin(0.08 * animTime * 0.7);
+        group.rotation.y = 0.1 * Math.sin(0.08 * animTime);
+        group.position.y = 0.15 * Math.sin(0.4 * animTime);
+        group.scale.setScalar((0.75 + 0.25 * D) * (1 - 0.5 * scrollFactor));
+        group.position.y += 2.5 * scrollFactor;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    };
+  }
+
+  /* ==========================================================================
+     Sticky Showcase Step Switcher
+     ========================================================================== */
+  function initStickyShowcase() {
+    const stepItems = document.querySelectorAll(".ds-step-item");
+    const slides = [
+      document.getElementById("slide-1"),
+      document.getElementById("slide-2"),
+      document.getElementById("slide-3")
+    ];
+
+    if (!stepItems.length) return;
+
+    let isManual = false;
+    let manualTimer = null;
+
+    function activateStep(index) {
+      stepItems.forEach((item, i) => {
+        item.classList.toggle("is-active", i === index);
+      });
+
+      slides.forEach((slide, i) => {
+        if (slide) {
+          slide.classList.toggle("is-active", i === index);
+        }
+      });
+    }
+
+    stepItems.forEach((item, i) => {
+      item.addEventListener("click", () => {
+        isManual = true;
+        activateStep(i);
+        clearTimeout(manualTimer);
+        manualTimer = setTimeout(() => {
+          isManual = false;
+        }, 1200);
+      });
+    });
+
+    // Scroll trigger for steps
+    const observer = new IntersectionObserver((entries) => {
+      if (isManual) return;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const stepIndex = parseInt(entry.target.getAttribute("data-step"), 10) - 1;
+          if (!isNaN(stepIndex)) {
+            activateStep(stepIndex);
+          }
+        }
+      });
+    }, { threshold: 0.55 });
+
+    stepItems.forEach((item) => observer.observe(item));
+  }
+
+  /* ==========================================================================
+     Terminal Tabs & Copy to Clipboard
+     ========================================================================== */
+  function initTerminal() {
+    const tabButtons = document.querySelectorAll("[data-term-tab]");
+    const codeSnippet = document.getElementById("hero-code-snippet");
+    const heroCopyBtn = document.getElementById("hero-copy-btn");
+
+    const commands = {
+      npx: "npx @right-ai/omni web",
+      npm: "npm install -g @right-ai/omni",
+      curl: "curl -fsSL https://raw.githubusercontent.com/jacksonon/omni/main/scripts/install.sh | sh"
+    };
+
+    let currentTab = "npx";
+
+    function setTab(tab) {
+      if (!commands[tab]) return;
+      currentTab = tab;
+      tabButtons.forEach((btn) => {
+        const isActive = btn.getAttribute("data-term-tab") === tab;
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+      if (codeSnippet) {
+        codeSnippet.innerHTML = `<span class="ds-code-prompt">$ </span>${commands[tab]}`;
+      }
+    }
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tab = btn.getAttribute("data-term-tab");
+        if (tab) setTab(tab);
+      });
+    });
+
+    // Copy handlers
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const label = btn.querySelector(".copy-text");
+        if (label) {
+          const oldText = label.textContent;
+          const currentLang = getCurrentLanguage();
+          label.textContent = currentLang === "zh" ? "已复制" : "Copied!";
+          btn.style.color = "var(--ds-color-brand)";
+          setTimeout(() => {
+            label.textContent = oldText;
+            btn.style.color = "";
+          }, 2000);
+        }
+      }).catch(() => {});
+    }
+
+    heroCopyBtn?.addEventListener("click", () => {
+      copyText(commands[currentTab], heroCopyBtn);
+    });
+
+    document.querySelectorAll("[data-copy-val]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const val = btn.getAttribute("data-copy-val");
+        if (val) copyText(val, btn);
       });
     });
   }
 
-  const GISCUS_LANGUAGE_MAP = {
-  en: "en",
-  ru: "ru",
-  zh: "zh-CN",
-  "zh-Hant": "zh-TW",
-  ja: "ja",
-  ko: "ko",
-};
+  /* ==========================================================================
+     Card Spotlight Mouse Tracker
+     ========================================================================== */
+  function initCardSpotlight() {
+    const cards = document.querySelectorAll(".ds-pillar-card, .ds-start-card, .footer-link");
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty("--spotlight-x", `${x}px`);
+        card.style.setProperty("--spotlight-y", `${y}px`);
+      }, { passive: true });
+    });
+  }
+
+  /* ==========================================================================
+     Video Player
+     ========================================================================== */
+  function initVideoPlayer() {
+    const video = document.getElementById("demo-video-el");
+    const overlay = document.getElementById("demo-play-overlay");
+    if (!video || !overlay) return;
+
+    overlay.addEventListener("click", () => {
+      overlay.classList.add("is-hidden");
+      video.play().catch(() => {});
+    });
+
+    video.addEventListener("pause", () => {
+      if (!video.seeking) {
+        overlay.classList.remove("is-hidden");
+      }
+    });
+
+    video.addEventListener("play", () => {
+      overlay.classList.add("is-hidden");
+    });
+  }
+
+  /* ==========================================================================
+     Cursor Blend Ring
+     ========================================================================== */
+  function initCursorRing() {
+    const ring = document.getElementById("cursor-ring");
+    if (!ring || window.matchMedia("(hover: none)").matches) return;
+
+    let targetX = -100;
+    let targetY = -100;
+    let currentX = -100;
+    let currentY = -100;
+    let visible = false;
+
+    window.addEventListener("mousemove", (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!visible) {
+        visible = true;
+        ring.style.opacity = "1";
+      }
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", () => {
+      visible = false;
+      ring.style.opacity = "0";
+    });
+
+    // Blend trigger on interactive elements
+    const interactiveSelector = "a, button, [role='button'], .ds-step-item, .ds-terminal-tab, .footer-link";
+    document.querySelectorAll(interactiveSelector).forEach((el) => {
+      el.addEventListener("mouseenter", () => ring.classList.add("is-blend"));
+      el.addEventListener("mouseleave", () => ring.classList.remove("is-blend"));
+    });
+
+    function tick() {
+      currentX += (targetX - currentX) * 0.25;
+      currentY += (targetY - currentY) * 0.25;
+      ring.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ==========================================================================
+     Scroll Reveal & Navigation Scrollspy
+     ========================================================================== */
+  function initScrollEffects() {
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.05, rootMargin: "0px 0px 140px 0px" });
+    reveals.forEach((el) => {
+      observer.observe(el);
+      // Immediately reveal if already in view
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-visible");
+      }
+    });
+
+    // Mobile menu drawer toggle
+    const mobileBtn = document.getElementById("mobile-menu-btn");
+    const mobileDrawer = document.getElementById("mobile-drawer");
+    mobileBtn?.addEventListener("click", () => {
+      mobileDrawer?.classList.toggle("is-open");
+    });
+    mobileDrawer?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => mobileDrawer?.classList.remove("is-open"));
+    });
+
+    // Header background blur on scroll
+    const header = document.querySelector(".ds-header-wrapper");
+    const updateHeaderScroll = () => {
+      if (window.scrollY > 30) {
+        header?.classList.add("is-scrolled");
+      } else {
+        header?.classList.remove("is-scrolled");
+      }
+    };
+    window.addEventListener("scroll", updateHeaderScroll, { passive: true });
+    updateHeaderScroll();
+
+    // Back to top button
+    const backBtn = document.getElementById("back-to-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 360) {
+        backBtn?.classList.add("is-visible");
+      } else {
+        backBtn?.classList.remove("is-visible");
+      }
+    }, { passive: true });
+    backBtn?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  /* ==========================================================================
+     Theme Toggle (Dark / Light)
+     ========================================================================== */
+  function initThemeToggle() {
+    const toggleBtn = document.getElementById("theme-toggle");
+    toggleBtn?.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      document.body.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, next);
+      } catch (e) {}
+      document.dispatchEvent(new CustomEvent("rightai:theme-change", { detail: { theme: next } }));
+    });
+  }
+
+  /* ==========================================================================
+     MANDATORY SECTION 1: Giscus Discussions
+     ========================================================================== */
+  const GISCUS_LANG_MAP = {
+    zh: "zh-CN",
+    en: "en",
+    "zh-Hant": "zh-TW",
+    ja: "ja",
+    ko: "ko",
+    ru: "ru"
+  };
 
   function setupGiscus() {
     const container = document.querySelector(".giscus");
-
-    if (!container) {
-      return;
-    }
-
-    const getGiscusLanguage = () => GISCUS_LANGUAGE_MAP[getCurrentLanguage()] || "en";
+    if (!container) return;
 
     const getGiscusTheme = () => {
-      const mode = document.body?.getAttribute("data-theme-mode") || "system";
-
-      if (mode === "dark") {
-        return "dark";
-      }
-
-      if (mode === "light") {
-        return "light";
-      }
-
-      return "preferred_color_scheme";
+      const theme = document.documentElement.getAttribute("data-theme") || "dark";
+      return theme === "dark" ? "transparent_dark" : "light";
     };
 
-    const loadGiscus = () => {
-      if (container.dataset.loaded) {
-        return;
-      }
+    const getGiscusLang = () => {
+      const lang = getCurrentLanguage();
+      return GISCUS_LANG_MAP[lang] || "en";
+    };
 
+    if (!container.dataset.loaded) {
       container.dataset.loaded = "true";
-
       const script = document.createElement("script");
       script.src = "https://giscus.app/client.js";
       script.setAttribute("data-repo", "jacksonon/jacksonon.github.io");
@@ -2220,99 +1623,153 @@
       script.setAttribute("data-emit-metadata", "0");
       script.setAttribute("data-input-position", "bottom");
       script.setAttribute("data-theme", getGiscusTheme());
-      script.setAttribute("data-lang", getGiscusLanguage());
+      script.setAttribute("data-lang", getGiscusLang());
       script.setAttribute("crossorigin", "anonymous");
       script.async = true;
       container.appendChild(script);
-    };
-
-    const syncGiscusConfig = () => {
-      const frame = container.querySelector("iframe.giscus-frame");
-
-      if (!frame) {
-        return;
-      }
-
-      frame.contentWindow.postMessage(
-        {
-          giscus: {
-            setConfig: {
-              lang: getGiscusLanguage(),
-              theme: getGiscusTheme(),
-            },
-          },
-        },
-        "https://giscus.app"
-      );
-    };
-
-    loadGiscus();
-    document.addEventListener("rightai:language-change", syncGiscusConfig);
-    document.addEventListener("rightai:theme-change", syncGiscusConfig);
-  }
-
-  function setupScrollSpy() {
-    const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-    if (navLinks.length === 0) return;
-
-    const sections = navLinks
-      .map((link) => {
-        const selector = link.getAttribute("href");
-        if (!selector || selector === "#") return null;
-        try {
-          return document.querySelector(selector);
-        } catch (_error) {
-          return null;
-        }
-      })
-      .filter(Boolean);
-
-    if (sections.length === 0) return;
-
-    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
-      return;
     }
 
-    const linkBySection = new Map();
-    sections.forEach((section, i) => linkBySection.set(section, navLinks[i]));
-
-    const setActive = (section) => {
-      navLinks.forEach((link) => link.classList.remove("is-active"));
-      linkBySection.get(section)?.classList.add("is-active");
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Only the last section entering the viewport top area wins
-        let latest = null;
-        for (const entry of entries) {
-          if (entry.isIntersecting) latest = entry.target;
+    function syncGiscus() {
+      const frame = container.querySelector("iframe.giscus-frame");
+      if (!frame) return;
+      frame.contentWindow?.postMessage({
+        giscus: {
+          setConfig: {
+            lang: getGiscusLang(),
+            theme: getGiscusTheme()
+          }
         }
-        if (latest) setActive(latest);
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
-    );
+      }, "https://giscus.app");
+    }
 
-    sections.forEach((section) => observer.observe(section));
+    document.addEventListener("rightai:language-change", syncGiscus);
+    document.addEventListener("rightai:theme-change", syncGiscus);
   }
 
-  function initHomeInteractions() {
-    setupNavScrollEffect();
-    setupLanguageSwitcher();
-    setupThemeToggle();
+  /* ==========================================================================
+     Donate Modal
+     ========================================================================== */
+  function initDonateModal() {
+    const modal = document.getElementById("donate-modal");
+    if (!modal) return;
+
+    function openModal() {
+      modal.hidden = false;
+    }
+    function closeModal() {
+      modal.hidden = true;
+    }
+
+    document.querySelectorAll(".donate-trigger").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    modal.querySelectorAll("[data-close]").forEach((btn) => {
+      btn.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.hidden) {
+        closeModal();
+      }
+    });
+  }
+
+  /* ==========================================================================
+     GitHub Release Tag Fetcher
+     ========================================================================== */
+  function initReleaseTag() {
+    const badge = document.getElementById("header-release-badge");
+
+    fetch("https://api.github.com/repos/jacksonon/omni/releases/latest")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch release");
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data.tag_name) {
+          const tag = data.tag_name;
+          if (badge) badge.textContent = tag;
+          TRANSLATIONS.zh["hero.badge"] = tag;
+          TRANSLATIONS.en["hero.badge"] = tag;
+        }
+        if (data && data.html_url) {
+          document.querySelectorAll('a[href*="github.com/jacksonon/omni/releases"]').forEach((btn) => {
+            btn.href = data.html_url;
+          });
+        }
+      })
+      .catch(() => {
+        // Fallback to static tag and releases/latest
+      });
+  }
+
+  /* ==========================================================================
+     Lightbox Image Preview
+     ========================================================================== */
+  function initLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const imgEl = document.getElementById("lightbox-image");
+    const captionEl = document.getElementById("lightbox-caption");
+    if (!lightbox || !imgEl) return;
+
+    function open(src, caption) {
+      imgEl.src = src;
+      imgEl.alt = caption || "";
+      if (captionEl) captionEl.textContent = caption || "";
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      lightbox.hidden = true;
+      imgEl.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".ds-showcase-slide img").forEach((img) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => {
+        open(img.src, img.alt);
+      });
+    });
+
+    lightbox.querySelectorAll("[data-lightbox-close]").forEach((el) => {
+      el.addEventListener("click", close);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightbox.hidden) close();
+    });
+  }
+
+  /* ==========================================================================
+     Initialize All
+     ========================================================================== */
+  document.addEventListener("DOMContentLoaded", () => {
+    initI18n();
+    initReleaseTag();
+    initHeroShader();
+    initHeroParticleMesh();
+    import("./assets/three.module.js")
+      .then((THREE) => {
+        initRightAiParticleLogo(THREE);
+      })
+      .catch((err) => {
+        console.warn("Three.js particle logo load error:", err);
+      });
+    initStickyShowcase();
+    initLightbox();
+    initTerminal();
+    initCardSpotlight();
+    initVideoPlayer();
+    initCursorRing();
+    initScrollEffects();
+    initThemeToggle();
     setupGiscus();
-    setupScrollProgress();
-    setupScrollSpy();
-    setupHeroSticker();
-    setupHeroCarousel();
-    setupCursorGlow();
-    setupRevealOnScroll();
-    setupFeatureTabs();
-    setupTiltCards();
-    setupDonateModal();
-    setupDownloadVersionTooltip();
-    setupBackToTopButton();
-  }
-
-  onReady(initHomeInteractions);
+    initDonateModal();
+  });
 })();
