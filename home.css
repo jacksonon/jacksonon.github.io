@@ -298,6 +298,19 @@ code, pre {
   display: none !important;
 }
 
+#header-release-container {
+  display: none !important;
+}
+
+#header-release-container.is-visible {
+  display: inline-flex !important;
+}
+
+#header-release-badge:empty,
+#header-release-container:has(#header-release-badge:empty) {
+  display: none !important;
+}
+
 .ds-gradient-badge span {
   display: inline-block;
   padding: 5px 10px 4px;
@@ -472,7 +485,9 @@ code, pre {
 }
 
 @media (max-width: 560px) {
-  .ds-gradient-badge {
+  .ds-gradient-badge,
+  #header-release-container,
+  #header-release-container.is-visible {
     display: none !important;
   }
 }

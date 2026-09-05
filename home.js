@@ -1684,6 +1684,13 @@ void main(){
   function initReleaseTag() {
     const badge = document.getElementById("header-release-badge");
     const container = document.getElementById("header-release-container");
+    if (!container) return;
+
+    // Ensure hidden by default on initialization
+    container.setAttribute("hidden", "");
+    container.style.display = "none";
+    container.classList.remove("is-visible");
+    if (badge) badge.textContent = "";
 
     fetch("https://api.github.com/repos/jacksonon/omni/releases/latest")
       .then((res) => {
@@ -1691,14 +1698,19 @@ void main(){
         return res.json();
       })
       .then((data) => {
-        if (data && data.tag_name) {
-          const tag = data.tag_name;
+        const tag = data && data.tag_name ? String(data.tag_name).trim() : "";
+        if (tag) {
           if (badge) badge.textContent = tag;
-          if (container) container.removeAttribute("hidden");
+          container.removeAttribute("hidden");
+          container.style.display = "inline-flex";
+          container.classList.add("is-visible");
           TRANSLATIONS.zh["hero.badge"] = tag;
           TRANSLATIONS.en["hero.badge"] = tag;
         } else {
-          if (container) container.setAttribute("hidden", "");
+          container.setAttribute("hidden", "");
+          container.style.display = "none";
+          container.classList.remove("is-visible");
+          if (badge) badge.textContent = "";
         }
         if (data && data.html_url) {
           document.querySelectorAll('a[href*="github.com/jacksonon/omni/releases"]').forEach((btn) => {
@@ -1707,8 +1719,11 @@ void main(){
         }
       })
       .catch(() => {
-        // When release tag cannot be fetched, do not display any default badge
-        if (container) container.setAttribute("hidden", "");
+        // When release tag cannot be fetched, do not display any default badge or background
+        container.setAttribute("hidden", "");
+        container.style.display = "none";
+        container.classList.remove("is-visible");
+        if (badge) badge.textContent = "";
       });
   }
 
