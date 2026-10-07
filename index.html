@@ -68,7 +68,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script defer src="home.js?v=20260905v3"></script>
+    <script defer src="home.js?v=20261007"></script>
   </head>
   <body data-theme="dark" data-language="zh">
     <a class="skip-link" href="#main-content" data-i18n="skip.link">跳至主要内容</a>
@@ -84,8 +84,8 @@
             <img src="assets/rightai-icon.png" alt="Right AI Omni" width="30" height="30" />
           </div>
           <span class="ds-brand-title">Right AI Omni</span>
-          <span class="ds-gradient-badge" id="header-release-container">
-            <span id="header-release-badge">v0.7.20</span>
+          <span class="ds-gradient-badge" id="header-release-container" hidden>
+            <span id="header-release-badge"></span>
           </span>
           <span class="ds-gradient-badge ds-brand-harness-badge" id="header-harness-badge">
             <span>Harness</span>
@@ -377,14 +377,14 @@
         </div>
       </section>
 
-      <!-- Section 2: Sticky Interactive Showcase ("系统架构：8 工具链路、生命周期 Hooks 与多端协同") -->
+      <!-- Section 2: Sticky Interactive Showcase ("系统架构：TUI / Web / mini CLI / Electron 四端协同与 8 工具链路") -->
       <section class="ds-section ds-container" id="architecture">
         <div class="reveal">
           <span class="ds-gradient-badge">
             <span data-i18n="feat.eyebrow">系统架构</span>
           </span>
           <h2 class="ds-text-heading1 text-ds-primary mt-4 mb-2" data-i18n="feat.title">
-            分层设计、全屏 TUI 与 Web 多端协同
+            分层设计、TUI / Web / mini CLI / Electron 四端协同
           </h2>
         </div>
 
@@ -417,15 +417,33 @@
                     <line x1="12" y1="17" x2="12" y2="21"></line>
                   </svg>
                 </div>
-                <h3 class="ds-step-title" data-i18n="feat.2.title">Web 工作台与多会话并发（Electron 跨平台）</h3>
+                <h3 class="ds-step-title" data-i18n="feat.2.title">Web 工作台与多会话并发（浏览器 / Electron 桌面端）</h3>
               </div>
               <p class="ds-step-desc" data-i18n="feat.2.desc">
                 按工作区分组的多会话侧栏并行调度、实时 Markdown 回答、左右并排 diff 与审批交互卡片；跨平台 Electron 桌面应用（macOS / Windows / Linux 内置 Node 运行时，免环境配置）开箱即用。
               </p>
             </div>
 
-            <!-- Step 3: Layered Core -->
+            <!-- Step 3: Terminal Mini CLI -->
             <div class="ds-step-item" data-step="3">
+              <div class="ds-step-header">
+                <div class="ds-step-icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16"></path>
+                    <path d="M4 10h10"></path>
+                    <path d="M4 15h16"></path>
+                    <path d="M4 20h7"></path>
+                  </svg>
+                </div>
+                <h3 class="ds-step-title" data-i18n="feat.3.title">纯终端 mini CLI（Codex CLI 形态行式模式）</h3>
+              </div>
+              <p class="ds-step-desc" data-i18n="feat.3.desc">
+                omni mini 提供 Codex CLI 风格的行式终端体验：流式回答、• Ran 工具卡片与输出预览、Markdown 表格 / 代码 / diff、每轮 token 与耗时统计；全部输出普通滚动行，无光标控制、可管道可回滚，与全屏 TUI 共享同一运行时、会话与斜杠命令。
+              </p>
+            </div>
+
+            <!-- Step 4: Layered Core -->
+            <div class="ds-step-item" data-step="4">
               <div class="ds-step-header">
                 <div class="ds-step-icon" aria-hidden="true">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -434,9 +452,9 @@
                     <polyline points="2 12 12 17 22 12"></polyline>
                   </svg>
                 </div>
-                <h3 class="ds-step-title" data-i18n="feat.3.title">分层内核、8 执行工具与安全沙箱</h3>
+                <h3 class="ds-step-title" data-i18n="feat.4.title">分层内核、8 执行工具与安全沙箱</h3>
               </div>
-              <p class="ds-step-desc" data-i18n="feat.3.desc">
+              <p class="ds-step-desc" data-i18n="feat.4.desc">
                 入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。
               </p>
             </div>
@@ -455,8 +473,13 @@
                 <img src="assets/omni/web.png" alt="Omni Web 工作台与多会话并发界面（按工作区分组与实时 Diff）" loading="lazy" />
               </div>
 
-              <!-- Slide 3: Layered Architecture Blueprint -->
+              <!-- Slide 3: Terminal Mini CLI -->
               <div class="ds-showcase-slide" id="slide-3">
+                <img src="assets/omni/mini.png" alt="Omni mini 纯终端模式（Codex CLI 形态行式输出、工具卡片与 token 统计）" loading="lazy" />
+              </div>
+
+              <!-- Slide 4: Layered Architecture Blueprint -->
+              <div class="ds-showcase-slide" id="slide-4">
                 <div class="ds-simulated-ui">
                   <div class="ds-arch-blueprint">
                     <div class="ds-arch-header">
@@ -468,12 +491,12 @@
                         </div>
                         <span class="text-xs font-semibold text-white/90">Omni Layered Kernel Blueprint</span>
                       </div>
-                      <span class="ds-arch-tag">v0.7 · TypeScript</span>
+                      <span class="ds-arch-tag">TypeScript</span>
                     </div>
                     <div class="ds-arch-tree">
                       <div class="ds-arch-row">
                         <span class="ds-arch-layer">入口层</span>
-                        <span>CLI · OpenTUI Terminal · Web Workbench · Electron Desktop · Headless Exec</span>
+                        <span>TUI · Web · mini CLI · Electron Desktop · Headless Exec</span>
                       </div>
                       <div class="ds-arch-row">
                         <span class="ds-arch-layer">循环层</span>
@@ -516,10 +539,10 @@
       <section class="ds-section ds-container" id="demo">
         <div class="ds-section-header-center reveal">
           <h2 class="ds-text-heading1 text-ds-primary" data-i18n="demo.title">
-            沉浸式终端 TUI、Web 工作台与跨平台桌面端
+            TUI / Web / mini CLI / Electron 四端沉浸式体验
           </h2>
           <p class="ds-text-body text-ds-description max-w-[640px]" data-i18n="demo.desc">
-            双端无缝协作：终端基于 OpenTUI 提供流畅的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件、28 个 / 命令），浏览器或独立桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。
+            四端无缝协作：全屏 TUI 与 Codex CLI 形态的 mini CLI 提供纯粹的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件与斜杠命令）；浏览器 Web 工作台与 Electron 桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。
           </p>
         </div>
 

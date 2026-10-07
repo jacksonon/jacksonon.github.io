@@ -48,13 +48,15 @@
       "pillar3.title": "级联记忆与动态技能生态",
       "pillar3.desc": "项目级与全局级 AGENTS.md 级联加载，首轮自动注入；自动扫描 .opencode/skills 与 .claude/skills 下的 SKILL.md 并按需渐进披露；支持会话 JSONL 持久化与长对话摘要压缩。",
       "feat.eyebrow": "系统架构",
-      "feat.title": "分层设计、全屏 TUI 与 Web 多端协同",
+      "feat.title": "分层设计、TUI / Web / mini CLI / Electron 四端协同",
       "feat.1.title": "全屏终端 TUI（OpenTUI 交互模式）",
       "feat.1.desc": "思考模块流式实时呈现、Bash 工具卡片点击展开、Markdown 表格与代码块排版、左右并排 diff 对比；输入框支持 @ 文件层级逐层浏览与插入，31 个 / 斜杠快捷命令采用圆角浮层悬停，带来纯粹极速的键盘流体验。",
-      "feat.2.title": "Web 工作台与多会话并发（Electron 跨平台）",
+      "feat.2.title": "Web 工作台与多会话并发（浏览器 / Electron 桌面端）",
       "feat.2.desc": "按工作区分组的多会话侧栏并行调度、实时 Markdown 回答、左右并排 diff 与审批交互卡片；跨平台 Electron 桌面应用（macOS / Windows / Linux 内置 Node 运行时，免环境配置）开箱即用。",
-      "feat.3.title": "分层内核、8 执行工具与安全沙箱",
-      "feat.3.desc": "入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。",
+      "feat.3.title": "纯终端 mini CLI（Codex CLI 形态行式模式）",
+      "feat.3.desc": "omni mini 提供 Codex CLI 风格的行式终端体验：流式回答、• Ran 工具卡片与输出预览、Markdown 表格 / 代码 / diff、每轮 token 与耗时统计；全部输出普通滚动行，无光标控制、可管道可回滚，与全屏 TUI 共享同一运行时、会话与斜杠命令。",
+      "feat.4.title": "分层内核、8 执行工具与安全沙箱",
+      "feat.4.desc": "入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。",
       "sim.placeholder": "输入编程任务，或让 Omni 探索代码库...",
       "sim.std.name": "标准模式 (Standard)",
       "sim.std.desc": "功能完备的编码与操作 Agent，支持终端命令、代码读写与自我纠错。",
@@ -64,8 +66,8 @@
       "sim.min.desc": "调度高吞吐轻模型执行具体的代码落地与编辑，极致降低延迟与开销。",
       "sim.create.name": "子代理隔离 (Delegate)",
       "sim.create.desc": "自动 git worktree 临时分支隔离运行，生成变更报告与合并建议。",
-      "demo.title": "沉浸式终端 TUI、Web 工作台与跨平台桌面端",
-      "demo.desc": "双端无缝协作：终端基于 OpenTUI 提供流畅的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件、28 个 / 命令），浏览器或独立桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。",
+      "demo.title": "TUI / Web / mini CLI / Electron 四端沉浸式体验",
+      "demo.desc": "四端无缝协作：全屏 TUI 与 Codex CLI 形态的 mini CLI 提供纯粹的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件与斜杠命令）；浏览器 Web 工作台与 Electron 桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。",
       "demo.bilibili": "前往哔哩哔哩观看高清完整视频（支持 1080P / 高帧率）",
       "use.eyebrow": "开始使用",
       "use.title": "多元化安装与运行方案",
@@ -142,13 +144,15 @@
       "pillar3.title": "Cascade Memory & Skill Ecosystem",
       "pillar3.desc": "Cascades project & global AGENTS.md, auto-extracts preferences, discovers SKILL.md specs with progressive disclosure, and persists sessions as JSONL.",
       "feat.eyebrow": "SYSTEM ARCHITECTURE",
-      "feat.title": "Layered Architecture, OpenTUI & Multi-Surface Delivery",
+      "feat.title": "Layered Design with Four Surfaces: TUI, Web, Mini CLI & Electron",
       "feat.1.title": "Full-Screen Terminal TUI (OpenTUI Mode)",
       "feat.1.desc": "Live thinking module streams reasoning, clickable Bash tool cards expand on demand, Markdown tables and syntax-highlighted code blocks, and side-by-side diff. Floating @ file mentions and 31 / slash command popovers provide an uninterrupted keyboard-first flow.",
-      "feat.2.title": "Web Workbench & Electron Desktop App",
+      "feat.2.title": "Web Workbench & Multi-Session Concurrency (Browser / Electron)",
       "feat.2.desc": "Multi-session concurrency grouped by workspaces, live Markdown rendering, side-by-side diff inspection, and interactive permission approvals. Built-in Node runtime enables zero-dependency standalone desktop apps across macOS, Windows, and Linux.",
-      "feat.3.title": "Layered Core, 8 Execution Tools & OS Sandboxing",
-      "feat.3.desc": "Unified entry points drive a bare SDK autonomous loop with self-correction. 6 base tools + delegate subagents (isolated in temporary git worktrees) + mcp_* external tools, guarded by macOS sandbox-exec / Linux bwrap OS sandboxing and lifecycle hooks.",
+      "feat.3.title": "Pure Terminal Mini CLI (Codex CLI-Style Line Mode)",
+      "feat.3.desc": "omni mini brings a Codex CLI-style line-mode terminal: streamed answers, • Ran tool cards with output previews, Markdown tables / code / diffs, and per-turn token & timing stats — plain scrollback lines only (pipeable, no cursor control), sharing the same runtime, sessions and slash commands as the full-screen TUI.",
+      "feat.4.title": "Layered Core, 8 Execution Tools & OS Sandboxing",
+      "feat.4.desc": "Unified entry points drive a bare SDK autonomous loop with self-correction. 6 base tools + delegate subagents (isolated in temporary git worktrees) + mcp_* external tools, guarded by macOS sandbox-exec / Linux bwrap OS sandboxing and lifecycle hooks.",
       "sim.placeholder": "Enter a coding task or ask Omni to inspect this repo...",
       "sim.std.name": "Standard Mode",
       "sim.std.desc": "Complete coding suite with terminal execution, file edits, and self-correction.",
@@ -158,8 +162,8 @@
       "sim.min.desc": "Routes to fast, cost-efficient models for concrete code editing and testing.",
       "sim.create.name": "Delegate Mode",
       "sim.create.desc": "Automates isolated git worktree execution on temp branches with diff reports.",
-      "demo.title": "Full-Screen Terminal TUI, Web UI & Desktop Apps",
-      "demo.desc": "Seamless duality: Enjoy lightning-fast keyboard-first workflows in the OpenTUI terminal, or leverage visual multi-session concurrency in Web & Electron desktop apps.",
+      "demo.title": "Immersive Across TUI, Web, Mini CLI & Electron",
+      "demo.desc": "Seamless across four surfaces: the full-screen TUI and the Codex CLI-style mini CLI deliver a pure keyboard-first flow (syntax highlighting, side-by-side diff, floating @ file mentions, slash commands), while the browser Web workbench and the Electron desktop app (bundled Node runtime on macOS / Windows / Linux) provide multi-session concurrency and rich visual cards.",
       "demo.bilibili": "Watch Full HD Video on Bilibili (1080P)",
       "use.eyebrow": "GETTING STARTED",
       "use.title": "Multiple Ways to Install and Run Omni",
@@ -1314,7 +1318,8 @@ void main(){
     const slides = [
       document.getElementById("slide-1"),
       document.getElementById("slide-2"),
-      document.getElementById("slide-3")
+      document.getElementById("slide-3"),
+      document.getElementById("slide-4")
     ];
 
     if (!stepItems.length) return;
@@ -1715,13 +1720,9 @@ void main(){
         }
       })
       .catch(() => {
-        // Fallback to static tag if API is unreachable so version is not permanently lost
-        const fallbackTag = "v0.7.20";
-        badge.textContent = fallbackTag;
-        container.removeAttribute("hidden");
-        container.style.removeProperty("display");
-        TRANSLATIONS.zh["hero.badge"] = fallbackTag;
-        TRANSLATIONS.en["hero.badge"] = fallbackTag;
+        // No default tag: keep the badge hidden when the release API is unreachable
+        badge.textContent = "";
+        container.setAttribute("hidden", "");
       });
   }
 
