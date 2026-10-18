@@ -1289,10 +1289,6 @@ section[id] {
   text-decoration: underline;
 }
 
-.omni-hero-remote {
-  margin-top: 20px;
-}
-
 .omni-kernel {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
