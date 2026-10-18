@@ -9,11 +9,11 @@
      i18n Translations
      ========================================================================== */
   const TRANSLATIONS = {
-    zh: {
+    "zh": {
       "skip.link": "跳至主要内容",
       "nav.home": "首页",
-      "nav.philosophy": "工程理念",
-      "nav.features": "架构与工具",
+      "nav.philosophy": "执行回路",
+      "nav.features": "内核与界面",
       "nav.demo": "终端与界面",
       "nav.quickstart": "快速开始",
       "nav.discuss": "社区讨论",
@@ -23,7 +23,7 @@
       "hero.label": "Right AI Omni Agent Harness",
       "hero.title": "极简透明高效",
       "hero.desc1": "Right AI Omni 是一个开源（BSD-3-Clause）的终端型 Agent 工程 / Agent Harness，源代码公开可查。",
-      "hero.desc2": "模型、模型提供商、技能、会话、沙箱、存储、循环、调度、UI、Web、Local Server、瞬时token计算、会话平均token计算等所有Agent能力全部内置，为您提供完整的Agent Harness 体验。",
+      "hero.desc2": "模型与提供商配置、工具执行、权限审批、上下文管理和子代理协作集中在同一内核。支持 TUI、Web、mini CLI 与 Electron，也能从手机浏览器连接电脑上的 Agent。",
       "hero.btn.github": "查看 GitHub",
       "hero.btn.docs": "系统架构",
       "hero.btn.dist": "桌面端下载",
@@ -37,37 +37,8 @@
       "term.tab.curl": "curl 一键安装",
       "term.copy": "复制",
       "term.copied": "已复制",
-      "philo.formula": "AGENT = LLM STREAM + 8 TOOLS + OS SANDBOX + CASCADE MEMORY",
-      "philo.title": "从裸 SDK 循环到自主执行回路",
-      "philo.desc1": "大语言模型是 Agent 的大脑，但真实工程需要坚不可摧的执行回路与安全护栏。",
-      "philo.desc2": "Omni 摒弃黑盒框架抽象，回归流式调用、并行工具执行与自我纠错最本真的形态，让 Agent 稳定落地复杂编程场景。",
-      "pillar1.title": "裸 SDK 主循环与自纠错",
-      "pillar1.desc": "流式调用 LLM → 并行执行工具调用 → 执行结果回传自纠错闭环。工具执行失败信息原样回传模型，由模型自行理解并自愈代码缺陷，杜绝框架吞错。",
-      "pillar2.title": "权限分级与 OS 级进程沙箱",
-      "pillar2.desc": "内置 full / safe / ask / read 四级权限，危险命令正则拦截与审批卡片；底层集成 macOS sandbox-exec 与 Linux bwrap 进程隔离；网络白名单经内置过滤代理出网（TLS 不解密；macOS 内核层强制，Linux 依赖代理尽力而为）。",
-      "pillar3.title": "级联记忆与动态技能生态",
-      "pillar3.desc": "项目级与全局级 AGENTS.md 级联加载，首轮自动注入；自动扫描 .opencode/skills 与 .claude/skills 下的 SKILL.md 并按需渐进披露；支持会话 JSONL 持久化与长对话摘要压缩。",
-      "feat.eyebrow": "系统架构",
-      "feat.title": "分层设计、TUI / Web / mini CLI / Electron 四端协同",
-      "feat.1.title": "全屏终端 TUI（OpenTUI 交互模式）",
-      "feat.1.desc": "思考模块流式实时呈现、Bash 工具卡片点击展开、Markdown 表格与代码块排版、左右并排 diff 对比；输入框支持 @ 文件层级逐层浏览与插入，31 个 / 斜杠快捷命令采用圆角浮层悬停，带来纯粹极速的键盘流体验。",
-      "feat.2.title": "Web 工作台与多会话并发（浏览器 / Electron 桌面端）",
-      "feat.2.desc": "按工作区分组的多会话侧栏并行调度、实时 Markdown 回答、左右并排 diff 与审批交互卡片；跨平台 Electron 桌面应用（macOS / Windows / Linux 内置 Node 运行时，免环境配置）开箱即用。",
-      "feat.3.title": "纯终端 mini CLI（Codex CLI 形态行式模式）",
-      "feat.3.desc": "omni mini 提供 Codex CLI 风格的行式终端体验：流式回答、• Ran 工具卡片与输出预览、Markdown 表格 / 代码 / diff、每轮 token 与耗时统计；全部输出普通滚动行，无光标控制、可管道可回滚，与全屏 TUI 共享同一运行时、会话与斜杠命令。",
-      "feat.4.title": "分层内核、8 执行工具与安全沙箱",
-      "feat.4.desc": "入口层统一调度单 Agent 主循环与自我纠错闭环；6 个基础工具 + 动态注入 delegate（子代理 git worktree 临时分支隔离）与 mcp_* 外部工具；macOS sandbox-exec 与 Linux bwrap 进程沙箱，全生命周期 Hooks 拦截自愈。",
-      "sim.placeholder": "输入编程任务，或让 Omni 探索代码库...",
-      "sim.std.name": "标准模式 (Standard)",
-      "sim.std.desc": "功能完备的编码与操作 Agent，支持终端命令、代码读写与自我纠错。",
-      "sim.ptc.name": "架构规划 (Architect)",
-      "sim.ptc.desc": "调度推理强模型进行方案分析与 EARS 规格设计，同步任务清单。",
-      "sim.min.name": "快速执行 (Editor)",
-      "sim.min.desc": "调度高吞吐轻模型执行具体的代码落地与编辑，极致降低延迟与开销。",
-      "sim.create.name": "子代理隔离 (Delegate)",
-      "sim.create.desc": "自动 git worktree 临时分支隔离运行，生成变更报告与合并建议。",
-      "demo.title": "TUI / Web / mini CLI / Electron 四端沉浸式体验",
-      "demo.desc": "四端无缝协作：全屏 TUI 与 Codex CLI 形态的 mini CLI 提供纯粹的键盘流体验（语法高亮、左右并排 diff、浮动 @ 提及文件与斜杠命令）；浏览器 Web 工作台与 Electron 桌面应用（macOS / Windows / Linux 内置 Node 免环境配置）提供多会话并行与丰富可视化卡片。",
+      "demo.title": "看看 Omni 如何工作",
+      "demo.desc": "观看任务执行与界面演示；上方可切换查看 TUI、Web 与 mini CLI 截图。最新远程接入方式与命令见远程控制章节。",
       "demo.bilibili": "前往哔哩哔哩观看高清完整视频（支持 1080P / 高帧率）",
       "use.eyebrow": "开始使用",
       "use.title": "多元化安装与运行方案",
@@ -103,13 +74,83 @@
       "donate.title": "感谢支持 Omni！",
       "donate.message": "扫描二维码完成打赏，支持开源与持续迭代！",
       "donate.alipay": "支付宝",
-      "donate.wechat": "微信支付"
+      "donate.wechat": "微信支付",
+      "philo.eyebrow": "执行回路 · 可追踪，可干预",
+      "philo.title": "从一个任务，到可验证的结果",
+      "philo.desc": "基于原生 OpenAI SDK 构建。模型决定下一步，Omni 负责上下文、执行边界和结果回传，让每一步都有迹可循。",
+      "loop.1.title": "组装上下文",
+      "loop.1.desc": "读取项目指引、相关文件与会话历史；长任务通过摘要与压缩管理上下文。",
+      "loop.2.title": "流式调用模型",
+      "loop.2.desc": "通过模型提供商配置连接 Chat Completions 或 Responses，输出回答或工具调用。",
+      "loop.3.title": "检查执行边界",
+      "loop.3.desc": "每次工具调用经过权限策略、审批与审计；按配置启用命令沙箱和生命周期 Hooks。",
+      "loop.4.title": "执行并回传结果",
+      "loop.4.desc": "并行执行本轮工具，将结果按顺序返回模型；失败与拒绝也进入下一轮判断。",
+      "loop.feedback": "工具结果 → 更新上下文 → 继续执行，直到模型给出回答或达到步数上限。",
+      "core.1.title": "权限与沙箱，分别配置",
+      "core.1.desc": "full / safe / ask / read 四级权限，默认 safe。OS 沙箱默认关闭；启用后默认 fail-closed，无法提供所需隔离时拒绝执行。Windows 原生沙箱尚未实现。",
+      "core.2.title": "上下文随任务延续",
+      "core.2.desc": "全局与项目 AGENTS.md 级联加载，SKILL.md 按需读取；JSONL 会话持久化、摘要压缩与检查点支持长任务和后续恢复。",
+      "core.3.title": "从单循环到任务协作",
+      "core.3.desc": "支持前后台子代理、共享任务看板与消息通信；工作流按依赖分批执行，子代理可选择 git worktree 隔离。通过 MCP、插件与 Hooks 扩展能力。",
+      "feat.eyebrow": "一个内核 · 多种入口",
+      "feat.title": "同一个 Agent 内核，四种工作方式",
+      "feat.desc": "从终端到桌面，再到手机浏览器。各入口复用 Agent 循环与工具能力，按使用场景提供不同的交互方式。",
+      "interface.tui.title": "全屏终端，专注键盘工作流",
+      "interface.tui.desc": "OpenTUI 提供流式思考、工具卡片、Markdown 与 Diff；用 @ 浏览文件，用斜杠命令切换模型、管理任务与会话。",
+      "interface.tui.alt": "全屏 TUI 界面",
+      "interface.web.title": "浏览器工作台，也能从手机接入",
+      "interface.web.desc": "按工作区管理多个会话，查看工具执行与 Diff，响应审批和提问。移动端抽屉导航配合账号登录、扫码配对与隧道，连接你电脑上的 Agent。",
+      "interface.web.alt": "Web 多会话工作台",
+      "interface.mini.title": "滚屏终端，保留熟悉的命令行节奏",
+      "interface.mini.desc": "行式呈现流式回答、工具输出与每轮 token、耗时统计；交互选择器使用临时屏幕。自动化与管道场景可使用 omni exec 的结构化输出。",
+      "interface.mini.alt": "mini CLI 行式终端界面",
+      "interface.electron.title": "独立桌面窗口，内置运行环境",
+      "interface.electron.desc": "提供 macOS、Windows、Linux 安装包，在独立窗口中使用 Web 工作台与本地后端，无需单独安装 Node.js。下图展示共用的 Web 界面。",
+      "interface.electron.alt": "Electron 共用的 Web 工作台界面",
+      "kernel.eyebrow": "SHARED RUNTIME",
+      "kernel.title": "界面之下，是同一套执行能力",
+      "kernel.desc": "界面负责展示与交互，核心负责模型调用、工具执行、权限策略与会话管理。Headless Exec 与 MCP Server 也复用这些能力。",
+      "layer.1.title": "模型接入",
+      "layer.1.desc": "providers 配置 · Chat Completions / Responses · 模型与思考级别切换",
+      "layer.2.title": "上下文与循环",
+      "layer.2.desc": "级联记忆 · 摘要压缩 · 流式调用 · 并行工具 · 结果回传",
+      "layer.3.title": "工具与扩展",
+      "layer.3.desc": "8 个静态工具：读、写、编辑、目录、搜索、命令、技能、LSP；运行时扩展子代理、提问、协作、搜索与 MCP 工具",
+      "layer.4.title": "执行与持久化",
+      "layer.4.desc": "权限与审批 · 可选 OS 沙箱 · Hooks · 审计 · JSONL 会话与检查点",
+      "remote.eyebrow": "REMOTE ACCESS · v0.9.1",
+      "remote.title": "电脑上执行，手机上继续",
+      "remote.desc": "通过浏览器发送任务、查看执行进展、处理审批与提问。代码、命令和 Agent 后端仍在运行 Omni 的电脑上执行；电脑与服务需要保持在线。",
+      "remote.route.client": "手机 / 另一台电脑",
+      "remote.route.access": "局域网 / HTTPS 隧道 + 登录认证",
+      "remote.route.host": "你的电脑 · Omni Web + Agent",
+      "remote.auth.title": "首次接入：先在电脑上设置账号密码",
+      "remote.auth.desc": "密码以 scrypt 哈希保存。扫码使用 5 分钟有效、单次兑换的配对码；后续也可使用账号密码登录。",
+      "remote.1.title": "同一网络，扫码配对",
+      "remote.1.desc": "电脑启动后显示局域网链接与终端二维码。手机连接同一局域网，扫码进入 Web 工作台。",
+      "remote.1.note": "也可运行 omni web --host 0.0.0.0，使用局域网地址和账号密码登录。",
+      "remote.2.title": "离开局域网，通过隧道接入",
+      "remote.2.desc": "安装 cloudflared 后，生成临时公网 HTTPS 地址。使用账号密码登录，手机浏览器可在 HTTPS 下添加到主屏幕。",
+      "remote.2.note": "临时地址用于快速连接；固定域名与长期访问可配置 Cloudflare 命名隧道。",
+      "remote.3.title": "常驻服务，管理启停与自启",
+      "remote.3.desc": "已配置命名隧道及其本地配置文件后，用 LaunchAgent 管理 Web 与隧道进程。此服务管理命令目前仅支持 macOS。",
+      "remote.3.note": "将 omni 替换为你的隧道名。start / stop / restart 控制运行状态；enable / disable 单独控制登录自启；status 查看状态。",
+      "remote.events": "远程消息自动适配：优先使用 SSE；遇到隧道缓冲等情况，自动回退长轮询，继续接收任务事件。",
+      "nav.remote": "远程控制",
+      "hero.btn.remote": "手机远程控制",
+      "interfaces.label": "选择 Omni 界面",
+      "interfaces.zoom": "放大界面截图",
+      "kernel.source": "阅读架构参考 ↗",
+      "remote.guide": "查看使用指南 ↗",
+      "interfaces.preview": "界面截图预览",
+      "interfaces.close": "关闭预览"
     },
-    en: {
+    "en": {
       "skip.link": "Skip to main content",
       "nav.home": "Home",
-      "nav.philosophy": "Philosophy",
-      "nav.features": "Architecture",
+      "nav.philosophy": "Execution loop",
+      "nav.features": "Core & interfaces",
       "nav.demo": "Interfaces",
       "nav.quickstart": "Quick Start",
       "nav.discuss": "Discuss",
@@ -119,7 +160,7 @@
       "hero.label": "Right AI Omni Agent Harness",
       "hero.title": "Minimal, Transparent & High-Efficiency",
       "hero.desc1": "Right AI Omni is an open-source (BSD-3-Clause) terminal-based agent harness; the source code is public.",
-      "hero.desc2": "Models, providers, skills, sessions, sandboxing, storage, loop, scheduling, UI, Web, Local Server, instantaneous and session average token calculations — all agent capabilities built-in for a complete Agent Harness experience.",
+      "hero.desc2": "One core brings together provider settings, tools, permissions, context and subagents. Work through TUI, Web, mini CLI or Electron, or connect to your computer’s agent from a phone browser.",
       "hero.btn.github": "View on GitHub",
       "hero.btn.docs": "Architecture",
       "hero.btn.dist": "Download Desktop",
@@ -133,37 +174,8 @@
       "term.tab.curl": "curl Install",
       "term.copy": "Copy",
       "term.copied": "Copied!",
-      "philo.formula": "AGENT = LLM STREAM + 8 TOOLS + OS SANDBOX + CASCADE MEMORY",
-      "philo.title": "From a Bare SDK Loop to an Autonomous Execution Loop",
-      "philo.desc1": "LLMs are the mind of an Agent, but engineering requires solid runtime loops and guardrails.",
-      "philo.desc2": "Omni removes framework bloat, returning to streaming calls, parallel tool execution, and self-correction to solve real-world coding tasks.",
-      "pillar1.title": "Bare SDK Loop & Self-Correction",
-      "pillar1.desc": "Streams LLM calls → executes tool calls (parallel) → feeds results back. Tool error messages are returned to the model so it can diagnose and fix its own code.",
-      "pillar2.title": "Permission Tiers & OS Sandbox",
-      "pillar2.desc": "Provides full / safe / ask / read tiers, dangerous-command interception and approval cards, plus macOS sandbox-exec / Linux bwrap process isolation. Network allowlists egress through a built-in filtering proxy (TLS not decrypted; kernel-enforced on macOS, best-effort via proxy on Linux).",
-      "pillar3.title": "Cascade Memory & Skill Ecosystem",
-      "pillar3.desc": "Cascades project & global AGENTS.md, auto-extracts preferences, discovers SKILL.md specs with progressive disclosure, and persists sessions as JSONL.",
-      "feat.eyebrow": "SYSTEM ARCHITECTURE",
-      "feat.title": "Layered Design with Four Surfaces: TUI, Web, Mini CLI & Electron",
-      "feat.1.title": "Full-Screen Terminal TUI (OpenTUI Mode)",
-      "feat.1.desc": "Live thinking module streams reasoning, clickable Bash tool cards expand on demand, Markdown tables and syntax-highlighted code blocks, and side-by-side diff. Floating @ file mentions and 31 / slash command popovers provide an uninterrupted keyboard-first flow.",
-      "feat.2.title": "Web Workbench & Multi-Session Concurrency (Browser / Electron)",
-      "feat.2.desc": "Multi-session concurrency grouped by workspaces, live Markdown rendering, side-by-side diff inspection, and interactive permission approvals. Built-in Node runtime enables zero-dependency standalone desktop apps across macOS, Windows, and Linux.",
-      "feat.3.title": "Pure Terminal Mini CLI (Codex CLI-Style Line Mode)",
-      "feat.3.desc": "omni mini brings a Codex CLI-style line-mode terminal: streamed answers, • Ran tool cards with output previews, Markdown tables / code / diffs, and per-turn token & timing stats — plain scrollback lines only (pipeable, no cursor control), sharing the same runtime, sessions and slash commands as the full-screen TUI.",
-      "feat.4.title": "Layered Core, 8 Execution Tools & OS Sandboxing",
-      "feat.4.desc": "Unified entry points drive a bare SDK autonomous loop with self-correction. 6 base tools + delegate subagents (isolated in temporary git worktrees) + mcp_* external tools, guarded by macOS sandbox-exec / Linux bwrap OS sandboxing and lifecycle hooks.",
-      "sim.placeholder": "Enter a coding task or ask Omni to inspect this repo...",
-      "sim.std.name": "Standard Mode",
-      "sim.std.desc": "Complete coding suite with terminal execution, file edits, and self-correction.",
-      "sim.ptc.name": "Architect Mode",
-      "sim.ptc.desc": "Routes to reasoning-heavy models for architectural planning and spec drafting.",
-      "sim.min.name": "Editor Mode",
-      "sim.min.desc": "Routes to fast, cost-efficient models for concrete code editing and testing.",
-      "sim.create.name": "Delegate Mode",
-      "sim.create.desc": "Automates isolated git worktree execution on temp branches with diff reports.",
-      "demo.title": "Immersive Across TUI, Web, Mini CLI & Electron",
-      "demo.desc": "Seamless across four surfaces: the full-screen TUI and the Codex CLI-style mini CLI deliver a pure keyboard-first flow (syntax highlighting, side-by-side diff, floating @ file mentions, slash commands), while the browser Web workbench and the Electron desktop app (bundled Node runtime on macOS / Windows / Linux) provide multi-session concurrency and rich visual cards.",
+      "demo.title": "See Omni in action",
+      "demo.desc": "Watch task execution and interface demos. Browse TUI, Web and mini CLI screenshots above; see the remote access section for the latest connection options and commands.",
       "demo.bilibili": "Watch Full HD Video on Bilibili (1080P)",
       "use.eyebrow": "GETTING STARTED",
       "use.title": "Multiple Ways to Install and Run Omni",
@@ -199,7 +211,77 @@
       "donate.title": "Support Omni",
       "donate.message": "Scan to donate and support open-source development!",
       "donate.alipay": "Alipay",
-      "donate.wechat": "WeChat Pay"
+      "donate.wechat": "WeChat Pay",
+      "philo.eyebrow": "THE EXECUTION LOOP",
+      "philo.title": "From a task to a result you can verify",
+      "philo.desc": "Built on the OpenAI SDK. The model chooses the next step; Omni manages context, execution boundaries and feedback so you can follow the work.",
+      "loop.1.title": "Assemble context",
+      "loop.1.desc": "Load project instructions, relevant files and session history. Summaries and compaction manage context during longer tasks.",
+      "loop.2.title": "Stream the model response",
+      "loop.2.desc": "Connect through provider settings using Chat Completions or Responses, returning an answer or tool calls.",
+      "loop.3.title": "Check execution boundaries",
+      "loop.3.desc": "Each tool call passes permission policy, approval and auditing, with command sandboxing and lifecycle hooks configured as needed.",
+      "loop.4.title": "Execute and return results",
+      "loop.4.desc": "Run tool calls in parallel and return results in order. Errors and denials also inform the next model step.",
+      "loop.feedback": "Tool results → updated context → another step, until the model answers or the step limit is reached.",
+      "core.1.title": "Permissions and sandboxing, configured separately",
+      "core.1.desc": "Four permission levels: full / safe / ask / read, with safe as the default. The OS sandbox is off by default; when enabled, it fails closed if required isolation is unavailable. Native Windows sandboxing is not implemented.",
+      "core.2.title": "Context that follows the task",
+      "core.2.desc": "Cascade global and project AGENTS.md instructions, load SKILL.md on demand, and use JSONL persistence, compaction and checkpoints for longer tasks and later resumption.",
+      "core.3.title": "From one loop to coordinated work",
+      "core.3.desc": "Use foreground and background subagents, shared task boards and messages. Workflows run in dependency batches, with optional git worktree isolation. Extend capabilities through MCP, plugins and hooks.",
+      "feat.eyebrow": "ONE CORE · MULTIPLE SURFACES",
+      "feat.title": "One agent core. Four ways to work.",
+      "feat.desc": "From the terminal to the desktop and a phone browser. Each surface reuses the agent loop and tools, with interactions suited to the way you work.",
+      "interface.tui.title": "A full-screen, keyboard-first workspace",
+      "interface.tui.desc": "OpenTUI brings streamed reasoning, tool cards, Markdown and diffs. Browse files with @ and use slash commands to switch models and manage tasks and sessions.",
+      "interface.tui.alt": "Full-screen TUI",
+      "interface.web.title": "A browser workspace, accessible from your phone",
+      "interface.web.desc": "Manage sessions by workspace, inspect tool runs and diffs, and respond to approvals and questions. Mobile navigation, account login, QR pairing and tunnels connect you to the agent on your computer.",
+      "interface.web.alt": "Web multi-session workspace",
+      "interface.mini.title": "A scrolling terminal that fits your CLI workflow",
+      "interface.mini.desc": "See streamed answers, tool output and per-turn token and timing stats in scrollback. Interactive pickers use a temporary screen. For automation and pipelines, use structured output from omni exec.",
+      "interface.mini.alt": "mini CLI scrolling terminal",
+      "interface.electron.title": "A standalone desktop window with a bundled runtime",
+      "interface.electron.desc": "Packages for macOS, Windows and Linux run the Web workspace and local backend in a desktop window, with no separate Node.js installation. The image shows the shared Web interface.",
+      "interface.electron.alt": "The Web workspace shared by Electron",
+      "kernel.eyebrow": "SHARED RUNTIME",
+      "kernel.title": "A shared execution core beneath the interfaces",
+      "kernel.desc": "Interfaces handle display and interaction; the core handles model calls, tools, permissions and sessions. Headless Exec and the MCP server reuse these capabilities too.",
+      "layer.1.title": "Models",
+      "layer.1.desc": "Provider settings · Chat Completions / Responses · model and reasoning selection",
+      "layer.2.title": "Context & loop",
+      "layer.2.desc": "Cascaded memory · compaction · streaming · parallel tools · result feedback",
+      "layer.3.title": "Tools & extensions",
+      "layer.3.desc": "8 static tools: read, write, edit, list, search, command, skill and LSP; runtime extensions for delegation, questions, collaboration, web search and MCP",
+      "layer.4.title": "Execution & state",
+      "layer.4.desc": "Permissions and approvals · optional OS sandbox · hooks · auditing · JSONL sessions and checkpoints",
+      "remote.eyebrow": "REMOTE ACCESS · v0.9.1",
+      "remote.title": "Run on your computer. Continue from your phone.",
+      "remote.desc": "Send tasks, follow progress, and handle approvals and questions in a browser. Code, commands and the agent backend run on the computer hosting Omni, which must stay online with the service running.",
+      "remote.route.client": "Phone / another computer",
+      "remote.route.access": "LAN / HTTPS tunnel + authentication",
+      "remote.route.host": "Your computer · Omni Web + Agent",
+      "remote.auth.title": "Before connecting: set up an account on your computer",
+      "remote.auth.desc": "Passwords are stored as scrypt hashes. QR pairing uses a single-use code valid for five minutes; account login is also available.",
+      "remote.1.title": "On the same network, scan to pair",
+      "remote.1.desc": "Start Omni to display a LAN link and terminal QR code. Connect your phone to the same network and scan to open the Web workspace.",
+      "remote.1.note": "Or run omni web --host 0.0.0.0 and log in at the LAN address with your account.",
+      "remote.2.title": "Connect beyond your LAN through a tunnel",
+      "remote.2.desc": "Install cloudflared to create a temporary public HTTPS address. Sign in with your account; on HTTPS, add the Web app to your phone’s home screen.",
+      "remote.2.note": "Use the temporary URL for quick access. Configure a named Cloudflare tunnel for a stable domain and longer-term access.",
+      "remote.3.title": "Keep it running and manage startup",
+      "remote.3.desc": "After configuring a named tunnel and its local configuration file, use LaunchAgent to manage the Web and tunnel processes. Service management currently supports macOS only.",
+      "remote.3.note": "Replace omni with your tunnel name. start / stop / restart control running processes; enable / disable control login startup independently. Use status to inspect both.",
+      "remote.events": "Remote updates adapt automatically: SSE is preferred; if a tunnel buffers the stream, the client falls back to long polling to keep receiving task events.",
+      "nav.remote": "Remote access",
+      "hero.btn.remote": "Connect from your phone",
+      "interfaces.label": "Choose an Omni interface",
+      "interfaces.zoom": "Enlarge interface screenshot",
+      "kernel.source": "Read the architecture reference ↗",
+      "remote.guide": "Read the user guide ↗",
+      "interfaces.preview": "Interface screenshot preview",
+      "interfaces.close": "Close preview"
     }
   };
 
@@ -221,6 +303,7 @@
     try {
       localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
     } catch (e) {}
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
     document.documentElement.setAttribute("data-language", lang);
     document.body.setAttribute("data-language", lang);
 
@@ -230,6 +313,13 @@
       const key = el.getAttribute("data-i18n");
       if (dict[key]) {
         el.textContent = dict[key];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-alt], [data-i18n-aria]").forEach((el) => {
+      for (const [dataAttr, attr] of [["data-i18n-alt", "alt"], ["data-i18n-aria", "aria-label"]]) {
+        const value = dict[el.getAttribute(dataAttr)];
+        if (value) el.setAttribute(attr, value);
       }
     });
 
@@ -1311,59 +1401,32 @@ void main(){
   }
 
   /* ==========================================================================
-     Sticky Showcase Step Switcher
+     Accessible Interface Tabs
      ========================================================================== */
-  function initStickyShowcase() {
-    const stepItems = document.querySelectorAll(".ds-step-item");
-    const slides = [
-      document.getElementById("slide-1"),
-      document.getElementById("slide-2"),
-      document.getElementById("slide-3"),
-      document.getElementById("slide-4")
-    ];
-
-    if (!stepItems.length) return;
-
-    let isManual = false;
-    let manualTimer = null;
-
-    function activateStep(index) {
-      stepItems.forEach((item, i) => {
-        item.classList.toggle("is-active", i === index);
-      });
-
-      slides.forEach((slide, i) => {
-        if (slide) {
-          slide.classList.toggle("is-active", i === index);
-        }
+  function initInterfaceTabs() {
+    const tabs = [...document.querySelectorAll('[role="tab"][aria-controls^="interface-panel-"]')];
+    function activate(tab) {
+      tabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
       });
     }
-
-    stepItems.forEach((item, i) => {
-      item.addEventListener("click", () => {
-        isManual = true;
-        activateStep(i);
-        clearTimeout(manualTimer);
-        manualTimer = setTimeout(() => {
-          isManual = false;
-        }, 1200);
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => activate(tab));
+      tab.addEventListener("keydown", (event) => {
+        let next;
+        if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+        if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === "Home") next = 0;
+        if (event.key === "End") next = tabs.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        activate(tabs[next]);
+        tabs[next].focus();
       });
     });
-
-    // Scroll trigger for steps
-    const observer = new IntersectionObserver((entries) => {
-      if (isManual) return;
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const stepIndex = parseInt(entry.target.getAttribute("data-step"), 10) - 1;
-          if (!isNaN(stepIndex)) {
-            activateStep(stepIndex);
-          }
-        }
-      });
-    }, { threshold: 0.55 });
-
-    stepItems.forEach((item) => observer.observe(item));
   }
 
   /* ==========================================================================
@@ -1499,7 +1562,7 @@ void main(){
     });
 
     // Blend trigger on interactive elements
-    const interactiveSelector = "a, button, [role='button'], .ds-step-item, .ds-terminal-tab, .footer-link";
+    const interactiveSelector = "a, button, [role='button'], .ds-terminal-tab, .footer-link";
     document.querySelectorAll(interactiveSelector).forEach((el) => {
       el.addEventListener("mouseenter", () => ring.classList.add("is-blend"));
       el.addEventListener("mouseleave", () => ring.classList.remove("is-blend"));
@@ -1747,12 +1810,16 @@ void main(){
       lightbox.hidden = true;
       imgEl.src = "";
       document.body.style.overflow = "";
+      returnFocus?.focus();
     }
 
-    document.querySelectorAll(".ds-showcase-slide img").forEach((img) => {
-      img.style.cursor = "zoom-in";
-      img.addEventListener("click", () => {
+    let returnFocus = null;
+    document.querySelectorAll(".omni-image-zoom").forEach((button) => {
+      button.addEventListener("click", () => {
+        const img = button.querySelector("img");
+        returnFocus = button;
         open(img.src, img.alt);
+        lightbox.querySelector("button[data-lightbox-close]")?.focus();
       });
     });
 
@@ -1761,7 +1828,12 @@ void main(){
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !lightbox.hidden) close();
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "Tab") {
+        e.preventDefault();
+        lightbox.querySelector("button[data-lightbox-close]")?.focus();
+      }
     });
   }
 
@@ -1780,7 +1852,7 @@ void main(){
       .catch((err) => {
         console.warn("Three.js particle logo load error:", err);
       });
-    initStickyShowcase();
+    initInterfaceTabs();
     initLightbox();
     initTerminal();
     initCardSpotlight();

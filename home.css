@@ -1081,269 +1081,416 @@ section[id] {
 }
 
 /* ==========================================================================
-   Section 2: Sticky Interactive Showcase ("设计思路：一切皆插件")
+   Execution loop, shared core, interfaces and remote access
    ========================================================================== */
 
-.ds-showcase-layout {
+.omni-lead {
+  max-width: 780px;
+  text-wrap: pretty;
+}
+
+.omni-index {
+  display: block;
+  color: var(--ds-color-brand);
+  font: 12px var(--ds-font-mono);
+  letter-spacing: 0.08em;
+}
+
+.omni-loop {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
   margin-top: 48px;
-  align-items: start;
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-color-bg-surface-3);
+  overflow: hidden;
 }
 
-@media (min-width: 960px) {
-  .ds-showcase-layout {
-    grid-template-columns: 42fr 58fr;
-    gap: 64px;
-  }
+.omni-loop-step {
+  padding: 30px 24px;
+  border-right: 1px solid var(--ds-color-border-default);
 }
 
-.ds-showcase-steps {
+.omni-loop-step:last-child {
+  border-right: 0;
+}
+
+.omni-loop h3,
+.omni-support-card h3,
+.omni-remote-card h3,
+.omni-auth-setup h3 {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 16px 0 12px;
+}
+
+.omni-loop p,
+.omni-support-card p,
+.omni-kernel p,
+.omni-remote-card p,
+.omni-auth-setup p,
+.omni-remote-footer p {
+  color: var(--ds-color-text-description);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.omni-loop-feedback {
+  color: var(--ds-color-brand);
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+  padding: 18px 24px;
+  border: 1px dashed rgba(103, 153, 254, 0.25);
+  border-top: 0;
+  border-radius: 0 0 20px 20px;
+  margin: 0 24px;
+}
+
+.omni-support-grid,
+.omni-remote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.omni-support-card {
+  padding: 24px 0 0;
+  border-top: 1px solid var(--ds-color-border-default);
+}
+
+.omni-surfaces {
+  margin-top: 40px;
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-color-bg-surface-3);
+  overflow: hidden;
+}
+
+.omni-surface-tabs {
   display: flex;
-  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid var(--ds-color-border-default);
+  overflow-x: auto;
 }
 
-.ds-step-item {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 36px 0;
-  cursor: pointer;
-  opacity: 0.35;
-  transition: opacity 0.4s ease;
-  border-bottom: 1px solid var(--ds-color-border-subtle);
+.omni-surface-tabs button {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-color-text-description);
+  white-space: nowrap;
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.ds-step-item:last-child {
-  border-bottom: none;
-}
-
-.ds-step-item.is-active {
-  opacity: 1;
-}
-
-.ds-step-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.ds-step-icon {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.omni-surface-tabs button[aria-selected="true"] {
+  background: rgba(103, 153, 254, 0.14);
   color: var(--ds-color-brand);
 }
 
-.ds-step-title {
-  font-size: 22px;
-  font-weight: 500;
+.omni-surface-tabs button:hover,
+.omni-command button:hover {
+  background: var(--ds-color-bg-surface-1);
   color: var(--ds-color-text-primary);
 }
 
-.ds-step-desc {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--ds-color-text-description);
-}
-
-/* Sticky Frame & Visual Slides */
-.ds-showcase-sticky-wrap {
-  position: relative;
-}
-
-@media (min-width: 960px) {
-  .ds-showcase-sticky-wrap {
-    position: sticky;
-    top: 20vh;
-  }
-}
-
-.ds-showcase-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 8 / 5;
-  border-radius: var(--ds-radius-card);
-  background: #101113;
-  border: 1px solid var(--ds-color-border-default);
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
-}
-
-.ds-showcase-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s var(--ds-ease-smooth);
-  display: flex;
+.omni-surface-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
   align-items: center;
-  justify-content: center;
+  gap: 32px;
+  padding: 32px;
+}
+
+.omni-surface-panel[hidden] {
+  display: none;
+}
+
+.omni-surface-copy h3,
+.omni-kernel h3 {
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.omni-surface-copy p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ds-color-text-description);
+  margin-bottom: 24px;
+}
+
+.omni-interface-image {
+  min-width: 0;
+  margin: 0;
+  border-radius: var(--ds-radius-panel);
+  overflow: hidden;
+  border: 1px solid var(--ds-color-border-default);
   background: #101113;
 }
 
-.ds-showcase-slide.is-active {
-  opacity: 1;
-  pointer-events: auto;
+.omni-image-zoom {
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
 }
 
-.ds-showcase-slide img {
+.omni-interface-image img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
   object-fit: contain;
 }
 
-/* Slide 3: Interactive Simulated Mode Selector UI */
-.ds-simulated-ui {
-  width: 100%;
-  height: 100%;
-  padding: clamp(16px, 3vw, 32px);
+.omni-command {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #121418;
-  color: #e6e8ea;
-}
-
-.ds-sim-input-box {
-  background: #1f2126;
-  border-radius: 16px;
-  padding: 14px 18px;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-sm);
+  background: rgba(0, 0, 0, 0.25);
 }
 
-.ds-sim-placeholder {
+.omni-command code {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--ds-color-text-secondary);
+}
+
+.omni-command button {
+  flex-shrink: 0;
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--ds-color-brand);
+  font-size: 12px;
+}
+
+.omni-text-link {
+  display: inline-block;
+  color: var(--ds-color-brand);
   font-size: 14px;
-  color: #81858c;
+  line-height: 1.6;
+  text-underline-offset: 4px;
 }
 
-.ds-sim-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.omni-text-link:hover {
+  text-decoration: underline;
 }
 
-.ds-sim-send-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--ds-color-brand);
-  color: #fff;
+.omni-hero-remote {
+  margin-top: 20px;
+}
+
+.omni-kernel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.omni-kernel-intro h3 {
+  margin-top: 16px;
+}
+
+.omni-kernel-intro a {
+  margin-top: 18px;
+}
+
+.omni-kernel-layers {
+  border-top: 1px solid var(--ds-color-border-default);
+}
+
+.omni-kernel-layers > div {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ds-color-border-default);
+}
+
+.omni-kernel dt {
+  color: var(--ds-color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.omni-kernel dd {
+  color: var(--ds-color-text-description);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.omni-remote-route {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+  padding: 28px 24px;
+  margin-top: 40px;
+  border: 1px solid rgba(103, 153, 254, 0.2);
+  border-radius: var(--ds-radius-panel);
+  background: linear-gradient(120deg, rgba(103, 153, 254, 0.08), transparent);
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
 }
 
-.ds-sim-mode-menu {
-  margin-top: 14px;
-  background: #26282c;
-  border-radius: 12px;
-  padding: 8px;
+.omni-remote-route [aria-hidden] {
+  color: var(--ds-color-brand);
+  font-size: 24px;
+}
+
+.omni-auth-setup {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  padding: 28px 0;
+  margin-top: 16px;
+}
+
+.omni-auth-setup h3 {
+  margin-top: 0;
+}
+
+.omni-remote-grid {
+  margin-top: 0;
+}
+
+.omni-remote-card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  align-items: stretch;
+  padding: 24px;
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-panel);
+  background: var(--ds-color-bg-surface-3);
 }
 
-.ds-sim-mode-item {
-  padding: 8px 12px;
-  border-radius: 8px;
+.omni-remote-card .omni-command {
+  margin: 24px 0 16px;
+}
+
+.omni-remote-card .omni-fine-print {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.omni-remote-footer {
   display: flex;
+  gap: 32px;
   align-items: center;
   justify-content: space-between;
+  margin-top: 24px;
 }
 
-.ds-sim-mode-item.is-selected {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.ds-sim-mode-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.ds-sim-mode-desc {
-  font-size: 11px;
-  color: #81858c;
-}
-
-/* Architecture Blueprint in Slide 3 */
-.ds-arch-blueprint {
-  background: #181b22;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 12px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ds-arch-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.ds-arch-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ds-arch-tag {
-  font-family: var(--ds-font-mono);
-  font-size: 11px;
-  color: var(--ds-color-text-description);
-}
-
-.ds-arch-tree {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-family: var(--ds-font-mono);
-  font-size: 11px;
-}
-
-.ds-arch-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.4;
-}
-
-.ds-arch-layer {
+.omni-remote-footer a {
   flex-shrink: 0;
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(103, 153, 254, 0.15);
-  color: #6799fe;
-  font-weight: 600;
-  font-size: 10px;
 }
 
-@media (max-width: 640px) {
-  .ds-arch-blueprint {
-    padding: 10px 12px;
+:is(.omni-surfaces, .omni-remote-grid, .omni-auth-setup) button:focus-visible,
+.omni-text-link:focus-visible {
+  outline: 2px solid var(--ds-color-brand);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1000px) {
+  .omni-loop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .ds-arch-tree {
-    font-size: 10px;
-    gap: 5px;
+  .omni-loop-step {
+    border-bottom: 1px solid var(--ds-color-border-default);
   }
-  .ds-arch-row {
-    flex-wrap: wrap;
-    gap: 4px;
+  .omni-loop-step:nth-child(even) {
+    border-right: 0;
+  }
+  .omni-loop-step:nth-child(n+3) {
+    border-bottom: 0;
+  }
+  .omni-surface-panel,
+  .omni-kernel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .omni-support-grid,
+  .omni-remote-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .omni-support-grid,
+  .omni-remote-grid,
+  .omni-auth-setup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .omni-loop-step,
+  .omni-surface-panel {
+    padding: 24px 18px;
+  }
+  .omni-surface-tabs {
+    gap: 0;
+    padding: 8px;
+  }
+  .omni-surface-tabs button {
+    padding: 12px;
+    font-size: 13px;
+  }
+  .omni-kernel-layers > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .omni-remote-route {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .omni-remote-route [aria-hidden] {
+    transform: rotate(90deg);
+  }
+  .omni-remote-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 440px) {
+  .omni-loop {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .omni-loop-step {
+    border-right: 0;
+  }
+  .omni-loop-step:nth-child(3) {
+    border-bottom: 1px solid var(--ds-color-border-default);
+  }
+  .omni-loop-feedback {
+    margin: 0 12px;
+    padding: 16px;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
   }
 }
 
