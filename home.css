@@ -1671,46 +1671,6 @@ section[id] {
 }
 
 /* ==========================================================================
-   Section 5: Ecosystem CTA
-   ========================================================================== */
-
-.ds-cta-section {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(80px, 12vh, 140px) 0;
-  text-align: center;
-  min-height: min(60vh, 700px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.ds-cta-glow-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 450px;
-  background: radial-gradient(ellipse at center, rgba(45, 95, 158, 0.45) 0%, rgba(26, 56, 112, 0.3) 45%, transparent 70%);
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.ds-cta-content {
-  position: relative;
-  z-index: 10;
-  max-width: 680px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-/* ==========================================================================
    MANDATORY SECTION 1: Discuss (Comments / Giscus)
    ========================================================================== */
 
